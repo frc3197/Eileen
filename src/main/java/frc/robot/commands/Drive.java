@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -11,9 +12,9 @@ public class Drive extends Command {
 
   @Override
   protected void execute() {
-    double l = OI.joystick.getRawAxis(1);
-    double r = OI.joystick.getRawAxis(5);
-    // Robot.driveTrain.drive(l, r);
+    double l = OI.joystick.getX(Hand.kLeft);
+    double r = OI.joystick.getY(Hand.kRight);
+    Robot.driveTrain.drive(l, r);
   }
 
   @Override
@@ -23,6 +24,6 @@ public class Drive extends Command {
 
   @Override
   protected void end() {
-    // Robot.driveTrain.drive(0, 0);
+    Robot.driveTrain.drive(0, 0);
   }
 }
