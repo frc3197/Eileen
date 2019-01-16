@@ -11,23 +11,23 @@ import frc.robot.RobotMap.CANSparkMaxID;
 import frc.robot.commands.Drive;
 
 public class DriveTrain extends Subsystem {
-  // SpeedControllerGroup left = new SpeedControllerGroup(
-  // new CANSparkMax(CANSparkMaxID.FRONTLEFT.id, MotorType.kBrushless),
-  // new CANSparkMax(CANSparkMaxID.BACKLEFT.id, MotorType.kBrushless));
-  // SpeedControllerGroup right = new SpeedControllerGroup(
-  // new CANSparkMax(CANSparkMaxID.FRONTRIGHT.id, MotorType.kBrushless),
-  // new CANSparkMax(CANSparkMaxID.BACKRIGHT.id, MotorType.kBrushless));
+  SpeedControllerGroup left = new SpeedControllerGroup(
+      new CANSparkMax(CANSparkMaxID.FRONTLEFT.id, MotorType.kBrushless),
+      new CANSparkMax(CANSparkMaxID.BACKLEFT.id, MotorType.kBrushless));
+  SpeedControllerGroup right = new SpeedControllerGroup(
+      new CANSparkMax(CANSparkMaxID.FRONTRIGHT.id, MotorType.kBrushless),
+      new CANSparkMax(CANSparkMaxID.BACKRIGHT.id, MotorType.kBrushless));
 
-  // DifferentialDrive drive = new DifferentialDrive(left, right);
+  DifferentialDrive drive = new DifferentialDrive(left, right);
 
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Drive());
-    // drive.setDeadband(RobotMap.deadband);
+    drive.setDeadband(RobotMap.deadband);
   }
 
-  // public void drive(double l, double r) {
-  // drive.tankDrive(l, r, true);
-  // }
+  public void drive(double l, double r) {
+    drive.tankDrive(l, r, true);
+  }
 
 }
