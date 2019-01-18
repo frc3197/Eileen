@@ -16,11 +16,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     table = nt.getTable("SmartDashboard");
     nt.startClientTeam(3197);
+    table.getEntry("X").setDouble(10);
   }
 
   @Override
   public void robotPeriodic() {
-    table.getEntry("X").setDouble(10);
     System.out.println(table.getEntry("X").getDouble(-10));
   }
 
