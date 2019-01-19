@@ -1,2 +1,2 @@
 # 2019-FRC
-Code for 3197's Robot competing in 2019 Destination: Deep Space Challenge
+Code for 3197's Robot competing in the 2019 challenge, Destination: Deep Space
