@@ -20,8 +20,7 @@ public class VisionAlignment extends PIDSubsystem {
   protected double returnPIDInput() {
     // Return your input value for the PID loop
     // e.g. a sensor, like a potentiometer:
-    // yourPot.getAverageVoltage() / kYourMaxVoltage;
-
+    // yourPot.getAverageVoltage() / kYourMaxVoltage;„
     return 0.0;
   }
 

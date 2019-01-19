@@ -6,13 +6,14 @@ import frc.robot.OI;
 import frc.robot.Robot;
 
 public class Drive extends Command {
+
   public Drive() {
     requires(Robot.driveTrain);
   }
 
   @Override
   protected void execute() {
-    double l = OI.joystick.getX(Hand.kLeft);
+    double l = OI.joystick.getY(Hand.kLeft);
     double r = OI.joystick.getY(Hand.kRight);
     Robot.driveTrain.drive(l, r);
   }
