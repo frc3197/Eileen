@@ -4,6 +4,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 
@@ -19,6 +20,7 @@ public class Robot extends TimedRobot {
     // table = ntInst.getTable("SmartDashboard");
     // ntInst.startServer();
     // table.getEntry("X").setDouble(10);
+    new ColorSensor();
   }
 
   @Override
