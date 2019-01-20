@@ -6,10 +6,10 @@ public class RobotMap {
 
     public final int id;
 
-    private CANSparkMaxID(int id){
+    private CANSparkMaxID(int id) {
       this.id = id;
     }
   };
-  
+
   public static final double deadband = .05;
 }
