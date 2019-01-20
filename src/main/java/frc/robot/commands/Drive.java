@@ -13,9 +13,15 @@ public class Drive extends Command {
 
   @Override
   protected void execute() {
-    double l = OI.joystick.getY(Hand.kLeft);
-    double r = OI.joystick.getY(Hand.kRight);
-    Robot.driveTrain.drive(l, r);
+    if (Robot.driveTrain.arcadeDrive) {
+      double y = OI.joystick.getY(Hand.kRight);
+      double r = OI.joystick.getX(Hand.kLeft);
+      Robot.driveTrain.arcadeDrive(y, r);
+    } else {
+      double l = OI.joystick.getY(Hand.kLeft);
+      double r = OI.joystick.getY(Hand.kRight);
+      Robot.driveTrain.tankDrive(l, r);
+    }
   }
 
   @Override
@@ -25,6 +31,6 @@ public class Drive extends Command {
 
   @Override
   protected void end() {
-    Robot.driveTrain.drive(0, 0);
+    Robot.driveTrain.tankDrive(0, 0);
   }
 }

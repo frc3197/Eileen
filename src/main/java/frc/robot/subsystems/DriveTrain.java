@@ -15,6 +15,8 @@ import frc.robot.commands.Drive;
 
 public class DriveTrain extends Subsystem {
 
+  public boolean arcadeDrive = false;
+
   private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.FRONTLEFT.id, MotorType.kBrushless);
   private CANSparkMax blSparkMax = new CANSparkMax(CANSparkMaxID.BACKLEFT.id, MotorType.kBrushless);
   private CANSparkMax frSparkMax = new CANSparkMax(CANSparkMaxID.FRONTRIGHT.id, MotorType.kBrushless);
@@ -69,8 +71,12 @@ public class DriveTrain extends Subsystem {
   // }
   // }`
 
-  public void drive(double l, double r) {
+  public void tankDrive(double l, double r) {
     drive.tankDrive(l, r, true);
+  }
+
+  public void arcadeDrive(double y, double r) {
+    drive.arcadeDrive(y, r, true);
   }
 
 }
