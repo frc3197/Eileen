@@ -13,9 +13,7 @@ import frc.robot.commands.Elevate;
 
 public class Elevator extends Subsystem {
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATORLEFT.id, MotorType.kBrushless);
-  // Bottom limit
   private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATORRIGHT.id, MotorType.kBrushless);
-  // Top limit
 
   private SpeedControllerGroup elevatorGroup = new SpeedControllerGroup(left, right);
 
