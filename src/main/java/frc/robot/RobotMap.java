@@ -24,6 +24,9 @@ public class RobotMap {
     }
   };
 
+  public static final double visionTargetX = .5;
+  public static final double visionTargetArea = 500;
+
   public static enum VisionPID {
     P(0), I(0), D(0), F(0);
 

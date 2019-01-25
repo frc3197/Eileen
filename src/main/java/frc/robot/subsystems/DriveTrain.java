@@ -9,7 +9,6 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -18,7 +17,7 @@ import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
 import frc.robot.commands.Drive;
 
-public class DriveTrain extends Subsystem implements PIDOutput {
+public class DriveTrain extends Subsystem {
 
   public boolean arcadeDrive = false;
 
@@ -31,11 +30,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
   private SpeedControllerGroup rightMaxes = new SpeedControllerGroup(frSparkMax, brSparkMax);
 
   private DifferentialDrive drive = new DifferentialDrive(leftMaxes, rightMaxes);
-
-  // private CANEncoder blEncoder = blSparkMax.getEncoder();
-  // private CANEncoder flEncoder = flSparkMax.getEncoder();
-  // private CANEncoder brEncoder = brSparkMax.getEncoder();
-  // private CANEncoder frEncoder = frSparkMax.getEncoder();
 
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
@@ -113,13 +107,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
   public void arcadeDrive(double y, double r) {
     drive.arcadeDrive(y, r, true);
-  }
-
-  /**
-   * VisionOutput
-   */
-  public void pidWrite(double output) {
-    arcadeDrive(0, output);
   }
 
 }
