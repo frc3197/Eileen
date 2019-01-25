@@ -1,16 +1,15 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
-
 import java.util.HashMap;
-import java.util.Map;
 
 import com.revrobotics.CANDigitalInput;
+import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -19,7 +18,7 @@ import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
 import frc.robot.commands.Drive;
 
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends Subsystem implements PIDOutput {
 
   public boolean arcadeDrive = false;
 
@@ -38,17 +37,11 @@ public class DriveTrain extends Subsystem {
   // private CANEncoder brEncoder = brSparkMax.getEncoder();
   // private CANEncoder frEncoder = frSparkMax.getEncoder();
 
-  // private CANPIDController flPidContoller = flSparkMax.getPIDController();
-  // private CANPIDController blPidContoller = blSparkMax.getPIDController();
-  // private CANPIDController frPidContoller = frSparkMax.getPIDController();
-  // private CANPIDController brPidContoller = brSparkMax.getPIDController();
-
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
 
-  @Override
-  public void initDefaultCommand() {
-    setDefaultCommand(new Drive());
+  public DriveTrain() {
+    super();
     drive.setDeadband(RobotMap.deadband);
 
     sparkMaxPrimaryLimitSwitches.put(flSparkMax, flSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
@@ -61,6 +54,35 @@ public class DriveTrain extends Subsystem {
     sparkMaxSecondaryLimitSwitches.put(frSparkMax, frSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxSecondaryLimitSwitches.put(brSparkMax, brSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
 
+    CANPIDController flPIDController = flSparkMax.getPIDController();
+    CANPIDController blPIDController = blSparkMax.getPIDController();
+    CANPIDController frPIDController = frSparkMax.getPIDController();
+    CANPIDController brPIDController = brSparkMax.getPIDController();
+
+    flPIDController.setP(RobotMap.CANSparkPID.P.val);
+    blPIDController.setP(RobotMap.CANSparkPID.P.val);
+    frPIDController.setP(RobotMap.CANSparkPID.P.val);
+    brPIDController.setP(RobotMap.CANSparkPID.P.val);
+
+    flPIDController.setI(RobotMap.CANSparkPID.I.val);
+    blPIDController.setI(RobotMap.CANSparkPID.I.val);
+    frPIDController.setI(RobotMap.CANSparkPID.I.val);
+    brPIDController.setI(RobotMap.CANSparkPID.I.val);
+
+    flPIDController.setD(RobotMap.CANSparkPID.D.val);
+    blPIDController.setD(RobotMap.CANSparkPID.D.val);
+    frPIDController.setD(RobotMap.CANSparkPID.D.val);
+    brPIDController.setD(RobotMap.CANSparkPID.D.val);
+
+    flPIDController.setFF(RobotMap.CANSparkPID.F.val);
+    blPIDController.setFF(RobotMap.CANSparkPID.F.val);
+    frPIDController.setFF(RobotMap.CANSparkPID.F.val);
+    brPIDController.setFF(RobotMap.CANSparkPID.F.val);
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    setDefaultCommand(new Drive());
   }
 
   public void update() {
@@ -91,6 +113,13 @@ public class DriveTrain extends Subsystem {
 
   public void arcadeDrive(double y, double r) {
     drive.arcadeDrive(y, r, true);
+  }
+
+  /**
+   * VisionOutput
+   */
+  public void pidWrite(double output) {
+    arcadeDrive(0, output);
   }
 
 }
