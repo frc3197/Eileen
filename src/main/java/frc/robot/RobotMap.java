@@ -28,7 +28,6 @@ public class RobotMap {
   public static final double visionTargetArea = 500;
 
   public static enum VisionPID {
-    // TODO Change these
     P(0), I(0), D(0), F(0);
 
     public final double val;
@@ -37,20 +36,6 @@ public class RobotMap {
       this.val = val;
     }
   };
-
-  public static enum ElevatorPreset {
-    // TODO Change these
-    LEVELA(0), LEVELB(0), LEVELC(0);
-    public final double pos;
-
-    private ElevatorPreset(double pos) {
-      this.pos = pos;
-    }
-
-  }
-
-  // TODO change me
-  public static final double elevatorPresetThreshold = 0;
 
   public static final double deadband = .05;
 }

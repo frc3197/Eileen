@@ -6,11 +6,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
 
@@ -26,8 +23,6 @@ public class Elevator extends Subsystem {
   public Elevator() {
     super();
     left.setInverted(true);
-    LimitReset limitReset = new LimitReset();
-    limitReset.whenActive(new ElevatorResetPosition());
   }
 
   @Override
@@ -53,6 +48,7 @@ public class Elevator extends Subsystem {
     } // If bottom pressed, only drive positive
     elevatorGroup.set(output);
   }
+<<<<<<< HEAD
 
   // private void resetElevatorPosition() {
   // // left.getEncoder().reset();
@@ -94,3 +90,6 @@ public class Elevator extends Subsystem {
 
   }
 }
+=======
+}
+>>>>>>> parent of 2ae4e7c... elevator goto position implemented
