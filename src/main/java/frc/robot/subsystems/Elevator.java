@@ -56,13 +56,13 @@ public class Elevator extends Subsystem {
 
   // private void resetElevatorPosition() {
   // // left.getEncoder().reset();
-  // //TODO not yet availible
+  // //TODO not yet available
   // }
   // public double getEncoderPosition() {
   // return left.getEncoder().getPosition();
   // }
 
-  // TODO delete me when that is availible
+  // TODO delete me when that is available
   double resetEncoderPosition = 0;
 
   private void resetElevatorPosition() {
