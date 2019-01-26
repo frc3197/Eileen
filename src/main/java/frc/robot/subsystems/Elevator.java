@@ -53,6 +53,7 @@ public class Elevator extends Subsystem {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   // private void resetElevatorPosition() {
   // // left.getEncoder().reset();
@@ -94,6 +95,9 @@ public class Elevator extends Subsystem {
 
   }
 }
+=======
+}
+>>>>>>> parent of 2ae4e7c... elevator goto position implemented
 =======
 }
 >>>>>>> parent of 2ae4e7c... elevator goto position implemented
