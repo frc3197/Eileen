@@ -49,6 +49,7 @@ public class Elevator extends Subsystem {
     elevatorGroup.set(output);
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   // private void resetElevatorPosition() {
   // // left.getEncoder().reset();
@@ -90,6 +91,9 @@ public class Elevator extends Subsystem {
 
   }
 }
+=======
+}
+>>>>>>> parent of 2ae4e7c... elevator goto position implemented
 =======
 }
 >>>>>>> parent of 2ae4e7c... elevator goto position implemented
