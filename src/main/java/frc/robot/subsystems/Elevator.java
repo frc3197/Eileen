@@ -6,8 +6,11 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
 
@@ -23,6 +26,8 @@ public class Elevator extends Subsystem {
   public Elevator() {
     super();
     left.setInverted(true);
+    LimitReset limitReset = new LimitReset();
+    limitReset.whenActive(new ElevatorResetPosition());
   }
 
   @Override
@@ -51,13 +56,13 @@ public class Elevator extends Subsystem {
 
   // private void resetElevatorPosition() {
   // // left.getEncoder().reset();
-  // //TODO not yet availible
+  // //TODO not yet available
   // }
   // public double getEncoderPosition() {
   // return left.getEncoder().getPosition();
   // }
 
-  // TODO delete me when that is availible
+  // TODO delete me when that is available
   double resetEncoderPosition = 0;
 
   private void resetElevatorPosition() {
@@ -89,4 +94,3 @@ public class Elevator extends Subsystem {
 
   }
 }
-
