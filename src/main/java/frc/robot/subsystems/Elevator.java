@@ -28,7 +28,7 @@ public class Elevator extends Subsystem {
   public Elevator() {
     super();
     left.setInverted(true);
-    limitReset.whenActive(new ElevatorResetPosition());
+    limitReset.whenActive(new ElevatorResetPosition(this));
   }
 
   @Override
@@ -83,14 +83,17 @@ public class Elevator extends Subsystem {
 
   private class ElevatorResetPosition extends InstantCommand {
 
-    public ElevatorResetPosition() {
+    private Elevator elevator;
+
+    public ElevatorResetPosition(Elevator elevator) {
       super();
-      requires(Robot.elevator);
+      this.elevator = elevator;
+      requires(elevator);
     }
 
     @Override
     protected void initialize() {
-      Robot.elevator.resetElevatorPosition();
+      this.elevator.resetElevatorPosition();
     }
 
   }
