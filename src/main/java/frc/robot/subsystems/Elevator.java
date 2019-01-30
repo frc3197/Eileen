@@ -23,10 +23,11 @@ public class Elevator extends Subsystem {
   private CANDigitalInput bottomLimit = left.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
   private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
+  private LimitReset limitReset = new LimitReset();
+
   public Elevator() {
     super();
     left.setInverted(true);
-    LimitReset limitReset = new LimitReset();
     limitReset.whenActive(new ElevatorResetPosition());
   }
 
