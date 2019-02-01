@@ -14,6 +14,8 @@ public class Robot extends TimedRobot {
   public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
   public static NetworkTable table;
 
+  public static OI oi = new OI();
+
   @Override
   public void robotInit() {
   }
