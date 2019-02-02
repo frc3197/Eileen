@@ -12,7 +12,7 @@ Code for 3197's Robot competing in the 2019 challenge, Destination: Deep Space
 -----------------
 Helpful Resources
 -----------------
-[WPILib Documentation](http://first.wpi.edu/FRC/roborio/release/docs/java/)
+`WPILib Documentation <http://first.wpi.edu/FRC/roborio/release/docs/java/>` 
 
 [Limelight Documentation](http://docs.limelightvision.io/en/latest/)
 
