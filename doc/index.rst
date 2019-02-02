@@ -3,7 +3,10 @@
 ========
 .. image:: https://travis-ci.org/frc3197/2019-FRC.svg?branch=master
     :target: https://travis-ci.org/frc3197/2019-FRC
-	
+.. image:: https://readthedocs.org/projects/2019-frc/badge/?version=latest
+:target: https://2019-frc.readthedocs.io/en/latest/?badge=latest
+:alt: Documentation Status
+
 Code for 3197's Robot competing in the 2019 challenge, Destination: Deep Space
 
 ## Helpful Resources
