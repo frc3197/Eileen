@@ -8,7 +8,7 @@ public class RobotMap {
 
   public static enum CANSparkMaxID {
     // TODO: Change for the real robot
-    FRONTLEFT(3, "FrontLeft"), BACKLEFT(4, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(2, "BackRight"),
+    FRONTLEFT(14, "FrontLeft"), BACKLEFT(15, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(0, "BackRight"),
     ELEVATORLEFT(6, "ElevatorLeft"), ELEVATORRIGHT(5, "ElevatorRight");
 
     public final int id;
