@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
 import frc.robot.commands.Drive;
@@ -21,6 +22,7 @@ public class DriveTrain extends Subsystem {
 
   // The Drive command will listen to this and ChangeDriveMode will change
   public boolean arcadeDrive = false;
+  public boolean useGyro = false;
 
   // Motor Controllers
   private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.FRONTLEFT.id, MotorType.kBrushless);
@@ -125,8 +127,27 @@ public class DriveTrain extends Subsystem {
   /**
    * Arcade Drive (self explanatory)
    */
+  private boolean goingStraightPrevious = false;
+  private double initialGyroAngle;
+
   public void arcadeDrive(double y, double r) {
+    if (goingStraight(y, r)) {
+      if (!goingStraightPrevious) { // rising edge
+        initialGyroAngle = Robot.oi.gyro.getAngle();
+        goingStraightPrevious = true;
+      }
+      double currentGyroAngle = Robot.oi.gyro.getAngle();
+      // TODO: Check polarity
+      double deltaAngle = (currentGyroAngle - initialGyroAngle);
+      r += Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
+    } else {
+      goingStraightPrevious = false;
+    }
     drive.arcadeDrive(y, r, true);
+  }
+
+  private boolean goingStraight(double y, double r) {
+    return (r < RobotMap.deadband);
   }
 
 }
