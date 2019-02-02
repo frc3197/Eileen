@@ -19,35 +19,45 @@ import frc.robot.commands.Drive;
 
 public class DriveTrain extends Subsystem {
 
+  // The Drive command will listen to this and ChangeDriveMode will change
   public boolean arcadeDrive = false;
 
+  // Motor Controllers
   private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.FRONTLEFT.id, MotorType.kBrushless);
   private CANSparkMax blSparkMax = new CANSparkMax(CANSparkMaxID.BACKLEFT.id, MotorType.kBrushless);
   private CANSparkMax frSparkMax = new CANSparkMax(CANSparkMaxID.FRONTRIGHT.id, MotorType.kBrushless);
   private CANSparkMax brSparkMax = new CANSparkMax(CANSparkMaxID.BACKRIGHT.id, MotorType.kBrushless);
 
+  // Left and Right Groups
   private SpeedControllerGroup leftMaxes = new SpeedControllerGroup(flSparkMax, blSparkMax);
   private SpeedControllerGroup rightMaxes = new SpeedControllerGroup(frSparkMax, brSparkMax);
 
+  // Full Drivetrain
   private DifferentialDrive drive = new DifferentialDrive(leftMaxes, rightMaxes);
 
+  // Map for storing limit switches from motor controllers
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
 
   public DriveTrain() {
     super();
+
+    // sets deadband (will not drive below threshold)
     drive.setDeadband(RobotMap.deadband);
 
+    // Primary Limits are first to be used
     sparkMaxPrimaryLimitSwitches.put(flSparkMax, flSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(blSparkMax, blSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(frSparkMax, frSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(brSparkMax, brSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
 
+    // Secondary Limits are second
     sparkMaxSecondaryLimitSwitches.put(flSparkMax, flSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxSecondaryLimitSwitches.put(blSparkMax, blSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxSecondaryLimitSwitches.put(frSparkMax, frSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxSecondaryLimitSwitches.put(brSparkMax, brSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
 
+    // For controlling PID
     CANPIDController flPIDController = flSparkMax.getPIDController();
     CANPIDController blPIDController = blSparkMax.getPIDController();
     CANPIDController frPIDController = frSparkMax.getPIDController();
@@ -79,6 +89,9 @@ public class DriveTrain extends Subsystem {
     setDefaultCommand(new Drive());
   }
 
+  /**
+   * Puts information about all motors on SmartDashboard
+   */
   public void update() {
     CANSparkMax[] sparkMaxes = { brSparkMax, blSparkMax, frSparkMax, brSparkMax };
     double[] ids = new double[sparkMaxes.length];
@@ -101,10 +114,17 @@ public class DriveTrain extends Subsystem {
     SmartDashboard.putNumberArray("driveTrainSparkMaxEncoderVelocity", encoderVelocity);
   }
 
+  // Squaded inputs are on for both drive modes
+  /**
+   * Tank Drive (self explanatory)
+   */
   public void tankDrive(double l, double r) {
     drive.tankDrive(l, r, true);
   }
 
+  /**
+   * Arcade Drive (self explanatory)
+   */
   public void arcadeDrive(double y, double r) {
     drive.arcadeDrive(y, r, true);
   }
