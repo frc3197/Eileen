@@ -17,6 +17,7 @@ Code-Related
 ----------------------------
 Updating/Installing Firmware
 ----------------------------
+`Updating and Imaging the RoboRIO <https://2019-frc.readthedocs.io/en/documentation/Updating%20and%20Imaging%20the%20RoboRIO.html?highlight=roborio/>`_
 
 -----------------
 Helpful Resources
