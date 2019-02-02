@@ -14,6 +14,8 @@ Code-Related
 ------------
 `I2C <https://2019-frc.readthedocs.io/en/documentation/I2C.html?highlight=I2C>`_
 
+`VSCode Basics <https://2019-frc.readthedocs.io/en/documentation/VSCode%20Basics.html>`_
+
 ----------------------------
 Updating/Installing Firmware
 ----------------------------
