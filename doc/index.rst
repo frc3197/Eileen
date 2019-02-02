@@ -12,8 +12,8 @@ Code for 3197's Robot competing in the 2019 challenge, Destination: Deep Space
 -----------------
 Helpful Resources
 -----------------
-`WPILib Documentation <http://first.wpi.edu/FRC/roborio/release/docs/java/>` 
+`WPILib Documentation <http://first.wpi.edu/FRC/roborio/release/docs/java/>`_ 
 
-[Limelight Documentation](http://docs.limelightvision.io/en/latest/)
+`Limelight Documentation <http://docs.limelightvision.io/en/latest/>`_
 
-[REV Robotics Documentation](http://www.revrobotics.com/content/sw/max/sw-docs/java/com/revrobotics/package-summary.html)
+`REV Robotics Documentation <http://www.revrobotics.com/content/sw/max/sw-docs/java/com/revrobotics/package-summary.html>`_
