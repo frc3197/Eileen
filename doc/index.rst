@@ -1,5 +1,9 @@
-# 2019-FRC .. image:: https://travis-ci.org/frc3197/2019-FRC.svg?branch=master
+========
+2019-FRC 
+========
+.. image:: https://travis-ci.org/frc3197/2019-FRC.svg?branch=master
     :target: https://travis-ci.org/frc3197/2019-FRC
+	
 Code for 3197's Robot competing in the 2019 challenge, Destination: Deep Space
 
 ## Helpful Resources
