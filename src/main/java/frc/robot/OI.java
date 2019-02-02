@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AlignTurn;
 import frc.robot.commands.ChangeDriveMode;
 
+/**
+ * Initializes the joystick and specific buttons
+ */
 public class OI {
   public XboxController joystick = new XboxController(0);
 
