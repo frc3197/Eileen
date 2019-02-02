@@ -131,18 +131,23 @@ public class DriveTrain extends Subsystem {
   private double initialGyroAngle;
 
   public void arcadeDrive(double y, double r) {
-    if (goingStraight(y, r)) {
-      if (!goingStraightPrevious) { // rising edge
-        initialGyroAngle = Robot.oi.gyro.getAngle();
-        goingStraightPrevious = true;
+    if (useGyro) {
+      if (goingStraight(y, r)) {
+        if (!goingStraightPrevious) { // rising edge
+          initialGyroAngle = Robot.oi.gyro.getAngle();
+          goingStraightPrevious = true;
+        }
+        double currentGyroAngle = Robot.oi.gyro.getAngle();
+        // TODO: Check polarity
+        double deltaAngle = (currentGyroAngle - initialGyroAngle);
+        r += Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
+        SmartDashboard.putNumber("deltaAngle", deltaAngle);
+        SmartDashboard.putNumber("r", r);
+      } else {
+        goingStraightPrevious = false;
       }
-      double currentGyroAngle = Robot.oi.gyro.getAngle();
-      // TODO: Check polarity
-      double deltaAngle = (currentGyroAngle - initialGyroAngle);
-      r += Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
-    } else {
-      goingStraightPrevious = false;
     }
+    SmartDashboard.putNumber("gyroAngle", Robot.oi.gyro.getAngle());
     drive.arcadeDrive(y, r, true);
   }
 
