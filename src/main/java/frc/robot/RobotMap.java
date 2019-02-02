@@ -1,6 +1,11 @@
 package frc.robot;
 
 public class RobotMap {
+
+  public static enum DriveTrainSide {
+    LEFT, RIGHT, BOTH;
+  }
+
   public static enum CANSparkMaxID {
     // TODO: Change for the real robot
     FRONTLEFT(3, "FrontLeft"), BACKLEFT(4, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(2, "BackRight"),
