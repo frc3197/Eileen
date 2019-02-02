@@ -1,10 +1,6 @@
 ========
 2019-FRC 
 ========
-====
-Test
-====
-
 .. image:: https://travis-ci.org/frc3197/2019-FRC.svg?branch=master
     :target: https://travis-ci.org/frc3197/2019-FRC
 .. image:: https://readthedocs.org/projects/2019-frc/badge/?version=latest
@@ -12,6 +8,15 @@ Test
     :alt: Documentation Status
 
 Code for 3197's Robot competing in the 2019 challenge, Destination: Deep Space
+
+------------
+Code-Related
+------------
+`I2C <https://2019-frc.readthedocs.io/en/documentation/I2C.html?highlight=I2C>`_
+
+----------------------------
+Updating/Installing Firmware
+----------------------------
 
 -----------------
 Helpful Resources
