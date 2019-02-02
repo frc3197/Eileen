@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.test.DriveTrainTest;
 
 public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
@@ -15,6 +16,8 @@ public class Robot extends TimedRobot {
   public static NetworkTable table;
 
   public static OI oi = new OI();
+
+  public static DriveTrainTest driveTrainTest;
 
   @Override
   public void robotInit() {
@@ -53,6 +56,13 @@ public class Robot extends TimedRobot {
   }
 
   @Override
+  public void testInit() {
+    driveTrainTest = new DriveTrainTest();
+    driveTrainTest.start();
+  }
+
+  @Override
   public void testPeriodic() {
+
   }
 }
