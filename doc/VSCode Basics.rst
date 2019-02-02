@@ -45,7 +45,7 @@ Known Problems and Fixes
 The following are known problems that exist and workarounds for said problems.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-1. VSCode does not recognize WPILib imports and functions.
+VSCode does not recognize WPILib imports and functions.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 VSCode will occasionally throw errors such as ``[Java] The import edu.wpi.first.wpilibj.import.example cannot be resolved [268435846]``. This is because VSCode cannot find the dependencies, and as such doesn't know what you're trying to import. This will most likely result in all WPILib methods/objects throwing errors such as ``[Java] ObjectName cannot be resolved to a type [16777218]`` or ``[Java] The method exampleMethod(input) is undefined for the type class.ObjectName [67108964]``.
