@@ -21,8 +21,8 @@ import frc.robot.commands.Drive;
 public class DriveTrain extends Subsystem {
 
   // The Drive command will listen to this and ChangeDriveMode will change
-  public boolean arcadeDrive = false;
-  public boolean useGyro = false;
+  public boolean arcadeDrive = true;
+  public boolean useGyro = true;
 
   // Motor Controllers
   private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.FRONTLEFT.id, MotorType.kBrushless);
