@@ -13,8 +13,8 @@ public class Drive extends Command {
   @Override
   protected void execute() {
     if (Robot.driveTrain.arcadeDrive) {
-      double y = Robot.oi.joystick.getY(Hand.kRight);
-      double r = Robot.oi.joystick.getX(Hand.kLeft);
+      double y = Robot.oi.joystick.getY(Hand.kLeft);
+      double r = Robot.oi.joystick.getX(Hand.kRight);
       Robot.driveTrain.arcadeDrive(y, r);
     } else {
       double l = Robot.oi.joystick.getY(Hand.kLeft);
