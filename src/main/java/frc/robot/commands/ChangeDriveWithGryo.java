@@ -7,7 +7,7 @@ public class ChangeDriveWithGryo extends InstantCommand {
 
   public ChangeDriveWithGryo() {
     super();
-    requires(Robot.driveTrain;
+    requires(Robot.driveTrain);
   }
 
   // Called once when the command executes
