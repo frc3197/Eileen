@@ -1,3 +1,7 @@
+================================
+Updating and Imaging the RoboRIO
+================================
+
  1. Connect computer to RoboRIO using the USB-A (big square-ish end) to USB-B (normal USB end) cable.
 
  2. Open up the FRC roboRIO imaging tool.
