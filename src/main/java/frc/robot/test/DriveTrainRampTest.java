@@ -14,6 +14,14 @@ public class DriveTrainRampTest extends Command {
 
   private double timeInterval;
 
+  /**
+   * Constructor that builds the speeds and total ramp up/ramp down duraation for
+   * a set side
+   * 
+   * @param speed
+   * @param duration
+   * @param side
+   */
   public DriveTrainRampTest(double[] speed, double duration, DriveTrainSide side) {
     requires(Robot.driveTrain);
     this.speeds = speed;
@@ -28,6 +36,10 @@ public class DriveTrainRampTest extends Command {
     timer.start();
   }
 
+  /**
+   * Based on which side is given, it sets the speed of the motor to the supplied
+   * value
+   */
   @Override
   protected void execute() {
     double speed = getSpeed(timer.get());
@@ -44,6 +56,12 @@ public class DriveTrainRampTest extends Command {
     }
   }
 
+  /**
+   * Returns the test speed
+   * 
+   * @param time
+   * @return
+   */
   private double getSpeed(double time) {
     int index = (int) ((time / duration) * speeds.length);
     if (index == speeds.length - 1) {
@@ -56,6 +74,9 @@ public class DriveTrainRampTest extends Command {
     return speed;
   }
 
+  /**
+   * Returns whether the duration has passed or not
+   */
   @Override
   protected boolean isFinished() {
     return timer.hasPeriodPassed(duration);
