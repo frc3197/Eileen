@@ -147,7 +147,7 @@ public class DriveTrain extends Subsystem {
         goingStraightPrevious = false;
       }
     }
-    SmartDashboard.putNumber("gyroAngle", Robot.oi.gyro.getAngle());
+    // SmartDashboard.putNumber("gyroAngle", Robot.oi.gyro.getAngle());
     drive.arcadeDrive(y, r, true);
   }
 

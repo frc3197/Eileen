@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AlignTurn;
@@ -20,7 +19,6 @@ public class OI {
   public JoystickButton b = new JoystickButton(joystick, 2);
 
   public OI() {
-    gyro.calibrate();
     // TODO: real button numbers
 
     a.whenPressed(new ChangeDriveMode());
