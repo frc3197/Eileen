@@ -4,6 +4,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.test.DriveTrainTest;
@@ -21,11 +22,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    oi.gyro.reset();
+    oi.gyro.calibrate();
   }
 
   @Override
   public void robotPeriodic() {
-
+    SmartDashboard.putNumber("gyroAngle", oi.gyro.getAngle());
   }
 
   @Override
