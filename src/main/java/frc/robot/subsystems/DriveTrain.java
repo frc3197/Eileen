@@ -147,6 +147,7 @@ public class DriveTrain extends Subsystem {
         goingStraightPrevious = false;
       }
     }
+    drive.arcadeDrive(y, r, true);
   }
 
   private boolean goingStraight(double y, double r) {
