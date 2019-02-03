@@ -9,7 +9,7 @@ public class RobotMap {
   public static enum CANSparkMaxID {
     // TODO: Change for the real robot
     FRONTLEFT(14, "FrontLeft"), BACKLEFT(15, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(0, "BackRight"),
-    ELEVATORLEFT(6, "ElevatorLeft"), ELEVATORRIGHT(5, "ElevatorRight");
+    ELEVATORLEFT(13, "ElevatorLeft"), ELEVATORRIGHT(2, "ElevatorRight");
 
     public final int id;
     public final String name;
@@ -59,4 +59,6 @@ public class RobotMap {
   public static final double elevatorPresetThreshold = 0;
 
   public static final double deadband = .05;
+
+  public static final double gyroDegreeSensitivity = 0.01;
 }

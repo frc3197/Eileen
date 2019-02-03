@@ -140,7 +140,7 @@ public class DriveTrain extends Subsystem {
         double currentGyroAngle = Robot.oi.gyro.getAngle();
         // TODO: Check polarity
         double deltaAngle = (currentGyroAngle - initialGyroAngle);
-        r += Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
+        r += RobotMap.gyroDegreeSensitivity * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
         SmartDashboard.putNumber("deltaAngle", deltaAngle);
         SmartDashboard.putNumber("r", r);
       } else {
@@ -151,7 +151,7 @@ public class DriveTrain extends Subsystem {
   }
 
   private boolean goingStraight(double y, double r) {
-    return (r < RobotMap.deadband);
+    return (Math.abs(r) < RobotMap.deadband);
   }
 
 }
