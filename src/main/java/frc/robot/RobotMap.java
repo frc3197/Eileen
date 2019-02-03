@@ -59,4 +59,6 @@ public class RobotMap {
   public static final double elevatorPresetThreshold = 0;
 
   public static final double deadband = .05;
+
+  public static final double gyroDegreeSensitivity = 0.01;
 }
