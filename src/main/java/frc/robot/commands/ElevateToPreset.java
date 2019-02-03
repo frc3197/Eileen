@@ -12,12 +12,21 @@ public class ElevateToPreset extends Command {
 
   private boolean finished;
 
+  /**
+   * Sets the value of the preset to the onw that is intended to be moved to
+   * 
+   * @param target
+   */
   public ElevateToPreset(ElevatorPreset target) {
     requires(Robot.elevator);
     preset = target;
     finished = false;
   }
 
+  /**
+   * Moves the elevator based on the number of speed, and returns the value of the
+   * encoder position to the Smart Dashboard
+   */
   @Override
   protected void execute() {
     SmartDashboard.putNumber("Elevator Encoder", Robot.elevator.getEncoderPosition());

@@ -4,8 +4,10 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.test.DriveTrainTest;
 
 public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
@@ -16,13 +18,17 @@ public class Robot extends TimedRobot {
 
   public static OI oi = new OI();
 
+  // public static DriveTrainTest driveTrainTest;
+
   @Override
   public void robotInit() {
   }
 
   @Override
   public void robotPeriodic() {
-
+    SmartDashboard.putNumber("rate", oi.gyro.getRate());
+    SmartDashboard.putNumber("angle", oi.gyro.getAngle());
+    driveTrain.update();
   }
 
   @Override
@@ -53,6 +59,13 @@ public class Robot extends TimedRobot {
   }
 
   @Override
+  public void testInit() {
+    // driveTrainTest = new DriveTrainTest();
+    // driveTrainTest.start();
+  }
+
+  @Override
   public void testPeriodic() {
+
   }
 }

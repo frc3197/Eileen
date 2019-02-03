@@ -14,7 +14,7 @@ public class Drive extends Command {
   protected void execute() {
     if (Robot.driveTrain.arcadeDrive) {
       double y = Robot.oi.joystick.getY(Hand.kRight);
-      double r = Robot.oi.joystick.getX(Hand.kLeft);
+      double r = -Robot.oi.joystick.getX(Hand.kLeft);
       Robot.driveTrain.arcadeDrive(y, r);
     } else {
       double l = Robot.oi.joystick.getY(Hand.kLeft);
