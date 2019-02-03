@@ -147,6 +147,10 @@ public class DriveTrain extends Subsystem {
         goingStraightPrevious = false;
       }
     }
+  }
 
+  private boolean goingStraight(double y, double r) {
+    return (r < RobotMap.deadband);
+  }
 
 }
