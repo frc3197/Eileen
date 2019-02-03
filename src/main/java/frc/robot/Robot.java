@@ -26,7 +26,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putData(oi.gyro);
+    // SmartDashboard.putData(oi.gyro);
+    SmartDashboard.putNumber("angle", oi.gyro.getAngle());
   }
 
   @Override
