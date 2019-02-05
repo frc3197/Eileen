@@ -26,7 +26,6 @@ Updating/Installing Firmware
 `Updating REV Spark Max Firmware <https://2019-frc.readthedocs.io/en/documentation/Updating%20Firmware%20of%20REV%20Spark%20Max's.html>`_
 
 .. _I2C-Label:
------------------
 Helpful Resources
 -----------------
 `WPILib Documentation <http://first.wpi.edu/FRC/roborio/release/docs/java/>`_ 
