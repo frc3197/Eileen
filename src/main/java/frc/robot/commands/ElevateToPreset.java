@@ -13,7 +13,7 @@ public class ElevateToPreset extends Command {
   private boolean finished;
 
   /**
-   * Sets the value of the preset to the onw that is intended to be moved to
+   * Sets the value of the preset to the one that is intended to be moved to
    * 
    * @param target
    */
