@@ -12,6 +12,8 @@ Code for 3197's Robot competing in the 2019 challenge, Destination: Deep Space
 ------------
 Code-Related
 ------------
+:ref:`I2C`_
+
 `I2C <https://2019-frc.readthedocs.io/en/documentation/I2C.html?highlight=I2C>`_
 
 `VSCode Basics <https://2019-frc.readthedocs.io/en/documentation/VSCode%20Basics.html>`_
