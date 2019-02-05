@@ -12,7 +12,7 @@ Code for 3197's Robot competing in the 2019 challenge, Destination: Deep Space
 ------------
 Code-Related
 ------------
-:ref:`_I2C-Label`
+:ref:`I2C-Label`
 
 `I2C <https://2019-frc.readthedocs.io/en/documentation/I2C.html?highlight=I2C>`_
 
@@ -25,6 +25,7 @@ Updating/Installing Firmware
 
 `Updating REV Spark Max Firmware <https://2019-frc.readthedocs.io/en/documentation/Updating%20Firmware%20of%20REV%20Spark%20Max's.html>`_
 
+.. _I2C-Label:
 -----------------
 Helpful Resources
 -----------------
