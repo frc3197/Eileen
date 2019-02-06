@@ -1,17 +1,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
 
 public class ChangeDriveMode extends InstantCommand {
 
-  public ChangeDriveMode() {
-    requires(Robot.driveTrain);
+  private DriveTrain driveTrain;
+
+  public ChangeDriveMode(DriveTrain driveTrain) {
+    requires(driveTrain);
+    this.driveTrain = driveTrain;
   }
 
   @Override
   protected void initialize() {
-    Robot.driveTrain.arcadeDrive = !Robot.driveTrain.arcadeDrive;
+    driveTrain.arcadeDrive = !driveTrain.arcadeDrive;
   }
 
 }
