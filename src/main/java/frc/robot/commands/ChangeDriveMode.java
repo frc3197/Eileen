@@ -6,7 +6,6 @@ import frc.robot.Robot;
 public class ChangeDriveMode extends InstantCommand {
 
   public ChangeDriveMode() {
-    super();
     requires(Robot.driveTrain);
   }
 

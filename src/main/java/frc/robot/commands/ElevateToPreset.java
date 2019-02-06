@@ -1,14 +1,18 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ElevatorPreset;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ElevateToPreset extends Command {
 
-  private final ElevatorPreset preset;
+  private final ElevatorPreset target;
+  private final ElevatorPreset targetWithTrigger;
+
+  private final Trigger toggle;
 
   private boolean finished;
 
@@ -17,10 +21,13 @@ public class ElevateToPreset extends Command {
    * 
    * @param target
    */
-  public ElevateToPreset(ElevatorPreset target) {
+  public ElevateToPreset(ElevatorPreset target, ElevatorPreset targetWithTrigger, Trigger toggle) {
     requires(Robot.elevator);
-    preset = target;
+    this.target = target;
+    this.targetWithTrigger = targetWithTrigger;
+    this.toggle = toggle;
     finished = false;
+    SmartDashboard.putData(this);
   }
 
   /**
@@ -29,10 +36,14 @@ public class ElevateToPreset extends Command {
    */
   @Override
   protected void execute() {
-    SmartDashboard.putNumber("Elevator Encoder", Robot.elevator.getEncoderPosition());
-    double error = Robot.elevator.getEncoderPosition() - preset.pos;
+    ElevatorPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
+    double error = Robot.elevator.getEncoderPosition() - currentTarget.pos;
     finished = Math.abs(error) < RobotMap.elevatorPresetThreshold;
-    double speed = -Math.copySign(Math.pow(error, 2), error); // TODO check polarity
+    // double speed = -Math.copySign(Math.pow(error, 2), error); // TODO check
+    // polarity
+    // double speed = -RobotMap.elevatorDegreeSensitivity * error;
+    double speed = -RobotMap.elevatorDegreeSensitivity * Math.copySign(Math.sqrt(Math.abs(error)), error);
+    SmartDashboard.putNumber("speed", speed);
     Robot.elevator.drive(speed);
   }
 

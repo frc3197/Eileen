@@ -2,22 +2,25 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.DriveTrain;
 
 public class AlignTurn extends Command {
+
+    private DriveTrain driveTrain;
 
     private double verticalSpeed;
     private double turnSpeed;
 
-    public AlignTurn() {
-        requires(Robot.driveTrain);
+    public AlignTurn(DriveTrain driveTrain) {
+        this.driveTrain = driveTrain;
+        requires(driveTrain);
     }
 
     @Override
     protected void execute() {
         getContourParameters();
-        Robot.driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
+        driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
     }
 
     @Override
