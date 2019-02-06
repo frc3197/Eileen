@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
 import frc.robot.commands.ElevatorResetPosition;
