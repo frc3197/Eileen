@@ -14,26 +14,28 @@ import frc.robot.commands.ElevatorResetPosition;
  * Initializes the joystick and specific buttons
  */
 public class OI {
-    public XboxController joystick = new XboxController(0);
+    public static XboxController joystick = new XboxController(0);
 
-    public POVButton dPadUp = new POVButton(joystick, 0);
-    public POVButton dPadRight = new POVButton(joystick, 90);
-    public POVButton dPadDown = new POVButton(joystick, 180);
-    public POVButton dPadLeft = new POVButton(joystick, 270);
+    public static POVButton dPadUp = new POVButton(joystick, 0);
+    public static POVButton dPadRight = new POVButton(joystick, 90);
+    public static POVButton dPadDown = new POVButton(joystick, 180);
+    public static POVButton dPadLeft = new POVButton(joystick, 270);
 
-    public JoystickButton rightBumper = new JoystickButton(joystick, 6);
+    public static JoystickButton rightBumper = new JoystickButton(joystick, 6);
 
-    public AnalogGyro gyro = new AnalogGyro(0);
+    public static AnalogGyro gyro = new AnalogGyro(0);
 
-    public JoystickButton a = new JoystickButton(joystick, 1);
+    public static JoystickButton a = new JoystickButton(joystick, 1);
 
-    public JoystickButton b = new JoystickButton(joystick, 2);
+    public static JoystickButton b = new JoystickButton(joystick, 2);
 
-    public JoystickButton x = new JoystickButton(joystick, 3);
+    public static JoystickButton x = new JoystickButton(joystick, 3);
 
-    public JoystickButton y = new JoystickButton(joystick, 4);
+    public static JoystickButton y = new JoystickButton(joystick, 4);
 
-    public OI() {
+    private static OI oi = new OI();
+
+    private OI() {
         // TODO: real button numbers
 
         a.whenPressed(new ChangeDriveMode(Robot.driveTrain));

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
+import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
 import frc.robot.commands.Drive;
@@ -134,10 +134,10 @@ public class DriveTrain extends Subsystem {
     if (useGyro) {
       if (goingStraight(y, r)) {
         if (!goingStraightPrevious) { // rising edge
-          initialGyroAngle = Robot.oi.gyro.getAngle();
+          initialGyroAngle = OI.gyro.getAngle();
           goingStraightPrevious = true;
         }
-        double currentGyroAngle = Robot.oi.gyro.getAngle();
+        double currentGyroAngle = OI.gyro.getAngle();
         // TODO: Check polarity
         double deltaAngle = (currentGyroAngle - initialGyroAngle);
         r += RobotMap.gyroDegreeSensitivity * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
