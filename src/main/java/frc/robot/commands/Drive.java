@@ -3,23 +3,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrain;
 
 public class Drive extends Command {
 
-  public Drive() {
-    requires(Robot.driveTrain);
+  private DriveTrain driveTrain;
+
+  public Drive(DriveTrain driveTrain) {
+    requires(driveTrain);
+    this.driveTrain = driveTrain;
   }
 
   @Override
   protected void execute() {
-    if (Robot.driveTrain.arcadeDrive) {
+    if (driveTrain.arcadeDrive) {
       double y = Robot.oi.joystick.getY(Hand.kRight);
       double r = -Robot.oi.joystick.getX(Hand.kLeft);
-      Robot.driveTrain.arcadeDrive(y, r);
+      driveTrain.arcadeDrive(y, r);
     } else {
       double l = Robot.oi.joystick.getY(Hand.kLeft);
       double r = Robot.oi.joystick.getY(Hand.kRight);
-      Robot.driveTrain.tankDrive(l, r);
+      driveTrain.tankDrive(l, r);
     }
   }
 
@@ -30,6 +34,6 @@ public class Drive extends Command {
 
   @Override
   protected void end() {
-    Robot.driveTrain.tankDrive(0, 0);
+    driveTrain.tankDrive(0, 0);
   }
 }

@@ -28,13 +28,12 @@ public class Elevator extends Subsystem {
   public Elevator() {
     super();
     left.setInverted(true);
-    // left.getPIDController().
-    // limitReset.whenActive(new ElevatorResetPosition(this));
+    limitReset.whenActive(new ElevatorResetPosition(this));
   }
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new Elevate());
+    setDefaultCommand(new Elevate(this));
 
   }
 

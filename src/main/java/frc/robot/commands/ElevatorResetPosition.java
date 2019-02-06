@@ -8,9 +8,8 @@ public class ElevatorResetPosition extends InstantCommand {
     private Elevator elevator;
 
     public ElevatorResetPosition(Elevator elevator) {
-        super();
-        this.elevator = elevator;
         requires(elevator);
+        this.elevator = elevator;
     }
 
     @Override

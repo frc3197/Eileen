@@ -18,7 +18,7 @@ public class Robot extends TimedRobot {
 
   public static OI oi = new OI();
 
-  // public static DriveTrainTest driveTrainTest;
+  public static DriveTrainTest driveTrainTest;
 
   @Override
   public void robotInit() {
@@ -26,8 +26,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    // SmartDashboard.putData(oi.gyro);
-    SmartDashboard.putNumber("angle", oi.gyro.getAngle());
   }
 
   @Override
