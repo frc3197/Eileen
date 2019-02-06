@@ -1,13 +1,14 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.robot.RobotMap.ElevatorPreset;
 import frc.robot.commands.AlignTurn;
 import frc.robot.commands.ChangeDriveMode;
 import frc.robot.commands.ElevateToPreset;
+import frc.robot.commands.ElevatorResetPosition;
 
 /**
  * Initializes the joystick and specific buttons
@@ -28,37 +29,31 @@ public class OI {
 
   public JoystickButton b = new JoystickButton(joystick, 2);
 
+  public JoystickButton x = new JoystickButton(joystick, 3);
+
+  public JoystickButton y = new JoystickButton(joystick, 4);
+
   public OI() {
     // TODO: real button numbers
 
     a.whenPressed(new ChangeDriveMode());
 
-    b.whileHeld(new AlignTurn());
+    b.whileHeld(new AlignTurn(Robot.driveTrain));
 
+    x.whenPressed(new ElevatorResetPosition(Robot.elevator));
+
+    // y.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE));
     /**
      * If the right bumper is pushed, then the cargo intake will move. If the right
      * bumper is not held, then the hatch mech will be in position.
      */
-    if (rightBumper.get()) {
-      if (dPadUp.get()) {
-        // level 3 cargo
-      } else if (dPadRight.get()) {
-        // level 2 cargo
-      } else if (dPadDown.get()) {
-        // level 1 cargo (same everywhere)
-      } else if (dPadLeft.get()) {
-        // cargo ship cargo deposit
-      }
-    } else {
-      if (dPadUp.get()) {
-        // level 3 hatch
-      } else if (dPadRight.get()) {
-        // level 2 hatch
-      } else if (dPadDown.get()) {
-        // level 1 hatch (same everywhere)
-      } else if (dPadLeft.get()) {
-        // cargo loading station intake level
-      }
-    }
+    dPadUp.whenPressed(
+        new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE, ElevatorPreset.CARGO_LEVEL_THREE, rightBumper));
+    dPadRight
+        .whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO, ElevatorPreset.CARGO_LEVEL_TWO, rightBumper));
+    dPadDown
+        .whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE, rightBumper));
+    dPadLeft.whenPressed(
+        new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL, ElevatorPreset.CARGO_SHIP_CARGO, rightBumper));
   }
 }
