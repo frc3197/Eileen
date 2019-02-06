@@ -2,14 +2,16 @@ package frc.robot.test;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 import frc.robot.RobotMap.DriveTrainSide;
+import frc.robot.subsystems.DriveTrain;
 
 public class DriveTrainRampTest extends Command {
 
   private double[] speeds;
   private double duration;
   private DriveTrainSide side;
+  private DriveTrain driveTrain;
+
   private Timer timer;
 
   private double timeInterval;
@@ -22,11 +24,12 @@ public class DriveTrainRampTest extends Command {
    * @param duration
    * @param side
    */
-  public DriveTrainRampTest(double[] speed, double duration, DriveTrainSide side) {
-    requires(Robot.driveTrain);
+  public DriveTrainRampTest(double[] speed, double duration, DriveTrainSide side, DriveTrain driveTrain) {
+    requires(driveTrain);
     this.speeds = speed;
     this.duration = duration;
     this.side = side;
+    this.driveTrain = driveTrain;
     timer = new Timer();
     timeInterval = duration / (speeds.length - 1);
   }
@@ -45,13 +48,13 @@ public class DriveTrainRampTest extends Command {
     double speed = getSpeed(timer.get());
     switch (side) {
     case LEFT:
-      Robot.driveTrain.tankDrive(speed, 0);
+      driveTrain.tankDrive(speed, 0);
       break;
     case RIGHT:
-      Robot.driveTrain.tankDrive(0, speed);
+      driveTrain.tankDrive(0, speed);
       break;
     case BOTH:
-      Robot.driveTrain.tankDrive(speed, speed);
+      driveTrain.tankDrive(speed, speed);
       break;
     }
   }
@@ -84,6 +87,6 @@ public class DriveTrainRampTest extends Command {
 
   @Override
   protected void end() {
-    Robot.driveTrain.tankDrive(0, 0);
+    driveTrain.tankDrive(0, 0);
   }
 }

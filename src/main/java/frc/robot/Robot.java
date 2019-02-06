@@ -16,9 +16,7 @@ public class Robot extends TimedRobot {
   public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
   public static NetworkTable table;
 
-  public static OI oi = new OI();
-
-  // public static DriveTrainTest driveTrainTest;
+  public static DriveTrainTest driveTrainTest;
 
   @Override
   public void robotInit() {
@@ -26,8 +24,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("rate", oi.gyro.getRate());
-    SmartDashboard.putNumber("angle", oi.gyro.getAngle());
+    SmartDashboard.putNumber("rate", OI.gyro.getRate());
+    SmartDashboard.putNumber("angle", OI.gyro.getAngle());
     driveTrain.update();
   }
 

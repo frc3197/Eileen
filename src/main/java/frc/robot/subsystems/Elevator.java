@@ -7,11 +7,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
+import frc.robot.commands.ElevatorResetPosition;
 
 public class Elevator extends Subsystem {
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATORLEFT.id, MotorType.kBrushless);
@@ -32,7 +32,8 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new Elevate());
+    setDefaultCommand(new Elevate(this));
+
   }
 
   /*
@@ -41,6 +42,7 @@ public class Elevator extends Subsystem {
    * lowerLimitSwitch
    */
   public void drive(double speed) {
+    SmartDashboard.putNumber("ele", getEncoderPosition());
     SmartDashboard.putBoolean("toplim", topLimit.get());
     SmartDashboard.putBoolean("bottomlim", bottomLimit.get());
 
@@ -65,12 +67,12 @@ public class Elevator extends Subsystem {
   // TODO delete me when that is available
   double resetEncoderPosition = 0;
 
-  private void resetElevatorPosition() {
-    resetEncoderPosition = getEncoderPosition();
+  public void resetElevatorPosition() {
+    resetEncoderPosition = right.getEncoder().getPosition();
   }
 
   public double getEncoderPosition() {
-    return left.getEncoder().getPosition() - resetEncoderPosition;
+    return right.getEncoder().getPosition() - resetEncoderPosition;
   }
 
   private class LimitReset extends Trigger {
@@ -78,22 +80,5 @@ public class Elevator extends Subsystem {
     public boolean get() {
       return bottomLimit.get();
     }
-  }
-
-  private class ElevatorResetPosition extends InstantCommand {
-
-    private Elevator elevator;
-
-    public ElevatorResetPosition(Elevator elevator) {
-      super();
-      this.elevator = elevator;
-      requires(elevator);
-    }
-
-    @Override
-    protected void initialize() {
-      this.elevator.resetElevatorPosition();
-    }
-
   }
 }
