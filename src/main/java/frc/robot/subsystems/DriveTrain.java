@@ -20,7 +20,6 @@ import frc.robot.commands.Drive;
 
 public class DriveTrain extends Subsystem {
 
-  // The Drive command will listen to this and ChangeDriveMode will change
   public boolean arcadeDrive = true;
   public boolean useGyro = true;
 
@@ -30,36 +29,28 @@ public class DriveTrain extends Subsystem {
   private CANSparkMax frSparkMax = new CANSparkMax(CANSparkMaxID.FRONTRIGHT.id, MotorType.kBrushless);
   private CANSparkMax brSparkMax = new CANSparkMax(CANSparkMaxID.BACKRIGHT.id, MotorType.kBrushless);
 
-  // Left and Right Groups
   private SpeedControllerGroup leftMaxes = new SpeedControllerGroup(flSparkMax, blSparkMax);
   private SpeedControllerGroup rightMaxes = new SpeedControllerGroup(frSparkMax, brSparkMax);
 
-  // Full Drivetrain
   private DifferentialDrive drive = new DifferentialDrive(leftMaxes, rightMaxes);
 
-  // Map for storing limit switches from motor controllers
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
 
   public DriveTrain() {
     super();
-
-    // sets deadband (will not drive below threshold)
     drive.setDeadband(RobotMap.deadband);
 
-    // Primary Limits are first to be used
     sparkMaxPrimaryLimitSwitches.put(flSparkMax, flSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(blSparkMax, blSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(frSparkMax, frSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(brSparkMax, brSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
 
-    // Secondary Limits are second
     sparkMaxSecondaryLimitSwitches.put(flSparkMax, flSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxSecondaryLimitSwitches.put(blSparkMax, blSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxSecondaryLimitSwitches.put(frSparkMax, frSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxSecondaryLimitSwitches.put(brSparkMax, brSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
 
-    // For controlling PID
     CANPIDController flPIDController = flSparkMax.getPIDController();
     CANPIDController blPIDController = blSparkMax.getPIDController();
     CANPIDController frPIDController = frSparkMax.getPIDController();
@@ -116,36 +107,35 @@ public class DriveTrain extends Subsystem {
     SmartDashboard.putNumberArray("driveTrainSparkMaxEncoderVelocity", encoderVelocity);
   }
 
-  // Squaded inputs are on for both drive modes
-  /**
-   * Tank Drive (self explanatory)
-   */
   public void tankDrive(double l, double r) {
     drive.tankDrive(l, r, true);
   }
 
-  /**
-   * Arcade Drive (self explanatory)
-   */
   private boolean goingStraightPrevious = false;
   private double initialGyroAngle;
 
   public void arcadeDrive(double y, double r) {
     if (useGyro) {
-      if (goingStraight(y, r)) {
-        if (!goingStraightPrevious) { // rising edge
-          initialGyroAngle = OI.gyro.getAngle();
-          goingStraightPrevious = true;
-        }
-        double currentGyroAngle = OI.gyro.getAngle();
-        // TODO: Check polarity
-        double deltaAngle = (currentGyroAngle - initialGyroAngle);
-        r += RobotMap.gyroDegreeSensitivity * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
-        SmartDashboard.putNumber("deltaAngle", deltaAngle);
-        SmartDashboard.putNumber("r", r);
-      } else {
-        goingStraightPrevious = false;
+      gyroDrive(y, r);
+    } else {
+      drive.arcadeDrive(y, r, true);
+    }
+  }
+
+  private void gyroDrive(double y, double r) {
+    if (goingStraight(y, r)) {
+      if (!goingStraightPrevious) { // rising edge
+        initialGyroAngle = OI.gyro.getAngle();
+        goingStraightPrevious = true;
       }
+      double currentGyroAngle = OI.gyro.getAngle();
+      // TODO: Check polarity
+      double deltaAngle = (currentGyroAngle - initialGyroAngle);
+      r += RobotMap.gyroDegreeSensitivity * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
+      SmartDashboard.putNumber("deltaAngle", deltaAngle);
+      SmartDashboard.putNumber("r", r);
+    } else {
+      goingStraightPrevious = false;
     }
     drive.arcadeDrive(y, r, true);
   }
