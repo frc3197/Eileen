@@ -37,7 +37,6 @@ public class AlignTurn extends Command {
             verticalSpeed = -Math.copySign(Math.pow(areaError, 2), areaError);
             // If totalArea is greater than the target, go backward (-)
         } else {
-            System.out.println("contourAreas 0");
             verticalSpeed = 0;
         }
 
@@ -46,7 +45,6 @@ public class AlignTurn extends Command {
             turnSpeed = -Math.copySign(Math.pow(xError, 2), xError);
             // If the midX is greater than the target, turn left (-)
         } else {
-            System.out.println("contourXs 0");
             turnSpeed = 0;
         }
     }
