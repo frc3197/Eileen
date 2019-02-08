@@ -18,8 +18,8 @@ import frc.robot.commands.Articulate;
  * Add your docs here.
  */
 public class Arm extends Subsystem {
-  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.WRIST.id, MotorType.kBrushless);
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ELBOW.id, MotorType.kBrushless);
+  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.WRIST.id, MotorType.kBrushless);
 
   public Arm() {
     super();
@@ -29,5 +29,9 @@ public class Arm extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Articulate(this));
+  }
+
+  public void drive(double speed) {
+    elbow.set(speed);
   }
 }

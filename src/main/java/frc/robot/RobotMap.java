@@ -1,7 +1,5 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-
 public class RobotMap {
 
   public static enum DriveTrainSide {
@@ -49,7 +47,7 @@ public class RobotMap {
   };
 
   public static enum ElevatorPreset {
-    // TODO Change these
+    // TODO Change these for real bot
     HATCH_LEVEL_ONE(29), HATCH_LEVEL_TWO(56), HATCH_LEVEL_THREE(83), CARGO_LEVEL_ONE(31), CARGO_LEVEL_TWO(60),
     CARGO_LEVEL_THREE(87), CARGO_LOADING_LEVEL(35), CARGO_SHIP_CARGO(35);
     public final double pos;
