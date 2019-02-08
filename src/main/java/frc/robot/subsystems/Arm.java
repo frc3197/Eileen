@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.Articulate;
 
@@ -23,7 +24,7 @@ public class Arm extends Subsystem {
 
   public Arm() {
     super();
-    wrist.follow(elbow, true);
+    // wrist.follow(elbow, true);
   }
 
   @Override
@@ -32,6 +33,18 @@ public class Arm extends Subsystem {
   }
 
   public void drive(double speed) {
+    if (Math.abs(speed) < RobotMap.deadband) {
+      speed = 0;
+    }
+    // SmartDashboard.putNumber("elbow", speed);
     elbow.set(speed);
+  }
+
+  public void wrist(double speed) {
+    if (Math.abs(speed) < RobotMap.deadband) {
+      speed = 0;
+    }
+    // SmartDashboard.putNumber("wrist", speed);
+    wrist.set(speed);
   }
 }
