@@ -26,6 +26,7 @@ public class ElevateToPreset extends Command {
     this.target = target;
     this.targetWithTrigger = targetWithTrigger;
     this.toggle = toggle;
+    this.elevator = elevator;
     finished = false;
     SmartDashboard.putData(this);
   }
