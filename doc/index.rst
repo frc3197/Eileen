@@ -30,7 +30,7 @@ Diagrams/Configurations
 
 `Controller Configurations (In Progress) <https://google.com/>`_
 
-.. image:: Controller%20Configuration.png
+.. image:: https://raw.githubusercontent.com/frc3197/2019-FRC/Documentation/doc/Controller%20Configuration.png
 
 -----------------
 Helpful Resources
