@@ -25,7 +25,7 @@ public class OI {
 
         public static JoystickButton rightBumper = new JoystickButton(joystick, 6);
 
-        public static AnalogGyro gyro = new AnalogGyro(RobotMap.);
+        public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroChannel);
 
         public static JoystickButton a = new JoystickButton(joystick, 1);
 
