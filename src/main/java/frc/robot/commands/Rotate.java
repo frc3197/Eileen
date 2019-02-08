@@ -22,7 +22,7 @@ public class Rotate extends Command {
 
   @Override
   protected void execute() {
-    double speed = OI.joystick.getY(Hand.kRight);
+    double speed = OI.driver.getY(Hand.kRight);
     arm.drive(speed);
   }
 

@@ -11,7 +11,7 @@ public class RobotMap {
     // practice bot
     FRONTLEFT(14, "FrontLeft"), BACKLEFT(15, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(0, "BackRight"),
     ELEVATORLEFT(2, "ElevatorLeft"), ELEVATORRIGHT(13, "ElevatorRight"), WRIST(12, "ArmWrist"), ELBOW(3, "ArmElbow"),
-    SUCK(11, "BallIntake");
+    INTAKE(11, "BallIntake");
 
     public final int id;
     public final String name;
@@ -60,7 +60,7 @@ public class RobotMap {
   // TODO change me
   public static final double elevatorPresetThreshold = 1;
 
-  public static final double deadband = 0.05;
+  public static final double deadband = 0.08;
 
   public static final double gyroDegreeSensitivity = 0.01;
 

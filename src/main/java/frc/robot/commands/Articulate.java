@@ -16,7 +16,9 @@ public class Articulate extends Command {
 
   @Override
   protected void execute() {
-    double speed = OI.secondary.getTriggerAxis(Hand.kRight) - OI.secondary.getTriggerAxis(Hand.kLeft);
+    double speed = OI.secondary.getY(Hand.kRight);
+    double wrist = OI.secondary.getY(Hand.kLeft);
+    arm.wrist(wrist);
     arm.drive(speed);
   }
 
