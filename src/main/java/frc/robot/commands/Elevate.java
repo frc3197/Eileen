@@ -16,7 +16,7 @@ public class Elevate extends Command {
 
   @Override
   protected void execute() {
-    double speed = OI.joystick.getTriggerAxis(Hand.kRight) - OI.joystick.getTriggerAxis(Hand.kLeft);
+    double speed = OI.driver.getTriggerAxis(Hand.kRight) - OI.driver.getTriggerAxis(Hand.kLeft);
     elevator.drive(speed);
   }
 
