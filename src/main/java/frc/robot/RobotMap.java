@@ -21,16 +21,6 @@ public class RobotMap {
     }
   };
 
-  public static enum CANSparkPID {
-    P(0), I(0), D(0), F(0);
-
-    public final double val;
-
-    private CANSparkPID(double val) {
-      this.val = val;
-    }
-  };
-
   public static final double visionTargetX = .5;
   public static final double visionTargetArea = 500;
 
@@ -41,6 +31,16 @@ public class RobotMap {
     public final double val;
 
     private VisionPID(double val) {
+      this.val = val;
+    }
+  };
+
+  public static enum CANSparkPID {
+    P(0), I(0), D(0), F(0);
+
+    public final double val;
+
+    private CANSparkPID(double val) {
       this.val = val;
     }
   };
