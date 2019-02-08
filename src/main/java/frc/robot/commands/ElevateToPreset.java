@@ -26,8 +26,8 @@ public class ElevateToPreset extends Command {
     this.target = target;
     this.targetWithTrigger = targetWithTrigger;
     this.toggle = toggle;
+    this.elevator = elevator;
     finished = false;
-    SmartDashboard.putData(this);
   }
 
   /**
@@ -36,18 +36,26 @@ public class ElevateToPreset extends Command {
    */
   @Override
   protected void execute() {
-    ElevatorPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
-    double error = elevator.getEncoderPosition() - currentTarget.pos;
-    finished = Math.abs(error) < RobotMap.elevatorPresetThreshold;
-    // double speed = -Math.copySign(Math.pow(error, 2), error);
-    // double speed = -RobotMap.elevatorDegreeSensitivity * error;
-    double speed = -RobotMap.elevatorDegreeSensitivity * Math.copySign(Math.sqrt(Math.abs(error)), error);
+    double speed = getSpeed();
+
     SmartDashboard.putNumber("speed", speed);
+
     elevator.drive(speed);
   }
 
   @Override
   protected boolean isFinished() {
     return finished;
+  }
+
+  private double getSpeed() {
+    ElevatorPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
+
+    double error = elevator.getEncoderPosition() - currentTarget.pos;
+    finished = Math.abs(error) < RobotMap.elevatorPresetThreshold;
+
+    double speed = -RobotMap.elevatorDegreeSensitivity
+        * Math.copySign(Math.pow(Math.abs(error), RobotMap.elevatorExponent), error);
+    return speed;
   }
 }

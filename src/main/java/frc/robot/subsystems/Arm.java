@@ -10,31 +10,28 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.Rotate;
+import frc.robot.commands.Articulate;
 
 /**
  * Add your docs here.
  */
 public class Arm extends Subsystem {
-  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.WRIST.id, MotorType.kBrushless);
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ELBOW.id, MotorType.kBrushless);
-
-  private SpeedControllerGroup armGroup = new SpeedControllerGroup(wrist, elbow);
+  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.WRIST.id, MotorType.kBrushless);
 
   public Arm() {
     super();
-    wrist.setInverted(true);
+    wrist.follow(elbow, true);
   }
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new Rotate(this));
+    setDefaultCommand(new Articulate(this));
   }
 
   public void drive(double speed) {
-    armGroup.set(speed);
+    elbow.set(speed);
   }
 }

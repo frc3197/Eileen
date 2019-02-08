@@ -13,8 +13,8 @@ public class AlignTurn extends Command {
     private double turnSpeed;
 
     public AlignTurn(DriveTrain driveTrain) {
-        this.driveTrain = driveTrain;
         requires(driveTrain);
+        this.driveTrain = driveTrain;
     }
 
     @Override
