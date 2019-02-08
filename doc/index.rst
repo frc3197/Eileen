@@ -28,8 +28,9 @@ Diagrams/Configurations
 -----------------------
 `Motor Controller Spreadsheet <https://docs.google.com/spreadsheets/d/14p9fdd08mrI9wpgqd_k9QANKFcTs7CDPGgKoO7wAz68/edit?usp=sharing>`_
 
-`Controller Configurations (In Progress) <https://google.com/>`_
-
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Controller Configurations
+~~~~~~~~~~~~~~~~~~~~~~~~~
 .. image:: https://raw.githubusercontent.com/frc3197/2019-FRC/Documentation/doc/Controller%20Configuration.png
 
 -----------------
