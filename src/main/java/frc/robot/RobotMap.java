@@ -9,7 +9,8 @@ public class RobotMap {
   public static enum CANSparkMaxID {
     // TODO: Change for the real robot
     FRONTLEFT(14, "FrontLeft"), BACKLEFT(15, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(0, "BackRight"),
-    ELEVATORLEFT(6, "ElevatorLeft"), ELEVATORRIGHT(5, "ElevatorRight");
+    ELEVATORLEFT(6, "ElevatorLeft"), ELEVATORRIGHT(5, "ElevatorRight"), WRIST(9000, "ArmWrist"),
+    ELBOW(9001, "ArmElbow");
 
     public final int id;
     public final String name;
@@ -53,7 +54,6 @@ public class RobotMap {
     private ElevatorPreset(double pos) {
       this.pos = pos;
     }
-
   }
 
   // TODO change me
