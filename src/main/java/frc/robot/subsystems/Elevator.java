@@ -3,7 +3,9 @@ package frc.robot.subsystems;
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANPIDController;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
@@ -27,14 +29,13 @@ public class Elevator extends Subsystem {
 
   public Elevator() {
     super();
-    left.setInverted(true);
+    left.follow(right, true);
     limitReset.whenActive(new ResetEncoderPosition(this));
   }
 
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Elevate(this));
-
   }
 
   /*
@@ -48,15 +49,17 @@ public class Elevator extends Subsystem {
     SmartDashboard.putBoolean("bottomlim", bottomLimit.get());
 
     double output = speed;
+    if (!bottomLimit.get() && Math.abs(output) < RobotMap.deadband) {
+      output = RobotMap.deadband;
+    }
     if (topLimit.get()) {
       output = Math.min(output, 0);
     } // If top pressed(returning a zero value), only drive negative
     if (bottomLimit.get()) {
       output = Math.max(output, 0);
     } // If bottom pressed, only drive positive
-    elevatorGroup.set(output);
+    right.set(output);
   }
-
   // private void resetElevatorPosition() {
   // // left.getEncoder().reset();
   // //TODO not yet available
