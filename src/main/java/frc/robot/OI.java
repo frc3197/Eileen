@@ -11,53 +11,57 @@ import frc.robot.commands.ElevateToPreset;
 import frc.robot.commands.ElevatorResetPosition;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Arm;
 
 /**
  * Initializes the joystick and specific buttons
  */
 public class OI {
-    public static XboxController joystick = new XboxController(0);
 
-    public static POVButton dPadUp = new POVButton(joystick, 0);
-    public static POVButton dPadRight = new POVButton(joystick, 90);
-    public static POVButton dPadDown = new POVButton(joystick, 180);
-    public static POVButton dPadLeft = new POVButton(joystick, 270);
+        public static XboxController joystick = new XboxController(0);
 
-    public static JoystickButton rightBumper = new JoystickButton(joystick, 6);
+        public static POVButton dPadUp = new POVButton(joystick, 0);
+        public static POVButton dPadRight = new POVButton(joystick, 90);
+        public static POVButton dPadDown = new POVButton(joystick, 180);
+        public static POVButton dPadLeft = new POVButton(joystick, 270);
 
-    public static AnalogGyro gyro = new AnalogGyro(0);
+        public static JoystickButton rightBumper = new JoystickButton(joystick, 6);
 
-    public static JoystickButton a = new JoystickButton(joystick, 1);
+        public static JoystickButton leftBumper = new JoystickButton(joystick, 5);
 
-    public static JoystickButton b = new JoystickButton(joystick, 2);
+        public static AnalogGyro gyro = new AnalogGyro(0);
 
-    public static JoystickButton x = new JoystickButton(joystick, 3);
+        public static JoystickButton a = new JoystickButton(joystick, 1);
 
-    public static JoystickButton y = new JoystickButton(joystick, 4);
+        public static JoystickButton b = new JoystickButton(joystick, 2);
 
-    private static OI oi = new OI(Robot.driveTrain, Robot.elevator);
+        public static JoystickButton x = new JoystickButton(joystick, 3);
 
-    private OI(DriveTrain driveTrain, Elevator elevator) {
-        // TODO: real button numbers
+        public static JoystickButton y = new JoystickButton(joystick, 4);
 
-        a.whenPressed(new ChangeDriveMode(driveTrain));
+        private static OI oi = new OI(Robot.driveTrain, Robot.elevator, Robot.arm);
 
-        b.whileHeld(new AlignTurn(driveTrain));
+        public OI(DriveTrain driveTrain, Elevator elevator, Arm arm) {
+                // TODO: real button numbers
 
-        x.whenPressed(new ElevatorResetPosition(elevator));
+                a.whenPressed(new ChangeDriveMode(driveTrain));
 
-        // y.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE));
-        /**
-         * If the right bumper is pushed, then the cargo intake will move. If the right
-         * bumper is not held, then the hatch mech will be in position.
-         */
-        dPadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE, ElevatorPreset.CARGO_LEVEL_THREE,
-                rightBumper, elevator));
-        dPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO, ElevatorPreset.CARGO_LEVEL_TWO,
-                rightBumper, elevator));
-        dPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE,
-                rightBumper, elevator));
-        dPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL, ElevatorPreset.CARGO_SHIP_CARGO,
-                rightBumper, elevator));
-    }
+                b.whileHeld(new AlignTurn(driveTrain));
+
+                x.whenPressed(new ElevatorResetPosition(elevator));
+
+                // y.whenPressed(new Arm(arm));
+                /**
+                 * If the right bumper is pushed, then the cargo intake will move. If the right
+                 * bumper is not held, then the hatch mech will be in position.
+                 */
+                dPadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE,
+                                ElevatorPreset.CARGO_LEVEL_THREE, rightBumper, elevator));
+                dPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO,
+                                ElevatorPreset.CARGO_LEVEL_TWO, rightBumper, elevator));
+                dPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE,
+                                rightBumper, elevator));
+                dPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL,
+                                ElevatorPreset.CARGO_SHIP_CARGO, rightBumper, elevator));
+        }
 }
