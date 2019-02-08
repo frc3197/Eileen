@@ -30,6 +30,8 @@ Diagrams/Configurations
 
 `Controller Configurations (In Progress) <https://google.com/>`_
 
+.. image:: Controller%20Configuration.png
+
 -----------------
 Helpful Resources
 -----------------
