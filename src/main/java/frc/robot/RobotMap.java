@@ -10,8 +10,8 @@ public class RobotMap {
     // TODO: Change for the real robot !!! very important change can id on 2017
     // practice bot
     FRONTLEFT(14, "FrontLeft"), BACKLEFT(15, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(0, "BackRight"),
-    ELEVATORLEFT(6, "ElevatorLeft"), ELEVATORRIGHT(5, "ElevatorRight"), WRIST(9000, "ArmWrist"),
-    ELBOW(9001, "ArmElbow");
+    ELEVATORLEFT(2, "ElevatorLeft"), ELEVATORRIGHT(13, "ElevatorRight"), WRIST(12, "ArmWrist"), ELBOW(3, "ArmElbow"),
+    SUCK(11, "BallIntake");
 
     public final int id;
     public final String name;
