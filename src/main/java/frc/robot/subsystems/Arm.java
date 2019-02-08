@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,15 +21,13 @@ public class Arm extends Subsystem {
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.WRIST.id, MotorType.kBrushless);
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ELBOW.id, MotorType.kBrushless);
 
-  private SpeedControllerGroup elevatorGroup = new SpeedControllerGroup(wrist, elbow);
-
   public Arm() {
     super();
-    wrist.setInverted(true);
+    wrist.follow(elbow, true);
   }
 
-  public @Override public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
+  @Override
+  public void initDefaultCommand() {
     // setDefaultCommand(new MySpecialCommand());
   }
 }

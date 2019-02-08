@@ -7,11 +7,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
-import frc.robot.commands.ElevatorResetPosition;
 
 public class Elevator extends Subsystem {
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATORLEFT.id, MotorType.kBrushless);
@@ -23,11 +23,12 @@ public class Elevator extends Subsystem {
   private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
   private LimitReset limitReset = new LimitReset();
+  public ResetEncoderPosition reset = new ResetEncoderPosition(this);
 
   public Elevator() {
     super();
     left.setInverted(true);
-    limitReset.whenActive(new ElevatorResetPosition(this));
+    limitReset.whenActive(new ResetEncoderPosition(this));
   }
 
   @Override
@@ -81,4 +82,21 @@ public class Elevator extends Subsystem {
       return bottomLimit.get();
     }
   }
+
+  private class ResetEncoderPosition extends InstantCommand {
+
+    private Elevator elevator;
+
+    public ResetEncoderPosition(Elevator elevator) {
+      requires(elevator);
+      this.elevator = elevator;
+    }
+
+    @Override
+    protected void initialize() {
+      elevator.resetElevatorPosition();
+    }
+
+  }
+
 }
