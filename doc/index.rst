@@ -23,6 +23,13 @@ Updating/Installing Firmware
 
 `Updating REV Spark Max Firmware <https://2019-frc.readthedocs.io/en/documentation/Updating%20Firmware%20of%20REV%20Spark%20Max's.html>`_
 
+-----------------------
+Diagrams/Configurations
+-----------------------
+`Motor Controller Spreadsheet <https://docs.google.com/spreadsheets/d/14p9fdd08mrI9wpgqd_k9QANKFcTs7CDPGgKoO7wAz68/edit?usp=sharing>`_
+
+`Controller Configurations (In Progress) <https://google.com/>`_
+
 -----------------
 Helpful Resources
 -----------------
