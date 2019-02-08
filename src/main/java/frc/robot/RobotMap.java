@@ -9,9 +9,9 @@ public class RobotMap {
   public static enum CANSparkMaxID {
     // TODO: Change for the real robot !!! very important change can id on 2017
     // practice bot
-    FRONTLEFT(14, "FrontLeft"), BACKLEFT(15, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(0, "BackRight"),
-    ELEVATORLEFT(2, "ElevatorLeft"), ELEVATORRIGHT(13, "ElevatorRight"), WRIST(12, "ArmWrist"), ELBOW(3, "ArmElbow"),
-    INTAKE(11, "BallIntake");
+    FRONT_LEFT(14, "FrontLeft"), BACK_LEFT(15, "BackLeft"), FRONT_RIGHT(1, "FrontRight"), BACK_RIGHT(0, "BackRight"),
+    ELEVATOR_LEFT(2, "ElevatorLeft"), ELEVATOR_RIGHT(13, "ElevatorRight"), ARM_WRIST(12, "ArmWrist"),
+    ARM_ELBOW(3, "ArmElbow"), ARM_BALL_MANIPULATOR(11, "BallIntake");
 
     public final int id;
     public final String name;

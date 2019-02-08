@@ -11,7 +11,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.Articulate;
 
@@ -19,8 +18,8 @@ import frc.robot.commands.Articulate;
  * Add your docs here.
  */
 public class Arm extends Subsystem {
-  private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ELBOW.id, MotorType.kBrushless);
-  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.WRIST.id, MotorType.kBrushless);
+  private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_ELBOW.id, MotorType.kBrushless);
+  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_WRIST.id, MotorType.kBrushless);
 
   public Arm() {
     super();
@@ -32,7 +31,7 @@ public class Arm extends Subsystem {
     setDefaultCommand(new Articulate(this));
   }
 
-  public void drive(double speed) {
+  public void elbow(double speed) {
     if (Math.abs(speed) < RobotMap.deadband) {
       speed = 0;
     }

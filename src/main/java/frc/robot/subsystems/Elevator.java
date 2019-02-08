@@ -13,8 +13,8 @@ import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
 
 public class Elevator extends Subsystem {
-  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATORLEFT.id, MotorType.kBrushless);
-  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATORRIGHT.id, MotorType.kBrushless);
+  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATOR_LEFT.id, MotorType.kBrushless);
+  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATOR_RIGHT.id, MotorType.kBrushless);
 
   private CANDigitalInput bottomLimit = left.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
   private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);

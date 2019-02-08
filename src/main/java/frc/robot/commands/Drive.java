@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
@@ -17,12 +16,12 @@ public class Drive extends Command {
   @Override
   protected void execute() {
     if (driveTrain.arcadeDrive) {
-      double y = OI.driver.getY(Hand.kRight);
-      double r = -OI.driver.getX(Hand.kLeft);
+      double y = OI.arcadeDriveY();
+      double r = OI.arcadeDriveX();
       driveTrain.arcadeDrive(y, r);
     } else {
-      double l = OI.driver.getY(Hand.kLeft);
-      double r = OI.driver.getY(Hand.kRight);
+      double l = OI.tankDriveLeft();
+      double r = OI.tankDriveRight();
       driveTrain.tankDrive(l, r);
     }
   }
