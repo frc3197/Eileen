@@ -3,7 +3,9 @@ package frc.robot.subsystems;
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANPIDController;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
@@ -27,13 +29,13 @@ public class Elevator extends Subsystem {
   public Elevator() {
     super();
     left.setInverted(true);
+    right.setInverted(false);
     limitReset.whenActive(new ElevatorResetPosition(this));
   }
 
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Elevate(this));
-
   }
 
   /*
@@ -53,7 +55,11 @@ public class Elevator extends Subsystem {
     if (bottomLimit.get()) {
       output = Math.max(output, 0);
     } // If bottom pressed, only drive positive
-    elevatorGroup.set(output);
+    if (Math.abs(output) < RobotMap.deadband) {
+      right.pidWrite(output);
+    } else {
+      elevatorGroup.set(output);
+    }
   }
 
   // private void resetElevatorPosition() {
