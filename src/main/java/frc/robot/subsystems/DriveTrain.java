@@ -25,10 +25,10 @@ public class DriveTrain extends Subsystem {
   public boolean useGyro = true;
 
   // Motor Controllers
-  private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.FRONTLEFT.id, MotorType.kBrushless);
-  private CANSparkMax blSparkMax = new CANSparkMax(CANSparkMaxID.BACKLEFT.id, MotorType.kBrushless);
-  private CANSparkMax frSparkMax = new CANSparkMax(CANSparkMaxID.FRONTRIGHT.id, MotorType.kBrushless);
-  private CANSparkMax brSparkMax = new CANSparkMax(CANSparkMaxID.BACKRIGHT.id, MotorType.kBrushless);
+  private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.FRONT_LEFT.id, MotorType.kBrushless);
+  private CANSparkMax blSparkMax = new CANSparkMax(CANSparkMaxID.BACK_LEFT.id, MotorType.kBrushless);
+  private CANSparkMax frSparkMax = new CANSparkMax(CANSparkMaxID.FRONT_RIGHT.id, MotorType.kBrushless);
+  private CANSparkMax brSparkMax = new CANSparkMax(CANSparkMaxID.BACK_RIGHT.id, MotorType.kBrushless);
 
   private SpeedControllerGroup leftMaxes = new SpeedControllerGroup(flSparkMax, blSparkMax);
   private SpeedControllerGroup rightMaxes = new SpeedControllerGroup(frSparkMax, brSparkMax);

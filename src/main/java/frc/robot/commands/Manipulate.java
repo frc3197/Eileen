@@ -1,23 +1,21 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.BallManipulator;
 
-public class Roll extends Command {
-  Intake intake;
+public class Manipulate extends Command {
+  BallManipulator intake;
 
-  public Roll(Intake intake) {
+  public Manipulate(BallManipulator intake) {
     requires(intake);
     this.intake = intake;
   }
 
   @Override
   protected void execute() {
-    double speed = 0;// OI.secondary.getTriggerAxis(Hand.kRight) -
-                     // OI.secondary.getTriggerAxis(Hand.kLeft);
+    double speed = OI.intakeSpeed();
     intake.drive(speed);
   }
 

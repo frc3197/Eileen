@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.subsystems.Elevator;
@@ -16,7 +15,7 @@ public class Elevate extends Command {
 
   @Override
   protected void execute() {
-    double speed = OI.driver.getTriggerAxis(Hand.kRight) - OI.driver.getTriggerAxis(Hand.kLeft);
+    double speed = OI.elevatorSpeed();
     elevator.drive(speed);
   }
 

@@ -2,7 +2,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ElevatorPreset;
 import frc.robot.subsystems.Elevator;
@@ -38,7 +37,7 @@ public class ElevateToPreset extends Command {
   protected void execute() {
     double speed = getSpeed();
 
-    SmartDashboard.putNumber("speed", speed);
+    // SmartDashboard.putNumber("speed", speed);
 
     elevator.drive(speed);
   }

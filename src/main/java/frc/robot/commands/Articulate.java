@@ -1,6 +1,5 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.subsystems.Arm;
@@ -16,10 +15,10 @@ public class Articulate extends Command {
 
   @Override
   protected void execute() {
-    double speed = OI.secondary.getY(Hand.kRight);
-    double wrist = OI.secondary.getY(Hand.kLeft);
+    double elbow = OI.elbowSpeed();
+    double wrist = OI.wristSpeed();
     arm.wrist(wrist);
-    arm.drive(speed);
+    arm.elbow(elbow);
   }
 
   @Override
@@ -29,6 +28,6 @@ public class Articulate extends Command {
 
   @Override
   protected void end() {
-    arm.drive(0);
+    arm.elbow(0);
   }
 }
