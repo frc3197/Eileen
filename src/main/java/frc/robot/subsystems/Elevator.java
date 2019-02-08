@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.Elevate;
 import frc.robot.commands.ElevatorResetPosition;
@@ -28,13 +27,12 @@ public class Elevator extends Subsystem {
   public Elevator() {
     super();
     left.setInverted(true);
-    // left.getPIDController().
-    // limitReset.whenActive(new ElevatorResetPosition(this));
+    limitReset.whenActive(new ElevatorResetPosition(this));
   }
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new Elevate());
+    setDefaultCommand(new Elevate(this));
 
   }
 

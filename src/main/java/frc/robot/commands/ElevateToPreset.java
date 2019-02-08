@@ -3,9 +3,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ElevatorPreset;
+import frc.robot.subsystems.Elevator;
 
 public class ElevateToPreset extends Command {
 
@@ -14,15 +14,15 @@ public class ElevateToPreset extends Command {
 
   private final Trigger toggle;
 
+  private Elevator elevator;
+
   private boolean finished;
 
   /**
    * Sets the value of the preset to the one that is intended to be moved to
-   * 
-   * @param target
    */
-  public ElevateToPreset(ElevatorPreset target, ElevatorPreset targetWithTrigger, Trigger toggle) {
-    requires(Robot.elevator);
+  public ElevateToPreset(ElevatorPreset target, ElevatorPreset targetWithTrigger, Trigger toggle, Elevator elevator) {
+    requires(elevator);
     this.target = target;
     this.targetWithTrigger = targetWithTrigger;
     this.toggle = toggle;
@@ -37,14 +37,13 @@ public class ElevateToPreset extends Command {
   @Override
   protected void execute() {
     ElevatorPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
-    double error = Robot.elevator.getEncoderPosition() - currentTarget.pos;
+    double error = elevator.getEncoderPosition() - currentTarget.pos;
     finished = Math.abs(error) < RobotMap.elevatorPresetThreshold;
-    // double speed = -Math.copySign(Math.pow(error, 2), error); // TODO check
-    // polarity
+    // double speed = -Math.copySign(Math.pow(error, 2), error);
     // double speed = -RobotMap.elevatorDegreeSensitivity * error;
     double speed = -RobotMap.elevatorDegreeSensitivity * Math.copySign(Math.sqrt(Math.abs(error)), error);
     SmartDashboard.putNumber("speed", speed);
-    Robot.elevator.drive(speed);
+    elevator.drive(speed);
   }
 
   @Override
