@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+
 public class RobotMap {
 
   public static enum DriveTrainSide {
@@ -65,4 +67,6 @@ public class RobotMap {
   public static final double gyroDegreeSensitivity = 0.01;
 
   public static final double elevatorDegreeSensitivity = 0.15;
+
+  public static final int gyroChannel = 0;
 }
