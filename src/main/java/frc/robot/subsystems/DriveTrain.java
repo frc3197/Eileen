@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,6 +37,9 @@ public class DriveTrain extends Subsystem {
 
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
+
+  public ChangeDriveGryo changeDriveGryo = new ChangeDriveGryo(this);
+  public ChangeDriveMode changeDriveMode = new ChangeDriveMode(this);
 
   public DriveTrain() {
     super();
@@ -142,6 +146,38 @@ public class DriveTrain extends Subsystem {
 
   private boolean goingStraight(double y, double r) {
     return (Math.abs(r) < RobotMap.deadband);
+  }
+
+  private class ChangeDriveGryo extends InstantCommand {
+
+    private DriveTrain driveTrain;
+
+    public ChangeDriveGryo(DriveTrain driveTrain) {
+      requires(driveTrain);
+      this.driveTrain = driveTrain;
+    }
+
+    @Override
+    protected void initialize() {
+      driveTrain.useGyro = !driveTrain.useGyro;
+    }
+
+  }
+
+  private class ChangeDriveMode extends InstantCommand {
+
+    private DriveTrain driveTrain;
+
+    public ChangeDriveMode(DriveTrain driveTrain) {
+      requires(driveTrain);
+      this.driveTrain = driveTrain;
+    }
+
+    @Override
+    protected void initialize() {
+      driveTrain.arcadeDrive = !driveTrain.arcadeDrive;
+    }
+
   }
 
 }

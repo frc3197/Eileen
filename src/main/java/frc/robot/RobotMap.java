@@ -65,4 +65,6 @@ public class RobotMap {
   public static final double gyroDegreeSensitivity = 0.01;
 
   public static final double elevatorDegreeSensitivity = 0.15;
+
+  public static final double elevatorExponent = 0.5;
 }
