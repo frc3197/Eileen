@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.commands.Elevate;
+import frc.robot.commands.defaults.Elevate;
 
 public class Elevator extends Subsystem {
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATOR_LEFT.id, MotorType.kBrushless);

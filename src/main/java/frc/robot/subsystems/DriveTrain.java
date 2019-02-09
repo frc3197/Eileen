@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
-import frc.robot.commands.Drive;
+import frc.robot.commands.defaults.Drive;
 
 public class DriveTrain extends Subsystem {
 

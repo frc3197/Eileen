@@ -5,7 +5,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.Manipulate;
+import frc.robot.commands.defaults.Manipulate;
 
 public class CargoManipulator extends Subsystem {
 
