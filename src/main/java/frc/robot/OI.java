@@ -1,8 +1,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.RobotMap.ElevatorPreset;
@@ -13,23 +13,40 @@ import frc.robot.commands.ElevateToPreset;
  * Initializes the joystick and specific buttons
  */
 public class OI {
-        private static XboxController driver = new XboxController(0);
-        private static XboxController secondary = new XboxController(1);
+        private static XboxController driver;
+        private static XboxController secondary;
 
-        private static POVButton dPadUp = new POVButton(driver, 0);
-        private static POVButton dPadRight = new POVButton(driver, 90);
-        private static POVButton dPadDown = new POVButton(driver, 180);
-        private static POVButton dPadLeft = new POVButton(driver, 270);
+        private static POVButton dPadUp;
+        private static POVButton dPadRight;
+        private static POVButton dPadDown;
+        private static POVButton dPadLeft;
 
-        public static AnalogGyro gyro = new AnalogGyro(0);
+        private static JoystickButton a;
+        private static JoystickButton b;
+        private static JoystickButton x;
+        private static JoystickButton y;
+        private static JoystickButton rightBumper;
 
-        private static JoystickButton a = new JoystickButton(driver, 1);
-        private static JoystickButton b = new JoystickButton(driver, 2);
-        private static JoystickButton x = new JoystickButton(driver, 3);
-        private static JoystickButton y = new JoystickButton(driver, 4);
-        private static JoystickButton rightBumper = new JoystickButton(driver, 6);
+        public static AnalogGyro gyro;
 
         static {
+                driver = new XboxController(0);
+                secondary = new XboxController(1);
+
+                dPadUp = new POVButton(driver, 0);
+                dPadRight = new POVButton(driver, 90);
+                dPadDown = new POVButton(driver, 180);
+                dPadLeft = new POVButton(driver, 270);
+
+                a = new JoystickButton(driver, 1);
+                b = new JoystickButton(driver, 2);
+                x = new JoystickButton(driver, 3);
+                y = new JoystickButton(driver, 4);
+
+                rightBumper = new JoystickButton(driver, 6);
+
+                gyro = new AnalogGyro(RobotMap.gyroChannel);
+
                 // TODO: real button numbers
 
                 a.whenPressed(Robot.driveTrain.changeDriveMode);
