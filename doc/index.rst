@@ -23,6 +23,22 @@ Updating/Installing Firmware
 
 `Updating REV Spark Max Firmware <https://2019-frc.readthedocs.io/en/documentation/Updating%20Firmware%20of%20REV%20Spark%20Max's.html>`_
 
+-----------------------
+Diagrams/Configurations
+-----------------------
+`Motor Controller Spreadsheet <https://docs.google.com/spreadsheets/d/14p9fdd08mrI9wpgqd_k9QANKFcTs7CDPGgKoO7wAz68/edit?usp=sharing>`_
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Controller Configurations
+~~~~~~~~~~~~~~~~~~~~~~~~~
+.. image:: https://raw.githubusercontent.com/frc3197/2019-FRC/Documentation/doc/Controller%20Configuration.png
+   :width: 600
+- Presets in brackets correspond to the Ctrl variant. For example, on Operator, ``A + Up`` is equal to Cargo Lv. 3.
+- The ``A`` button on both controllers needs to be held in order to access their functions.
+- ``X`` and ``Y`` control the Hatch Panel Mechanism, henceforth known as the "Bird."
+- Driver ``Left Trigger`` and ``Right Trigger`` control the Forward Climber while Driver ``Left Bumper`` and ``Right Bumper`` control the Backward Climber.
+- Left and Right on all joysticks are currently unused.
+
 -----------------
 Helpful Resources
 -----------------
