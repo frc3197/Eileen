@@ -88,18 +88,18 @@ public class OI {
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
-                drivePadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE,
+                driverDPadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE,
                                 ElevatorPreset.CARGO_LEVEL_THREE, WristPreset.HATCH_PRESET,
-                                WristPreset.CARGO_ROCKET_PRESET, rightBumper, Robot.elevator));
-                dPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO,
+                                WristPreset.CARGO_ROCKET_PRESET, driverRightBumper, Robot.elevator));
+                driverDPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO,
                                 ElevatorPreset.CARGO_LEVEL_TWO, WristPreset.HATCH_PRESET,
-                                WristPreset.CARGO_ROCKET_PRESET, rightBumper, Robot.elevator));
-                dPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE,
-                                WristPreset.HATCH_PRESET, WristPreset.CARGO_ROCKET_PRESET, rightBumper,
-                                Robot.elevator));
-                dPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL,
+                                WristPreset.CARGO_ROCKET_PRESET, driverRightBumper, Robot.elevator));
+                driverDPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE,
+                                ElevatorPreset.CARGO_LEVEL_ONE, WristPreset.HATCH_PRESET,
+                                WristPreset.CARGO_ROCKET_PRESET, driverRightBumper, Robot.elevator));
+                driverDPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL,
                                 ElevatorPreset.CARGO_SHIP_CARGO, WristPreset.CARGO_ROCKET_PRESET,
-                                WristPreset.CARGO_SHIP_DUMP_PRESET, rightBumper, Robot.elevator));
+                                WristPreset.CARGO_SHIP_DUMP_PRESET, driverRightBumper, Robot.elevator));
         }
 
         // TODO add back after linking elbox and wrist
