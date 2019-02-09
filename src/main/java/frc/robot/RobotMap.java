@@ -7,11 +7,12 @@ public class RobotMap {
   }
 
   public static enum CANSparkMaxID {
-    // TODO: Change for the real robot !!! very important change can id on 2017
+    // TODO: Change for the real robot !!
     // practice bot
     FRONT_LEFT(14, "FrontLeft"), BACK_LEFT(15, "BackLeft"), FRONT_RIGHT(1, "FrontRight"), BACK_RIGHT(0, "BackRight"),
     ELEVATOR_LEFT(2, "ElevatorLeft"), ELEVATOR_RIGHT(13, "ElevatorRight"), ARM_WRIST(12, "ArmWrist"),
-    ARM_ELBOW(3, "ArmElbow"), ARM_BALL_MANIPULATOR(11, "BallIntake");
+    ARM_ELBOW(3, "ArmElbow"), ARM_BALL_MANIPULATOR(11, "BallIntake"), ERECTOR_LEFT(-1, "ErectorLeft"),
+    ERECTOR_RIGHT(-1, "ErectorRight");
 
     public final int id;
     public final String name;
@@ -47,12 +48,12 @@ public class RobotMap {
     }
   };
 
-  public static enum WristPreset {
+  public static enum ArmPreset {
     // TODO Change these for real bot
     HATCH_PRESET(0), CARGO_ROCKET_PRESET(0), CARGO_SHIP_DUMP_PRESET(0);
     public final double pos;
 
-    private WristPreset(double pos) {
+    private ArmPreset(double pos) {
       this.pos = pos;
     }
   }

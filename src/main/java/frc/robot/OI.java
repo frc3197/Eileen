@@ -6,9 +6,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.RobotMap.ElevatorPreset;
-import frc.robot.RobotMap.WristPreset;
+import frc.robot.RobotMap.ArmPreset;
 import frc.robot.commands.AlignTurn;
 import frc.robot.commands.ElevateToPreset;
+import frc.robot.commands.defaults.Flex;
 
 /**
  * Initializes the joystick and specific buttons
@@ -84,22 +85,24 @@ public class OI {
 
                 driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
+                secondaryA.whenPressed(Robot.arm.reset);
+
                 /**
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
-                driverDPadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE,
-                                ElevatorPreset.CARGO_LEVEL_THREE, WristPreset.HATCH_PRESET,
-                                WristPreset.CARGO_ROCKET_PRESET, driverRightBumper, Robot.elevator));
-                driverDPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO,
-                                ElevatorPreset.CARGO_LEVEL_TWO, WristPreset.HATCH_PRESET,
-                                WristPreset.CARGO_ROCKET_PRESET, driverRightBumper, Robot.elevator));
-                driverDPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE,
-                                ElevatorPreset.CARGO_LEVEL_ONE, WristPreset.HATCH_PRESET,
-                                WristPreset.CARGO_ROCKET_PRESET, driverRightBumper, Robot.elevator));
-                driverDPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL,
-                                ElevatorPreset.CARGO_SHIP_CARGO, WristPreset.CARGO_ROCKET_PRESET,
-                                WristPreset.CARGO_SHIP_DUMP_PRESET, driverRightBumper, Robot.elevator));
+                driverDPadUp.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_THREE, ElevatorPreset.CARGO_LEVEL_THREE,
+                                ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
+                                Robot.elevator, Robot.arm));
+                driverDPadRight.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_TWO, ElevatorPreset.CARGO_LEVEL_TWO,
+                                ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
+                                Robot.elevator, Robot.arm));
+                driverDPadDown.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE,
+                                ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
+                                Robot.elevator, Robot.arm));
+                driverDPadLeft.whenPressed(new Flex(ElevatorPreset.CARGO_LOADING_LEVEL, ElevatorPreset.CARGO_SHIP_CARGO,
+                                ArmPreset.CARGO_ROCKET_PRESET, ArmPreset.CARGO_SHIP_DUMP_PRESET, driverRightBumper,
+                                Robot.elevator, Robot.arm));
         }
 
         // TODO add back after linking elbox and wrist

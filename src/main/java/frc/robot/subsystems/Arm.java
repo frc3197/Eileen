@@ -10,16 +10,20 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.Articulate;
+import frc.robot.commands.defaults.Articulate;
 
 /**
  * Add your docs here.
  */
 public class Arm extends Subsystem {
+
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_ELBOW.id, MotorType.kBrushless);
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_WRIST.id, MotorType.kBrushless);
+
+  public ResetEncoderPosition reset = new ResetEncoderPosition(this);
 
   public Arm() {
     super();
@@ -47,21 +51,36 @@ public class Arm extends Subsystem {
     wrist.set(speed);
   }
 
-  double resetEncoderPosition = 0;
-
-  public void resetElbowPosition() {
-    resetEncoderPosition = elbow.getEncoder().getPosition();
-  }
-
-  public void resetWristPosition() {
-    resetEncoderPosition = wrist.getEncoder().getPosition();
-  }
+  // TODO change when spark max releases encoder reset
+  double resetWristEncoderPosition = 0;
+  double resetElbowEncoderPosition = 0;
 
   public double getElbowEncoderPosition() {
-    return elbow.getEncoder().getPosition() - resetEncoderPosition;
+    return elbow.getEncoder().getPosition() - resetElbowEncoderPosition;
   }
 
   public double getWristEncoderPosition() {
-    return wrist.getEncoder().getPosition() - resetEncoderPosition;
+    return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
+  }
+
+  public void resetElevatorPosition() {
+    resetElbowEncoderPosition = elbow.getEncoder().getPosition();
+    resetWristEncoderPosition = wrist.getEncoder().getPosition();
+  }
+
+  private class ResetEncoderPosition extends InstantCommand {
+
+    private Arm arm;
+
+    public ResetEncoderPosition(Arm arm) {
+      requires(arm);
+      this.arm = arm;
+    }
+
+    @Override
+    protected void initialize() {
+      arm.resetElevatorPosition();
+    }
+
   }
 }

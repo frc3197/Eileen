@@ -1,4 +1,4 @@
-package frc.robot.test;
+package frc.robot.commands.test;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotMap.DriveTrainSide;

@@ -4,7 +4,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
 
@@ -18,7 +17,6 @@ public class AlignTurn extends Command {
     private NetworkTable vision;
     private NetworkTableEntry contourXsEntry;
     private NetworkTableEntry contourAreasEntry;
-    private double maxArea;
 
     public AlignTurn(DriveTrain driveTrain) {
         ntinst = NetworkTableInstance.getDefault();
