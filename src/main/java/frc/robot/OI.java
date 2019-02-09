@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.RobotMap.ElevatorPreset;
+import frc.robot.RobotMap.WristPreset;
 import frc.robot.commands.AlignTurn;
 import frc.robot.commands.ElevateToPreset;
 
@@ -62,13 +63,17 @@ public class OI {
                  * bumper is not held, then the hatch mech will be in position.
                  */
                 dPadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE,
-                                ElevatorPreset.CARGO_LEVEL_THREE, rightBumper, Robot.elevator));
+                                ElevatorPreset.CARGO_LEVEL_THREE, WristPreset.HATCH_PRESET,
+                                WristPreset.CARGO_ROCKET_PRESET, rightBumper, Robot.elevator));
                 dPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO,
-                                ElevatorPreset.CARGO_LEVEL_TWO, rightBumper, Robot.elevator));
+                                ElevatorPreset.CARGO_LEVEL_TWO, WristPreset.HATCH_PRESET,
+                                WristPreset.CARGO_ROCKET_PRESET, rightBumper, Robot.elevator));
                 dPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE,
-                                rightBumper, Robot.elevator));
+                                WristPreset.HATCH_PRESET, WristPreset.CARGO_ROCKET_PRESET, rightBumper,
+                                Robot.elevator));
                 dPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL,
-                                ElevatorPreset.CARGO_SHIP_CARGO, rightBumper, Robot.elevator));
+                                ElevatorPreset.CARGO_SHIP_CARGO, WristPreset.CARGO_ROCKET_PRESET,
+                                WristPreset.CARGO_SHIP_DUMP_PRESET, rightBumper, Robot.elevator));
         }
 
         // TODO add back after linking elbox and wrist
