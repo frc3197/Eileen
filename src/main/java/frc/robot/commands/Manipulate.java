@@ -6,17 +6,17 @@ import frc.robot.OI;
 import frc.robot.subsystems.BallManipulator;
 
 public class Manipulate extends Command {
-  BallManipulator intake;
+  BallManipulator manipulator;
 
-  public Manipulate(BallManipulator intake) {
-    requires(intake);
-    this.intake = intake;
+  public Manipulate(BallManipulator manipulator) {
+    requires(manipulator);
+    this.manipulator = manipulator;
   }
 
   @Override
   protected void execute() {
-    double speed = OI.intakeSpeed();
-    intake.drive(speed);
+    double speed = OI.manipulatorSpeed();
+    manipulator.drive(speed);
   }
 
   @Override
@@ -26,7 +26,7 @@ public class Manipulate extends Command {
 
   @Override
   protected void end() {
-    intake.drive(0);
+    manipulator.drive(0);
   }
 
 }

@@ -86,7 +86,7 @@ public class OI {
                 return driver.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
         }
 
-        public static double intakeSpeed() {
+        public static double manipulatorSpeed() {
                 return driver.getY(Hand.kRight);
         }
 }
