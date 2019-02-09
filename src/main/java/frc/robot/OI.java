@@ -16,10 +16,15 @@ public class OI {
         private static XboxController driver;
         private static XboxController secondary;
 
-        private static POVButton dPadUp;
-        private static POVButton dPadRight;
-        private static POVButton dPadDown;
-        private static POVButton dPadLeft;
+        private static POVButton driverDPadUp;
+        private static POVButton driverDPadRight;
+        private static POVButton driverDPadDown;
+        private static POVButton driverDPadLeft;
+
+        private static POVButton secondaryDPadUp;
+        private static POVButton secondaryDPadRight;
+        private static POVButton secondaryDPadDown;
+        private static POVButton secondaryDPadLeft;
 
         private static JoystickButton driverA;
         private static JoystickButton driverB;
@@ -42,10 +47,15 @@ public class OI {
                 driver = new XboxController(0);
                 secondary = new XboxController(1);
 
-                dPadUp = new POVButton(driver, 0);
-                dPadRight = new POVButton(driver, 90);
-                dPadDown = new POVButton(driver, 180);
-                dPadLeft = new POVButton(driver, 270);
+                driverDPadUp = new POVButton(driver, 0);
+                driverDPadRight = new POVButton(driver, 90);
+                driverDPadDown = new POVButton(driver, 180);
+                driverDPadLeft = new POVButton(driver, 270);
+
+                secondaryDPadUp = new POVButton(secondary, 0);
+                secondaryDPadRight = new POVButton(secondary, 90);
+                secondaryDPadDown = new POVButton(secondary, 180);
+                secondaryDPadLeft = new POVButton(secondary, 270);
 
                 driverA = new JoystickButton(driver, 1);
                 driverB = new JoystickButton(driver, 2);
@@ -59,12 +69,11 @@ public class OI {
 
                 driverRightBumper = new JoystickButton(driver, 6);
                 driverLeftBumper = new JoystickButton(driver, 7);
+
                 secondaryRightBumper = new JoystickButton(secondary, 6);
                 secondaryLeftBumper = new JoystickButton(secondary, 7);
 
                 gyro = new AnalogGyro(RobotMap.gyroChannel);
-
-                // TODO: real button numbers
 
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
@@ -78,13 +87,13 @@ public class OI {
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
-                dPadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE,
+                driverDPadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE,
                                 ElevatorPreset.CARGO_LEVEL_THREE, driverRightBumper, Robot.elevator));
-                dPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO,
+                driverDPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO,
                                 ElevatorPreset.CARGO_LEVEL_TWO, driverRightBumper, Robot.elevator));
-                dPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE,
-                                driverRightBumper, Robot.elevator));
-                dPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL,
+                driverDPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE,
+                                ElevatorPreset.CARGO_LEVEL_ONE, driverRightBumper, Robot.elevator));
+                driverDPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL,
                                 ElevatorPreset.CARGO_SHIP_CARGO, driverRightBumper, Robot.elevator));
         }
 
@@ -92,14 +101,6 @@ public class OI {
         // public static double articulateSpeed() {
         // return secondary.getY(Hand.kRight);
         // }
-
-        public static double elbowSpeed() {
-                return secondary.getY(Hand.kRight);
-        }
-
-        public static double wristSpeed() {
-                return secondary.getY(Hand.kLeft);
-        }
 
         public static double arcadeDriveY() {
                 return driver.getY(Hand.kRight);
@@ -123,5 +124,13 @@ public class OI {
 
         public static double manipulatorSpeed() {
                 return driver.getY(Hand.kRight);
+        }
+
+        public static double elbowSpeed() {
+                return secondary.getY(Hand.kRight);
+        }
+
+        public static double wristSpeed() {
+                return secondary.getY(Hand.kLeft);
         }
 }
