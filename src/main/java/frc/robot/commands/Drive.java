@@ -17,7 +17,7 @@ public class Drive extends Command {
   protected void execute() {
     if (driveTrain.arcadeDrive) {
       double y = OI.arcadeDriveY();
-      double r = OI.arcadeDriveX();
+      double r = OI.arcadeDriveR();
       driveTrain.arcadeDrive(y, r);
     } else {
       double l = OI.tankDriveLeft();
