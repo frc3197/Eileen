@@ -22,8 +22,9 @@ public class RobotMap {
     }
   };
 
+  public static final double xMax = 640;
   public static final double visionTargetX = .5;
-  public static final double visionTargetArea = 500;
+  public static final double visionTargetArea = 32000;
 
   public static enum VisionPID {
     // TODO Change these
