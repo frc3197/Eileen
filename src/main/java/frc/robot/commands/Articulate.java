@@ -23,12 +23,14 @@ public class Articulate extends Command {
      * instead of 0 at the end of these statements will be replaced with an
      * encoder-specific deadzone
      */
+    double armSpeed = -0.15;
+    final double GEARCONSTANT = 1.07142857;
     if (arm.getWristEncoderPosition() - arm.getElbowEncoderPosition() < 0) { // If Wrist Encoder is less than Elbow
                                                                              // Encoder, move.
-      arm.wrist(0.15);
+      arm.wrist(-armSpeed * GEARCONSTANT);
     } else if (arm.getWristEncoderPosition() - arm.getElbowEncoderPosition() > 0) { // If Wrist Encoder is more than
                                                                                     // Elbow Encoder, move.
-      arm.wrist(-0.15);
+      arm.wrist(armSpeed * GEARCONSTANT);
     }
     // double speed;
     // arm.drive(speed);
