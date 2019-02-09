@@ -54,10 +54,9 @@ public class AlignTurn extends Command {
             double x0 = contourXs[0].doubleValue();
             double x1 = contourXs[1].doubleValue();
             double midpoint = (x0 + x1) / (2 * RobotMap.xMax) - 0.5;
-            turnSpeed = -1 * Math.copySign(Math.pow(Math.abs(midpoint), 1), midpoint);
+            turnSpeed = -3 * Math.copySign(Math.pow(Math.abs(midpoint), 1), midpoint);
             // If the midX is greater than the target, turn left (-)
-            // System.out.println(contourXs[0] + " " + contourXs[1] + " " + midpoint + " " +
-            // turnSpeed);
+            System.out.println(contourXs[0] + " " + contourXs[1] + " " + midpoint + " " + turnSpeed);
         } else {
             turnSpeed = 0;
         }
@@ -72,7 +71,7 @@ public class AlignTurn extends Command {
         } else {
             verticalSpeed = 0;
         }
-        verticalSpeed = 0;
+        // verticalSpeed = 0;
     }
 
     // private void betterAlign() {
