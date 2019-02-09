@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.BallManipulator;
+import frc.robot.subsystems.CargoManipulator;
 import frc.robot.test.DriveTrainTest;
 
 public class Robot extends TimedRobot {
@@ -16,7 +16,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
   public static Elevator elevator = new Elevator();
   public static Arm arm = new Arm();
-  public static BallManipulator intake = new BallManipulator();
+  public static CargoManipulator intake = new CargoManipulator();
 
   public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
   public static NetworkTable table;

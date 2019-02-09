@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.Manipulate;
 
-public class BallManipulator extends Subsystem {
+public class CargoManipulator extends Subsystem {
 
   private CANSparkMax roller = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_BALL_MANIPULATOR.id, MotorType.kBrushless);
 

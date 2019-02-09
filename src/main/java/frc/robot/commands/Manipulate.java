@@ -3,12 +3,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
-import frc.robot.subsystems.BallManipulator;
+import frc.robot.subsystems.CargoManipulator;
 
 public class Manipulate extends Command {
-  BallManipulator manipulator;
+  CargoManipulator manipulator;
 
-  public Manipulate(BallManipulator manipulator) {
+  public Manipulate(CargoManipulator manipulator) {
     requires(manipulator);
     this.manipulator = manipulator;
   }

@@ -19,6 +19,8 @@ public class Articulate extends Command {
     double wrist = OI.wristSpeed();
     arm.wrist(wrist);
     arm.elbow(elbow);
+    // double speed;
+    // arm.drive(speed);
   }
 
   @Override
