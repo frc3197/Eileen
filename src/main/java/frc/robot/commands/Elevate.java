@@ -2,15 +2,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.OI;
+import frc.robot.subsystems.Elevator;
 
 public class Elevate extends Command {
-  /**
-   * Constructor calls the elevator object from the robot class
-   */
-    
-  public Elevate() {
-    requires(Robot.elevator);
+
+  private Elevator elevator;
+
+  public Elevate(Elevator elevator) {
+    requires(elevator);
+    this.elevator = elevator;
   }
   /**
    * Takes the input from the triggers by subtracting the input of the left from the right
@@ -18,8 +19,8 @@ public class Elevate extends Command {
    */
   @Override
   protected void execute() {
-    double speed = Robot.oi.joystick.getTriggerAxis(Hand.kRight) - Robot.oi.joystick.getTriggerAxis(Hand.kLeft);
-    Robot.elevator.drive(speed);
+    double speed = OI.joystick.getTriggerAxis(Hand.kRight) - OI.joystick.getTriggerAxis(Hand.kLeft);
+    elevator.drive(speed);
   }
 
   @Override
@@ -29,6 +30,6 @@ public class Elevate extends Command {
 
   @Override
   protected void end() {
-    Robot.elevator.drive(0);
+    elevator.drive(0);
   }
 }

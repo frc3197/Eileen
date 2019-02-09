@@ -7,9 +7,10 @@ public class RobotMap {
   }
 
   public static enum CANSparkMaxID {
-    // TODO: Change for the real robot
+    // TODO: Change for the real robot !!! very important change can id on 2017
+    // practice bot
     FRONTLEFT(14, "FrontLeft"), BACKLEFT(15, "BackLeft"), FRONTRIGHT(1, "FrontRight"), BACKRIGHT(0, "BackRight"),
-    ELEVATORLEFT(13, "ElevatorLeft"), ELEVATORRIGHT(2, "ElevatorRight");
+    ELEVATORLEFT(6, "ElevatorLeft"), ELEVATORRIGHT(5, "ElevatorRight");
 
     public final int id;
     public final String name;
@@ -46,7 +47,8 @@ public class RobotMap {
 
   public static enum ElevatorPreset {
     // TODO Change these
-    LEVELA(0), LEVELB(0), LEVELC(0);
+    HATCH_LEVEL_ONE(29), HATCH_LEVEL_TWO(56), HATCH_LEVEL_THREE(83), CARGO_LEVEL_ONE(31), CARGO_LEVEL_TWO(60),
+    CARGO_LEVEL_THREE(87), CARGO_LOADING_LEVEL(35), CARGO_SHIP_CARGO(35);
     public final double pos;
 
     private ElevatorPreset(double pos) {
@@ -56,9 +58,11 @@ public class RobotMap {
   }
 
   // TODO change me
-  public static final double elevatorPresetThreshold = 0;
+  public static final double elevatorPresetThreshold = 1;
 
-  public static final double deadband = .05;
+  public static final double deadband = 0.05;
 
   public static final double gyroDegreeSensitivity = 0.01;
+
+  public static final double elevatorDegreeSensitivity = 0.15;
 }

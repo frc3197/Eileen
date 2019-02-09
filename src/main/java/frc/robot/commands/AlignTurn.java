@@ -2,22 +2,25 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.DriveTrain;
 
 public class AlignTurn extends Command {
+
+    private DriveTrain driveTrain;
 
     private double verticalSpeed;
     private double turnSpeed;
 
-    public AlignTurn() {
-        requires(Robot.driveTrain);
+    public AlignTurn(DriveTrain driveTrain) {
+        this.driveTrain = driveTrain;
+        requires(driveTrain);
     }
 
     @Override
     protected void execute() {
         getContourParameters();
-        Robot.driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
+        driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
     }
 
     @Override
@@ -34,7 +37,6 @@ public class AlignTurn extends Command {
             verticalSpeed = -Math.copySign(Math.pow(areaError, 2), areaError);
             // If totalArea is greater than the target, go backward (-)
         } else {
-            System.out.println("contourAreas 0");
             verticalSpeed = 0;
         }
 
@@ -43,7 +45,6 @@ public class AlignTurn extends Command {
             turnSpeed = -Math.copySign(Math.pow(xError, 2), xError);
             // If the midX is greater than the target, turn left (-)
         } else {
-            System.out.println("contourXs 0");
             turnSpeed = 0;
         }
     }
