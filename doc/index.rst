@@ -32,7 +32,7 @@ Diagrams/Configurations
 Controller Configurations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 .. image:: https://raw.githubusercontent.com/frc3197/2019-FRC/Documentation/doc/Controller%20Configuration.png
-
+   :width: 700
 -----------------
 Helpful Resources
 -----------------
