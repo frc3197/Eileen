@@ -47,6 +47,16 @@ public class RobotMap {
     }
   };
 
+  public static enum WristPreset {
+    // TODO Change these for real bot
+    HATCH_PRESET(0), CARGO_ROCKET_PRESET(0), CARGO_SHIP_DUMP_PRESET(0);
+    public final double pos;
+
+    private WristPreset(double pos) {
+      this.pos = pos;
+    }
+  }
+
   public static enum ElevatorPreset {
     // TODO Change these for real bot
     HATCH_LEVEL_ONE(29), HATCH_LEVEL_TWO(56), HATCH_LEVEL_THREE(83), CARGO_LEVEL_ONE(31), CARGO_LEVEL_TWO(60),
@@ -61,13 +71,19 @@ public class RobotMap {
   // TODO change me
   public static final double elevatorPresetThreshold = 1;
 
+  public static final double wristPresetThreshold = 1;
+
   public static final double deadband = 0.08;
 
   public static final double gyroDegreeSensitivity = 0.01;
 
   public static final double elevatorDegreeSensitivity = 0.15;
 
+  public static final double wristDegreeSensitivity = 0.15;
+
   public static final double elevatorExponent = 0.5;
+
+  public static final double wristExponent = 0.5;
 
   public static final int gyroChannel = 0;
 }
