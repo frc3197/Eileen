@@ -22,7 +22,7 @@ import frc.robot.commands.Drive;
 public class DriveTrain extends Subsystem {
 
   public boolean arcadeDrive = true;
-  public boolean useGyro = true;
+  public boolean useGyro = false;
 
   // Motor Controllers
   private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.FRONT_LEFT.id, MotorType.kBrushless);
@@ -43,7 +43,7 @@ public class DriveTrain extends Subsystem {
 
   public DriveTrain() {
     super();
-    drive.setDeadband(RobotMap.deadband);
+    // drive.setDeadband(RobotMap.deadband);
 
     sparkMaxPrimaryLimitSwitches.put(flSparkMax, flSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(blSparkMax, blSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));

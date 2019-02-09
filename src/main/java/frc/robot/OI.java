@@ -38,7 +38,8 @@ public class OI {
 
                 x.whenPressed(Robot.elevator.reset);
 
-                // y.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE));
+                y.whenPressed(Robot.driveTrain.changeDriveGryo);
+
                 /**
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
@@ -70,7 +71,7 @@ public class OI {
                 return driver.getY(Hand.kRight);
         }
 
-        public static double arcadeDriveX() {
+        public static double arcadeDriveR() {
                 return -driver.getX(Hand.kLeft);
         }
 
