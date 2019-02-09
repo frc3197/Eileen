@@ -21,11 +21,20 @@ public class OI {
         private static POVButton dPadDown;
         private static POVButton dPadLeft;
 
-        private static JoystickButton a;
-        private static JoystickButton b;
-        private static JoystickButton x;
-        private static JoystickButton y;
-        private static JoystickButton rightBumper;
+        private static JoystickButton driverA;
+        private static JoystickButton driverB;
+        private static JoystickButton driverX;
+        private static JoystickButton driverY;
+
+        private static JoystickButton secondaryA;
+        private static JoystickButton secondaryB;
+        private static JoystickButton secondaryX;
+        private static JoystickButton secondaryY;
+
+        private static JoystickButton driverRightBumper;
+        private static JoystickButton driverLeftBumper;
+        private static JoystickButton secondaryRightBumper;
+        private static JoystickButton secondaryLeftBumper;
 
         public static AnalogGyro gyro;
 
@@ -38,37 +47,45 @@ public class OI {
                 dPadDown = new POVButton(driver, 180);
                 dPadLeft = new POVButton(driver, 270);
 
-                a = new JoystickButton(driver, 1);
-                b = new JoystickButton(driver, 2);
-                x = new JoystickButton(driver, 3);
-                y = new JoystickButton(driver, 4);
+                driverA = new JoystickButton(driver, 1);
+                driverB = new JoystickButton(driver, 2);
+                driverX = new JoystickButton(driver, 3);
+                driverY = new JoystickButton(driver, 4);
 
-                rightBumper = new JoystickButton(driver, 6);
+                secondaryA = new JoystickButton(secondary, 1);
+                secondaryB = new JoystickButton(secondary, 2);
+                secondaryX = new JoystickButton(secondary, 3);
+                secondaryY = new JoystickButton(secondary, 4);
+
+                driverRightBumper = new JoystickButton(driver, 6);
+                driverLeftBumper = new JoystickButton(driver, 7);
+                secondaryRightBumper = new JoystickButton(secondary, 6);
+                secondaryLeftBumper = new JoystickButton(secondary, 7);
 
                 gyro = new AnalogGyro(RobotMap.gyroChannel);
 
                 // TODO: real button numbers
 
-                a.whenPressed(Robot.driveTrain.changeDriveMode);
+                driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                b.whileHeld(new AlignTurn(Robot.driveTrain));
+                driverB.whileHeld(new AlignTurn(Robot.driveTrain));
 
-                x.whenPressed(Robot.elevator.reset);
+                driverX.whenPressed(Robot.elevator.reset);
 
-                y.whenPressed(Robot.driveTrain.changeDriveGryo);
+                driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
                 /**
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
                 dPadUp.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_THREE,
-                                ElevatorPreset.CARGO_LEVEL_THREE, rightBumper, Robot.elevator));
+                                ElevatorPreset.CARGO_LEVEL_THREE, driverRightBumper, Robot.elevator));
                 dPadRight.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_TWO,
-                                ElevatorPreset.CARGO_LEVEL_TWO, rightBumper, Robot.elevator));
+                                ElevatorPreset.CARGO_LEVEL_TWO, driverRightBumper, Robot.elevator));
                 dPadDown.whenPressed(new ElevateToPreset(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE,
-                                rightBumper, Robot.elevator));
+                                driverRightBumper, Robot.elevator));
                 dPadLeft.whenPressed(new ElevateToPreset(ElevatorPreset.CARGO_LOADING_LEVEL,
-                                ElevatorPreset.CARGO_SHIP_CARGO, rightBumper, Robot.elevator));
+                                ElevatorPreset.CARGO_SHIP_CARGO, driverRightBumper, Robot.elevator));
         }
 
         // TODO add back after linking elbox and wrist
