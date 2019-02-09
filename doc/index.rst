@@ -34,13 +34,9 @@ Controller Configurations
 .. image:: https://raw.githubusercontent.com/frc3197/2019-FRC/Documentation/doc/Controller%20Configuration.png
    :width: 600
 Presets in brackets correspond to the Ctrl variant. For example, on Secondary, ``A + Up`` is equal to Cargo Lv. 3.
-
 The ``A`` button on both controllers needs to be held in order to access their functions.
-
 ``X`` and ``Y`` control the Hatch Panel Mechanism, henceforth known as the "Bird."
-
 Driver ``Left Trigger`` and ``Right Trigger`` control the Forward Climber while Driver ``Left Bumper`` and ``Right Bumper`` control the Backward Climber.
-
 Left and Right on all joysticks are currently unused.
 
 -----------------
