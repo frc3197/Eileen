@@ -46,4 +46,22 @@ public class Arm extends Subsystem {
     // SmartDashboard.putNumber("wrist", speed);
     wrist.set(speed);
   }
+
+  double resetEncoderPosition = 0;
+
+  public void resetElbowPosition() {
+    resetEncoderPosition = elbow.getEncoder().getPosition();
+  }
+
+  public void resetWristPosition() {
+    resetEncoderPosition = wrist.getEncoder().getPosition();
+  }
+
+  public double getElbowEncoderPosition() {
+    return elbow.getEncoder().getPosition() - resetEncoderPosition;
+  }
+
+  public double getWristEncoderPosition() {
+    return wrist.getEncoder().getPosition() - resetEncoderPosition;
+  }
 }
