@@ -47,12 +47,12 @@ public class Elevator extends Subsystem {
     // if (!bottomLimit.get() && Math.abs(output) < RobotMap.deadband) {
     // output = RobotMap.deadband;
     // }
-    if (topLimit.get()) {
-      output = Math.min(output, 0);
-    } // If top pressed(returning a zero value), only drive negative
-    if (bottomLimit.get()) {
-      output = Math.max(output, 0);
-    } // If bottom pressed, only drive positive
+    // if (topLimit.get()) {
+    // output = Math.min(output, 0);
+    // } // If top pressed(returning a zero value), only drive negative
+    // if (bottomLimit.get()) {
+    // output = Math.max(output, 0);
+    // } // If bottom pressed, only drive positive
     right.set(output);
   }
   // private void resetElevatorPosition() {

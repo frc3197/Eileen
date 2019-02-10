@@ -6,10 +6,12 @@ import frc.robot.subsystems.Hatch;
 public class Speak extends Command {
 
   private Hatch hatch;
+  private double speed;
 
-  public Speak(Hatch hatch) {
+  public Speak(Hatch hatch, double speed) {
     requires(hatch);
     this.hatch = hatch;
+    this.speed = speed;
   }
 
   @Override
@@ -18,7 +20,6 @@ public class Speak extends Command {
 
   @Override
   protected void execute() {
-    double speed = OI.hatchSpeed();
     hatch.drive(speed);
   }
 

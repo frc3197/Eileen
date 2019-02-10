@@ -40,7 +40,7 @@ public class Arm extends Subsystem {
       speed = 0;
     }
     // SmartDashboard.putNumber("elbow", speed);
-    elbow.set(speed);
+    elbow.set(-speed);
   }
 
   public void wrist(double speed) {

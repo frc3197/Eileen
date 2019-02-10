@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.RobotMap.ElevatorPreset;
 import frc.robot.RobotMap.ArmPreset;
 import frc.robot.commands.AlignTurn;
-import frc.robot.commands.ElevateToPreset;<<<<<<<HEAD
+import frc.robot.commands.ElevateToPreset;
 import frc.robot.commands.defaults.Flex;
-import frc.robot.commands.defaults.Roll;=======
-import frc.robot.commands.Flex;>>>>>>>4f b7c5e1c0006e13c1f797360a7e7ebd28787399
+import frc.robot.commands.defaults.Roll;
+import frc.robot.commands.defaults.Speak;
 
 /**
  * Initializes the joystick and specific buttons
@@ -81,9 +81,11 @@ public class OI {
 
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                driverB.whileHeld(new AlignTurn(Robot.driveTrain));
+                // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
+                driverB.whileHeld(new Speak(Robot.hatch, 1));
+                driverX.whileHeld(new Speak(Robot.hatch, -1));
 
-                driverX.whenPressed(Robot.elevator.reset);
+                // driverX.whenPressed(Robot.elevator.reset);
 
                 driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
@@ -153,11 +155,7 @@ public class OI {
                 return secondary.getY(Hand.kLeft);
         }
 
-        <<<<<<<HEAD=======
-
         public static double erectorSpeed() {
                 return secondary.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
         }
-
-        >>>>>>>4f b7c5e1c0006e13c1f797360a7e7ebd28787399
 }
