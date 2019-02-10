@@ -69,20 +69,12 @@ public class RobotMap {
     }
   }
 
-  public static enum RobotDeadband {
-    // TODO Change these for real bot
-    ELEVATOR_DEADBAND(0.03), ELBOW_DEADBAND(0.02), WRIST_DEADBAND(0.02), DRIVE_DEADBAND(0.08);
-    public final double speed;
-
-    private RobotDeadband(double speed) {
-      this.speed = speed;
-    }
-  }
-
   // TODO change me
   public static final double elevatorPresetThreshold = 1;
 
   public static final double wristPresetThreshold = 1;
+
+  public static final double deadband = 0.08;
 
   public static final double gyroDegreeSensitivity = 0.01;
 

@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.RobotDeadband;
 import frc.robot.commands.defaults.Elevate;
 
 public class Elevator extends Subsystem {
@@ -45,9 +44,9 @@ public class Elevator extends Subsystem {
     SmartDashboard.putBoolean("bottomlim", bottomLimit.get());
 
     double output = speed;
-    if (!bottomLimit.get() && Math.abs(output) < RobotDeadband.ELEVATOR_DEADBAND.speed) {
-      output = RobotDeadband.ELEVATOR_DEADBAND.speed;
-    }
+    // if (!bottomLimit.get() && Math.abs(output) < RobotMap.deadband) {
+    // output = RobotMap.deadband;
+    // }
     // if (topLimit.get()) {
     // output = Math.min(output, 0);
     // } // If top pressed(returning a zero value), only drive negative

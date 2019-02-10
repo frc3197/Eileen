@@ -26,6 +26,5 @@ public class Erect extends Command {
 
   @Override
   protected void end() {
-    erector.drive(0);
   }
 }

@@ -5,7 +5,12 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
-import frc.robot.commands.defaults.Manipulate;
+import frc.robot.RobotMap.ElevatorPreset;
+import frc.robot.RobotMap.ArmPreset;
+import frc.robot.commands.AlignTurn;
+import frc.robot.commands.ElevateToPreset;
+import frc.robot.commands.defaults.Flex;
+import frc.robot.commands.defaults.Roll;
 import frc.robot.commands.defaults.Speak;
 
 /**
@@ -84,8 +89,8 @@ public class OI {
 
                 driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                driverRightBumper.whileHeld(new Manipulate(Robot.manipulator, 1));
-                driverLeftBumper.whileHeld(new Manipulate(Robot.manipulator, -1));
+                driverRightBumper.whileHeld(new Roll(Robot.manipulator, 1));
+                driverLeftBumper.whileHeld(new Roll(Robot.manipulator, -1));
 
                 secondaryA.whenPressed(Robot.arm.reset);
 
@@ -138,12 +143,12 @@ public class OI {
                 return driver.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
         }
 
-        // public static double manipulatorSpeed() {
-        // return driver.getY(Hand.kRight);
-        // }
+        public static double manipulatorSpeed() {
+                return driver.getY(Hand.kRight);
+        }
 
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kRight);
+                return secondary.getY(Hand.kRight);
         }
 
         public static double wristSpeed() {
