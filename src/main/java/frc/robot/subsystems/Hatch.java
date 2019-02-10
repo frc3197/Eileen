@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.defaults.Speak;
 
 public class Hatch extends Subsystem {
 
@@ -13,7 +14,7 @@ public class Hatch extends Subsystem {
   @Override
   public void initDefaultCommand() {
 
-    setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new Speak(this));
   }
 
   public void drive(double speed) {
