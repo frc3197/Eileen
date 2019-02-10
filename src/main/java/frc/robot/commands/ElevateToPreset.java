@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ElevatorPreset;
-import frc.robot.RobotMap.ArmPreset;
-import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Elevator;
 
 public class ElevateToPreset extends Command {
@@ -16,7 +14,6 @@ public class ElevateToPreset extends Command {
   private final Trigger toggle;
 
   private Elevator elevator;
-  private Arm arm;
 
   private boolean finished;
 
