@@ -5,7 +5,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.RobotDeadband;
 import frc.robot.subsystems.DriveTrain;
 
 public class AlignTurn extends Command {
@@ -59,7 +58,7 @@ public class AlignTurn extends Command {
         } else {
             turnSpeed = 0;
         }
-        if (contourAreas.length == 2 && Math.abs(turnSpeed) < RobotDeadband.DRIVE_DEADBAND.speed) {
+        if (contourAreas.length == 2 && Math.abs(turnSpeed) < RobotMap.deadband) {
             double area0 = contourAreas[0].doubleValue();
             double area1 = contourAreas[1].doubleValue();
             double areaError = ((area0 + area1) / RobotMap.visionTargetArea) - 1;
