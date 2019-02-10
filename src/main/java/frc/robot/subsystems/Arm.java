@@ -53,7 +53,7 @@ public class Arm extends Subsystem {
     }
     SmartDashboard.putBoolean("elbowLimit", elbowLimit.get());
     // SmartDashboard.putNumber("elbow", speed);
-        elbow.set(speed);
+    elbow.set(speed);
   }
 
   public void wrist(double speed) {
@@ -81,7 +81,7 @@ public class Arm extends Subsystem {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
-  public void resetElevatorPosition() {
+  private void resetElevatorPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
