@@ -126,7 +126,7 @@ public class OI {
         }
 
         public static double arcadeDriveR() {
-                return -driver.getX(Hand.kRight);
+                return -driver.getX(Hand.kLeft);
         }
 
         public static double tankDriveLeft() {
