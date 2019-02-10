@@ -5,9 +5,6 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
-import frc.robot.RobotMap.ArmPreset;
-import frc.robot.RobotMap.ElevatorPreset;
-import frc.robot.commands.Flex;
 import frc.robot.commands.defaults.Manipulate;
 import frc.robot.commands.defaults.Speak;
 
@@ -80,10 +77,10 @@ public class OI {
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
                 // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
+                // driverX.whenPressed(Robot.elevator.reset);
+
                 driverB.whileHeld(new Speak(Robot.hatch, 1));
                 driverX.whileHeld(new Speak(Robot.hatch, -1));
-
-                // driverX.whenPressed(Robot.elevator.reset);
 
                 driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 

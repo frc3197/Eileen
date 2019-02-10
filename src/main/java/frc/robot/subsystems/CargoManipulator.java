@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.defaults.Manipulate;
 
 public class CargoManipulator extends Subsystem {
 
@@ -12,8 +13,7 @@ public class CargoManipulator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new Manipulate(this));
-    setDefaultCommand(null);
+    setDefaultCommand(new Manipulate(this, 0));
   }
 
   public void drive(double speed) {
