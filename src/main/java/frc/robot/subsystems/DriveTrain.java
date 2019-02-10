@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
+import frc.robot.RobotMap.RobotDeadband;
 import frc.robot.commands.defaults.Drive;
 
 public class DriveTrain extends Subsystem {
@@ -145,7 +146,7 @@ public class DriveTrain extends Subsystem {
   }
 
   private boolean goingStraight(double y, double r) {
-    return (Math.abs(r) < RobotMap.deadband);
+    return (Math.abs(r) < RobotDeadband.DRIVE_DEADBAND.speed);
   }
 
   private class ChangeDriveGryo extends InstantCommand {

@@ -7,12 +7,15 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANDigitalInput;
+import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.RobotDeadband;
 import frc.robot.commands.defaults.Articulate;
 
 /**
@@ -22,6 +25,9 @@ public class Arm extends Subsystem {
 
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_ELBOW.id, MotorType.kBrushless);
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_WRIST.id, MotorType.kBrushless);
+
+  private CANDigitalInput elbowLimit = elbow.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
+  private CANDigitalInput wristLimit = wrist.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
   public ResetEncoderPosition reset = new ResetEncoderPosition(this);
 
@@ -36,16 +42,26 @@ public class Arm extends Subsystem {
   }
 
   public void elbow(double speed) {
-    if (Math.abs(speed) < RobotMap.deadband) {
+    if (Math.abs(speed) < RobotDeadband.ELBOW_DEADBAND.speed) {
       speed = 0;
     }
+
+    double output = speed;
+    if (!elbowLimit.get() && Math.abs(output) < RobotDeadband.ELBOW_DEADBAND.speed) {
+      output = RobotDeadband.ELBOW_DEADBAND.speed;
+    }
     // SmartDashboard.putNumber("elbow", speed);
-    elbow.set(-speed);
+    elbow.set(speed);
   }
 
   public void wrist(double speed) {
-    if (Math.abs(speed) < RobotMap.deadband) {
+    if (Math.abs(speed) < RobotDeadband.WRIST_DEADBAND.speed) {
       speed = 0;
+    }
+
+    double output = speed;
+    if (!wristLimit.get() && Math.abs(output) < RobotDeadband.WRIST_DEADBAND.speed) {
+      output = RobotDeadband.WRIST_DEADBAND.speed;
     }
     // SmartDashboard.putNumber("wrist", speed);
     wrist.set(speed);
