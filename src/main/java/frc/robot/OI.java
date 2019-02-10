@@ -10,6 +10,7 @@ import frc.robot.RobotMap.ArmPreset;
 import frc.robot.commands.AlignTurn;
 import frc.robot.commands.ElevateToPreset;
 import frc.robot.commands.defaults.Flex;
+import frc.robot.commands.defaults.Roll;
 
 /**
  * Initializes the joystick and specific buttons
@@ -70,10 +71,10 @@ public class OI {
                 secondaryY = new JoystickButton(secondary, 4);
 
                 driverRightBumper = new JoystickButton(driver, 6);
-                driverLeftBumper = new JoystickButton(driver, 7);
+                driverLeftBumper = new JoystickButton(driver, 5);
 
                 secondaryRightBumper = new JoystickButton(secondary, 6);
-                secondaryLeftBumper = new JoystickButton(secondary, 7);
+                secondaryLeftBumper = new JoystickButton(secondary, 5);
 
                 gyro = new AnalogGyro(RobotMap.gyroChannel);
 
@@ -85,24 +86,33 @@ public class OI {
 
                 driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
+                driverRightBumper.whileHeld(new Roll(Robot.manipulator, 1));
+                driverLeftBumper.whileHeld(new Roll(Robot.manipulator, -1));
+
                 secondaryA.whenPressed(Robot.arm.reset);
 
                 /**
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
-                driverDPadUp.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_THREE, ElevatorPreset.CARGO_LEVEL_THREE,
-                                ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
-                                Robot.elevator, Robot.arm));
-                driverDPadRight.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_TWO, ElevatorPreset.CARGO_LEVEL_TWO,
-                                ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
-                                Robot.elevator, Robot.arm));
-                driverDPadDown.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_ONE, ElevatorPreset.CARGO_LEVEL_ONE,
-                                ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
-                                Robot.elevator, Robot.arm));
-                driverDPadLeft.whenPressed(new Flex(ElevatorPreset.CARGO_LOADING_LEVEL, ElevatorPreset.CARGO_SHIP_CARGO,
-                                ArmPreset.CARGO_ROCKET_PRESET, ArmPreset.CARGO_SHIP_DUMP_PRESET, driverRightBumper,
-                                Robot.elevator, Robot.arm));
+
+                // driverDPadUp.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_THREE,
+                // ElevatorPreset.CARGO_LEVEL_THREE,
+                // ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
+                // Robot.elevator, Robot.arm));
+                // driverDPadRight.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_TWO,
+                // ElevatorPreset.CARGO_LEVEL_TWO,
+                // ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
+                // Robot.elevator, Robot.arm));
+                // driverDPadDown.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_ONE,
+                // ElevatorPreset.CARGO_LEVEL_ONE,
+                // ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
+                // Robot.elevator, Robot.arm));
+                // driverDPadLeft.whenPressed(new Flex(ElevatorPreset.CARGO_LOADING_LEVEL,
+                // ElevatorPreset.CARGO_SHIP_CARGO,
+                // ArmPreset.CARGO_ROCKET_PRESET, ArmPreset.CARGO_SHIP_DUMP_PRESET,
+                // driverRightBumper,
+                // Robot.elevator, Robot.arm));
         }
 
         // TODO add back after linking elbox and wrist
@@ -141,4 +151,5 @@ public class OI {
         public static double wristSpeed() {
                 return secondary.getY(Hand.kLeft);
         }
+
 }

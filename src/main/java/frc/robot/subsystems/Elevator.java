@@ -44,9 +44,9 @@ public class Elevator extends Subsystem {
     SmartDashboard.putBoolean("bottomlim", bottomLimit.get());
 
     double output = speed;
-    if (!bottomLimit.get() && Math.abs(output) < RobotMap.deadband) {
-      output = RobotMap.deadband;
-    }
+    // if (!bottomLimit.get() && Math.abs(output) < RobotMap.deadband) {
+    // output = RobotMap.deadband;
+    // }
     if (topLimit.get()) {
       output = Math.min(output, 0);
     } // If top pressed(returning a zero value), only drive negative
