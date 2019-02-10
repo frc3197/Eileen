@@ -11,8 +11,8 @@ public class RobotMap {
     // practice bot
     FRONT_LEFT(14, "FrontLeft"), BACK_LEFT(15, "BackLeft"), FRONT_RIGHT(1, "FrontRight"), BACK_RIGHT(0, "BackRight"),
     ELEVATOR_LEFT(2, "ElevatorLeft"), ELEVATOR_RIGHT(13, "ElevatorRight"), ARM_WRIST(12, "ArmWrist"),
-    ARM_ELBOW(3, "ArmElbow"), ARM_BALL_MANIPULATOR(11, "BallIntake"), ERECTOR_LEFT(-1, "ErectorLeft"),
-    ERECTOR_RIGHT(-1, "ErectorRight"), HATCH(10, "Hatch");
+    ARM_ELBOW(3, "ArmElbow"), ARM_BALL_MANIPULATOR(11, "BallIntake"), ERECTOR_LEFT(5, "ErectorLeft"),
+    ERECTOR_RIGHT(4, "ErectorRight"), HATCH(10, "Hatch");
 
     public final int id;
     public final String name;
@@ -71,7 +71,7 @@ public class RobotMap {
 
   public static enum RobotDeadband {
     // TODO Change these for real bot
-    ELEVATOR_DEADBAND(0.03), ELBOW_DEADBAND(0.02), WRIST_DEADBAND(0.02), DRIVE_DEADBAND(0.08);
+    ELEVATOR_DEADBAND(0.03), ELBOW_DEADBAND(0.05), WRIST_DEADBAND(0.02), DRIVE_DEADBAND(0.08);
     public final double speed;
 
     private RobotDeadband(double speed) {

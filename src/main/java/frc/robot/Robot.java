@@ -10,6 +10,7 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.CargoManipulator;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Erector;
 import frc.robot.subsystems.Hatch;
 
 public class Robot extends TimedRobot {
@@ -19,6 +20,7 @@ public class Robot extends TimedRobot {
   public static Arm arm = new Arm();
   public static CargoManipulator manipulator = new CargoManipulator();
   public static Hatch hatch = new Hatch();
+  public static Erector erector = new Erector();
 
   public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
   public static NetworkTable table;

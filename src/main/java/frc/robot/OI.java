@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.robot.RobotMap.ArmPreset;
+import frc.robot.RobotMap.ElevatorPreset;
+import frc.robot.commands.Flex;
 import frc.robot.commands.defaults.Manipulate;
 import frc.robot.commands.defaults.Speak;
 
@@ -123,7 +126,7 @@ public class OI {
         }
 
         public static double arcadeDriveR() {
-                return -driver.getX(Hand.kLeft);
+                return -driver.getX(Hand.kRight);
         }
 
         public static double tankDriveLeft() {

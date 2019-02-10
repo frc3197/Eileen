@@ -14,6 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.RobotDeadband;
 import frc.robot.commands.defaults.Articulate;
@@ -47,11 +48,12 @@ public class Arm extends Subsystem {
     }
 
     double output = speed;
-    if (!elbowLimit.get() && Math.abs(output) < RobotDeadband.ELBOW_DEADBAND.speed) {
-      output = RobotDeadband.ELBOW_DEADBAND.speed;
+    if (!elbowLimit.get()) {
+      output = Math.max(RobotDeadband.ELBOW_DEADBAND.speed, output);
     }
+    SmartDashboard.putBoolean("elbowLimit", elbowLimit.get());
     // SmartDashboard.putNumber("elbow", speed);
-    elbow.set(speed);
+        elbow.set(speed);
   }
 
   public void wrist(double speed) {

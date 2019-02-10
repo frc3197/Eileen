@@ -15,12 +15,16 @@ public class Erector extends Subsystem {
 
   private SpeedControllerGroup erectorGroup = new SpeedControllerGroup(left, right);
 
+  public Erector() {
+    right.follow(left, true);
+  }
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Erect(this));
   }
 
   public void drive(double speed) {
-    erectorGroup.set(speed);
+    left.set(speed);
   }
 }
