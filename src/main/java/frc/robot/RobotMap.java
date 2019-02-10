@@ -12,7 +12,7 @@ public class RobotMap {
     FRONT_LEFT(14, "FrontLeft"), BACK_LEFT(15, "BackLeft"), FRONT_RIGHT(1, "FrontRight"), BACK_RIGHT(0, "BackRight"),
     ELEVATOR_LEFT(2, "ElevatorLeft"), ELEVATOR_RIGHT(13, "ElevatorRight"), ARM_WRIST(12, "ArmWrist"),
     ARM_ELBOW(3, "ArmElbow"), ARM_BALL_MANIPULATOR(11, "BallIntake"), ERECTOR_LEFT(-1, "ErectorLeft"),
-    ERECTOR_RIGHT(-1, "ErectorRight");
+    ERECTOR_RIGHT(-1, "ErectorRight"), HATCH(10, "Hatch");
 
     public final int id;
     public final String name;
