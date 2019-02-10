@@ -1,6 +1,7 @@
 package frc.robot.commands.defaults;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.subsystems.Erector;
 
 public class Erect extends Command {
@@ -14,6 +15,8 @@ public class Erect extends Command {
 
   @Override
   protected void execute() {
+    double speed = OI.erectorSpeed();
+    erector.drive(speed);
   }
 
   @Override
