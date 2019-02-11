@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
-import frc.robot.RobotMap.RobotDeadband;
+import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Drive;
 
 public class DriveTrain extends Subsystem {
@@ -26,10 +26,10 @@ public class DriveTrain extends Subsystem {
   public boolean useGyro = false;
 
   // Motor Controllers
-  private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.FRONT_LEFT.id, MotorType.kBrushless);
-  private CANSparkMax blSparkMax = new CANSparkMax(CANSparkMaxID.BACK_LEFT.id, MotorType.kBrushless);
-  private CANSparkMax frSparkMax = new CANSparkMax(CANSparkMaxID.FRONT_RIGHT.id, MotorType.kBrushless);
-  private CANSparkMax brSparkMax = new CANSparkMax(CANSparkMaxID.BACK_RIGHT.id, MotorType.kBrushless);
+  private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.kFrontLeft.id, MotorType.kBrushless);
+  private CANSparkMax blSparkMax = new CANSparkMax(CANSparkMaxID.kBackLeft.id, MotorType.kBrushless);
+  private CANSparkMax frSparkMax = new CANSparkMax(CANSparkMaxID.kFrontRight.id, MotorType.kBrushless);
+  private CANSparkMax brSparkMax = new CANSparkMax(CANSparkMaxID.kBackRight.id, MotorType.kBrushless);
 
   private SpeedControllerGroup leftMaxes = new SpeedControllerGroup(flSparkMax, blSparkMax);
   private SpeedControllerGroup rightMaxes = new SpeedControllerGroup(frSparkMax, brSparkMax);
@@ -146,7 +146,7 @@ public class DriveTrain extends Subsystem {
   }
 
   private boolean goingStraight(double y, double r) {
-    return (Math.abs(r) < RobotDeadband.DRIVE_DEADBAND.speed);
+    return (Math.abs(r) < DeadbandType.kDrive.speed);
   }
 
   private class ChangeDriveGryo extends InstantCommand {

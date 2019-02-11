@@ -2,17 +2,13 @@ package frc.robot;
 
 public class RobotMap {
 
-  public static enum DriveTrainSide {
-    LEFT, RIGHT, BOTH;
-  }
-
   public static enum CANSparkMaxID {
     // TODO: Change for the real robot !!
     // practice bot
-    FRONT_LEFT(14, "FrontLeft"), BACK_LEFT(15, "BackLeft"), FRONT_RIGHT(1, "FrontRight"), BACK_RIGHT(0, "BackRight"),
-    ELEVATOR_LEFT(2, "ElevatorLeft"), ELEVATOR_RIGHT(13, "ElevatorRight"), ARM_WRIST(12, "ArmWrist"),
-    ARM_ELBOW(3, "ArmElbow"), ARM_BALL_MANIPULATOR(11, "BallIntake"), ERECTOR_LEFT(5, "ErectorLeft"),
-    ERECTOR_RIGHT(4, "ErectorRight"), HATCH(10, "Hatch");
+    kFrontLeft(14, "FrontLeft"), kBackLeft(15, "BackLeft"), kFrontRight(1, "FrontRight"), kBackRight(0, "BackRight"),
+    kElevatorLeft(2, "ElevatorLeft"), kElevatorRight(13, "ElevatorRight"), kWrist(12, "Wrist"), kElbow(3, "Elbow"),
+    kCargoManipulator(11, "CargoManipulator"), kHatch(10, "Hatch"), kErectorLeft(5, "ErectorLeft"),
+    kErectorRight(4, "ErectorRight");
 
     public final int id;
     public final String name;
@@ -23,20 +19,38 @@ public class RobotMap {
     }
   };
 
-  public static final double xMax = 640;
-  public static final double visionTargetX = .5;
-  public static final double visionTargetArea = 32000;
+  public static enum ArmPreset {
+    // TODO Change these for real bot
+    kHatch(0), kCargoRocket(0), kCargoShipDump(0);
+    public final double pos;
 
-  public static enum VisionPID {
-    // TODO Change these
-    P(0), I(0), D(0), F(0);
-
-    public final double val;
-
-    private VisionPID(double val) {
-      this.val = val;
+    private ArmPreset(double pos) {
+      this.pos = pos;
     }
-  };
+  }
+
+  public static enum ElevatorPreset {
+    kHatchLevelOne(29), kHatchLevelTwo(56), kHatchLevelThree(83), kCargoLevelOne(31), kCargoLevelTwo(60),
+    kCargoLevelThree(87), kCargoLoadingLevel(35), kCargoShipCargo(35);
+    public final double pos;
+
+    private ElevatorPreset(double pos) {
+      this.pos = pos;
+    }
+  }
+
+  public static enum DeadbandType {
+    kElevator(0.03), kElbow(0.05), kWrist(0.02), kDrive(0.08);
+    public final double speed;
+
+    private DeadbandType(double speed) {
+      this.speed = speed;
+    }
+  }
+
+  public static enum DriveTrainSide {
+    LEFT, RIGHT, BOTH;
+  }
 
   public static enum CANSparkPID {
     P(0), I(0), D(0), F(0);
@@ -48,38 +62,14 @@ public class RobotMap {
     }
   };
 
-  public static enum ArmPreset {
-    // TODO Change these for real bot
-    HATCH_PRESET(0), CARGO_ROCKET_PRESET(0), CARGO_SHIP_DUMP_PRESET(0);
-    public final double pos;
+  /**
+   * public static enum VisionPID { // TODO Change these P(0), I(0), D(0), F(0);
+   * 
+   * public final double val;
+   * 
+   * private VisionPID(double val) { this.val = val; } };
+   */
 
-    private ArmPreset(double pos) {
-      this.pos = pos;
-    }
-  }
-
-  public static enum ElevatorPreset {
-    // TODO Change these for real bot
-    HATCH_LEVEL_ONE(29), HATCH_LEVEL_TWO(56), HATCH_LEVEL_THREE(83), CARGO_LEVEL_ONE(31), CARGO_LEVEL_TWO(60),
-    CARGO_LEVEL_THREE(87), CARGO_LOADING_LEVEL(35), CARGO_SHIP_CARGO(35);
-    public final double pos;
-
-    private ElevatorPreset(double pos) {
-      this.pos = pos;
-    }
-  }
-
-  public static enum RobotDeadband {
-    // TODO Change these for real bot
-    ELEVATOR_DEADBAND(0.03), ELBOW_DEADBAND(0.05), WRIST_DEADBAND(0.02), DRIVE_DEADBAND(0.08);
-    public final double speed;
-
-    private RobotDeadband(double speed) {
-      this.speed = speed;
-    }
-  }
-
-  // TODO change me
   public static final double elevatorPresetThreshold = 1;
 
   public static final double wristPresetThreshold = 1;
@@ -95,4 +85,10 @@ public class RobotMap {
   public static final double wristExponent = 0.5;
 
   public static final int gyroChannel = 0;
+
+  public static final double xMax = 640;
+
+  public static final double visionTargetX = .5;
+
+  public static final double visionTargetArea = 32000;
 }
