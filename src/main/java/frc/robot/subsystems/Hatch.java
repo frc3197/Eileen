@@ -9,11 +9,11 @@ import frc.robot.commands.defaults.Speak;
 
 public class Hatch extends Subsystem {
 
-  private CANSparkMax hatch = new CANSparkMax(RobotMap.CANSparkMaxID.HATCH.id, MotorType.kBrushed);
+  private CANSparkMax hatch = new CANSparkMax(RobotMap.CANSparkMaxID.kHatch.id, MotorType.kBrushed);
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new Speak(this, 0));
+    setDefaultCommand(new Speak(this));
   }
 
   public void drive(double speed) {

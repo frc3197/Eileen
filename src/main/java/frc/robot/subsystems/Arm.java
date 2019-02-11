@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.RobotDeadband;
+import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Articulate;
 
 /**
@@ -24,8 +24,8 @@ import frc.robot.commands.defaults.Articulate;
  */
 public class Arm extends Subsystem {
 
-  private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_ELBOW.id, MotorType.kBrushless);
-  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_WRIST.id, MotorType.kBrushless);
+  private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
+  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
 
   private CANDigitalInput elbowLimit = elbow.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
   private CANDigitalInput wristLimit = wrist.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
@@ -43,33 +43,37 @@ public class Arm extends Subsystem {
   }
 
   public void elbow(double speed) {
-    if (Math.abs(speed) < RobotDeadband.ELBOW_DEADBAND.speed) {
+    if (Math.abs(speed) < DeadbandType.kElbow.speed) {
       speed = 0;
     }
 
     double output = speed;
     if (!elbowLimit.get()) {
-      output = Math.max(RobotDeadband.ELBOW_DEADBAND.speed, output);
+      output = Math.max(DeadbandType.kElbow.speed, output);
     }
+
     SmartDashboard.putBoolean("elbowLimit", elbowLimit.get());
     // SmartDashboard.putNumber("elbow", speed);
     elbow.set(speed);
   }
 
   public void wrist(double speed) {
-    if (Math.abs(speed) < RobotDeadband.WRIST_DEADBAND.speed) {
+    if (Math.abs(speed) < DeadbandType.kWrist.speed) {
       speed = 0;
     }
 
     double output = speed;
-    if (!wristLimit.get() && Math.abs(output) < RobotDeadband.WRIST_DEADBAND.speed) {
-      output = RobotDeadband.WRIST_DEADBAND.speed;
+    if (!wristLimit.get()) {
+      output = Math.max(DeadbandType.kWrist.speed, output);
     }
+
+    SmartDashboard.putBoolean("wristLimit", wristLimit.get());
     // SmartDashboard.putNumber("wrist", speed);
     wrist.set(speed);
   }
 
   // TODO change when spark max releases encoder reset
+
   double resetWristEncoderPosition = 0;
   double resetElbowEncoderPosition = 0;
 

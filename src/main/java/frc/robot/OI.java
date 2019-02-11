@@ -79,13 +79,7 @@ public class OI {
                 // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
                 // driverX.whenPressed(Robot.elevator.reset);
 
-                driverB.whileHeld(new Speak(Robot.hatch, 1));
-                driverX.whileHeld(new Speak(Robot.hatch, -1));
-
                 driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
-
-                driverRightBumper.whileHeld(new Manipulate(Robot.manipulator, 1));
-                driverLeftBumper.whileHeld(new Manipulate(Robot.manipulator, -1));
 
                 secondaryA.whenPressed(Robot.arm.reset);
 
@@ -152,5 +146,13 @@ public class OI {
 
         public static double erectorSpeed() {
                 return secondary.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
+        }
+
+        public static double manipulatorSpeed() {
+                return (driverB.get() ? 1 : 0) + (driverX.get() ? -1 : 0);
+        }
+
+        public static double hatchSpeed() {
+                return (driverRightBumper.get() ? 1 : 0) + (driverLeftBumper.get() ? -1 : 0);
         }
 }
