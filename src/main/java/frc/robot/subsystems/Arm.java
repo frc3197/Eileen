@@ -124,4 +124,4 @@ private class ResetEncoderPosition extends InstantCommand {
     arm.resetElevatorPosition();
   }
 
-}}
+}
