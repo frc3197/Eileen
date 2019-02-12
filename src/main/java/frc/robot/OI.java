@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
-import frc.robot.commands.defaults.Manipulate;
-import frc.robot.commands.defaults.Speak;
 
 /**
  * Initializes the joystick and specific buttons
