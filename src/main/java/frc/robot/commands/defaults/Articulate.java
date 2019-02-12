@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Arm;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Articulate extends Command {
 
