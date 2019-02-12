@@ -19,6 +19,7 @@ import frc.robot.RobotMap;
 import frc.robot.OI;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Articulate;
+import frc.robot.commands.test.ResetEncoderPosition;
 
 /**
  * Add your docs here.
@@ -80,7 +81,7 @@ public class Arm extends Subsystem {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
-  private void resetElevatorPosition() {
+  public void resetElevatorPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
@@ -96,8 +97,11 @@ public class Arm extends Subsystem {
   public double gravBreak(double encoder, double controlIn) {
     if ((Math.abs(controlIn) <= .05)) {
       lastEncoder = encoder;
-      return (lastEncoder - encoder / encoder);
+      double outputGravBreak; 
+      outputGravBreak = (lastEncoder - encoder / encoder);
+      return outputGravBreak;
     }
+    return 0; //This was all we needed
   }
 }
 
@@ -110,18 +114,4 @@ public class Arm extends Subsystem {
 // }
 // }
 
-private class ResetEncoderPosition extends InstantCommand {
 
-  private Arm arm;
-
-  public ResetEncoderPosition(Arm arm) {
-    requires(arm);
-    this.arm = arm;
-  }
-
-  @Override
-  protected void initialize() {
-    arm.resetElevatorPosition();
-  }
-
-}
