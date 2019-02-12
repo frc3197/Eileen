@@ -65,7 +65,7 @@ public class OI {
 
                 driverB.whenPressed(
                                 new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo, ArmPreset.kHatch,
-                                                ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, gRobot.arm));
+                                                ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
 
                 driverX.whenPressed(
                                 new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne, ArmPreset.kHatch,
