@@ -38,6 +38,7 @@ Controller Configurations
 - ``X`` and ``Y`` control the Hatch Panel Mechanism, henceforth known as the "Bird."
 - Driver ``Left Trigger`` and ``Right Trigger`` control the Forward Climber while Driver ``Left Bumper`` and ``Right Bumper`` control the Backward Climber.
 - Left and Right on all joysticks are currently unused.
+- CONTROLLER MAP CURRENTLY OUTDATED. WILL UPDATE SOON.
 
 -----------------
 Helpful Resources
