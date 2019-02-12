@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.OI;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Articulate;
 
@@ -43,28 +44,20 @@ public class Arm extends Subsystem {
   }
 
   public void elbow(double speed) {
-    if (Math.abs(speed) < DeadbandType.kElbow.speed) {
-      speed = 0;
-    }
-
     double output = speed;
-    if (!elbowLimit.get()) {
-      output = Math.max(DeadbandType.kElbow.speed, output);
+    if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
+      output = DeadbandType.kElbow.speed;
     }
 
-    SmartDashboard.putBoolean("elbowLimit", elbowLimit.get());
+    // SmartDashboard.putBoolean("elbowLimit", elbowLimit.get());
     // SmartDashboard.putNumber("elbow", speed);
     elbow.set(speed);
   }
 
   public void wrist(double speed) {
-    if (Math.abs(speed) < DeadbandType.kWrist.speed) {
-      speed = 0;
-    }
-
     double output = speed;
-    if (!wristLimit.get()) {
-      output = Math.max(DeadbandType.kWrist.speed, output);
+    if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
+      output = DeadbandType.kWrist.speed;
     }
 
     SmartDashboard.putBoolean("wristLimit", wristLimit.get());
@@ -89,6 +82,24 @@ public class Arm extends Subsystem {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
+
+  // private void neutralizeElbowGravity() {
+  // double desiredElbow = elbow.getEncoder().getPosition();
+  // if (desiredElbow < elbow.getEncoder().getPosition()) {
+  // elbow.set(DeadbandType.kElbow.speed);
+  // } else if (desiredElbow > elbow.getEncoder().getPosition()) {
+  // elbow.set(-DeadbandType.kElbow.speed);
+  // }
+  // }
+
+  // private void neutralizeWristGravity() {
+  // double desiredWrist = wrist.getEncoder().getPosition();
+  // if (desiredWrist < wrist.getEncoder().getPosition()) {
+  // wrist.set(DeadbandType.kWrist.speed);
+  // } else if (desiredWrist > wrist.getEncoder().getPosition()) {
+  // wrist.set(-DeadbandType.kWrist.speed);
+  // }
+  // }
 
   private class ResetEncoderPosition extends InstantCommand {
 
