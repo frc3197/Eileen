@@ -129,7 +129,7 @@ public class OI {
         }
 
         public static double elevatorSpeed() {
-                return driver.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
+                return secondary.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
         }
 
         // public static double manipulatorSpeed() {
@@ -145,7 +145,7 @@ public class OI {
         }
 
         public static double erectorSpeed() {
-                return secondary.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
+                return driver.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
         }
 
         public static double manipulatorSpeed() {
