@@ -14,9 +14,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.RobotDeadband;
+import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Articulate;
 
 /**
@@ -24,8 +23,8 @@ import frc.robot.commands.defaults.Articulate;
  */
 public class Arm extends Subsystem {
 
-  private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_ELBOW.id, MotorType.kBrushless);
-  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.ARM_WRIST.id, MotorType.kBrushless);
+  private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
+  private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
 
   private CANDigitalInput elbowLimit = elbow.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
   private CANDigitalInput wristLimit = wrist.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
@@ -43,33 +42,23 @@ public class Arm extends Subsystem {
   }
 
   public void elbow(double speed) {
-    if (Math.abs(speed) < RobotDeadband.ELBOW_DEADBAND.speed) {
-      speed = 0;
-    }
-
     double output = speed;
-    if (!elbowLimit.get()) {
-      output = Math.max(RobotDeadband.ELBOW_DEADBAND.speed, output);
+    if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
+      output = DeadbandType.kElbow.speed;
     }
-    SmartDashboard.putBoolean("elbowLimit", elbowLimit.get());
-    // SmartDashboard.putNumber("elbow", speed);
-        elbow.set(speed);
+    elbow.set(speed);
   }
 
   public void wrist(double speed) {
-    if (Math.abs(speed) < RobotDeadband.WRIST_DEADBAND.speed) {
-      speed = 0;
-    }
-
     double output = speed;
-    if (!wristLimit.get() && Math.abs(output) < RobotDeadband.WRIST_DEADBAND.speed) {
-      output = RobotDeadband.WRIST_DEADBAND.speed;
+    if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
+      output = DeadbandType.kWrist.speed;
     }
-    // SmartDashboard.putNumber("wrist", speed);
     wrist.set(speed);
   }
 
   // TODO change when spark max releases encoder reset
+
   double resetWristEncoderPosition = 0;
   double resetElbowEncoderPosition = 0;
 
@@ -81,10 +70,28 @@ public class Arm extends Subsystem {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
-  public void resetElevatorPosition() {
+  private void resetElevatorPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
+
+  // private void neutralizeElbowGravity() {
+  // double desiredElbow = elbow.getEncoder().getPosition();
+  // if (desiredElbow < elbow.getEncoder().getPosition()) {
+  // elbow.set(DeadbandType.kElbow.speed);
+  // } else if (desiredElbow > elbow.getEncoder().getPosition()) {
+  // elbow.set(-DeadbandType.kElbow.speed);
+  // }
+  // }
+
+  // private void neutralizeWristGravity() {
+  // double desiredWrist = wrist.getEncoder().getPosition();
+  // if (desiredWrist < wrist.getEncoder().getPosition()) {
+  // wrist.set(DeadbandType.kWrist.speed);
+  // } else if (desiredWrist > wrist.getEncoder().getPosition()) {
+  // wrist.set(-DeadbandType.kWrist.speed);
+  // }
+  // }
 
   private class ResetEncoderPosition extends InstantCommand {
 
@@ -99,6 +106,5 @@ public class Arm extends Subsystem {
     protected void initialize() {
       arm.resetElevatorPosition();
     }
-
   }
 }

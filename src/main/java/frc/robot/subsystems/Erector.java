@@ -10,13 +10,13 @@ import frc.robot.commands.defaults.Erect;
 
 public class Erector extends Subsystem {
 
-  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.ERECTOR_LEFT.id, MotorType.kBrushless);
-  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.ERECTOR_RIGHT.id, MotorType.kBrushless);
+  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorLeft.id, MotorType.kBrushless);
+  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorRight.id, MotorType.kBrushless);
 
   private SpeedControllerGroup erectorGroup = new SpeedControllerGroup(left, right);
 
   public Erector() {
-    right.follow(left, true);
+    right.setInverted(true);
   }
 
   @Override
@@ -25,6 +25,6 @@ public class Erector extends Subsystem {
   }
 
   public void drive(double speed) {
-    left.set(speed);
+    erectorGroup.set(speed);
   }
 }

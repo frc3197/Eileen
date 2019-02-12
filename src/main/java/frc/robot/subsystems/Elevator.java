@@ -8,14 +8,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.RobotDeadband;
+import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Elevate;
 
 public class Elevator extends Subsystem {
-  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATOR_LEFT.id, MotorType.kBrushless);
-  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.ELEVATOR_RIGHT.id, MotorType.kBrushless);
+  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorLeft.id, MotorType.kBrushless);
+  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorRight.id, MotorType.kBrushless);
 
   private CANDigitalInput bottomLimit = left.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
   private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
@@ -40,13 +39,10 @@ public class Elevator extends Subsystem {
    * lowerLimitSwitch
    */
   public void drive(double speed) {
-    SmartDashboard.putNumber("ele", getEncoderPosition());
-    SmartDashboard.putBoolean("toplim", topLimit.get());
-    SmartDashboard.putBoolean("bottomlim", bottomLimit.get());
 
     double output = speed;
-    if (!bottomLimit.get() && Math.abs(output) < RobotDeadband.ELEVATOR_DEADBAND.speed) {
-      output = RobotDeadband.ELEVATOR_DEADBAND.speed;
+    if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
+      output = DeadbandType.kElevator.speed;
     }
     // if (topLimit.get()) {
     // output = Math.min(output, 0);
@@ -56,13 +52,12 @@ public class Elevator extends Subsystem {
     // } // If bottom pressed, only drive positive
     right.set(output);
   }
-  // private void resetElevatorPosition() {
-  // // left.getEncoder().reset();
-  // //TODO not yet available
-  // }
-  // public double getEncoderPosition() {
-  // return left.getEncoder().getPosition();
-  // }
+
+  /*
+   * private void resetElevatorPosition() { // left.getEncoder().reset(); //TODO
+   * not yet available } public double getEncoderPosition() { return
+   * left.getEncoder().getPosition(); }
+   */
 
   // TODO delete me when that is available
   double resetEncoderPosition = 0;
