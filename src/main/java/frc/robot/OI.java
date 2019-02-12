@@ -5,81 +5,52 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
-import frc.robot.commands.defaults.Manipulate;
-import frc.robot.commands.defaults.Speak;
+import frc.robot.RobotMap.ArmPreset;
+import frc.robot.RobotMap.ElevatorPreset;
+import frc.robot.commands.Flex;
 
 /**
  * Initializes the joystick and specific buttons
  */
 public class OI {
-        private static XboxController driver;
-        private static XboxController secondary;
+        private static XboxController driver = new XboxController(0);
+        private static XboxController secondary = new XboxController(1);
 
-        private static POVButton driverDPadUp;
-        private static POVButton driverDPadRight;
-        private static POVButton driverDPadDown;
-        private static POVButton driverDPadLeft;
+        private static POVButton driverDPadUp = new POVButton(driver, 0);
+        private static POVButton driverDPadRight = new POVButton(driver, 90);
+        private static POVButton driverDPadDown = new POVButton(driver, 180);
+        private static POVButton driverDPadLeft = new POVButton(driver, 270);
 
-        private static POVButton secondaryDPadUp;
-        private static POVButton secondaryDPadRight;
-        private static POVButton secondaryDPadDown;
-        private static POVButton secondaryDPadLeft;
+        private static POVButton secondaryDPadUp = new POVButton(secondary, 0);
+        private static POVButton secondaryDPadRight = new POVButton(secondary, 90);
+        private static POVButton secondaryDPadDown = new POVButton(secondary, 180);
+        private static POVButton secondaryDPadLeft = new POVButton(secondary, 270);
 
-        private static JoystickButton driverA;
-        private static JoystickButton driverB;
-        private static JoystickButton driverX;
-        private static JoystickButton driverY;
+        private static JoystickButton driverA = new JoystickButton(driver, 1);
+        private static JoystickButton driverB = new JoystickButton(driver, 2);
+        private static JoystickButton driverX = new JoystickButton(driver, 3);
+        private static JoystickButton driverY = new JoystickButton(driver, 4);
 
-        private static JoystickButton secondaryA;
-        private static JoystickButton secondaryB;
-        private static JoystickButton secondaryX;
-        private static JoystickButton secondaryY;
+        private static JoystickButton secondaryA = new JoystickButton(secondary, 1);
+        private static JoystickButton secondaryB = new JoystickButton(secondary, 2);
+        private static JoystickButton secondaryX = new JoystickButton(secondary, 3);
+        private static JoystickButton secondaryY = new JoystickButton(secondary, 4);
 
-        private static JoystickButton driverRightBumper;
-        private static JoystickButton driverLeftBumper;
-        private static JoystickButton secondaryRightBumper;
-        private static JoystickButton secondaryLeftBumper;
+        private static JoystickButton driverRightBumper = new JoystickButton(driver, 6);
+        private static JoystickButton driverLeftBumper = new JoystickButton(driver, 5);
+        private static JoystickButton secondaryRightBumper = new JoystickButton(secondary, 6);
+        private static JoystickButton secondaryLeftBumper = new JoystickButton(secondary, 5);
 
-        public static AnalogGyro gyro;
+        public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroChannel);
 
         static {
-                driver = new XboxController(0);
-                secondary = new XboxController(1);
 
-                driverDPadUp = new POVButton(driver, 0);
-                driverDPadRight = new POVButton(driver, 90);
-                driverDPadDown = new POVButton(driver, 180);
-                driverDPadLeft = new POVButton(driver, 270);
+                driverDPadUp.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                secondaryDPadUp = new POVButton(secondary, 0);
-                secondaryDPadRight = new POVButton(secondary, 90);
-                secondaryDPadDown = new POVButton(secondary, 180);
-                secondaryDPadLeft = new POVButton(secondary, 270);
+                // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
+                // driverDPadDown.whenPressed(Robot.elevator.reset);
 
-                driverA = new JoystickButton(driver, 1);
-                driverB = new JoystickButton(driver, 2);
-                driverX = new JoystickButton(driver, 3);
-                driverY = new JoystickButton(driver, 4);
-
-                secondaryA = new JoystickButton(secondary, 1);
-                secondaryB = new JoystickButton(secondary, 2);
-                secondaryX = new JoystickButton(secondary, 3);
-                secondaryY = new JoystickButton(secondary, 4);
-
-                driverRightBumper = new JoystickButton(driver, 6);
-                driverLeftBumper = new JoystickButton(driver, 5);
-
-                secondaryRightBumper = new JoystickButton(secondary, 6);
-                secondaryLeftBumper = new JoystickButton(secondary, 5);
-
-                gyro = new AnalogGyro(RobotMap.gyroChannel);
-
-                driverA.whenPressed(Robot.driveTrain.changeDriveMode);
-
-                // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
-                // driverX.whenPressed(Robot.elevator.reset);
-
-                driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
+                driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo);
 
                 secondaryA.whenPressed(Robot.arm.reset);
 
@@ -88,23 +59,21 @@ public class OI {
                  * bumper is not held, then the hatch mech will be in position.
                  */
 
-                // driverDPadUp.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_THREE,
-                // ElevatorPreset.CARGO_LEVEL_THREE,
-                // ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
-                // Robot.elevator, Robot.arm));
-                // driverDPadRight.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_TWO,
-                // ElevatorPreset.CARGO_LEVEL_TWO,
-                // ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
-                // Robot.elevator, Robot.arm));
-                // driverDPadDown.whenPressed(new Flex(ElevatorPreset.HATCH_LEVEL_ONE,
-                // ElevatorPreset.CARGO_LEVEL_ONE,
-                // ArmPreset.HATCH_PRESET, ArmPreset.CARGO_ROCKET_PRESET, driverRightBumper,
-                // Robot.elevator, Robot.arm));
-                // driverDPadLeft.whenPressed(new Flex(ElevatorPreset.CARGO_LOADING_LEVEL,
-                // ElevatorPreset.CARGO_SHIP_CARGO,
-                // ArmPreset.CARGO_ROCKET_PRESET, ArmPreset.CARGO_SHIP_DUMP_PRESET,
-                // driverRightBumper,
-                // Robot.elevator, Robot.arm));
+                driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
+                                ArmPreset.kHatch, ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator,
+                                Robot.arm));
+
+                driverB.whenPressed(
+                                new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo, ArmPreset.kHatch,
+                                                ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, gRobot.arm));
+
+                driverX.whenPressed(
+                                new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne, ArmPreset.kHatch,
+                                                ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+
+                driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
+                                ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper, Robot.elevator,
+                                Robot.arm));
         }
 
         // TODO add back after linking elbox and wrist
@@ -129,7 +98,7 @@ public class OI {
         }
 
         public static double elevatorSpeed() {
-                return driver.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
+                return secondary.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
         }
 
         // public static double manipulatorSpeed() {
@@ -145,7 +114,7 @@ public class OI {
         }
 
         public static double erectorSpeed() {
-                return secondary.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
+                return driver.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
         }
 
         public static double manipulatorSpeed() {
