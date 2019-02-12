@@ -16,7 +16,7 @@ public class Erector extends Subsystem {
   private SpeedControllerGroup erectorGroup = new SpeedControllerGroup(left, right);
 
   public Erector() {
-    right.follow(left, true);
+    right.setInverted(true);
   }
 
   @Override
@@ -25,6 +25,6 @@ public class Erector extends Subsystem {
   }
 
   public void drive(double speed) {
-    left.set(speed);
+    erectorGroup.set(speed);
   }
 }
