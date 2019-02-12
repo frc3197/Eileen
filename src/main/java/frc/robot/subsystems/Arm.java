@@ -33,8 +33,6 @@ public class Arm extends Subsystem {
 
   public ResetEncoderPosition reset = new ResetEncoderPosition(this);
 
-  double lastEncoder;
-
   public Arm() {
     super();
     // wrist.follow(elbow, true);
@@ -93,35 +91,32 @@ public class Arm extends Subsystem {
   // elbow.set(-DeadbandType.kElbow.speed);
   // }
   // }
-  public double gravBreak(double encoder, double controlIn) {
-    if ((Math.abs(controlIn) <= .05)) {
-      lastEncoder = encoder;
-      return (lastEncoder - encoder / encoder);
+
+  // private void neutralizeWristGravity() {
+  // double desiredWrist = wrist.getEncoder().getPosition();
+  // if (desiredWrist < wrist.getEncoder().getPosition()) {
+  // wrist.set(DeadbandType.kWrist.speed);
+  // } else if (desiredWrist > wrist.getEncoder().getPosition()) {
+  // wrist.set(-DeadbandType.kWrist.speed);
+  // }
+  // }
+
+  private class ResetEncoderPosition extends InstantCommand {
+
+    private Arm arm;
+
+    public ResetEncoderPosition(Arm arm) {
+      requires(arm);
+      this.arm = arm;
     }
+
+    @Override
+    protected void initialize() {
+      arm.resetElevatorPosition();
+    }
+
+<<<<<<< HEAD
+=======
   }
-}
-
-// private void neutralizeWristGravity() {
-// double desiredWrist = wrist.getEncoder().getPosition();
-// if (desiredWrist < wrist.getEncoder().getPosition()) {
-// wrist.set(DeadbandType.kWrist.speed);
-// } else if (desiredWrist > wrist.getEncoder().getPosition()) {
-// wrist.set(-DeadbandType.kWrist.speed);
-// }
-// }
-
-private class ResetEncoderPosition extends InstantCommand {
-
-  private Arm arm;
-
-  public ResetEncoderPosition(Arm arm) {
-    requires(arm);
-    this.arm = arm;
-  }
-
-  @Override
-  protected void initialize() {
-    arm.resetElevatorPosition();
-  }
-
+>>>>>>> parent of e4b71b3... Hopefully added some cool elbow and wrist PID
 }
