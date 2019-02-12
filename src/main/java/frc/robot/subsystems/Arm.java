@@ -114,9 +114,5 @@ public class Arm extends Subsystem {
     protected void initialize() {
       arm.resetElevatorPosition();
     }
-
-<<<<<<< HEAD
-=======
   }
->>>>>>> parent of e4b71b3... Hopefully added some cool elbow and wrist PID
 }
