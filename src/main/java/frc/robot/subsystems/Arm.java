@@ -71,7 +71,7 @@ public class Arm extends Subsystem {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
-  public void resetElevatorPosition() {
+  private void resetElevatorPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
@@ -90,6 +90,21 @@ public class Arm extends Subsystem {
       return ((lastEncoder - encoder) / encoder);
     }
     return controlIn;
+  }
+
+  private class ResetEncoderPosition extends InstantCommand {
+
+    private Arm arm;
+
+    public ResetEncoderPosition(Arm arm) {
+      requires(arm);
+      this.arm = arm;
+    }
+
+    @Override
+    protected void initialize() {
+      arm.resetElevatorPosition();
+    }
   }
 }
 

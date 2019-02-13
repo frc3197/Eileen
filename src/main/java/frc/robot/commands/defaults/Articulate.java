@@ -1,20 +1,12 @@
 package frc.robot.commands.defaults;
 
-import com.revrobotics.CANSparkMax;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
-import frc.robot.RobotMap;
 import frc.robot.subsystems.Arm;
 
 public class Articulate extends Command {
 
   private Arm arm;
-  // private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id,
-  // MotorType.kBrushless);
-  // private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id,
-  // MotorType.kBrushless);
-  // st = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
 
   public Articulate(Arm arm) {
     requires(arm);
