@@ -1,4 +1,4 @@
-elanguage: java
+language: java
 jdk: openjdk11
 git:
   depth: false
