@@ -4,7 +4,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.test.DriveTrainTest;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.CargoManipulator;
@@ -21,7 +20,6 @@ public class Robot extends TimedRobot {
   public static CargoManipulator manipulator = new CargoManipulator();
   public static Hatch hatch = new Hatch();
   public static Erector erector = new Erector();
-
   public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
   public static NetworkTable table;
 
@@ -33,8 +31,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("rate", OI.gyro.getRate());
-    SmartDashboard.putNumber("angle", OI.gyro.getAngle());
     driveTrain.update();
   }
 

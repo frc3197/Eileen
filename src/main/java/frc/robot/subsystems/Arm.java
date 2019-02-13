@@ -14,7 +14,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Articulate;
@@ -23,6 +22,7 @@ import frc.robot.commands.defaults.Articulate;
  * Add your docs here.
  */
 public class Arm extends Subsystem {
+  double lastEncoder;
 
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
@@ -43,33 +43,19 @@ public class Arm extends Subsystem {
   }
 
   public void elbow(double speed) {
-    if (Math.abs(speed) < DeadbandType.kElbow.speed) {
-      speed = 0;
-    }
-
     double output = speed;
-    if (!elbowLimit.get()) {
-      output = Math.max(DeadbandType.kElbow.speed, output);
+    if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
+      output = DeadbandType.kElbow.speed;
     }
-
-    SmartDashboard.putBoolean("elbowLimit", elbowLimit.get());
-    // SmartDashboard.putNumber("elbow", speed);
-    elbow.set(speed);
+    elbow.set(output);
   }
 
   public void wrist(double speed) {
-    if (Math.abs(speed) < DeadbandType.kWrist.speed) {
-      speed = 0;
-    }
-
     double output = speed;
-    if (!wristLimit.get()) {
-      output = Math.max(DeadbandType.kWrist.speed, output);
+    if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
+      output = -DeadbandType.kWrist.speed;
     }
-
-    SmartDashboard.putBoolean("wristLimit", wristLimit.get());
-    // SmartDashboard.putNumber("wrist", speed);
-    wrist.set(speed);
+    wrist.set(output);
   }
 
   // TODO change when spark max releases encoder reset
@@ -85,24 +71,33 @@ public class Arm extends Subsystem {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
-  private void resetElevatorPosition() {
+  public void resetElevatorPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
 
-  private class ResetEncoderPosition extends InstantCommand {
-
-    private Arm arm;
-
-    public ResetEncoderPosition(Arm arm) {
-      requires(arm);
-      this.arm = arm;
+  // private void neutralizeElbowGravity() {
+  // double desiredElbow = elbow.getEncoder().getPosition();
+  // if (desiredElbow < elbow.getEncoder().getPosition()) {
+  // elbow.set(DeadbandType.kElbow.speed);
+  // } else if (desiredElbow > elbow.getEncoder().getPosition()) {
+  // elbow.set(-DeadbandType.kElbow.speed);
+  // }
+  // }
+  public double gravBreak(double encoder, double controlIn) {
+    if ((Math.abs(controlIn) <= .05)) {
+      lastEncoder = encoder;
+      return ((lastEncoder - encoder) / encoder);
     }
-
-    @Override
-    protected void initialize() {
-      arm.resetElevatorPosition();
-    }
-
+    return controlIn;
   }
 }
+
+// private void neutralizeWristGravity() {
+// double desiredWrist = wrist.getEncoder().getPosition();
+// if (desiredWrist < wrist.getEncoder().getPosition()) {
+// wrist.set(DeadbandType.kWrist.speed);
+// } else if (desiredWrist > wrist.getEncoder().getPosition()) {
+// wrist.set(-DeadbandType.kWrist.speed);
+// }
+// }d

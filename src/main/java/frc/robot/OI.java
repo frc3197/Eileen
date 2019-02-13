@@ -98,7 +98,7 @@ public class OI {
         }
 
         public static double elevatorSpeed() {
-                return secondary.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
+                return secondary.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
         }
 
         // public static double manipulatorSpeed() {
@@ -106,19 +106,19 @@ public class OI {
         // }
 
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kRight);
+                return -secondary.getY(Hand.kRight) * .25;
         }
 
         public static double wristSpeed() {
-                return secondary.getY(Hand.kLeft);
+                return secondary.getY(Hand.kLeft) * .5;
         }
 
         public static double erectorSpeed() {
-                return driver.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
+                return driver.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
         }
 
         public static double manipulatorSpeed() {
-                return (driverB.get() ? 1 : 0) + (driverX.get() ? -1 : 0);
+                return (secondaryRightBumper.get() ? 1 : 0) + (secondaryLeftBumper.get() ? -1 : 0);
         }
 
         public static double hatchSpeed() {
