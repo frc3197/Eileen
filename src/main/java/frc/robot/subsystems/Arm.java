@@ -22,6 +22,7 @@ import frc.robot.commands.defaults.Articulate;
  * Add your docs here.
  */
 public class Arm extends Subsystem {
+  double lastEncoder;
 
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
@@ -46,15 +47,15 @@ public class Arm extends Subsystem {
     if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
       output = DeadbandType.kElbow.speed;
     }
-    elbow.set(speed);
+    elbow.set(output);
   }
 
   public void wrist(double speed) {
     double output = speed;
     if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
-      output = DeadbandType.kWrist.speed;
+      output = -DeadbandType.kWrist.speed;
     }
-    wrist.set(speed);
+    wrist.set(output);
   }
 
   // TODO change when spark max releases encoder reset
@@ -70,7 +71,7 @@ public class Arm extends Subsystem {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
-  private void resetElevatorPosition() {
+  public void resetElevatorPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
@@ -83,28 +84,20 @@ public class Arm extends Subsystem {
   // elbow.set(-DeadbandType.kElbow.speed);
   // }
   // }
-
-  // private void neutralizeWristGravity() {
-  // double desiredWrist = wrist.getEncoder().getPosition();
-  // if (desiredWrist < wrist.getEncoder().getPosition()) {
-  // wrist.set(DeadbandType.kWrist.speed);
-  // } else if (desiredWrist > wrist.getEncoder().getPosition()) {
-  // wrist.set(-DeadbandType.kWrist.speed);
-  // }
-  // }
-
-  private class ResetEncoderPosition extends InstantCommand {
-
-    private Arm arm;
-
-    public ResetEncoderPosition(Arm arm) {
-      requires(arm);
-      this.arm = arm;
+  public double gravBreak(double encoder, double controlIn) {
+    if ((Math.abs(controlIn) <= .05)) {
+      lastEncoder = encoder;
+      return ((lastEncoder - encoder) / encoder);
     }
-
-    @Override
-    protected void initialize() {
-      arm.resetElevatorPosition();
-    }
+    return controlIn;
   }
 }
+
+// private void neutralizeWristGravity() {
+// double desiredWrist = wrist.getEncoder().getPosition();
+// if (desiredWrist < wrist.getEncoder().getPosition()) {
+// wrist.set(DeadbandType.kWrist.speed);
+// } else if (desiredWrist > wrist.getEncoder().getPosition()) {
+// wrist.set(-DeadbandType.kWrist.speed);
+// }
+// }d

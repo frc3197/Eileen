@@ -1,12 +1,18 @@
 package frc.robot.commands.defaults;
 
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.Arm;
 
 public class Articulate extends Command {
 
-  private Arm arm;
+  private Arm arm = new Arm();
+  //private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
+  //private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
+  // st = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
 
   public Articulate(Arm arm) {
     requires(arm);
@@ -15,10 +21,12 @@ public class Articulate extends Command {
 
   @Override
   protected void execute() {
-    double elbow = OI.elbowSpeed();
-    double wrist = OI.wristSpeed();
-    arm.wrist(wrist);
-    arm.elbow(elbow);
+    double elbowSpeed = OI.elbowSpeed();
+    double wristSpeed = OI.wristSpeed();
+    arm.wrist(wristSpeed);
+    arm.elbow(elbowSpeed);
+    // arm.wrist(arm.gravBreak(wrist.getEncoder().getPosition(), wristSpeed));
+    // arm.elbow(arm.gravBreak(elbow.getEncoder().getPosition(), elbowSpeed));
     /**
      * instead of 0 at the end of these statements will be replaced with an
      * encoder-specific deadzone
