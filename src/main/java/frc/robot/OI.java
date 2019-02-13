@@ -105,6 +105,7 @@ public class OI {
         // return driver.getY(Hand.kRight);
         // }
 
+        // TODO think about extracting to constants or squaring rather than hardcoding
         public static double elbowSpeed() {
                 return -secondary.getY(Hand.kRight) * .25;
         }
