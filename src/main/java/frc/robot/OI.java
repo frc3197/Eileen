@@ -44,13 +44,48 @@ public class OI {
         public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroChannel);
 
         static {
+                // driverDPadUp.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                driverDPadUp.whenPressed(Robot.driveTrain.changeDriveMode);
+                // // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
+                // // driverDPadDown.whenPressed(Robot.elevator.reset);
 
-                // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
-                // driverDPadDown.whenPressed(Robot.elevator.reset);
+                // driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo);
+                // secondaryA.whenPressed(Robot.arm.reset);
+
+                // /**
+                // * If the right bumper is pushed, then the cargo intake will move. If the
+                // right
+                // * bumper is not held, then the hatch mech will be in position.
+                // */
+
+                // driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree,
+                // ElevatorPreset.kCargoLevelThree,
+                // ArmPreset.kHatch, ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator,
+                // Robot.arm));
+
+                // driverB.whenPressed(
+                // new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
+                // ArmPreset.kHatch,
+                // ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+
+                // driverX.whenPressed(
+                // new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
+                // ArmPreset.kHatch,
+                // ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+
+                // driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel,
+                // ElevatorPreset.kCargoShipCargo,
+                // ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper,
+                // Robot.elevator,
+                // Robot.arm));
+
+                driverA.whenPressed(Robot.driveTrain.changeDriveMode);
+
+                // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
+                // driverX.whenPressed(Robot.elevator.reset);
+
+                driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
                 secondaryA.whenPressed(Robot.arm.reset);
 
@@ -59,19 +94,19 @@ public class OI {
                  * bumper is not held, then the hatch mech will be in position.
                  */
 
-                driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
+                driverDPadUp.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
                                 ArmPreset.kHatch, ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator,
                                 Robot.arm));
 
-                driverB.whenPressed(
+                driverDPadRight.whenPressed(
                                 new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo, ArmPreset.kHatch,
                                                 ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
 
-                driverX.whenPressed(
+                driverDPadDown.whenPressed(
                                 new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne, ArmPreset.kHatch,
                                                 ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
 
-                driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
+                driverDPadLeft.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
                                 ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper, Robot.elevator,
                                 Robot.arm));
         }
