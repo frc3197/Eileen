@@ -20,10 +20,11 @@ public class Robot extends TimedRobot {
   public static CargoManipulator manipulator = new CargoManipulator();
   public static Hatch hatch = new Hatch();
   public static Erector erector = new Erector();
-  public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
-  public static NetworkTable table;
 
   public static DriveTrainTest driveTrainTest;
+
+  public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
+  public static NetworkTable table;
 
   @Override
   public void robotInit() {
