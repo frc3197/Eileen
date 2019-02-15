@@ -1,10 +1,16 @@
+===============
+frc.robot.Robot
+===============
+
 The class frc.robot.Robot 
 (inheriting methods from wdu.wpi.first.wpilibj.TimedRobot) 
 is the main class that contains the functions that initializes the robot.
 
 Subsystems should be initialized here.
 
-Example: ``public static SubsystemBoi subsystemBoi = new SubSystemBoi();``
+Example:: 
+
+    public static SubsystemBoi subsystemBoi = new SubSystemBoi();
 
 Network tables should also be initialized here.
 
