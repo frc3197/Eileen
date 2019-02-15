@@ -8,8 +8,10 @@ Example: ``public static SubsystemBoi subsystemBoi = new SubSystemBoi();``
 
 Network tables should also be initialized here.
 
-Example: ``public static NetWorkTableInstance ntInst = NetworkTableInstance.getDefault();
-           public static NetworkTable table;``
+Example:: 
+    public static NetWorkTableInstance ntInst = NetworkTableInstance.getDefault();
+    public static NetworkTable table;
+    
 --------
 Commands
 --------
@@ -44,7 +46,7 @@ autonomousPeriodic()
 ~~~~~~~~~~~~~~~~~~~~
 Code that runs periodically while the robot is in autonomous goes here.
 
-~~~~~~~~~~~~
+~~~~~~~~:~~~~
 teleopInit()
 ~~~~~~~~~~~~
 Initializes teleop mode.
