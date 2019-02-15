@@ -23,7 +23,7 @@ Class Documentation
 +--------------------------------------------------------------------------------+-----------------+
 |Package                                                                         |Description      |
 +================================================================================+=================+
-|`frc.robot.Robot<https://2019-frc.readthedocs.io/en/documentation/Robot.html>`_ |Initializes Robot|
+|`frc.robot.Robot <https://2019-frc.readthedocs.io/en/documentation/Robot.html>`_|Initializes Robot|
 +--------------------------------------------------------------------------------+-----------------+
 ----------------------------
 Updating/Installing Firmware
