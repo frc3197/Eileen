@@ -49,7 +49,7 @@ public class ArticulateToPreset extends Command {
   private double getWristSpeed() {
     ArmPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
 
-    double error = arm.getWristEncoderPosition() - currentTarget.pos;
+    double error = arm.getWristEncoderPosition() - currentTarget.wristPos;
     finished = Math.abs(error) < RobotMap.wristPresetThreshold;
 
     double speed = -RobotMap.wristDegreeSensitivity
