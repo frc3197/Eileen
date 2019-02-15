@@ -25,7 +25,7 @@ Class Documentation
 +======================================================================================================+=============================+
 |`frc.robot.Robot <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Robot.html>`_|Initializes Robot            |
 +------------------------------------------------------------------------------------------------------+-----------------------------+
-|`frc.robot.OI <https://2019-frc.readthedocs.io/documentation/Class%20Documentation/OI.html>`_         |Assigns buttons to Controller|
+|`frc.robot.OI <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/OI.html>`_         |Assigns buttons to Controller|
 +------------------------------------------------------------------------------------------------------+-----------------------------+
 
 ----------------------------
