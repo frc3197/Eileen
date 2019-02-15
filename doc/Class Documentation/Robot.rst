@@ -53,7 +53,7 @@ autonomousPeriodic()
 ~~~~~~~~~~~~~~~~~~~~
 Code that runs periodically while the robot is in autonomous goes here.
 
-~~~~~~~~:~~~~
+~~~~~~~~~~~~
 teleopInit()
 ~~~~~~~~~~~~
 Initializes teleop mode.
