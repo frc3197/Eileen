@@ -142,7 +142,7 @@ public class OI {
 
         // TODO think about extracting to constants or squaring rather than hardcoding
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kRight) * .25;
+                return -secondary.getY(Hand.kRight) * .35;
         }
 
         public static double wristSpeed() {
