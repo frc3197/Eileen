@@ -12,9 +12,10 @@ public class Elevate extends Command {
     requires(elevator);
     this.elevator = elevator;
   }
+
   /**
-   * Takes the input from the triggers by subtracting the input of the left from the right
-   * and moves the elevator accordingly
+   * Takes the input from the triggers by subtracting the input of the left from
+   * the right and moves the elevator accordingly.
    */
   @Override
   protected void execute() {

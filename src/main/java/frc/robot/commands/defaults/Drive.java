@@ -13,6 +13,10 @@ public class Drive extends Command {
     this.driveTrain = driveTrain;
   }
 
+  /**
+   * Checks to see if the drive train is set to arcade or tank, and then takes the
+   * speeds from OI to move the motors at.
+   */
   @Override
   protected void execute() {
     if (driveTrain.arcadeDrive) {
