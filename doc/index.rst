@@ -72,9 +72,9 @@ Class Documentation
 ----------------------------
 Updating/Installing Firmware
 ----------------------------
-`Updating and Imaging the RoboRIO <https://2019-frc.readthedocs.io/en/documentation/Updating%20and%20Imaging%20the%20RoboRIO.html>`_
+`Updating and Imaging the RoboRIO <https://2019-frc.readthedocs.io/en/documentation/Updating%20Instructions/Updating%20and%20Imaging%20the%20RoboRIO.html>`_
 
-`Updating REV Spark Max Firmware <https://2019-frc.readthedocs.io/en/documentation/Updating%20Firmware%20of%20REV%20Spark%20Max's.html>`_
+`Updating REV Spark Max Firmware <https://2019-frc.readthedocs.io/en/documentation/Updating%20Instructions/Updating%20Firmware%20of%20REV%20Spark%20Max's.html>`_
 
 -----------------------
 Diagrams/Configurations
