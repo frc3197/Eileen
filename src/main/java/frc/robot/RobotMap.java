@@ -84,6 +84,15 @@ public class RobotMap {
     }
   };
 
+  public static enum GyroSensitivity {
+    kDrive(0.01), kArm(0.01);
+    public final double val;
+
+    private GyroSensitivity(double val) {
+      this.val = val;
+    }
+  };
+
   /**
    * public static enum VisionPID { // TODO Change these P(0), I(0), D(0), F(0);
    * 
@@ -95,8 +104,6 @@ public class RobotMap {
   public static final double elevatorPresetThreshold = 1;
 
   public static final double wristPresetThreshold = 1;
-
-  public static final double gyroDegreeSensitivity = 0.01;
 
   public static final double elevatorDegreeSensitivity = 0.15;
 
