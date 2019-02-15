@@ -13,6 +13,10 @@ public class Erect extends Command {
     this.erector = erector;
   }
 
+  /**
+   * Takes the speed from OI that the climber knives should drive at, and moves
+   * them.
+   */
   @Override
   protected void execute() {
     double speed = OI.erectorSpeed();

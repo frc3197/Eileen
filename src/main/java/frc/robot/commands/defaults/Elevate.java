@@ -15,7 +15,7 @@ public class Elevate extends Command {
 
   /**
    * Takes the input from the triggers by subtracting the input of the left from
-   * the right and moves the elevator accordingly
+   * the right and moves the elevator accordingly.
    */
   @Override
   protected void execute() {
