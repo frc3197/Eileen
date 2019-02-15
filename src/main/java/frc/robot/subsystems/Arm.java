@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Articulate;
 
 /**
@@ -87,6 +86,10 @@ public class Arm extends Subsystem {
   // elbow.set(-DeadbandType.kElbow.speed);
   // }
   // }
+
+  /**
+   * Brennan's attempt at neutralizing gravity.
+   */
   public double gravBreak(double encoder, double controlIn) {
     if ((Math.abs(controlIn) <= .05)) {
       double ret = ((lastEncoder - encoder) / encoder);

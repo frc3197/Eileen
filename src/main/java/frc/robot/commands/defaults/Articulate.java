@@ -13,6 +13,10 @@ public class Articulate extends Command {
     this.arm = arm;
   }
 
+  /**
+   * Takes the speed from OI that the wrist and elbow should drive at, and moves
+   * them.
+   */
   @Override
   protected void execute() {
     double elbowSpeed = OI.elbowSpeed();
