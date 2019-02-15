@@ -20,19 +20,41 @@ Code-Related
 Class Documentation
 -------------------
 
-+--------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+
-|Package                                                                                                                         |Description                               |
-+================================================================================================================================+==========================================+
-|`frc.robot.Robot <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Robot.html>`_                          |Initializes Robot                         |
-+--------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+
-|`frc.robot.OI <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/OI.html>`_                                |Assigns buttons to Controller             |
-+--------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+
-|`frc.robot.Main <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Main.html>`_                            |Starts all Robot Subsystems               |
-+--------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+
-|`frc.robot.RobotMap <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html>`_                    |Defines Motor Controller IDs and Constants|
-+--------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+
-|`frc.robot.commands.AlignTurn <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/AlignTurn.html>`_|Turns the Robot using vision from GRIP    |
-+--------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|Package                                                                                                                                                     |Description                                   |
++============================================================================================================================================================+==============================================+
+|`frc.robot.Robot <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Robot.html>`_                                                      |Initializes Robot                             |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.OI <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/OI.html>`_                                                            |Assigns buttons to Controller                 |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.Main <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Main.html>`_                                                        |Starts all Robot Subsystems                   |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.RobotMap <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html>`_                                                |Defines Motor Controller IDs and Constants    |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.AlignTurn <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/AlignTurn.html>`_                            |Turns the Robot using vision from GRIP        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.ArticulateToPreset <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/ArticulateToPreset.html>`_          |Sets Arm to a Preset Position                 |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.ElevateToPreset <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/ElevateToPreset.html>`_                |Sets Elevator to a Preset Position            |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.Flex <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/Flex.html>`_                                      |Controls Arm Movement to Presets. (Unfinished)|
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.test.DriveTrainRampTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainRampTest.html>`_|Deprecated                                    |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.test.DriveTrainTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainTest.html>`_        |Deprecated                                    |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.defaults.Articulate <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Articulate.html>`_        |Moves the Arm (Manipulator at End)            |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.defaults.Drive <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Drive.html>`_                  |Drives the Robot                              |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.defaults.Elevate <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Elevate.html>`_              |Moves the Elevator (Contains Arm)             |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.defaults.Erect <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Erect.html>`_                  |Moves the Erector (Climber)                   |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.defaults.Manipulate <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Manipulate.html>`_        |Moves the Manipulator (Cargo Shovel)          |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.commands.defaults.Speak <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Speak.html>`_                  |Moves the Beak on the Arm (Hatch Panel Hook)  |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
 
 
 ----------------------------
