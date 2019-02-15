@@ -21,6 +21,7 @@ public class ArticulateToPreset extends Command {
    * Sets the value of the preset to the one that is intended to be moved to
    */
   public ArticulateToPreset(ArmPreset target, ArmPreset wristTargetWithTrigger, Trigger toggle, Arm arm) {
+    super();
     requires(arm);
     this.target = target;
     this.targetWithTrigger = wristTargetWithTrigger;

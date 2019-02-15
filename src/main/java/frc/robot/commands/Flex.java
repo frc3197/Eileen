@@ -11,6 +11,6 @@ public class Flex extends CommandGroup {
 
   public Flex(ElevatorPreset elevatorTarget, ElevatorPreset elevatorTargetWithTrigger, ArmPreset wristTarget,
       ArmPreset wristTargetWithTrigger, Trigger toggle, Elevator elevator, Arm arm) {
-
+    super();
   }
 }
