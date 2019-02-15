@@ -21,7 +21,7 @@ import frc.robot.commands.defaults.Articulate;
 /**
  * Add your docs here.
  */
-public class Arm extends Subsystem {
+public class Arm extends Mover {
   double lastEncoder;
 
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
@@ -40,6 +40,16 @@ public class Arm extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Articulate(this));
+  }
+
+  public void drive(double speed) {
+    double output = speed;
+    double deadband = Math.max(DeadbandType.kElbow.speed, DeadbandType.kWrist.speed);
+    if (!elbowLimit.get() && Math.abs(output) < deadband) {
+      output = deadband;
+    }
+    elbow.set(speed);
+    wrist.set(-speed);
   }
 
   public void elbow(double speed) {
@@ -71,7 +81,7 @@ public class Arm extends Subsystem {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
-  private void resetElevatorPosition() {
+  public void resetEncoderPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
@@ -90,21 +100,6 @@ public class Arm extends Subsystem {
       return ((lastEncoder - encoder) / encoder);
     }
     return controlIn;
-  }
-
-  private class ResetEncoderPosition extends InstantCommand {
-
-    private Arm arm;
-
-    public ResetEncoderPosition(Arm arm) {
-      requires(arm);
-      this.arm = arm;
-    }
-
-    @Override
-    protected void initialize() {
-      arm.resetElevatorPosition();
-    }
   }
 }
 

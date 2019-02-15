@@ -12,7 +12,7 @@ import frc.robot.RobotMap;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Elevate;
 
-public class Elevator extends Subsystem {
+public class Elevator extends Mover {
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorLeft.id, MotorType.kBrushless);
   private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorRight.id, MotorType.kBrushless);
 
@@ -62,7 +62,7 @@ public class Elevator extends Subsystem {
   // TODO delete me when that is available
   double resetEncoderPosition = 0;
 
-  public void resetElevatorPosition() {
+  public void resetEncoderPosition() {
     resetEncoderPosition = right.getEncoder().getPosition();
   }
 
@@ -75,22 +75,6 @@ public class Elevator extends Subsystem {
     public boolean get() {
       return bottomLimit.get();
     }
-  }
-
-  private class ResetEncoderPosition extends InstantCommand {
-
-    private Elevator elevator;
-
-    public ResetEncoderPosition(Elevator elevator) {
-      requires(elevator);
-      this.elevator = elevator;
-    }
-
-    @Override
-    protected void initialize() {
-      elevator.resetElevatorPosition();
-    }
-
   }
 
 }

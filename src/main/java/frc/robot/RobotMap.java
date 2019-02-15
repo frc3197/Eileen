@@ -3,8 +3,6 @@ package frc.robot;
 public class RobotMap {
 
   public static enum CANSparkMaxID {
-    // TODO: Change for the real robot !!
-    // practice bot
     kFrontLeft(14, "FrontLeft"), kBackLeft(15, "BackLeft"), kFrontRight(1, "FrontRight"), kBackRight(0, "BackRight"),
     kElevatorLeft(2, "ElevatorLeft"), kElevatorRight(13, "ElevatorRight"), kWrist(12, "Wrist"), kElbow(3, "Elbow"),
     kCargoManipulator(11, "CargoManipulator"), kHatch(10, "Hatch"), kErectorLeft(5, "ErectorLeft"),
