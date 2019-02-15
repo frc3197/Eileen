@@ -11,6 +11,10 @@ public class CargoManipulator extends Subsystem {
 
   private CANSparkMax roller = new CANSparkMax(RobotMap.CANSparkMaxID.kCargoManipulator.id, MotorType.kBrushless);
 
+  public CargoManipulator() {
+    super();
+  }
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Manipulate(this));

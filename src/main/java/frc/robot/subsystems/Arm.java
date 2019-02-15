@@ -12,18 +12,17 @@ import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.Channel;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Articulate;
 
-/**
- * Add your docs here.
- */
 public class Arm extends Subsystem {
-  double lastEncoder;
 
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
@@ -31,7 +30,12 @@ public class Arm extends Subsystem {
   private CANDigitalInput elbowLimit = elbow.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
   private CANDigitalInput wristLimit = wrist.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
+  public AnalogGyro gyro = new AnalogGyro(Channel.kWristGyro.channel);
+
   public ResetEncoderPosition reset = new ResetEncoderPosition(this);
+  public ResetGyro resetGyro = new ResetGyro(gyro);
+
+  private double lastEncoder;
 
   public Arm() {
     super();
@@ -54,11 +58,27 @@ public class Arm extends Subsystem {
 
   public void wrist(double speed) {
     double output = speed;
-    // if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
-    // output = -DeadbandType.kWrist.speed;
-    // }
+
+    // gyro mode
+    if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
+
+    }
     SmartDashboard.putNumber("getWristEncoderPosition", getWristEncoderPosition());
     wrist.set(output);
+  }
+
+  private class ResetGyro extends InstantCommand {
+    private Gyro gyro;
+
+    ResetGyro(Gyro gyro) {
+      super();
+      this.gyro = gyro;
+    }
+
+    @Override
+    public void initialize() {
+      gyro.reset();
+    }
   }
 
   // TODO change when spark max releases encoder reset

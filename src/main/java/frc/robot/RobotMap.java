@@ -65,6 +65,25 @@ public class RobotMap {
     }
   };
 
+  public static enum ElevatorPID {
+    P(0), I(0), D(0), F(0);
+
+    public final double val;
+
+    private ElevatorPID(double val) {
+      this.val = val;
+    }
+  };
+
+  public static enum Channel {
+    kDriveGyro(0), kWristGyro(1);
+    public final int channel;
+
+    private Channel(int channel) {
+      this.channel = channel;
+    }
+  };
+
   /**
    * public static enum VisionPID { // TODO Change these P(0), I(0), D(0), F(0);
    * 
@@ -86,8 +105,6 @@ public class RobotMap {
   public static final double elevatorExponent = 0.5;
 
   public static final double wristExponent = 0.5;
-
-  public static final int gyroChannel = 0;
 
   public static final double xMax = 640;
 
