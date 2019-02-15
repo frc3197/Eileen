@@ -20,6 +20,7 @@ public class AlignTurn extends Command {
     private NetworkTableEntry contourAreasEntry;
 
     public AlignTurn(DriveTrain driveTrain) {
+        super();
         ntinst = NetworkTableInstance.getDefault();
         vision = ntinst.getTable("Vision");
         contourXsEntry = vision.getEntry("contour_xs");

@@ -41,8 +41,6 @@ public class OI {
         private static JoystickButton secondaryRightBumper = new JoystickButton(secondary, 6);
         private static JoystickButton secondaryLeftBumper = new JoystickButton(secondary, 5);
 
-        public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroChannel);
-
         static {
                 // driverDPadUp.whenPressed(Robot.driveTrain.changeDriveMode);
 
@@ -88,25 +86,26 @@ public class OI {
                 // driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
                 // secondaryA.whenPressed(Robot.arm.reset);
+                secondaryB.whenPressed(Robot.arm.resetGyro);
 
                 /**
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
 
-                secondaryDPadUp.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
+                secondaryDPadUp.whileHeld(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
                                 ArmPreset.kHatchThree, ArmPreset.kCargoRocketThree, secondaryA, Robot.elevator,
                                 Robot.arm));
 
-                secondaryDPadRight.whenPressed(new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
+                secondaryDPadRight.whileHeld(new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
                                 ArmPreset.kHatchTwo, ArmPreset.kCargoRocketTwo, secondaryA, Robot.elevator, Robot.arm));
 
-                secondaryDPadDown.whenPressed(new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
+                secondaryDPadDown.whileHeld(new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
                                 ArmPreset.kHatchOne, ArmPreset.kCargoRocketOne, secondaryA, Robot.elevator, Robot.arm));
 
-                secondaryDPadLeft.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel,
-                                ElevatorPreset.kCargoShipCargo, ArmPreset.kCargoShipDump, ArmPreset.kCargoShipDump,
-                                secondaryA, Robot.elevator, Robot.arm));
+                secondaryDPadLeft.whileHeld(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
+                                ArmPreset.kCargoShipDump, ArmPreset.kCargoShipDump, secondaryA, Robot.elevator,
+                                Robot.arm));
         }
 
         // TODO add back after linking elbox and wrist
