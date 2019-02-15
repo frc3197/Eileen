@@ -40,7 +40,7 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.03), kElbow(0.15), kWrist(0.05), kDrive(0.08);
+    kElevator(0.03), kElbow(0.03), kWrist(0.02), kDrive(0.08);
     public final double speed;
 
     private DeadbandType(double speed) {
