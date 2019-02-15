@@ -1,5 +1,5 @@
 =============================
-frc.robot..subsystems.Erector
+frc.robot.subsystems.Erector
 =============================
 
 --------

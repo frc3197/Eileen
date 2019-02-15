@@ -1,5 +1,5 @@
 ===========================
-frc.robot..subsystems.Hatch
+frc.robot.subsystems.Hatch
 ===========================
 
 --------
