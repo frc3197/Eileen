@@ -20,11 +20,11 @@ public class ArticulateToPreset extends Command {
   /**
    * Sets the value of the preset to the one that is intended to be moved to
    */
-  public ArticulateToPreset(ArmPreset target, ArmPreset wristTargetWithTrigger, Trigger toggle, Arm arm) {
+  public ArticulateToPreset(ArmPreset target, ArmPreset targetWithTrigger, Trigger toggle, Arm arm) {
     super();
     requires(arm);
     this.target = target;
-    this.targetWithTrigger = wristTargetWithTrigger;
+    this.targetWithTrigger = targetWithTrigger;
     this.toggle = toggle;
     this.arm = arm;
     finished = false;
@@ -36,10 +36,12 @@ public class ArticulateToPreset extends Command {
    */
   @Override
   protected void execute() {
-    double speed = getWristSpeed();
+    double wristSpeed = getWristSpeed();
+    double elbowSpeed = getElbowSpeed();
 
-    arm.wrist(speed);
-    arm.elbow(-speed);
+    // TODO adjust the speeds here
+    arm.wrist(wristSpeed * 25);
+    arm.elbow(-elbowSpeed * 25);
   }
 
   @Override
@@ -47,6 +49,11 @@ public class ArticulateToPreset extends Command {
     return finished;
   }
 
+  /**
+   * Returns the speed the wrist should move at to get to the preset requested.
+   * 
+   * @return
+   */
   private double getWristSpeed() {
     ArmPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
 
@@ -55,6 +62,22 @@ public class ArticulateToPreset extends Command {
 
     double speed = -RobotMap.wristDegreeSensitivity
         * Math.copySign(Math.pow(Math.abs(error), RobotMap.wristExponent), error);
+    return speed;
+  }
+
+  /**
+   * Returns the speed the elbow should move at to get to the preset requested.
+   * 
+   * @return
+   */
+  private double getElbowSpeed() {
+    ArmPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
+
+    double error = arm.getElbowEncoderPosition() - currentTarget.elbowPos;
+    finished = Math.abs(error) < RobotMap.elbowPresetThreshold;
+
+    double speed = -RobotMap.elbowDegreeSensitivity
+        * Math.copySign(Math.pow(Math.abs(error), RobotMap.elbowExponent), error);
     return speed;
   }
 }

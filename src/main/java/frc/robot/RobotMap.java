@@ -3,8 +3,6 @@ package frc.robot;
 public class RobotMap {
 
   public static enum CANSparkMaxID {
-    // TODO: Change for the real robot !!
-    // practice bot
     kFrontLeft(14, "FrontLeft"), kBackLeft(15, "BackLeft"), kFrontRight(1, "FrontRight"), kBackRight(0, "BackRight"),
     kElevatorLeft(2, "ElevatorLeft"), kElevatorRight(13, "ElevatorRight"), kWrist(12, "Wrist"), kElbow(3, "Elbow"),
     kCargoManipulator(11, "CargoManipulator"), kHatch(10, "Hatch"), kErectorLeft(5, "ErectorLeft"),
@@ -20,7 +18,6 @@ public class RobotMap {
   };
 
   public static enum ArmPreset {
-    // TODO Change these for real bot
     kHatchOne(24.6, 70.5), kHatchTwo(58.5, 176.6), kHatchThree(55.8, 176.1), kHatch(0, 0), kCargoRocketOne(42.2, 164),
     kCargoRocketTwo(51.42, 177.3), kCargoRocketThree(44.35, 179), kCargoShipDump(-3, 73.6);
     public final double wristPos;
@@ -105,13 +102,21 @@ public class RobotMap {
 
   public static final double wristPresetThreshold = 1;
 
+  public static final double elbowPresetThreshold = 1;
+
   public static final double elevatorDegreeSensitivity = 0.15;
 
   public static final double wristDegreeSensitivity = 0.15;
 
+  public static final double elbowDegreeSensitivity = 0.15;
+
   public static final double elevatorExponent = 0.5;
 
   public static final double wristExponent = 0.5;
+
+  public static final double elbowExponent = 0.5;
+
+  public static final int gyroChannel = 0;
 
   public static final double xMax = 640;
 

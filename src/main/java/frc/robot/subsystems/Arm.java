@@ -119,6 +119,10 @@ public class Arm extends Subsystem {
   // elbow.set(-DeadbandType.kElbow.speed);
   // }
   // }
+
+  /**
+   * Brennan's attempt at neutralizing gravity.
+   */
   public double gravBreak(double encoder, double controlIn) {
     if ((Math.abs(controlIn) <= .05)) {
       double ret = ((lastEncoder - encoder) / encoder);
