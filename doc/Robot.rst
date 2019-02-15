@@ -9,9 +9,10 @@ Example: ``public static SubsystemBoi subsystemBoi = new SubSystemBoi();``
 Network tables should also be initialized here.
 
 Example:: 
+
     public static NetWorkTableInstance ntInst = NetworkTableInstance.getDefault();
     public static NetworkTable table;
-    
+
 --------
 Commands
 --------
