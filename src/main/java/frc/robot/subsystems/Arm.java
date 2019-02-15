@@ -14,6 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Articulate;
@@ -44,17 +45,19 @@ public class Arm extends Subsystem {
 
   public void elbow(double speed) {
     double output = speed;
-    if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
-      output = DeadbandType.kElbow.speed;
-    }
+    // if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
+    // output = DeadbandType.kElbow.speed;
+    // }
+    SmartDashboard.putNumber("getElbowEncoderPosition", getElbowEncoderPosition());
     elbow.set(output);
   }
 
   public void wrist(double speed) {
     double output = speed;
-    if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
-      output = -DeadbandType.kWrist.speed;
-    }
+    // if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
+    // output = -DeadbandType.kWrist.speed;
+    // }
+    SmartDashboard.putNumber("getWristEncoderPosition", getWristEncoderPosition());
     wrist.set(output);
   }
 
@@ -86,15 +89,14 @@ public class Arm extends Subsystem {
   // }
   public double gravBreak(double encoder, double controlIn) {
     if ((Math.abs(controlIn) <= .05)) {
-      float lastEncoder2 = encoder;
-      float ret = ((lastEncoder - encoder) / encoder);
-      float lastEncoder = encoder;
+      double ret = ((lastEncoder - encoder) / encoder);
+      lastEncoder = encoder;
       return ret;
     }
     return controlIn;
   }
 
-  private class ResetEncoderPosition extends InstantCommand {
+  public class ResetEncoderPosition extends InstantCommand {
 
     private Arm arm;
 
