@@ -1,5 +1,5 @@
 ======================================
-frc.robot..subsystems.CargoManipulator
+frc.robot.subsystems.CargoManipulator
 ======================================
 
 --------
