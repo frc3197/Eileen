@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Elevate;
@@ -50,6 +51,7 @@ public class Elevator extends Mover {
     // if (bottomLimit.get()) {
     // output = Math.max(output, 0);
     // } // If bottom pressed, only drive positive
+    SmartDashboard.putNumber("getElevatorEncoderPosition", getEncoderPosition());
     right.set(output);
   }
 
