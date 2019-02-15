@@ -37,9 +37,6 @@ public class ElevateToPreset extends Command {
   @Override
   protected void execute() {
     double elevatorSpeed = getSpeed();
-
-    // SmartDashboard.putNumber("elevatorspeed", elevatorSpeed);
-
     elevator.drive(elevatorSpeed);
   }
 

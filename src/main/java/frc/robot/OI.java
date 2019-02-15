@@ -83,7 +83,7 @@ public class OI {
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
                 // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
-                // driverX.whenPressed(Robot.elevator.reset);
+                secondaryX.whenPressed(Robot.elevator.reset);
 
                 driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
@@ -95,19 +95,19 @@ public class OI {
                  */
 
                 driverDPadUp.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
-                                ArmPreset.kHatch, ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator,
+                                ArmPreset.kHatchThree, ArmPreset.kCargoRocketThree, driverRightBumper, Robot.elevator,
                                 Robot.arm));
 
-                driverDPadRight.whenPressed(
-                                new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo, ArmPreset.kHatch,
-                                                ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+                driverDPadRight.whenPressed(new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
+                                ArmPreset.kHatchTwo, ArmPreset.kCargoRocketTwo, driverRightBumper, Robot.elevator,
+                                Robot.arm));
 
-                driverDPadDown.whenPressed(
-                                new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne, ArmPreset.kHatch,
-                                                ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+                driverDPadDown.whenPressed(new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
+                                ArmPreset.kHatchOne, ArmPreset.kCargoRocketOne, driverRightBumper, Robot.elevator,
+                                Robot.arm));
 
                 driverDPadLeft.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
-                                ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper, Robot.elevator,
+                                ArmPreset.kCargoShipDump, ArmPreset.kCargoShipDump, driverRightBumper, Robot.elevator,
                                 Robot.arm));
         }
 
@@ -142,11 +142,12 @@ public class OI {
 
         // TODO think about extracting to constants or squaring rather than hardcoding
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kRight) * .35;
+                return -secondary.getY(Hand.kRight) * .5;
         }
 
         public static double wristSpeed() {
                 return secondary.getY(Hand.kLeft) * .5;
+
         }
 
         public static double erectorSpeed() {
@@ -158,6 +159,6 @@ public class OI {
         }
 
         public static double hatchSpeed() {
-                return (driverRightBumper.get() ? 1 : 0) + (driverLeftBumper.get() ? -1 : 0);
+                return (driverRightBumper.get() ? 1 : -1);// (driverLeftBumper.get() ? -1 : 0);
         }
 }
