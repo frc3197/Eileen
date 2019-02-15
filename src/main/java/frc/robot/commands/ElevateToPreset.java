@@ -22,6 +22,7 @@ public class ElevateToPreset extends Command {
    */
   public ElevateToPreset(ElevatorPreset elevatorTarget, ElevatorPreset elevatorTargetWithTrigger, Trigger toggle,
       Elevator elevator) {
+    super();
     requires(elevator);
     this.target = elevatorTarget;
     this.targetWithTrigger = elevatorTargetWithTrigger;

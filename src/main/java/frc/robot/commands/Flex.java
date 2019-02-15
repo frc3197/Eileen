@@ -25,6 +25,7 @@ public class Flex extends CommandGroup {
    */
   public Flex(ElevatorPreset elevatorTarget, ElevatorPreset elevatorTargetWithTrigger, ArmPreset target,
       ArmPreset targetWithTrigger, Trigger toggle, Elevator elevator, Arm arm) {
+    super();
     addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
     addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), .5);
   }
