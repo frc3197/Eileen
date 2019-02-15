@@ -86,8 +86,10 @@ public class Arm extends Subsystem {
   // }
   public double gravBreak(double encoder, double controlIn) {
     if ((Math.abs(controlIn) <= .05)) {
-      lastEncoder = encoder;
-      return ((lastEncoder - encoder) / encoder);
+      float lastEncoder2 = encoder;
+      float ret = ((lastEncoder - encoder) / encoder);
+      float lastEncoder = encoder;
+      return ret;
     }
     return controlIn;
   }
