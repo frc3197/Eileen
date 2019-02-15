@@ -55,6 +55,18 @@ Class Documentation
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
 |`frc.robot.commands.defaults.Speak <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Speak.html>`_                  |Moves the Beak on the Arm (Hatch Panel Hook)  |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.subsystems.Arm <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Subsystems/Arm.html>`_                                    |Defines the Arm (Moves Manipulator)           |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.subsystems.CargoManipulator <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Subsystems/CargoManipulator.html>`_          |Defines the Cargo Manipulator                 |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.subsystems.DriveTrain <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Subsystems/DriveTrain.html>`_                      |Defines the Drive Train                       |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.subsystems.Elevator <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Subsystems/Elevator.html>`_                          |Defines the Elevator (Contains Arm)           |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.subsystems.Erector <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Subsystems/Erector.html>`_                            |Defines the Erector (Climber)                 |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+|`frc.robot.subsystems.Hatch <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Subsystems/Hatch.html>`_                                |Defines the Hatch Panel Mechanism (Beak)      |
++------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
 
 
 ----------------------------
