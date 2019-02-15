@@ -19,6 +19,7 @@ import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
 import frc.robot.RobotMap.Channel;
 import frc.robot.RobotMap.DeadbandType;
+import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.commands.defaults.Drive;
 
 public class DriveTrain extends Subsystem {
@@ -139,7 +140,7 @@ public class DriveTrain extends Subsystem {
       double currentGyroAngle = gyro.getAngle();
       // TODO: Check polarity
       double deltaAngle = (currentGyroAngle - initialGyroAngle);
-      r += RobotMap.gyroDegreeSensitivity * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
+      r += GyroSensitivity.kDrive.val * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
       SmartDashboard.putNumber("deltaAngle", deltaAngle);
       SmartDashboard.putNumber("r", r);
     } else {

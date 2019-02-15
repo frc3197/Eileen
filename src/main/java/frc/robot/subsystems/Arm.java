@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.Channel;
 import frc.robot.RobotMap.DeadbandType;
+import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.commands.defaults.Articulate;
 
 public class Arm extends Subsystem {
@@ -59,11 +60,22 @@ public class Arm extends Subsystem {
   public void wrist(double speed) {
     double output = speed;
 
-    // gyro mode
-    if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
+    // gyro mode centers around 0
+    // if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
 
-    }
-    SmartDashboard.putNumber("getWristEncoderPosition", getWristEncoderPosition());
+    // if (Math.abs(output) < DeadbandType.kWrist.speed) {
+    // double deltaAngle = gyro.getAngle();
+    // output = GyroSensitivity.kArm.val * Math.copySign(Math.pow(deltaAngle, 2),
+    // deltaAngle);
+    // } else {
+    // resetEncoderPosition();
+    // }
+
+    double deltaAngle = gyro.getAngle();
+    double gyroSpeed = GyroSensitivity.kArm.val * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
+    SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
+    SmartDashboard.putNumber("wristEncoder", getWristEncoderPosition());
+
     wrist.set(output);
   }
 
@@ -94,7 +106,7 @@ public class Arm extends Subsystem {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
-  private void resetElevatorPosition() {
+  private void resetEncoderPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
@@ -127,7 +139,7 @@ public class Arm extends Subsystem {
 
     @Override
     protected void initialize() {
-      arm.resetElevatorPosition();
+      arm.resetEncoderPosition();
     }
   }
 }
