@@ -31,14 +31,14 @@ public class Flex extends CommandGroup {
     // slightly,
     // then move arm, then move elevator so you dont chooch stuff from 0
     if (Math.abs(elevator.getEncoderPosition()) < RobotMap.elevatorPresetThreshold) {
-      addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
-      addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), 5);
-    } else if (elevatorTarget.pos < 0) {
+      addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 1);
       addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
-      addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 5);
-    } else {
+    } else if (elevatorTarget.pos < 0) {
+      addParallel(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), 1);
       addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
-      addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), 5);
+    } else {
+      addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 1);
+      addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
     }
   }
 }

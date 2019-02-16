@@ -18,7 +18,7 @@ public class RobotMap {
   };
 
   public static enum ArmPreset {
-    kHatchOne(24.6, 70.5), kHatchTwo(58.5, 176.6), kHatchThree(55.8, 176.1), kHatch(0, 0), kCargoRocketOne(42.2, 164),
+    kHatchOne(24.6, 70.5), kHatchTwo(58.5, 176.6), kHatchThree(55.8, 176.1), kCargoRocketOne(42.2, 164),
     kCargoRocketTwo(51.42, 177.3), kCargoRocketThree(44.35, 179), kCargoShipDump(-3, 73.6);
     public final double wristPos;
     public final double elbowPos;
@@ -40,7 +40,7 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.08), kElbow(0.03), kWrist(0.02), kDrive(0.08);
+    kElevator(0.01), kElbow(0.03), kWrist(0.02), kDrive(0.08);
     public final double speed;
 
     private DeadbandType(double speed) {
@@ -98,11 +98,11 @@ public class RobotMap {
    * private VisionPID(double val) { this.val = val; } };
    */
 
-  public static final double elevatorPresetThreshold = 1;
+  public static final double elevatorPresetThreshold = .5;
 
-  public static final double wristPresetThreshold = 1;
+  public static final double wristPresetThreshold = .5;
 
-  public static final double elbowPresetThreshold = 1;
+  public static final double elbowPresetThreshold = .5;
 
   public static final double elevatorDegreeSensitivity = 0.15;
 
@@ -115,6 +115,8 @@ public class RobotMap {
   public static final double wristExponent = 0.5;
 
   public static final double elbowExponent = 0.5;
+
+  public static final double elevatorSpeedMultiplier = 0.5;
 
   public static final double elbowSpeedMultiplier = 0.75;
 

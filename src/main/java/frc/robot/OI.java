@@ -129,19 +129,16 @@ public class OI {
         }
 
         public static double elevatorSpeed() {
-                return secondary.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft);
+                return (secondary.getTriggerAxis(Hand.kRight) - secondary.getTriggerAxis(Hand.kLeft))
+                                * RobotMap.elevatorSpeedMultiplier;
         }
 
-        // public static double manipulatorSpeed() {
-        // return driver.getY(Hand.kRight);
-        // }
-
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kLeft) * RobotMap.elbowSpeedMultiplier;
+                return -secondary.getY(Hand.kRight) * RobotMap.elbowSpeedMultiplier;
         }
 
         public static double wristSpeed() {
-                return secondary.getY(Hand.kRight) * RobotMap.wristSpeedMultiplier;
+                return secondary.getY(Hand.kLeft) * RobotMap.wristSpeedMultiplier;
 
         }
 
