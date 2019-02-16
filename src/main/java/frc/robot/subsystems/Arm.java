@@ -123,14 +123,14 @@ public class Arm extends Subsystem {
   /**
    * Brennan's attempt at neutralizing gravity.
    */
-  public double gravBreak(double encoder, double controlIn) {
-    if ((Math.abs(controlIn) <= .05)) {
-      double ret = ((lastEncoder - encoder) / encoder);
-      lastEncoder = encoder;
-      return ret;
-    }
-    return controlIn;
-  }
+  // public double gravBreak(double encoder, double controlIn) {
+  // if ((Math.abs(controlIn) <= .05)) {
+  // double ret = ((lastEncoder - encoder) / encoder);
+  // lastEncoder = encoder;
+  // return ret;
+  // }
+  // return controlIn;
+  // }
 
   public class ResetEncoderPosition extends InstantCommand {
 
@@ -147,12 +147,3 @@ public class Arm extends Subsystem {
     }
   }
 }
-
-// private void neutralizeWristGravity() {
-// double desiredWrist = wrist.getEncoder().getPosition();
-// if (desiredWrist < wrist.getEncoder().getPosition()) {
-// wrist.set(DeadbandType.kWrist.speed);
-// } else if (desiredWrist > wrist.getEncoder().getPosition()) {
-// wrist.set(-DeadbandType.kWrist.speed);
-// }
-// }d
