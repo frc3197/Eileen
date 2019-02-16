@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.RobotMap;
 import frc.robot.RobotMap.ArmPreset;
 import frc.robot.RobotMap.ElevatorPreset;
 import frc.robot.subsystems.Arm;
@@ -26,7 +27,18 @@ public class Flex extends CommandGroup {
   public Flex(ElevatorPreset elevatorTarget, ElevatorPreset elevatorTargetWithTrigger, ArmPreset target,
       ArmPreset targetWithTrigger, Trigger toggle, Elevator elevator, Arm arm) {
     super();
-    addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
-    addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), .5);
+    // TODO when going to an elevator with a NEGATIVE POSITION try going up
+    // slightly,
+    // then move arm, then move elevator so you dont chooch stuff from 0
+    if (Math.abs(elevator.getEncoderPosition()) < RobotMap.elevatorPresetThreshold) {
+      addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
+      addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), 5);
+    } else if (elevatorTarget.pos < 0) {
+      addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
+      addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 5);
+    } else {
+      addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
+      addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), 5);
+    }
   }
 }

@@ -53,6 +53,7 @@ public class Arm extends Subsystem {
     // output = DeadbandType.kElbow.speed;
     // }
     SmartDashboard.putNumber("getElbowEncoderPosition", getElbowEncoderPosition());
+    SmartDashboard.putBoolean("ElbowLimit", elbowLimit.get());
     elbow.set(output);
   }
 

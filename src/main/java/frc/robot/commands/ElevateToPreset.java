@@ -40,7 +40,7 @@ public class ElevateToPreset extends Command {
     double elevatorSpeed = getElevatorSpeed();
 
     // TODO adjust the speed here
-    elevator.drive(elevatorSpeed * 25);
+    elevator.drive(elevatorSpeed * .30);
   }
 
   @Override
