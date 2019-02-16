@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
@@ -49,6 +50,11 @@ public class DriveTrain extends Subsystem {
   public DriveTrain() {
     super();
     // drive.setDeadband(RobotMap.deadband);
+
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
 
     sparkMaxPrimaryLimitSwitches.put(flSparkMax, flSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(blSparkMax, blSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
