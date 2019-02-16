@@ -1,6 +1,7 @@
 package frc.robot.commands.defaults;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.subsystems.Arm;
 

@@ -18,7 +18,7 @@ public class RobotMap {
   };
 
   public static enum ArmPreset {
-    kHatchOne(24.6, 70.5), kHatchTwo(58.5, 176.6), kHatchThree(55.8, 176.1), kCargoRocketOne(42.2, 164),
+    kHatchOne(24.6, 70.5), kHatchTwo(58.5, 176.6), kHatchThree(59.8, 180.1), kCargoRocketOne(42.2, 164),
     kCargoRocketTwo(51.42, 177.3), kCargoRocketThree(44.35, 179), kCargoShipDump(-3, 73.6);
     public final double wristPos;
     public final double elbowPos;
@@ -40,7 +40,7 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.01), kElbow(0.03), kWrist(0.02), kDrive(0.08);
+    kElevator(0.03), kElbow(0.06), kWrist(0.02), kDrive(0.08);
     public final double speed;
 
     private DeadbandType(double speed) {

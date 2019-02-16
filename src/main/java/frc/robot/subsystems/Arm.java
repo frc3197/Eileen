@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.Channel;
+import frc.robot.RobotMap.DeadbandType;
 import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.commands.defaults.Articulate;
 
@@ -49,16 +50,24 @@ public class Arm extends Subsystem {
 
   public void elbow(double speed) {
     double output = speed;
-    // if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
-    // output = DeadbandType.kElbow.speed;
-    // }
-    SmartDashboard.putNumber("getElbowEncoderPosition", getElbowEncoderPosition());
-    SmartDashboard.putBoolean("ElbowLimit", elbowLimit.get());
+
+    // Stops the elbow from constaltly moving upwards when not being moved by the
+    // joystick
+    if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
+      output = 0;
+    }
+
     elbow.set(output);
   }
 
   public void wrist(double speed) {
     double output = speed;
+
+    // Stops the wrist from constaltly moving upwards when not being moved by the
+    // joystick
+    if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
+      output = 0;
+    }
 
     // gyro mode centers around 0
     // if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
