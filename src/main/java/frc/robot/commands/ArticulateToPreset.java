@@ -40,8 +40,8 @@ public class ArticulateToPreset extends Command {
     double elbowSpeed = getElbowSpeed();
 
     // TODO adjust the speeds here
-    arm.elbow(-elbowSpeed * .2);
-    arm.wrist(wristSpeed * .2);
+    arm.elbow(elbowSpeed * .35);
+    arm.wrist(wristSpeed * .35);
   }
 
   @Override
