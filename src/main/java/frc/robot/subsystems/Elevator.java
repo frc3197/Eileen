@@ -5,28 +5,29 @@ import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.InstantCommand;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Elevate;
 
-public class Elevator extends Mover {
-  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorLeft.id, MotorType.kBrushless);
+public class Elevator extends IntermediateSubystem {
   private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorRight.id, MotorType.kBrushless);
+  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorLeft.id, MotorType.kBrushless);
+
+  private SpeedControllerGroup elevatorGroup = new SpeedControllerGroup(right, left);
 
   private CANDigitalInput bottomLimit = left.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
   private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
   private LimitReset limitReset = new LimitReset();
-  public ResetEncoderPosition reset = new ResetEncoderPosition(this);
+  public ResetCommand reset = new ResetCommand(this::resetEncoderPosition);
 
   public Elevator() {
     super();
-    left.follow(right, true);
-    limitReset.whenActive(new ResetEncoderPosition(this));
+    left.setInverted(true);
+    limitReset.whenActive(reset);
   }
 
   @Override
@@ -34,35 +35,21 @@ public class Elevator extends Mover {
     setDefaultCommand(new Elevate(this));
   }
 
-  /*
-   * Makes sure the elevator can't go any farther up when it hits the
-   * upperLimitSwitch, and that it can't go any farther down when it hits the
-   * lowerLimitSwitch
-   */
-  public void drive(double speed) {
-
-    double output = speed;
-    if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
-      output = DeadbandType.kElevator.speed;
-    }
-    // if (topLimit.get()) {
-    // output = Math.min(output, 0);
-    // } // If top pressed(returning a zero value), only drive negative
-    // if (bottomLimit.get()) {
-    // output = Math.max(output, 0);
-    // } // If bottom pressed, only drive positive
+  public void drive(double speed, boolean hold) {
+    SmartDashboard.putNumber("speed", speed);
     SmartDashboard.putNumber("getElevatorEncoderPosition", getEncoderPosition());
-    right.set(output);
+
+    if (hold) {
+      speed = conditions(speed, DeadbandType.kElevator.speed);
+    }
+    elevatorGroup.set(speed);
   }
 
-  /*
-   * private void resetElevatorPosition() { // left.getEncoder().reset(); //TODO
-   * not yet available } public double getEncoderPosition() { return
-   * left.getEncoder().getPosition(); }
-   */
+  private double conditions(double speed, double deadband) {
+    return (!bottomLimit.get() && Math.abs(speed) < deadband) ? deadband : speed;
+  }
 
-  // TODO delete me when that is available
-  double resetEncoderPosition = 0;
+  private double resetEncoderPosition = 0;
 
   public void resetEncoderPosition() {
     resetEncoderPosition = right.getEncoder().getPosition();
@@ -78,5 +65,4 @@ public class Elevator extends Mover {
       return bottomLimit.get();
     }
   }
-
 }

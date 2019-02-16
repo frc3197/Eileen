@@ -14,14 +14,13 @@ public class Speak extends Command {
 
   }
 
-  @Override
-  protected void initialize() {
-  }
-
+  /**
+   * Takes the speed from OI that the hatch beak should drive at, and moves them.
+   */
   @Override
   protected void execute() {
     double speed = OI.hatchSpeed();
-    hatch.drive(speed);
+    hatch.drive(speed, true);
   }
 
   @Override
@@ -31,6 +30,6 @@ public class Speak extends Command {
 
   @Override
   protected void end() {
-    hatch.drive(0);
+    hatch.drive(0, true);
   }
 }

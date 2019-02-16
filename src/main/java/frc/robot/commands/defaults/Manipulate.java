@@ -14,10 +14,13 @@ public class Manipulate extends Command {
 
   }
 
+  /**
+   * Takes the speed from OI that the crgo intake should drive at, and moves them.
+   */
   @Override
   protected void execute() {
     double speed = OI.manipulatorSpeed();
-    manipulator.drive(speed);
+    manipulator.drive(speed, true);
   }
 
   @Override
@@ -27,7 +30,7 @@ public class Manipulate extends Command {
 
   @Override
   protected void end() {
-    manipulator.drive(0);
+    manipulator.drive(0, true);
   }
 
 }

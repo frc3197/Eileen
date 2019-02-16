@@ -1,6 +1,7 @@
 package frc.robot.commands.defaults;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.subsystems.Arm;
 
@@ -13,6 +14,10 @@ public class Articulate extends Command {
     this.arm = arm;
   }
 
+  /**
+   * Takes the speed from OI that the wrist and elbow should drive at, and moves
+   * them.
+   */
   @Override
   protected void execute() {
     double elbowSpeed = OI.elbowSpeed();
