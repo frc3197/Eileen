@@ -54,9 +54,9 @@ public class Elevator extends Subsystem {
     // if (bottomLimit.get()) {
     // output = Math.max(output, 0);
     // } // If bottom pressed, only drive positive
-    if (getEncoderPosition() < -15) {
-      output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
-    }
+    // if (getEncoderPosition() < -15) {
+    // output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
+    // }
     SmartDashboard.putNumber("getElevatorEncoderPosition", getEncoderPosition());
 
     master.set(output);
