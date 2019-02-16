@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import com.revrobotics.CANDigitalInput;
@@ -13,9 +6,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.command.InstantCommand;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.Channel;
@@ -23,7 +13,7 @@ import frc.robot.RobotMap.DeadbandType;
 import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.commands.defaults.Articulate;
 
-public class Arm extends Subsystem {
+public class Arm extends IntermediateSubystem {
 
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
@@ -33,10 +23,8 @@ public class Arm extends Subsystem {
 
   public AnalogGyro gyro = new AnalogGyro(Channel.kWristGyro.channel);
 
-  public ResetEncoderPosition reset = new ResetEncoderPosition(this);
-  public ResetGyro resetGyro = new ResetGyro(gyro);
-
-  private double lastEncoder;
+  public ResetCommand reset = new ResetCommand(this::resetEncoderPosition);
+  public ResetCommand resetGyro = new ResetCommand(this::resetGyroAngle);
 
   public Arm() {
     super();
@@ -46,6 +34,11 @@ public class Arm extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Articulate(this));
+  }
+
+  public void drive(double speed, boolean hold) {
+    elbow(speed);
+    wrist(0);
   }
 
   public void elbow(double speed) {
@@ -88,22 +81,6 @@ public class Arm extends Subsystem {
     wrist.set(output);
   }
 
-  private class ResetGyro extends InstantCommand {
-    private Gyro gyro;
-
-    ResetGyro(Gyro gyro) {
-      super();
-      this.gyro = gyro;
-    }
-
-    @Override
-    public void initialize() {
-      gyro.reset();
-    }
-  }
-
-  // TODO change when spark max releases encoder reset
-
   double resetWristEncoderPosition = 0;
   double resetElbowEncoderPosition = 0;
 
@@ -120,39 +97,7 @@ public class Arm extends Subsystem {
     resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
 
-  // private void neutralizeElbowGravity() {
-  // double desiredElbow = elbow.getEncoder().getPosition();
-  // if (desiredElbow < elbow.getEncoder().getPosition()) {
-  // elbow.set(DeadbandType.kElbow.speed);
-  // } else if (desiredElbow > elbow.getEncoder().getPosition()) {
-  // elbow.set(-DeadbandType.kElbow.speed);
-  // }
-  // }
-
-  /**
-   * Brennan's attempt at neutralizing gravity.
-   */
-  // public double gravBreak(double encoder, double controlIn) {
-  // if ((Math.abs(controlIn) <= .05)) {
-  // double ret = ((lastEncoder - encoder) / encoder);
-  // lastEncoder = encoder;
-  // return ret;
-  // }
-  // return controlIn;
-  // }
-
-  public class ResetEncoderPosition extends InstantCommand {
-
-    private Arm arm;
-
-    public ResetEncoderPosition(Arm arm) {
-      requires(arm);
-      this.arm = arm;
-    }
-
-    @Override
-    protected void initialize() {
-      arm.resetEncoderPosition();
-    }
+  private void resetGyroAngle() {
+    gyro.reset();
   }
 }

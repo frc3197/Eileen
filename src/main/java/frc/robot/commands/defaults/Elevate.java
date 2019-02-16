@@ -20,7 +20,7 @@ public class Elevate extends Command {
   @Override
   protected void execute() {
     double speed = OI.elevatorSpeed();
-    elevator.drive(speed);
+    elevator.drive(speed, true);
   }
 
   @Override
@@ -30,6 +30,6 @@ public class Elevate extends Command {
 
   @Override
   protected void end() {
-    elevator.drive(0);
+    elevator.drive(0, true);
   }
 }

@@ -44,12 +44,12 @@ public class DriveTrain extends Subsystem {
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
 
-  public ChangeDriveGryo changeDriveGryo = new ChangeDriveGryo(this);
-  public ChangeDriveMode changeDriveMode = new ChangeDriveMode(this);
+  public ResetCommand changeDriveGryo = new ResetCommand(this::toggleGyro);
+  public ResetCommand changeDriveMode = new ResetCommand(this::toggleMode);
 
   public DriveTrain() {
     super();
-    // drive.setDeadband(RobotMap.deadband);
+    drive.setDeadband(DeadbandType.kDrive.speed);
 
     flSparkMax.setIdleMode(IdleMode.kCoast);
     flSparkMax.setIdleMode(IdleMode.kCoast);
@@ -97,31 +97,6 @@ public class DriveTrain extends Subsystem {
     setDefaultCommand(new Drive(this));
   }
 
-  /**
-   * Puts information about all motors on SmartDashboard
-   */
-  public void update() {
-    CANSparkMax[] sparkMaxes = { brSparkMax, blSparkMax, frSparkMax, brSparkMax };
-    double[] ids = new double[sparkMaxes.length];
-    double[] encoderPosition = new double[sparkMaxes.length];
-    double[] encoderVelocity = new double[sparkMaxes.length];
-    boolean[] primaryLimits = new boolean[sparkMaxes.length];
-    boolean[] secondaryLimits = new boolean[sparkMaxes.length];
-    for (int i = 0; i < sparkMaxes.length; i++) {
-      ids[i] = sparkMaxes[i].getDeviceId();
-      CANEncoder encoder = sparkMaxes[i].getEncoder();
-      encoderPosition[i] = encoder.getPosition();
-      encoderVelocity[i] = encoder.getVelocity();
-      primaryLimits[i] = sparkMaxPrimaryLimitSwitches.get(sparkMaxes[i]).get();
-      secondaryLimits[i] = sparkMaxSecondaryLimitSwitches.get(sparkMaxes[i]).get();
-    }
-    SmartDashboard.putNumberArray("driveTrainSparkMaxIds", ids);
-    SmartDashboard.putBooleanArray("driveTrainSparkMaxPrimaryLimits", primaryLimits);
-    SmartDashboard.putBooleanArray("driveTrainSparkMaxSecondaryLimits", secondaryLimits);
-    SmartDashboard.putNumberArray("driveTrainSparkMaxEncoderPosition", encoderPosition);
-    SmartDashboard.putNumberArray("driveTrainSparkMaxEncoderVelocity", encoderVelocity);
-  }
-
   public void tankDrive(double l, double r) {
     drive.tankDrive(l, r, true);
   }
@@ -159,36 +134,12 @@ public class DriveTrain extends Subsystem {
     return (Math.abs(r) < DeadbandType.kDrive.speed);
   }
 
-  private class ChangeDriveGryo extends InstantCommand {
-
-    private DriveTrain driveTrain;
-
-    public ChangeDriveGryo(DriveTrain driveTrain) {
-      requires(driveTrain);
-      this.driveTrain = driveTrain;
-    }
-
-    @Override
-    protected void initialize() {
-      driveTrain.useGyro = !driveTrain.useGyro;
-    }
-
+  private void toggleGyro() {
+    useGyro = !useGyro;
   }
 
-  private class ChangeDriveMode extends InstantCommand {
-
-    private DriveTrain driveTrain;
-
-    public ChangeDriveMode(DriveTrain driveTrain) {
-      requires(driveTrain);
-      this.driveTrain = driveTrain;
-    }
-
-    @Override
-    protected void initialize() {
-      driveTrain.arcadeDrive = !driveTrain.arcadeDrive;
-    }
-
+  private void toggleMode() {
+    arcadeDrive = !arcadeDrive;
   }
 
 }
