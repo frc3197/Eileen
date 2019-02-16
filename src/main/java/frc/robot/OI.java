@@ -43,39 +43,15 @@ public class OI {
         static {
                 // driverDPadUp.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                // // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
-                // // driverDPadDown.whenPressed(Robot.elevator.reset);
+                // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
 
                 // driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo);
-
-                // secondaryA.whenPressed(Robot.arm.reset);
 
                 // /**
                 // * If the right bumper is pushed, then the cargo intake will move. If the
                 // right
                 // * bumper is not held, then the hatch mech will be in position.
                 // */
-
-                // driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree,
-                // ElevatorPreset.kCargoLevelThree,
-                // ArmPreset.kHatch, ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator,
-                // Robot.arm));
-
-                // driverB.whenPressed(
-                // new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
-                // ArmPreset.kHatch,
-                // ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
-
-                // driverX.whenPressed(
-                // new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
-                // ArmPreset.kHatch,
-                // ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
-
-                // driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel,
-                // ElevatorPreset.kCargoShipCargo,
-                // ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper,
-                // Robot.elevator,
-                // Robot.arm));
 
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
@@ -91,7 +67,6 @@ public class OI {
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
-
                 secondaryDPadUp.whileHeld(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
                                 ArmPreset.kHatchThree, ArmPreset.kCargoRocketThree, secondaryA, Robot.elevator,
                                 Robot.arm));
@@ -105,6 +80,31 @@ public class OI {
                 secondaryDPadLeft.whileHeld(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
                                 ArmPreset.kCargoShipDump, ArmPreset.kCargoShipDump, secondaryA, Robot.elevator,
                                 Robot.arm));
+
+                /**
+                 * Alternate for the secondary dPad, could use buttons ABXY.
+                 */
+                // driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree,
+                // ElevatorPreset.kCargoLevelThree,
+                // ArmPreset.kHatchThree, ArmPreset.kCargoRocketThree, driverRightBumper,
+                // Robot.elevator,
+                // Robot.arm));
+
+                // driverB.whenPressed(
+                // new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
+                // ArmPreset.kHatchTwo,
+                // ArmPreset.kCargoRocketTwo, driverRightBumper, Robot.elevator, Robot.arm));
+
+                // driverX.whenPressed(
+                // new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
+                // ArmPreset.kHatchOne,
+                // ArmPreset.kCargoRocketOne, driverRightBumper, Robot.elevator, Robot.arm));
+
+                // driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel,
+                // ElevatorPreset.kCargoShipCargo,
+                // ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper,
+                // Robot.elevator,
+                // Robot.arm));
         }
 
         // TODO add back after linking elbox and wrist
@@ -136,13 +136,12 @@ public class OI {
         // return driver.getY(Hand.kRight);
         // }
 
-        // TODO think about extracting to constants or squaring rather than hardcoding
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kLeft) * .75;
+                return -secondary.getY(Hand.kLeft) * RobotMap.elbowSpeedMultiplier;
         }
 
         public static double wristSpeed() {
-                return secondary.getY(Hand.kRight) * .5;
+                return secondary.getY(Hand.kRight) * RobotMap.wristSpeedMultiplier;
 
         }
 
