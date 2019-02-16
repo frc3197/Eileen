@@ -12,6 +12,7 @@ The REV Color Sensor V2 is a line sensor that uses I2C to communicate. WPILib co
 and sending commands to the device require writing bits to specific addresses.
 
 The REV Color Sensor has the I2C address ``0x39``.
+
 ~~~~~~~~~~~~~~~~~~~
 Important Addresses
 ~~~~~~~~~~~~~~~~~~~
@@ -56,7 +57,7 @@ To enable a device, the following code will work for the REV Color Sensor::
         sensor.write(COMMAND_REGISTER_BIT | 0x00, 0b00000011); // power on, color sensor on
     }
 
-The following code writes ``0b00000011`` to ``0x00``. As of current, it is unknown why the
+The following code writes ``0b00000011`` to ``0x00``. As of the 2019 season, it is unknown why the
 bitwise or operation with COMMAND_REGISTER_BIT (0x80) is needed. It is also unknown what ``0b00000011`` 
 means in the context of the color sensor.
 
