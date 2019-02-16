@@ -20,7 +20,7 @@ public class Erect extends Command {
   @Override
   protected void execute() {
     double speed = OI.erectorSpeed();
-    erector.drive(speed);
+    erector.drive(speed, true);
   }
 
   @Override
@@ -30,6 +30,6 @@ public class Erect extends Command {
 
   @Override
   protected void end() {
-    erector.drive(0);
+    erector.drive(0, true);
   }
 }
