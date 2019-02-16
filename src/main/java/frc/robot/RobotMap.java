@@ -21,17 +21,20 @@ public class RobotMap {
 
   public static enum ArmPreset {
     // TODO Change these for real bot
-    kHatch(0), kCargoRocket(0), kCargoShipDump(0);
-    public final double pos;
+    kHatchOne(24.6, 70.5), kHatchTwo(58.5, 176.6), kHatchThree(55.8, 176.1), kHatch(0, 0), kCargoRocketOne(42.2, 164),
+    kCargoRocketTwo(51.42, 177.3), kCargoRocketThree(44.35, 179), kCargoShipDump(-3, 73.6);
+    public final double wristPos;
+    public final double elbowPos;
 
-    private ArmPreset(double pos) {
-      this.pos = pos;
+    private ArmPreset(double wristPos, double elbowPos) {
+      this.wristPos = wristPos;
+      this.elbowPos = elbowPos;
     }
   }
 
   public static enum ElevatorPreset {
-    kHatchLevelOne(29), kHatchLevelTwo(56), kHatchLevelThree(83), kCargoLevelOne(31), kCargoLevelTwo(60),
-    kCargoLevelThree(87), kCargoLoadingLevel(35), kCargoShipCargo(35);
+    kHatchLevelOne(-23.6), kHatchLevelTwo(-6.95), kHatchLevelThree(31.59), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
+    kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(7.85);
     public final double pos;
 
     private ElevatorPreset(double pos) {
@@ -40,7 +43,7 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.03), kElbow(0.15), kWrist(0.05), kDrive(0.08);
+    kElevator(0.03), kElbow(0.03), kWrist(0.02), kDrive(0.08);
     public final double speed;
 
     private DeadbandType(double speed) {

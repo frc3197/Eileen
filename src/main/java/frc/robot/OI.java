@@ -44,37 +44,69 @@ public class OI {
         public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroChannel);
 
         static {
+                // driverDPadUp.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                driverDPadUp.whenPressed(Robot.driveTrain.changeDriveMode);
+                // // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
+                // // driverDPadDown.whenPressed(Robot.elevator.reset);
 
-                // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
-                // driverDPadDown.whenPressed(Robot.elevator.reset);
+                // driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo); // TODO: Correct spelling without breaking
-                                                                              // things.
+                // secondaryA.whenPressed(Robot.arm.reset);
 
-                secondaryA.whenPressed(Robot.arm.reset);
+                // /**
+                // * If the right bumper is pushed, then the cargo intake will move. If the
+                // right
+                // * bumper is not held, then the hatch mech will be in position.
+                // */
+
+                // driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree,
+                // ElevatorPreset.kCargoLevelThree,
+                // ArmPreset.kHatch, ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator,
+                // Robot.arm));
+
+                // driverB.whenPressed(
+                // new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
+                // ArmPreset.kHatch,
+                // ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+
+                // driverX.whenPressed(
+                // new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
+                // ArmPreset.kHatch,
+                // ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+
+                // driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel,
+                // ElevatorPreset.kCargoShipCargo,
+                // ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper,
+                // Robot.elevator,
+                // Robot.arm));
+
+                driverA.whenPressed(Robot.driveTrain.changeDriveMode);
+
+                // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
+                // secondaryX.whenPressed(Robot.elevator.reset);
+
+                // driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
+
+                // secondaryA.whenPressed(Robot.arm.reset);
 
                 /**
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
 
-                driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
-                                ArmPreset.kHatch, ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator,
+                secondaryDPadUp.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
+                                ArmPreset.kHatchThree, ArmPreset.kCargoRocketThree, secondaryA, Robot.elevator,
                                 Robot.arm));
 
-                driverB.whenPressed(
-                                new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo, ArmPreset.kHatch,
-                                                ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+                secondaryDPadRight.whenPressed(new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
+                                ArmPreset.kHatchTwo, ArmPreset.kCargoRocketTwo, secondaryA, Robot.elevator, Robot.arm));
 
-                driverX.whenPressed(
-                                new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne, ArmPreset.kHatch,
-                                                ArmPreset.kCargoRocket, driverRightBumper, Robot.elevator, Robot.arm));
+                secondaryDPadDown.whenPressed(new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
+                                ArmPreset.kHatchOne, ArmPreset.kCargoRocketOne, secondaryA, Robot.elevator, Robot.arm));
 
-                driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
-                                ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper, Robot.elevator,
-                                Robot.arm));
+                secondaryDPadLeft.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel,
+                                ElevatorPreset.kCargoShipCargo, ArmPreset.kCargoShipDump, ArmPreset.kCargoShipDump,
+                                secondaryA, Robot.elevator, Robot.arm));
         }
 
         // TODO add back after linking elbox and wrist
@@ -108,11 +140,12 @@ public class OI {
 
         // TODO think about extracting to constants or squaring rather than hardcoding
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kRight) * .25;
+                return -secondary.getY(Hand.kLeft) * .75;
         }
 
         public static double wristSpeed() {
-                return secondary.getY(Hand.kLeft) * .5;
+                return secondary.getY(Hand.kRight) * .5;
+
         }
 
         public static double erectorSpeed() {
@@ -124,6 +157,6 @@ public class OI {
         }
 
         public static double hatchSpeed() {
-                return (driverRightBumper.get() ? 1 : 0) + (driverLeftBumper.get() ? -1 : 0);
+                return (driverRightBumper.get() ? 1 : -1);// (driverLeftBumper.get() ? -1 : 0);
         }
 }
