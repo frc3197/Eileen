@@ -50,7 +50,8 @@ public class OI {
                 // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
                 // driverDPadDown.whenPressed(Robot.elevator.reset);
 
-                driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo);
+                driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo); // TODO: Correct spelling without breaking
+                                                                              // things.
 
                 secondaryA.whenPressed(Robot.arm.reset);
 
