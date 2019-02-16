@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.Channel;
-import frc.robot.RobotMap.DeadbandType;
 import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.commands.defaults.Articulate;
 

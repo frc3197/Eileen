@@ -1,13 +1,11 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANDigitalInput;
-import com.revrobotics.CANPIDController;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -44,26 +42,26 @@ public class Elevator extends Subsystem {
      * upperLimitSwitch, and that it can't go any farther down when it hits the
      * lowerLimitSwitch
      */
-  public void drive(double speed) {
+    public void drive(double speed) {
 
-    double output = speed;
-    if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
-      output = DeadbandType.kElevator.speed;
-    }
-    // if (topLimit.get()) {
-    // output = Math.min(output, 0);
-    // } // If top pressed(returning a zero value), only drive negative
-    // if (bottomLimit.get()) {
-    // output = Math.max(output, 0);
-    // } // If bottom pressed, only drive positive
-    if(getEncoderPosition() < - 15){
-        output = (-15 / getEncoderPosition()); 
-    }
+        double output = speed;
+        if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
+            output = DeadbandType.kElevator.speed;
+        }
+        // if (topLimit.get()) {
+        // output = Math.min(output, 0);
+        // } // If top pressed(returning a zero value), only drive negative
+        // if (bottomLimit.get()) {
+        // output = Math.max(output, 0);
+        // } // If bottom pressed, only drive positive
+        if (getEncoderPosition() < -15) {
+            output = (-15 / getEncoderPosition());
+        }
 
-    SmartDashboard.putNumber("getElevatorEncoderPosition", getEncoderPosition());]
-    
-    master.set(output);
-  }
+        SmartDashboard.putNumber("getElevatorEncoderPosition", getEncoderPosition());
+
+        master.set(output);
+    }
 
     /*
      * private void resetElevatorPosition() { // left.getEncoder().reset(); //TODO
