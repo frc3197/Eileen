@@ -4,26 +4,31 @@ import java.util.HashMap;
 
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
+import frc.robot.RobotMap.Channel;
 import frc.robot.RobotMap.DeadbandType;
+import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.commands.defaults.Drive;
 
 public class DriveTrain extends Subsystem {
 
   public boolean arcadeDrive = true;
   public boolean useGyro = false;
+
+  public AnalogGyro gyro = new AnalogGyro(Channel.kDriveGyro.channel);
 
   // Motor Controllers
   private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.kFrontLeft.id, MotorType.kBrushless);
@@ -39,12 +44,17 @@ public class DriveTrain extends Subsystem {
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
 
-  public ChangeDriveGryo changeDriveGryo = new ChangeDriveGryo(this);
-  public ChangeDriveMode changeDriveMode = new ChangeDriveMode(this);
+  public ResetCommand changeDriveGryo = new ResetCommand(this::toggleGyro);
+  public ResetCommand changeDriveMode = new ResetCommand(this::toggleMode);
 
   public DriveTrain() {
     super();
-    // drive.setDeadband(RobotMap.deadband);
+    drive.setDeadband(DeadbandType.kDrive.speed);
+
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
 
     sparkMaxPrimaryLimitSwitches.put(flSparkMax, flSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(blSparkMax, blSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
@@ -87,31 +97,6 @@ public class DriveTrain extends Subsystem {
     setDefaultCommand(new Drive(this));
   }
 
-  /**
-   * Puts information about all motors on SmartDashboard
-   */
-  public void update() {
-    CANSparkMax[] sparkMaxes = { brSparkMax, blSparkMax, frSparkMax, brSparkMax };
-    double[] ids = new double[sparkMaxes.length];
-    double[] encoderPosition = new double[sparkMaxes.length];
-    double[] encoderVelocity = new double[sparkMaxes.length];
-    boolean[] primaryLimits = new boolean[sparkMaxes.length];
-    boolean[] secondaryLimits = new boolean[sparkMaxes.length];
-    for (int i = 0; i < sparkMaxes.length; i++) {
-      ids[i] = sparkMaxes[i].getDeviceId();
-      CANEncoder encoder = sparkMaxes[i].getEncoder();
-      encoderPosition[i] = encoder.getPosition();
-      encoderVelocity[i] = encoder.getVelocity();
-      primaryLimits[i] = sparkMaxPrimaryLimitSwitches.get(sparkMaxes[i]).get();
-      secondaryLimits[i] = sparkMaxSecondaryLimitSwitches.get(sparkMaxes[i]).get();
-    }
-    SmartDashboard.putNumberArray("driveTrainSparkMaxIds", ids);
-    SmartDashboard.putBooleanArray("driveTrainSparkMaxPrimaryLimits", primaryLimits);
-    SmartDashboard.putBooleanArray("driveTrainSparkMaxSecondaryLimits", secondaryLimits);
-    SmartDashboard.putNumberArray("driveTrainSparkMaxEncoderPosition", encoderPosition);
-    SmartDashboard.putNumberArray("driveTrainSparkMaxEncoderVelocity", encoderVelocity);
-  }
-
   public void tankDrive(double l, double r) {
     drive.tankDrive(l, r, true);
   }
@@ -130,13 +115,13 @@ public class DriveTrain extends Subsystem {
   private void gyroDrive(double y, double r) {
     if (goingStraight(y, r)) {
       if (!goingStraightPrevious) { // rising edge
-        initialGyroAngle = OI.gyro.getAngle();
+        initialGyroAngle = gyro.getAngle();
         goingStraightPrevious = true;
       }
-      double currentGyroAngle = OI.gyro.getAngle();
+      double currentGyroAngle = gyro.getAngle();
       // TODO: Check polarity
       double deltaAngle = (currentGyroAngle - initialGyroAngle);
-      r += RobotMap.gyroDegreeSensitivity * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
+      r += GyroSensitivity.kDrive.val * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
       SmartDashboard.putNumber("deltaAngle", deltaAngle);
       SmartDashboard.putNumber("r", r);
     } else {
@@ -149,36 +134,12 @@ public class DriveTrain extends Subsystem {
     return (Math.abs(r) < DeadbandType.kDrive.speed);
   }
 
-  private class ChangeDriveGryo extends InstantCommand {
-
-    private DriveTrain driveTrain;
-
-    public ChangeDriveGryo(DriveTrain driveTrain) {
-      requires(driveTrain);
-      this.driveTrain = driveTrain;
-    }
-
-    @Override
-    protected void initialize() {
-      driveTrain.useGyro = !driveTrain.useGyro;
-    }
-
+  private void toggleGyro() {
+    useGyro = !useGyro;
   }
 
-  private class ChangeDriveMode extends InstantCommand {
-
-    private DriveTrain driveTrain;
-
-    public ChangeDriveMode(DriveTrain driveTrain) {
-      requires(driveTrain);
-      this.driveTrain = driveTrain;
-    }
-
-    @Override
-    protected void initialize() {
-      driveTrain.arcadeDrive = !driveTrain.arcadeDrive;
-    }
-
+  private void toggleMode() {
+    arcadeDrive = !arcadeDrive;
   }
 
 }
