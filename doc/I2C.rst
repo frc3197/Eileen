@@ -1,7 +1,7 @@
 ===
 I2C
 ===
-I2C has been solved as of the 2019 season. On the RoboRIO, the SDA and SCL ports are flipped. To solve this, the SDA and SCL wires
+I2C has been mostly solved as of the 2019 season. On the RoboRIO, the SDA and SCL ports are flipped. To solve this, the SDA and SCL wires
 on the sensor were physically flipped. In the future, when using I2C sensors, check the sensors documentation and how the wires
 are arranged, and then physically rearrange to match the RoboRIO ports.
 
