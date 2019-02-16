@@ -55,6 +55,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    elevator.reset.start();
+    arm.reset.start();
   }
 
   @Override
