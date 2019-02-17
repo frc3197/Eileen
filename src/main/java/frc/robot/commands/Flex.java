@@ -29,16 +29,27 @@ public class Flex extends CommandGroup {
     super();
     // TODO when going to an elevator with a NEGATIVE POSITION try going up
     // slightly,
-    // then move arm, then move elevator so you dont chooch stuff from 0
+    // then move arm, then move elevator so you dont chooch stuff from home
     if (Math.abs(elevator.getEncoderPosition()) < RobotMap.elevatorPresetThreshold) {
       addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 3);
       addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
     } else if (elevatorTarget.pos < 0) {
+      elevator.drive(getUpSpeed(elevator));
       addParallel(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), 3);
       addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
     } else {
       addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 3);
       addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
     }
+  }
+
+  private double getUpSpeed(Elevator elevator) {
+    double currentTarget = elevator.getEncoderPosition() + 5;
+
+    double error = elevator.getEncoderPosition() - currentTarget;
+
+    double speed = -RobotMap.elevatorDegreeSensitivity
+        * Math.copySign(Math.pow(Math.abs(error), RobotMap.elevatorExponent), error);
+    return speed;
   }
 }
