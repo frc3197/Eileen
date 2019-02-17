@@ -90,17 +90,26 @@ public class RobotMap {
     }
   };
 
-  public static enum MaxSpeed {
-    kElevator(1, -1), kHatch(1, -1), kCargo(1, -1);
+  public static enum MaxSpeeds {
+    kElevator(.1, -.1), kHatch(.1, -.1), kCargo(.1, -.1);
 
     public final double forwardSpeed;
     public final double reverseSpeed;
 
-    private MaxSpeed(double forwardSpeed, double reverseSpeed) {
+    private MaxSpeeds(double forwardSpeed, double reverseSpeed) {
       this.forwardSpeed = forwardSpeed;
       this.reverseSpeed = reverseSpeed;
     }
+  }
 
+  public static enum MaxSpeed {
+    kElevatorPreset(.5);
+
+    public final double speed;
+
+    private MaxSpeed(double speed) {
+      this.speed = speed;
+    }
   }
 
   /**
