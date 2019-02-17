@@ -35,6 +35,8 @@ public class Flex extends CommandGroup {
       addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
     } else if (elevatorTarget.pos < 0) {
       elevator.drive(getUpSpeed(elevator));
+      addSequential(new ElevateToPreset(RobotMap.ElevatorPreset.kHachLevelOneIntermediate,
+          RobotMap.ElevatorPreset.kHachLevelOneIntermediate, toggle, elevator));
       addParallel(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), 3);
       addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
     } else {
