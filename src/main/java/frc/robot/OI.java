@@ -156,5 +156,7 @@ public class OI {
         public static double hatchSpeed() {
                 return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed : 0)
                                 + (driverRightBumper.get() ? MaxSpeeds.kHatch.reverseSpeed : 0);
+                // return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed :
+                // MaxSpeeds.kHatch.reverseSpeed);
         }
 }

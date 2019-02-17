@@ -1,9 +1,11 @@
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.test.DriveTrainTest;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.CargoManipulator;
@@ -28,6 +30,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    elevator.reset.start();
+    CameraServer.getInstance().startAutomaticCapture();
   }
 
   @Override
@@ -55,7 +59,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    elevator.reset.start();
     arm.reset.start();
   }
 
