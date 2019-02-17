@@ -89,7 +89,7 @@ public class Elevator extends Subsystem {
 
     private Elevator elevator;
 
-    private ResetEncoderPosition(Elevator elevator) {
+    private   ResetEncoderPosition(Elevator elevator) {
       requires(elevator);
       this.elevator = elevator;
     }
