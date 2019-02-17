@@ -30,19 +30,9 @@ public class Flex extends CommandGroup {
     // TODO when going to an elevator with a NEGATIVE POSITION try going up
     // slightly,
     // then move arm, then move elevator so you dont chooch stuff from home
-    if (Math.abs(elevator.getEncoderPosition()) < RobotMap.elevatorPresetThreshold) {
-      addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 3);
-      addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
-    } else if (elevatorTarget.pos < 0) {
-      elevator.drive(getUpSpeed(elevator));
-      addSequential(new ElevateToPreset(RobotMap.ElevatorPreset.kHachLevelOneIntermediate,
-          RobotMap.ElevatorPreset.kHachLevelOneIntermediate, toggle, elevator));
-      addParallel(new ArticulateToPreset(target, targetWithTrigger, toggle, arm), 3);
-      addSequential(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator));
-    } else {
-      addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 3);
-      addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
-    }
+    addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 3);
+    addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
+
   }
 
   private double getUpSpeed(Elevator elevator) {
