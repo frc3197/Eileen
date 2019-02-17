@@ -30,7 +30,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    elevator.reset.start();
+    // elevator.reset.start();
+    // arm.reset.start();
     CameraServer.getInstance().startAutomaticCapture();
   }
 
@@ -41,6 +42,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
+    // elevator.reset.start();
+    // arm.reset.start();
   }
 
   @Override
@@ -59,7 +62,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    arm.reset.start();
+    // arm.reset.start();
   }
 
   @Override

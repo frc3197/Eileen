@@ -66,9 +66,10 @@ public class Arm extends Subsystem {
 
     // Stops the wrist from constaltly moving upwards when not being moved by the
     // joystick
-    if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
-      output = 0;
+    if (Math.abs(output) < DeadbandType.kWrist.speed) {
+      output = 0;// -DeadbandType.kWrist.speed;
     }
+    SmartDashboard.putNumber("wristOutput", output);
 
     // gyro mode centers around 0
     // if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
@@ -84,6 +85,7 @@ public class Arm extends Subsystem {
     double deltaAngle = gyro.getAngle();
     double gyroSpeed = GyroSensitivity.kArm.val * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
     SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
+    SmartDashboard.putNumber("deltaAngle", deltaAngle);
     SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
     wrist.set(output);

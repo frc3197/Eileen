@@ -62,7 +62,8 @@ public class OI {
 
                 // driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                // secondaryA.whenPressed(Robot.arm.reset);
+                secondaryY.whenPressed(Robot.arm.reset);
+                secondaryY.whenPressed(Robot.elevator.reset);
                 secondaryB.whenPressed(Robot.arm.resetGyro);
 
                 /**
