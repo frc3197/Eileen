@@ -101,3 +101,7 @@ Helpful Resources
 `Limelight Documentation <http://docs.limelightvision.io/en/latest/>`_
 
 `REV Robotics Documentation <http://www.revrobotics.com/content/sw/max/sw-docs/java/com/revrobotics/package-summary.html>`_
+
+`reStructuredText Basics <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
+
+`Markdown Basics <https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code>`_

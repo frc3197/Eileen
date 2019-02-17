@@ -1,7 +1,6 @@
 ===============
 frc.robot.Robot
 ===============
-
 The class frc.robot.Robot 
 (inheriting methods from wdu.wpi.first.wpilibj.TimedRobot) 
 is the main class that contains the functions that initializes the robot.
@@ -19,56 +18,70 @@ Example::
     public static NetWorkTableInstance ntInst = NetworkTableInstance.getDefault();
     public static NetworkTable table;
 
+------------
+Dependencies
+------------
+
+- ``edu.wpi.first.wpilibj.TimedRobot``
+- ``edu.wpi.first.wpilibj.command.Scheduler``
+
+--------------------------
+Network Table Dependencies
+--------------------------
+
+- ``edu.wpi.first.networktables.NetworkTable``
+- ``edu.wpi.first.networktables.NetworkTableInstance``
+
 --------
 Commands
 --------
 
-~~~~~~~~~~~
-robotInit()
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+public void robotInit()
+~~~~~~~~~~~~~~~~~~~~~~~
 Initializes the Robot.
 
-~~~~~~~~~~~~~~~
-robotPeriodic()
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public void robotPeriodic()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Code that runs periodically goes here.
 
-~~~~~~~~~~~~~~
-disabledInit()
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+public void disabledInit()
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 Initializes disabled mode.
 
-~~~~~~~~~~~~~~~~~~
-disabledPeriodic()
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public void disabledPeriodic()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Code that runs periodically while the robot is disabled goes here.
 
-~~~~~~~~~~~~~~~~
-autonomousInit()
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public void autonomousInit()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Initializes autonomous mode.
 
-~~~~~~~~~~~~~~~~~~~~
-autonomousPeriodic()
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public void autonomousPeriodic()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Code that runs periodically while the robot is in autonomous goes here.
 
-~~~~~~~~~~~~
-teleopInit()
-~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
+public void teleopInit()
+~~~~~~~~~~~~~~~~~~~~~~~~
 Initializes teleop mode.
 
-~~~~~~~~~~~~~~~~
-teleopPeriodic()
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public void teleopPeriodic()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Code that runs periodically while the robot is in teleop goes here.
 
-~~~~~~~~~~
-testInit()
-~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+public void testInit()
+~~~~~~~~~~~~~~~~~~~~~~
 Initializes test mode.
 
-~~~~~~~~~~~~~~
-testPeriodic()
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+public void testPeriodic()
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 Code that runs periodically while the robot is in test goes here.
