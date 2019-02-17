@@ -140,7 +140,7 @@ public class RobotMap {
 
   public static final double elevatorSpeedMultiplier = 0.5;
 
-  public static final double elbowSpeedMultiplier = 0.75;
+  public static final double elbowSpeedMultiplier = 0.25;
 
   public static final double wristSpeedMultiplier = 0.5;
 
