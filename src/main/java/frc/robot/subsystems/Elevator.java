@@ -56,7 +56,7 @@ public class Elevator extends Subsystem {
     // if (getEncoderPosition() < -15) {
     // output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
     // }
-    SmartDashboard.putNumber("getElevatorEncoderPosition", getEncoderPosition());
+    SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
 
     master.set(output);
   }

@@ -56,6 +56,7 @@ public class Arm extends Subsystem {
     if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
       output = 0;
     }
+    SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
 
     elbow.set(output);
   }
@@ -83,7 +84,7 @@ public class Arm extends Subsystem {
     double deltaAngle = gyro.getAngle();
     double gyroSpeed = GyroSensitivity.kArm.val * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
     SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
-    SmartDashboard.putNumber("wristEncoder", getWristEncoderPosition());
+    SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
     wrist.set(output);
   }

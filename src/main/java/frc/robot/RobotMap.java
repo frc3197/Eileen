@@ -18,8 +18,8 @@ public class RobotMap {
   };
 
   public static enum ArmPreset {
-    kHatchOne(24.6, 70.5), kHatchTwo(58.5, 176.6), kHatchThree(59.8, 180.1), kCargoRocketOne(42.2, 164),
-    kCargoRocketTwo(51.42, 177.3), kCargoRocketThree(44.35, 179), kCargoShipDump(-3, 73.6);
+    kHatchOne(31, 44), kHatchTwo(56, 110), kHatchThree(56, 110), kCargoRocketOne(42.2, 110),
+    kCargoRocketTwo(51.42, 110), kCargoRocketThree(44.35, 110), kCargoShipDump(-3, 50);
     public final double wristPos;
     public final double elbowPos;
 
@@ -30,7 +30,7 @@ public class RobotMap {
   }
 
   public static enum ElevatorPreset {
-    kHatchLevelOne(-23.6), kHatchLevelTwo(-6.95), kHatchLevelThree(31.59), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
+    kHatchLevelOne(-25.6), kHatchLevelTwo(-6.95), kHatchLevelThree(34), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
     kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(7.85);
     public final double pos;
 
@@ -91,7 +91,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.1, -.1), kHatch(.1, -.1), kCargo(.1, -.1);
+    kElevator(.1, -.1), kHatch(1), kCargo(1, -1);
 
     public final double forwardSpeed;
     public final double reverseSpeed;
@@ -99,6 +99,11 @@ public class RobotMap {
     private MaxSpeeds(double forwardSpeed, double reverseSpeed) {
       this.forwardSpeed = forwardSpeed;
       this.reverseSpeed = reverseSpeed;
+    }
+
+    private MaxSpeeds(double speed) {
+      this.forwardSpeed = speed;
+      this.reverseSpeed = -speed;
     }
   }
 
@@ -140,7 +145,7 @@ public class RobotMap {
 
   public static final double elevatorSpeedMultiplier = 0.5;
 
-  public static final double elbowSpeedMultiplier = 0.25;
+  public static final double elbowSpeedMultiplier = 0.5;
 
   public static final double wristSpeedMultiplier = 0.5;
 
