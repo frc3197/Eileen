@@ -4,26 +4,31 @@ import java.util.HashMap;
 
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.CANSparkMaxID;
+import frc.robot.RobotMap.Channel;
 import frc.robot.RobotMap.DeadbandType;
+import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.commands.defaults.Drive;
 
 public class DriveTrain extends Subsystem {
 
   public boolean arcadeDrive = true;
   public boolean useGyro = false;
+
+  public AnalogGyro gyro = new AnalogGyro(Channel.kDriveGyro.channel);
 
   // Motor Controllers
   private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.kFrontLeft.id, MotorType.kBrushless);
@@ -45,6 +50,11 @@ public class DriveTrain extends Subsystem {
   public DriveTrain() {
     super();
     // drive.setDeadband(RobotMap.deadband);
+
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
+    flSparkMax.setIdleMode(IdleMode.kCoast);
 
     sparkMaxPrimaryLimitSwitches.put(flSparkMax, flSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(blSparkMax, blSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
@@ -130,13 +140,13 @@ public class DriveTrain extends Subsystem {
   private void gyroDrive(double y, double r) {
     if (goingStraight(y, r)) {
       if (!goingStraightPrevious) { // rising edge
-        initialGyroAngle = OI.gyro.getAngle();
+        initialGyroAngle = gyro.getAngle();
         goingStraightPrevious = true;
       }
-      double currentGyroAngle = OI.gyro.getAngle();
+      double currentGyroAngle = gyro.getAngle();
       // TODO: Check polarity
       double deltaAngle = (currentGyroAngle - initialGyroAngle);
-      r += RobotMap.gyroDegreeSensitivity * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
+      r += GyroSensitivity.kDrive.val * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
       SmartDashboard.putNumber("deltaAngle", deltaAngle);
       SmartDashboard.putNumber("r", r);
     } else {

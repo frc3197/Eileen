@@ -3,9 +3,7 @@ package frc.robot;
 public class RobotMap {
 
   public static enum CANSparkMaxID {
-    // TODO: Change for the real robot !!
-    // practice bot
-    kFrontLeft(14, "FrontLeft"), kBackLeft(15, "BackLeft"), kFrontRight(1, "FrontRight"), kBackRight(0, "BackRight"),
+    kFrontLeft(14, "FrontLeft"), kBackLeft(15, "BackLeft"), kFrontRight(1, "FrontRight"), kBackRight(16, "BackRight"),
     kElevatorLeft(2, "ElevatorLeft"), kElevatorRight(13, "ElevatorRight"), kWrist(12, "Wrist"), kElbow(3, "Elbow"),
     kCargoManipulator(11, "CargoManipulator"), kHatch(10, "Hatch"), kErectorLeft(5, "ErectorLeft"),
     kErectorRight(4, "ErectorRight");
@@ -20,9 +18,8 @@ public class RobotMap {
   };
 
   public static enum ArmPreset {
-    // TODO Change these for real bot
-    kHatchOne(24.6, 70.5), kHatchTwo(58.5, 176.6), kHatchThree(55.8, 176.1), kHatch(0, 0), kCargoRocketOne(42.2, 164),
-    kCargoRocketTwo(51.42, 177.3), kCargoRocketThree(44.35, 179), kCargoShipDump(-3, 73.6);
+    kHatchOne(29, 44), kHatchTwo(56, 110), kHatchThree(56, 110), kCargoRocketOne(42.2, 100),
+    kCargoRocketTwo(51.42, 110), kCargoRocketThree(44.35, 110), kCargoShipDump(38, 94);
     public final double wristPos;
     public final double elbowPos;
 
@@ -33,8 +30,8 @@ public class RobotMap {
   }
 
   public static enum ElevatorPreset {
-    kHatchLevelOne(-23.6), kHatchLevelTwo(-6.95), kHatchLevelThree(31.59), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
-    kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(7.85);
+    kHatchLevelOne(-25.6), kHatchLevelTwo(-6.95), kHatchLevelThree(34), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
+    kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(25), kHatchLevelOneIntermediate(20);
     public final double pos;
 
     private ElevatorPreset(double pos) {
@@ -43,7 +40,7 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.03), kElbow(0.03), kWrist(0.02), kDrive(0.08);
+    kElevator(0.03), kElbow(0.06), kWrist(0.05), kDrive(0.08);
     public final double speed;
 
     private DeadbandType(double speed) {
@@ -65,6 +62,61 @@ public class RobotMap {
     }
   };
 
+  public static enum ElevatorPID {
+    P(0), I(0), D(0), F(0);
+
+    public final double val;
+
+    private ElevatorPID(double val) {
+      this.val = val;
+    }
+  };
+
+  public static enum Channel {
+    kDriveGyro(0), kWristGyro(1);
+    public final int channel;
+
+    private Channel(int channel) {
+      this.channel = channel;
+    }
+  };
+
+  public static enum GyroSensitivity {
+    kDrive(0.01), kArm(0.01);
+    public final double val;
+
+    private GyroSensitivity(double val) {
+      this.val = val;
+    }
+  };
+
+  public static enum MaxSpeeds {
+    kElevator(.1, -.1), kHatch(1), kCargo(1, -1);
+
+    public final double forwardSpeed;
+    public final double reverseSpeed;
+
+    private MaxSpeeds(double forwardSpeed, double reverseSpeed) {
+      this.forwardSpeed = forwardSpeed;
+      this.reverseSpeed = reverseSpeed;
+    }
+
+    private MaxSpeeds(double speed) {
+      this.forwardSpeed = speed;
+      this.reverseSpeed = -speed;
+    }
+  }
+
+  public static enum MaxSpeed {
+    kElevatorPreset(.5);
+
+    public final double speed;
+
+    private MaxSpeed(double speed) {
+      this.speed = speed;
+    }
+  }
+
   /**
    * public static enum VisionPID { // TODO Change these P(0), I(0), D(0), F(0);
    * 
@@ -73,19 +125,29 @@ public class RobotMap {
    * private VisionPID(double val) { this.val = val; } };
    */
 
-  public static final double elevatorPresetThreshold = 1;
+  public static final double elevatorPresetThreshold = .5;
 
-  public static final double wristPresetThreshold = 1;
+  public static final double wristPresetThreshold = .5;
 
-  public static final double gyroDegreeSensitivity = 0.01;
+  public static final double elbowPresetThreshold = .5;
 
   public static final double elevatorDegreeSensitivity = 0.15;
 
   public static final double wristDegreeSensitivity = 0.15;
 
+  public static final double elbowDegreeSensitivity = 0.15;
+
   public static final double elevatorExponent = 0.5;
 
   public static final double wristExponent = 0.5;
+
+  public static final double elbowExponent = 0.5;
+
+  public static final double elevatorSpeedMultiplier = 0.5;
+
+  public static final double elbowSpeedMultiplier = 0.5;
+
+  public static final double wristSpeedMultiplier = 0.5;
 
   public static final int gyroChannel = 0;
 

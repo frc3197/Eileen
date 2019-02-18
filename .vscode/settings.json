@@ -15,4 +15,5 @@
     "**/.factorypath": true
   },
   "java.dependency.packagePresentation": "hierarchical",
+  "restructuredtext.confPath": "",
 }

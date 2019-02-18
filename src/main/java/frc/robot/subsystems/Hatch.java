@@ -11,6 +11,10 @@ public class Hatch extends Subsystem {
 
   private CANSparkMax hatch = new CANSparkMax(RobotMap.CANSparkMaxID.kHatch.id, MotorType.kBrushed);
 
+  public Hatch() {
+    super();
+  }
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Speak(this));

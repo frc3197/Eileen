@@ -14,18 +14,20 @@ import frc.robot.RobotMap.DeadbandType;
 import frc.robot.commands.defaults.Elevate;
 
 public class Elevator extends Subsystem {
-  private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorLeft.id, MotorType.kBrushless);
-  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorRight.id, MotorType.kBrushless);
+  private CANSparkMax master = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorRight.id, MotorType.kBrushless);
+  private CANSparkMax slave = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorLeft.id, MotorType.kBrushless);
 
-  private CANDigitalInput bottomLimit = left.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
-  private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
+  private CANDigitalInput bottomLimit = slave.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
+  private CANDigitalInput topLimit = master.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
   private LimitReset limitReset = new LimitReset();
   public ResetEncoderPosition reset = new ResetEncoderPosition(this);
 
+  // private CANPIDController controller = master.getPIDController();
+
   public Elevator() {
     super();
-    left.follow(right, true);
+    slave.follow(master, true);
     limitReset.whenActive(new ResetEncoderPosition(this));
   }
 
@@ -40,7 +42,7 @@ public class Elevator extends Subsystem {
    * lowerLimitSwitch
    */
   public void drive(double speed) {
-
+    SmartDashboard.putNumber("speed", speed);
     double output = speed;
     if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
       output = DeadbandType.kElevator.speed;
@@ -51,8 +53,12 @@ public class Elevator extends Subsystem {
     // if (bottomLimit.get()) {
     // output = Math.max(output, 0);
     // } // If bottom pressed, only drive positive
-    SmartDashboard.putNumber("getElevatorEncoderPosition", getEncoderPosition());
-    right.set(output);
+    // if (getEncoderPosition() < -15) {
+    // output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
+    // }
+    SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
+
+    master.set(output);
   }
 
   /*
@@ -65,11 +71,11 @@ public class Elevator extends Subsystem {
   double resetEncoderPosition = 0;
 
   public void resetElevatorPosition() {
-    resetEncoderPosition = right.getEncoder().getPosition();
+    resetEncoderPosition = master.getEncoder().getPosition();
   }
 
   public double getEncoderPosition() {
-    return right.getEncoder().getPosition() - resetEncoderPosition;
+    return master.getEncoder().getPosition() - resetEncoderPosition;
   }
 
   private class LimitReset extends Trigger {
@@ -83,7 +89,7 @@ public class Elevator extends Subsystem {
 
     private Elevator elevator;
 
-    private ResetEncoderPosition(Elevator elevator) {
+    private   ResetEncoderPosition(Elevator elevator) {
       requires(elevator);
       this.elevator = elevator;
     }

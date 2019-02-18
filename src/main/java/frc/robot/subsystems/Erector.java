@@ -16,6 +16,7 @@ public class Erector extends Subsystem {
   private SpeedControllerGroup erectorGroup = new SpeedControllerGroup(left, right);
 
   public Erector() {
+    super();
     right.setInverted(true);
   }
 
