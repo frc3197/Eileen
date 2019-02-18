@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.Channel;
@@ -13,7 +14,7 @@ import frc.robot.RobotMap.DeadbandType;
 import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.commands.defaults.Articulate;
 
-public class Arm extends IntermediateSubystem {
+public class Arm extends Subsystem implements Drivable {
 
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
