@@ -47,7 +47,21 @@ public class Elevator extends Subsystem implements Drivable {
 
   public void drive(double speed, boolean hold) {
     SmartDashboard.putNumber("speed", speed);
-    SmartDashboard.putNumber("getElevatorEncoderPosition", getEncoderPosition());
+    SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
+
+    double output = speed;
+    if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
+      output = DeadbandType.kElevator.speed;
+    }
+    // if (topLimit.get()) {
+    // output = Math.min(output, 0);
+    // } // If top pressed(returning a zero value), only drive negative
+    // if (bottomLimit.get()) {
+    // output = Math.max(output, 0);
+    // } // If bottom pressed, only drive positive
+    // if (getEncoderPosition() < -15) {
+    // output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
+    // }
 
     // TODO Change me
     if ((!bottomLimit.get() && (Math.abs(speed) < DeadbandType.kElevator.speed))) {

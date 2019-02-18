@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.RobotMap.ArmPreset;
 import frc.robot.RobotMap.ElevatorPreset;
 import frc.robot.RobotMap.MaxSpeed;
+import frc.robot.RobotMap.MaxSpeeds;
 import frc.robot.commands.Flex;
 
 /**
@@ -61,7 +62,8 @@ public class OI {
 
                 // driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                // secondaryA.whenPressed(Robot.arm.reset);
+                secondaryY.whenPressed(Robot.arm.reset);
+                secondaryY.whenPressed(Robot.elevator.reset);
                 secondaryB.whenPressed(Robot.arm.resetGyro);
 
                 /**
@@ -148,15 +150,14 @@ public class OI {
         }
 
         public static double manipulatorSpeed() {
-                return (secondaryRightBumper.get() ? MaxSpeed.kCargo.forwardSpeed : 0)
-                                + (secondaryLeftBumper.get() ? MaxSpeed.kCargo.reverseSpeed : 0);
+                return (secondaryRightBumper.get() ? MaxSpeeds.kCargo.forwardSpeed : 0)
+                                + (secondaryLeftBumper.get() ? MaxSpeeds.kCargo.reverseSpeed : 0);
         }
 
         public static double hatchSpeed() {
-                return (driverRightBumper.get() ? MaxSpeed.kHatch.forwardSpeed : MaxSpeed.kHatch.reverseSpeed);// (driverLeftBumper.get()
-                                                                                                               // ?
-                                                                                                               // -1
-                                                                                                               // :
-                                                                                                               // 0);
+                return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed : 0)
+                                + (driverRightBumper.get() ? MaxSpeeds.kHatch.reverseSpeed : 0);
+                // return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed :
+                // MaxSpeeds.kHatch.reverseSpeed);
         }
 }
