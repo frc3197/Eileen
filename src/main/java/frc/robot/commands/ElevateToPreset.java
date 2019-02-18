@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ElevatorPreset;
+import frc.robot.RobotMap.MaxSpeed;
 import frc.robot.subsystems.Elevator;
 
 public class ElevateToPreset extends Command {
@@ -22,6 +23,7 @@ public class ElevateToPreset extends Command {
    */
   public ElevateToPreset(ElevatorPreset elevatorTarget, ElevatorPreset elevatorTargetWithTrigger, Trigger toggle,
       Elevator elevator) {
+    super();
     requires(elevator);
     this.target = elevatorTarget;
     this.targetWithTrigger = elevatorTargetWithTrigger;
@@ -36,8 +38,10 @@ public class ElevateToPreset extends Command {
    */
   @Override
   protected void execute() {
-    double elevatorSpeed = getSpeed();
-    elevator.drive(elevatorSpeed);
+    double elevatorSpeed = getElevatorSpeed();
+
+    // TODO adjust the speed here
+    elevator.drive(elevatorSpeed * MaxSpeed.kElevatorPreset.speed);
   }
 
   @Override
@@ -45,7 +49,12 @@ public class ElevateToPreset extends Command {
     return finished;
   }
 
-  private double getSpeed() {
+  /**
+   * Returns the speed the elevator should move at to get to the preset requested.
+   * 
+   * @return
+   */
+  private double getElevatorSpeed() {
     ElevatorPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
 
     double error = elevator.getEncoderPosition() - currentTarget.pos;
