@@ -20,7 +20,7 @@ public class Speak extends Command {
   @Override
   protected void execute() {
     double speed = OI.hatchSpeed();
-    hatch.drive(speed);
+    hatch.drive(speed, true);
   }
 
   @Override
@@ -30,6 +30,6 @@ public class Speak extends Command {
 
   @Override
   protected void end() {
-    hatch.drive(0);
+    hatch.drive(0, true);
   }
 }

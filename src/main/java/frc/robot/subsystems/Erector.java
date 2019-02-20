@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.defaults.Erect;
 
-public class Erector extends Subsystem {
+public class Erector extends Subsystem implements Drivable {
 
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorLeft.id, MotorType.kBrushless);
   private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorRight.id, MotorType.kBrushless);
@@ -25,7 +25,7 @@ public class Erector extends Subsystem {
     setDefaultCommand(new Erect(this));
   }
 
-  public void drive(double speed) {
+  public void drive(double speed, boolean hold) {
     erectorGroup.set(speed);
   }
 }

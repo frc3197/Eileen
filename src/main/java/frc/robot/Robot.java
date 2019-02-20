@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Preferences;
@@ -10,6 +11,7 @@ import frc.robot.RobotMap.DeadbandType;
 import frc.robot.RobotMap.ElevatorPreset;
 import frc.robot.RobotMap.GyroSensitivity;
 import frc.robot.RobotMap.MaxSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.test.DriveTrainTest;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.CargoManipulator;
@@ -36,12 +38,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    // TODO test the reset on robotInit(), ensure that the encoders stay at "home"
+    // position through enable and disable
+
+    // elevator.reset.start();
+    // arm.reset.start();
+    CameraServer.getInstance().startAutomaticCapture();
   }
 
   @Override
   public void robotPeriodic() {
-    driveTrain.update();
-
     ArmPreset.kHatchOne.wristPos = prefs.getDouble("kHatchLevelOne", ArmPreset.kHatchOne.wristPos);
     ArmPreset.kHatchTwo.wristPos = prefs.getDouble("kHatchLevelTwo", ArmPreset.kHatchTwo.wristPos);
     ArmPreset.kHatchThree.wristPos = prefs.getDouble("kHatchLevelThree", ArmPreset.kHatchThree.wristPos);
@@ -85,7 +91,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
-
+    // elevator.reset.start();
+    // arm.reset.start();
   }
 
   @Override
@@ -104,8 +111,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    elevator.reset.start();
-    arm.reset.start();
+    // arm.reset.start();
   }
 
   @Override
