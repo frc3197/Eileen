@@ -23,24 +23,6 @@ public class Articulate extends Command {
     double wristSpeed = OI.wristSpeed();
     arm.wrist(wristSpeed);
     arm.elbow(elbowSpeed);
-    // arm.wrist(arm.gravBreak(wrist.getEncoder().getPosition(), wristSpeed));
-    // arm.elbow(arm.gravBreak(elbow.getEncoder().getPosition(), elbowSpeed));
-    /**
-     * instead of 0 at the end of these statements will be replaced with an
-     * encoder-specific deadzone
-     */
-    // double armSpeed = -0.15;
-    // final double GEARCONSTANT = 1.07142857;
-    // if (arm.getWristEncoderPosition() - arm.getElbowEncoderPosition() < 0) {
-    // /* If Wrist Encoder is less than Elbow encoder, move */
-    // arm.wrist(-armSpeed * GEARCONSTANT);
-    // } else if (arm.getWristEncoderPosition() - arm.getElbowEncoderPosition() > 0)
-    // {
-    // /* If Wrist Encoder is more than Elbow encoder, move */
-    // arm.wrist(armSpeed * GEARCONSTANT);
-    // }
-    // double speed;
-    // arm.drive(speed);
   }
 
   @Override

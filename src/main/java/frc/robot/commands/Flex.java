@@ -28,20 +28,10 @@ public class Flex extends CommandGroup {
       ArmPreset targetWithTrigger, Trigger toggle, Elevator elevator, Arm arm) {
     super();
     // TODO when going to an elevator with a NEGATIVE POSITION try going up
-    // slightly,
-    // then move arm, then move elevator so you dont chooch stuff from home
+    // slightly, then move arm, then move elevator so you dont chooch stuff from
+    // home
     addParallel(new ElevateToPreset(elevatorTarget, elevatorTargetWithTrigger, toggle, elevator), 3);
     addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
 
-  }
-
-  private double getUpSpeed(Elevator elevator) {
-    double currentTarget = elevator.getEncoderPosition() + 5;
-
-    double error = elevator.getEncoderPosition() - currentTarget;
-
-    double speed = -RobotMap.elevatorDegreeSensitivity
-        * Math.copySign(Math.pow(Math.abs(error), RobotMap.elevatorExponent), error);
-    return speed;
   }
 }
