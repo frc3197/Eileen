@@ -36,11 +36,8 @@ public class Arm extends Subsystem {
   public ResetEncoderPosition reset = new ResetEncoderPosition(this);
   public ResetGyro resetGyro = new ResetGyro(gyro);
 
-  // private double lastEncoder;
-
   public Arm() {
     super();
-    // wrist.follow(elbow, true);
   }
 
   @Override
