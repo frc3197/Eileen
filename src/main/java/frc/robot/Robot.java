@@ -30,6 +30,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    // TODO test the reset on robotInit(), ensure that the encoders stay at "home"
+    // position through enable and disable
+
     // elevator.reset.start();
     // arm.reset.start();
     CameraServer.getInstance().startAutomaticCapture();
