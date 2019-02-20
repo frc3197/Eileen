@@ -82,7 +82,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(0.01);
+    kDrive(0.01), kArm(0.025);
     public final double val;
 
     private GyroSensitivity(double val) {
