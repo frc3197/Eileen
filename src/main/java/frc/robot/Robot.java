@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
   public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
   public static NetworkTable table;
 
-  public static Preferences prefs;
+  public static Preferences prefs = Preferences.getInstance();
 
   @Override
   public void robotInit() {
@@ -41,11 +41,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     driveTrain.update();
-  }
-
-  @Override
-  public void disabledInit() {
-    prefs = Preferences.getInstance();
 
     ArmPreset.kHatchOne.wristPos = prefs.getDouble("kHatchLevelOne", ArmPreset.kHatchOne.wristPos);
     ArmPreset.kHatchTwo.wristPos = prefs.getDouble("kHatchLevelTwo", ArmPreset.kHatchTwo.wristPos);
@@ -86,6 +81,10 @@ public class Robot extends TimedRobot {
     MaxSpeeds.kHatch.forwardSpeed = prefs.getDouble("kHatchSpeed", MaxSpeeds.kHatch.forwardSpeed);
     MaxSpeeds.kCargo.forwardSpeed = prefs.getDouble("kCargoSpeedUp", MaxSpeeds.kCargo.forwardSpeed);
     MaxSpeeds.kCargo.reverseSpeed = prefs.getDouble("kCargoSpeedDown", MaxSpeeds.kCargo.reverseSpeed);
+  }
+
+  @Override
+  public void disabledInit() {
 
   }
 
