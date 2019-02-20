@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.RobotMap.ArmPreset;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.RobotMap.ElevatorPreset;
 import frc.robot.RobotMap.GyroSensitivity;
@@ -45,8 +46,23 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     prefs = Preferences.getInstance();
-    ElevatorPreset.kHatchLevelOne.pos = prefs.getDouble("kHatchLevelOne", ElevatorPreset.kHatchLevelOne.pos);
-    ElevatorPreset.kHatchLevelTwo.pos = prefs.getDouble("kHatchLevelTwo", ElevatorPreset.kHatchLevelTwo.pos);
+
+    ArmPreset.kHatchOne.wristPos = prefs.getDouble("kHatchLevelOne", ArmPreset.kHatchOne.wristPos);
+    ArmPreset.kHatchTwo.wristPos = prefs.getDouble("kHatchLevelTwo", ArmPreset.kHatchTwo.wristPos);
+    ArmPreset.kHatchThree.wristPos = prefs.getDouble("kHatchLevelThree", ArmPreset.kHatchThree.wristPos);
+    ArmPreset.kCargoOne.wristPos = prefs.getDouble("kCargoOne", ArmPreset.kCargoOne.wristPos);
+    ArmPreset.kCargoTwo.wristPos = prefs.getDouble("kCargoTwo", ArmPreset.kCargoTwo.wristPos);
+    ArmPreset.kCargoThree.wristPos = prefs.getDouble("kCargoThree", ArmPreset.kCargoThree.wristPos);
+    ArmPreset.kCargoShip.wristPos = prefs.getDouble("kCargoShip", ArmPreset.kCargoShip.wristPos);
+
+    ArmPreset.kHatchOne.elbowPos = prefs.getDouble("kHatchLevelOne", ArmPreset.kHatchOne.elbowPos);
+    ArmPreset.kHatchTwo.elbowPos = prefs.getDouble("kHatchLevelTwo", ArmPreset.kHatchTwo.elbowPos);
+    ArmPreset.kHatchThree.elbowPos = prefs.getDouble("kHatchLevelThree", ArmPreset.kHatchThree.elbowPos);
+    ArmPreset.kCargoOne.elbowPos = prefs.getDouble("kCargoOne", ArmPreset.kCargoOne.elbowPos);
+    ArmPreset.kCargoTwo.elbowPos = prefs.getDouble("kCargoTwo", ArmPreset.kCargoTwo.elbowPos);
+    ArmPreset.kCargoThree.elbowPos = prefs.getDouble("kCargoThree", ArmPreset.kCargoThree.elbowPos);
+    ArmPreset.kCargoShip.elbowPos = prefs.getDouble("kCargoShip", ArmPreset.kCargoShip.elbowPos);
+
     ElevatorPreset.kHatchLevelThree.pos = prefs.getDouble("kHatchLevelThree", ElevatorPreset.kHatchLevelThree.pos);
     ElevatorPreset.kCargoLevelOne.pos = prefs.getDouble("kCargoLevelOne", ElevatorPreset.kCargoLevelOne.pos);
     ElevatorPreset.kCargoLevelTwo.pos = prefs.getDouble("kCargoLevelTwo", ElevatorPreset.kCargoLevelTwo.pos);
