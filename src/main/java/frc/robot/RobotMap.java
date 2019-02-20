@@ -32,7 +32,7 @@ public class RobotMap {
   public static enum ElevatorPreset {
     kHatchLevelOne(-25.6), kHatchLevelTwo(-6.95), kHatchLevelThree(34), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
     kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(25), kHatchLevelOneIntermediate(20);
-    public final double pos;
+    public double pos;
 
     private ElevatorPreset(double pos) {
       this.pos = pos;
@@ -41,7 +41,7 @@ public class RobotMap {
 
   public static enum DeadbandType {
     kElevator(0.03), kElbow(0.06), kWrist(0.02), kDrive(0.08);
-    public final double speed;
+    public double speed;
 
     private DeadbandType(double speed) {
       this.speed = speed;
@@ -83,7 +83,7 @@ public class RobotMap {
 
   public static enum GyroSensitivity {
     kDrive(0.01), kArm(0.01);
-    public final double val;
+    public double val;
 
     private GyroSensitivity(double val) {
       this.val = val;
@@ -93,8 +93,8 @@ public class RobotMap {
   public static enum MaxSpeeds {
     kElevator(.1, -.1), kHatch(1), kCargo(1, -1);
 
-    public final double forwardSpeed;
-    public final double reverseSpeed;
+    public double forwardSpeed;
+    public double reverseSpeed;
 
     private MaxSpeeds(double forwardSpeed, double reverseSpeed) {
       this.forwardSpeed = forwardSpeed;
@@ -104,16 +104,6 @@ public class RobotMap {
     private MaxSpeeds(double speed) {
       this.forwardSpeed = speed;
       this.reverseSpeed = -speed;
-    }
-  }
-
-  public static enum MaxSpeed {
-    kElevatorPreset(.5);
-
-    public final double speed;
-
-    private MaxSpeed(double speed) {
-      this.speed = speed;
     }
   }
 
