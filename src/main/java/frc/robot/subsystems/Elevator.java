@@ -47,15 +47,23 @@ public class Elevator extends Subsystem {
     if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
       output = DeadbandType.kElevator.speed;
     }
+    // If top pressed(returning a zero value), only drive negative
     // if (topLimit.get()) {
     // output = Math.min(output, 0);
-    // } // If top pressed(returning a zero value), only drive negative
+    // }
+    // If bottom pressed, only drive positive
     // if (bottomLimit.get()) {
     // output = Math.max(output, 0);
-    // } // If bottom pressed, only drive positive
-    // if (getEncoderPosition() < -15) {
-    // output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
     // }
+
+    // TODO uncomment and test thouroughly with this new equation
+    // if the elevator is less than -15, and going down, slow the elevator
+    // exponentionally
+    // if (getEncoderPosition() < -15 && speed < 0) {
+    // output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
+    // SmartDashboard.putNumber("ElevatorSlowDown", output);
+    // }
+
     SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
 
     master.set(output);
@@ -89,7 +97,7 @@ public class Elevator extends Subsystem {
 
     private Elevator elevator;
 
-    private   ResetEncoderPosition(Elevator elevator) {
+    private ResetEncoderPosition(Elevator elevator) {
       requires(elevator);
       this.elevator = elevator;
     }

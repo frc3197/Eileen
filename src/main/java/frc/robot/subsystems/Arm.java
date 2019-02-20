@@ -34,7 +34,7 @@ public class Arm extends Subsystem {
   public AnalogGyro gyro = new AnalogGyro(Channel.kWristGyro.channel);
 
   public ResetEncoderPosition reset = new ResetEncoderPosition(this);
-  public ResetGyro resetGyro = new ResetGyro(gyro);
+  public ResetGyro resetGyro = new ResetGyro();
 
   // private double lastEncoder;
 
@@ -93,12 +93,10 @@ public class Arm extends Subsystem {
     gyro.reset();
   }
 
-  private class ResetGyro extends InstantCommand {
-    private Gyro gyro;
+  public class ResetGyro extends InstantCommand {
 
-    ResetGyro(Gyro gyro) {
+    ResetGyro() {
       super();
-      this.gyro = gyro;
     }
 
     @Override
