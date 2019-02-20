@@ -59,10 +59,10 @@ public class Elevator extends Subsystem {
     // TODO uncomment and test thouroughly with this new equation
     // if the elevator is less than -15, and going down, slow the elevator
     // exponentionally
-    // if (getEncoderPosition() < -15 && speed < 0) {
-    // output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
-    // SmartDashboard.putNumber("ElevatorSlowDown", output);
-    // }
+    if (!bottomLimit.get() && getEncoderPosition() < -15 && speed < 0) {
+      output = RobotMap.elevatorSpeedMultiplier * (4 / getEncoderPosition());
+      SmartDashboard.putNumber("ElevatorSlowDown", output);
+    }
 
     SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
 
