@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.RobotMap.ArmPreset;
 import frc.robot.RobotMap.ElevatorPreset;
-import frc.robot.RobotMap.MaxSpeed;
 import frc.robot.RobotMap.MaxSpeeds;
 import frc.robot.commands.Flex;
 
