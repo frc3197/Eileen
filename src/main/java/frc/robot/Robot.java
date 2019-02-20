@@ -45,8 +45,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
-    // elevator.reset.start();
-    // arm.reset.start();
   }
 
   @Override
@@ -66,6 +64,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     arm.resetGyro.start();
+    elevator.reset.start();
+    arm.reset.start();
   }
 
   @Override
