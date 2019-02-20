@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.RobotMap.ArmPreset;
 import frc.robot.RobotMap.ElevatorPreset;
-import frc.robot.RobotMap.MaxSpeed;
 import frc.robot.RobotMap.MaxSpeeds;
 import frc.robot.commands.Flex;
 
@@ -70,18 +69,16 @@ public class OI {
                  * bumper is not held, then the hatch mech will be in position.
                  */
                 secondaryDPadUp.whileHeld(new Flex(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
-                                ArmPreset.kHatchThree, ArmPreset.kCargoRocketThree, secondaryA, Robot.elevator,
-                                Robot.arm));
+                                ArmPreset.kHatchThree, ArmPreset.kCargoThree, secondaryA, Robot.elevator, Robot.arm));
 
                 secondaryDPadRight.whileHeld(new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
-                                ArmPreset.kHatchTwo, ArmPreset.kCargoRocketTwo, secondaryA, Robot.elevator, Robot.arm));
+                                ArmPreset.kHatchTwo, ArmPreset.kCargoTwo, secondaryA, Robot.elevator, Robot.arm));
 
                 secondaryDPadDown.whileHeld(new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
-                                ArmPreset.kHatchOne, ArmPreset.kCargoRocketOne, secondaryA, Robot.elevator, Robot.arm));
+                                ArmPreset.kHatchOne, ArmPreset.kCargoOne, secondaryA, Robot.elevator, Robot.arm));
 
                 secondaryDPadLeft.whileHeld(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
-                                ArmPreset.kCargoShipDump, ArmPreset.kCargoShipDump, secondaryA, Robot.elevator,
-                                Robot.arm));
+                                ArmPreset.kCargoShip, ArmPreset.kCargoShip, secondaryA, Robot.elevator, Robot.arm));
 
                 /**
                  * Alternate for the secondary dPad, could use buttons ABXY.

@@ -18,10 +18,10 @@ public class RobotMap {
   };
 
   public static enum ArmPreset {
-    kHatchOne(29, 44), kHatchTwo(56, 110), kHatchThree(56, 110), kCargoRocketOne(42.2, 100),
-    kCargoRocketTwo(51.42, 110), kCargoRocketThree(44.35, 110), kCargoShipDump(38, 94);
-    public final double wristPos;
-    public final double elbowPos;
+    kHatchOne(29, 44), kHatchTwo(56, 110), kHatchThree(56, 110), kCargoOne(42.2, 100), kCargoTwo(51.42, 110),
+    kCargoThree(44.35, 110), kCargoShip(38, 94);
+    public double wristPos;
+    public double elbowPos;
 
     private ArmPreset(double wristPos, double elbowPos) {
       this.wristPos = wristPos;
