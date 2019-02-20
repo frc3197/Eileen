@@ -61,7 +61,8 @@ public class OI {
 
                 // driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                // secondaryA.whenPressed(Robot.arm.reset);
+                secondaryY.whenPressed(Robot.arm.reset);
+                secondaryY.whenPressed(Robot.elevator.reset);
                 secondaryB.whenPressed(Robot.arm.resetGyro);
 
                 /**
@@ -153,5 +154,7 @@ public class OI {
         public static double hatchSpeed() {
                 return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed : 0)
                                 + (driverRightBumper.get() ? MaxSpeeds.kHatch.reverseSpeed : 0);
+                // return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed :
+                // MaxSpeeds.kHatch.reverseSpeed);
         }
 }
