@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ElevatorPreset;
-import frc.robot.RobotMap.MaxSpeeds;
 import frc.robot.subsystems.Elevator;
 
 public class ElevateToPreset extends Command {
