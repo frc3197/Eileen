@@ -5,6 +5,7 @@ import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
@@ -72,17 +73,12 @@ public class Elevator extends Subsystem implements Drivable {
 
     // if (hold) {
     // controller.setReference(encoderTarget, ControlType.kSmartMotion);
-    // }
     // } else {
     // controller.setReference(speed, ControlType.kDutyCycle);
     // }
     elevatorGroup.set(speed);
 
   }
-
-  // private double conditions(double speed, double deadband) {
-  // return (!bottomLimit.get() && Math.abs(speed) < deadband) ? deadband : speed;
-  // }
 
   private double resetEncoderPosition = 0;
 
