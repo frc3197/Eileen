@@ -1,6 +1,7 @@
 package org.team3197.frc2019.robot;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
@@ -156,5 +157,12 @@ public class OI {
                                 + (driverRightBumper.get() ? MaxSpeeds.kHatch.reverseSpeed : 0);
                 // return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed :
                 // MaxSpeeds.kHatch.reverseSpeed);
+        }
+
+        public static void rumble(double speed) {
+                driver.setRumble(RumbleType.kRightRumble, speed);
+                driver.setRumble(RumbleType.kLeftRumble, speed);
+                secondary.setRumble(RumbleType.kRightRumble, speed);
+                secondary.setRumble(RumbleType.kLeftRumble, speed);
         }
 }
