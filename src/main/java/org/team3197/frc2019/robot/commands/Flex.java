@@ -1,12 +1,12 @@
 package org.team3197.frc2019.robot.commands;
 
-import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.ArmPreset;
 import org.team3197.frc2019.robot.RobotMap.ElevatorPreset;
 import org.team3197.frc2019.robot.subsystems.Arm;
 import org.team3197.frc2019.robot.subsystems.Elevator;
+
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Flex extends CommandGroup {
 
