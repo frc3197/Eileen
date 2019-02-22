@@ -5,7 +5,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.test.DriveTrainTest;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.CargoManipulator;
@@ -30,8 +29,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    // TODO test the reset on robotInit, ensure that the encoders stay at "home"
+    // position through enable and disable.
+
     // elevator.reset.start();
     // arm.reset.start();
+
     CameraServer.getInstance().startAutomaticCapture();
   }
 
@@ -42,8 +45,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
-    // elevator.reset.start();
-    // arm.reset.start();
   }
 
   @Override
@@ -62,7 +63,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // arm.reset.start();
+    arm.resetGyro.start();
+    elevator.reset.start();
+    arm.reset.start();
   }
 
   @Override

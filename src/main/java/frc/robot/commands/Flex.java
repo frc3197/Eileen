@@ -34,14 +34,4 @@ public class Flex extends CommandGroup {
     addSequential(new ArticulateToPreset(target, targetWithTrigger, toggle, arm));
 
   }
-
-  private double getUpSpeed(Elevator elevator) {
-    double currentTarget = elevator.getEncoderPosition() + 5;
-
-    double error = elevator.getEncoderPosition() - currentTarget;
-
-    double speed = -RobotMap.elevatorDegreeSensitivity
-        * Math.copySign(Math.pow(Math.abs(error), RobotMap.elevatorExponent), error);
-    return speed;
-  }
 }
