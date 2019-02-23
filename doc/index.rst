@@ -39,9 +39,9 @@ Class Documentation
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
 |`frc.robot.commands.Flex <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/Flex.html>`_                                      |Controls Arm Movement to Presets. (Unfinished)|
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
-|`frc.robot.commands.test.DriveTrainRampTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainRampTest.html>`_|Deprecated                                    |
+|`frc.robot.commands.test.DriveTrainRampTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainRampTest.html>`_|Soon to be erased from existence.             |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
-|`frc.robot.commands.test.DriveTrainTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainTest.html>`_        |Deprecated                                    |
+|`frc.robot.commands.test.DriveTrainTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainTest.html>`_        |Soon to be erased from existence.             |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
 |`frc.robot.commands.defaults.Articulate <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Articulate.html>`_        |Moves the Arm (Manipulator at End)            |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
