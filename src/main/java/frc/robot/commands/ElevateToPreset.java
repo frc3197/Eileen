@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ElevatorPreset;
-import frc.robot.RobotMap.MaxSpeed;
+import frc.robot.RobotMap.MaxSpeeds;
 import frc.robot.subsystems.Elevator;
 
 public class ElevateToPreset extends Command {
@@ -41,7 +41,7 @@ public class ElevateToPreset extends Command {
     double elevatorSpeed = getElevatorSpeed();
 
     // TODO adjust the speed here
-    elevator.drive(elevatorSpeed * MaxSpeed.kElevatorPreset.speed);
+    elevator.drive(elevatorSpeed * MaxSpeeds.kElevator.forwardSpeed);
   }
 
   @Override
