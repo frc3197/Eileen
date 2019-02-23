@@ -13,8 +13,10 @@ Dependencies
 - ``edu.wpi.first.wpilibj.command.InstantCommand``
 - ``edu.wpi.first.wpilibj.command.Subsystem``
 - ``edu.wpi.first.wpilibj.smartdashboard.SmartDashboard``
-- ```frc.robot.RobotMap`` <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html>`_
-- ``frc.robot.RobotMap``
+
+- `frc.robot.RobotMap <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html>`_
+- `frc.robot.RobotMap.Channel <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html#public-static-enum-channel>`_
+- `frc.robot.RobotMap.DeadbandType <>`_
 
 --------
 Commands
