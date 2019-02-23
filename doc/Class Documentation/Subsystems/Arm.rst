@@ -16,7 +16,9 @@ Dependencies
 
 - `frc.robot.RobotMap <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html>`_
 - `frc.robot.RobotMap.Channel <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html#public-static-enum-channel>`_
-- `frc.robot.RobotMap.DeadbandType <>`_
+- `frc.robot.RobotMap.DeadbandType <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html#public-static-enum-deadbandtype>`_
+- `frc.robot.RobotMap.GyroSensitivity <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/RobotMap.html#public-static-enum-gyrosensitivity>`_
+- `frc.robot.commands.defaults.Articulate <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Articulate.html>`_
 
 --------
 Commands
