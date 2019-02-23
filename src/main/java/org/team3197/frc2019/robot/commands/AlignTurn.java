@@ -4,6 +4,8 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.team3197.frc2019.robot.Robot;
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.subsystems.DriveTrain;
@@ -14,15 +16,13 @@ public class AlignTurn extends Command {
 
     private double verticalSpeed;
     private double turnSpeed;
-    private NetworkTableInstance ntinst;
     private NetworkTable vision;
     private NetworkTableEntry contourXsEntry;
     private NetworkTableEntry contourAreasEntry;
 
     public AlignTurn(DriveTrain driveTrain) {
         super();
-        ntinst = NetworkTableInstance.getDefault();
-        vision = ntinst.getTable("Vision");
+        vision = Robot.ntInst.getTable("Vision");
         contourXsEntry = vision.getEntry("contour_xs");
         contourAreasEntry = vision.getEntry("contour_areas");
         requires(driveTrain);
@@ -32,6 +32,7 @@ public class AlignTurn extends Command {
     @Override
     protected void execute() {
         getContourParameters();
+        vision.getEntry("contour_xs").addListener((a) -> {a.}, flags);
         driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
     }
 
