@@ -32,7 +32,7 @@ public class AlignTurn extends Command {
     @Override
     protected void execute() {
         getContourParameters();
-        driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
+        driveTrain.tankDrive(verticalSpeed, turnSpeed);
     }
 
     @Override
@@ -44,6 +44,8 @@ public class AlignTurn extends Command {
         Number[] defaultValues = new Number[] {};
         Number[] contourXs = contourXsEntry.getNumberArray(defaultValues);
         Number[] contourAreas = contourAreasEntry.getNumberArray(defaultValues);
+        boolean direction = Math.abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) > RobotMap.cameraPixelWidth;
+        left =  direction ? 
 
         if (contourXs.length == 2) {
             double x0 = contourXs[0].doubleValue();
