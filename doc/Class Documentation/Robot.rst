@@ -24,11 +24,6 @@ Dependencies
 
 - ``edu.wpi.first.wpilibj.TimedRobot``
 - ``edu.wpi.first.wpilibj.command.Scheduler``
-
---------------------------
-Network Table Dependencies
---------------------------
-
 - ``edu.wpi.first.networktables.NetworkTable``
 - ``edu.wpi.first.networktables.NetworkTableInstance``
 
