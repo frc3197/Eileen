@@ -91,7 +91,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.1, -.1), kHatch(1), kCargo(1, -1);
+    kElevator(.5, -.5), kArm(.5), kHatch(1), kCargo(1, -1);
 
     public double forwardSpeed;
     public double reverseSpeed;
@@ -106,14 +106,6 @@ public class RobotMap {
       this.reverseSpeed = -speed;
     }
   }
-
-  /**
-   * public static enum VisionPID { // TODO Change these P(0), I(0), D(0), F(0);
-   * 
-   * public final double val;
-   * 
-   * private VisionPID(double val) { this.val = val; } };
-   */
 
   public static final double elevatorPresetThreshold = .5;
 

@@ -39,9 +39,9 @@ Class Documentation
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
 |`org.team3197.frc2019.robot.commands.Flex <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/Flex.html>`_                                      |Controls Arm Movement to Presets. (Unfinished)|
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
-|`org.team3197.frc2019.robot.commands.test.DriveTrainRampTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainRampTest.html>`_|Deprecated                                    |
+|`frc.robot.commands.test.DriveTrainRampTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainRampTest.html>`_|Soon to be erased from existence.             |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
-|`org.team3197.frc2019.robot.commands.test.DriveTrainTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainTest.html>`_        |Deprecated                                    |
+|`frc.robot.commands.test.DriveTrainTest <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/test/DriveTrainTest.html>`_        |Soon to be erased from existence.             |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
 |`org.team3197.frc2019.robot.commands.defaults.Articulate <https://2019-frc.readthedocs.io/en/documentation/Class%20Documentation/Commands/defaults/Articulate.html>`_        |Moves the Arm (Manipulator at End)            |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
@@ -84,7 +84,7 @@ Diagrams/Configurations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 Controller Configurations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-.. image:: https://raw.githubusercontent.com/frc3197/2019-FRC/Documentation/doc/Controller%20Configuration.png
+.. image:: https://raw.githubusercontent.com/frc3197/2019-FRC/master/doc/Controller%20Configuration.png
    :width: 600
 - Presets in brackets correspond to the Ctrl variant. For example, on Operator, ``A + Up`` is equal to Cargo Lv. 3.
 - The ``A`` button on both controllers needs to be held in order to access their functions.

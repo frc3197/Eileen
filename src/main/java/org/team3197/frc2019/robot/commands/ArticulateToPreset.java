@@ -1,10 +1,12 @@
 package org.team3197.frc2019.robot.commands;
 
-import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.Command;
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.ArmPreset;
+import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
 import org.team3197.frc2019.robot.subsystems.Arm;
+
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.Command;
 
 public class ArticulateToPreset extends Command {
 
@@ -40,7 +42,7 @@ public class ArticulateToPreset extends Command {
     double elbowSpeed = getElbowSpeed();
 
     // TODO adjust the speeds here
-    arm.elbow(elbowSpeed * .5);
+    arm.elbow(elbowSpeed * MaxSpeeds.kArm.forwardSpeed);
     arm.wrist(wristSpeed);
   }
 
