@@ -39,6 +39,7 @@ public class Arm extends Subsystem {
 
   public Arm() {
     super();
+    wrist.setInverted(true); // TODO secondary bot
     // wrist.follow(elbow, true);
   }
 
@@ -84,7 +85,7 @@ public class Arm extends Subsystem {
     } else {
       resetGyro();
     }
-
+    // System.out.println("output: " + output);
     wrist.set(output);
   }
 
