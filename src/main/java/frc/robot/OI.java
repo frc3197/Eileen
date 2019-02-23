@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.RobotMap.ArmPreset;
 import frc.robot.RobotMap.ElevatorPreset;
-import frc.robot.RobotMap.MaxSpeed;
 import frc.robot.RobotMap.MaxSpeeds;
 import frc.robot.commands.Flex;
 
@@ -84,37 +83,7 @@ public class OI {
                 secondaryDPadLeft.whileHeld(new Flex(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
                                 ArmPreset.kCargoShipDump, ArmPreset.kCargoShipDump, secondaryA, Robot.elevator,
                                 Robot.arm));
-
-                /**
-                 * Alternate for the secondary dPad, could use buttons ABXY.
-                 */
-                // driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree,
-                // ElevatorPreset.kCargoLevelThree,
-                // ArmPreset.kHatchThree, ArmPreset.kCargoRocketThree, driverRightBumper,
-                // Robot.elevator,
-                // Robot.arm));
-
-                // driverB.whenPressed(
-                // new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
-                // ArmPreset.kHatchTwo,
-                // ArmPreset.kCargoRocketTwo, driverRightBumper, Robot.elevator, Robot.arm));
-
-                // driverX.whenPressed(
-                // new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
-                // ArmPreset.kHatchOne,
-                // ArmPreset.kCargoRocketOne, driverRightBumper, Robot.elevator, Robot.arm));
-
-                // driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel,
-                // ElevatorPreset.kCargoShipCargo,
-                // ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper,
-                // Robot.elevator,
-                // Robot.arm));
         }
-
-        // TODO add back after linking elbox and wrist
-        // public static double articulateSpeed() {
-        // return secondary.getY(Hand.kRight);
-        // }
 
         public static double arcadeDriveY() {
                 return driver.getY(Hand.kRight);
