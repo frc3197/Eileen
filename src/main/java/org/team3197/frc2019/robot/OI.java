@@ -1,11 +1,10 @@
 package org.team3197.frc2019.robot;
 
-import org.team3197.frc2019.robot.RobotMap.ArmPreset;
-import org.team3197.frc2019.robot.RobotMap.ElevatorPreset;
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
-import org.team3197.frc2019.robot.commands.ArticulateToPreset;
-import org.team3197.frc2019.robot.commands.ElevateToPreset;
-import org.team3197.frc2019.robot.commands.Flex;
+import org.team3197.frc2019.robot.commands.presets.CargoShip;
+import org.team3197.frc2019.robot.commands.presets.LevelOne;
+import org.team3197.frc2019.robot.commands.presets.LevelThree;
+import org.team3197.frc2019.robot.commands.presets.LevelTwo;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -73,26 +72,11 @@ public class OI {
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
-                secondaryDPadUp.whileHeld(new Flex(
-                                new ElevateToPreset(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree,
-                                                secondaryA, Robot.elevator),
-                                new ArticulateToPreset(ArmPreset.kHatchThree, ArmPreset.kCargoThree, secondaryA,
-                                                Robot.arm)));
-                secondaryDPadRight.whileHeld(new Flex(
-                                new ElevateToPreset(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
-                                                secondaryA, Robot.elevator),
-                                new ArticulateToPreset(ArmPreset.kHatchTwo, ArmPreset.kCargoTwo, secondaryA,
-                                                Robot.arm)));
-                secondaryDPadDown.whileHeld(new Flex(
-                                new ElevateToPreset(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
-                                                secondaryA, Robot.elevator),
-                                new ArticulateToPreset(ArmPreset.kHatchOne, ArmPreset.kCargoOne, secondaryA,
-                                                Robot.arm)));
-                secondaryDPadLeft.whileHeld(new Flex(
-                                new ElevateToPreset(ElevatorPreset.kCargoLoadingLevel, ElevatorPreset.kCargoShipCargo,
-                                                secondaryA, Robot.elevator),
-                                new ArticulateToPreset(ArmPreset.kCargoShip, ArmPreset.kCargoShip, secondaryA,
-                                                Robot.arm)));
+
+                secondaryDPadUp.whileHeld(new LevelThree(Robot.elevator, Robot.arm, secondaryA));
+                secondaryDPadRight.whileHeld(new LevelTwo(Robot.elevator, Robot.arm, secondaryA));
+                secondaryDPadDown.whileHeld(new LevelOne(Robot.elevator, Robot.arm, secondaryA));
+                secondaryDPadLeft.whileHeld(new CargoShip(Robot.elevator, Robot.arm, secondaryA));
 
                 /**
                  * Alternate for the secondary dPad, could use buttons ABXY.
