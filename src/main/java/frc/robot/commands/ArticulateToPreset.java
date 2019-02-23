@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ArmPreset;
+import frc.robot.RobotMap.MaxSpeeds;
 import frc.robot.subsystems.Arm;
 
 public class ArticulateToPreset extends Command {
@@ -40,7 +41,7 @@ public class ArticulateToPreset extends Command {
     double elbowSpeed = getElbowSpeed();
 
     // TODO adjust the speeds here
-    arm.elbow(elbowSpeed * .5);
+    arm.elbow(elbowSpeed * MaxSpeeds.kArm.forwardSpeed);
     arm.wrist(wristSpeed);
   }
 

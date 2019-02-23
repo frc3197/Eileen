@@ -144,7 +144,6 @@ public class DriveTrain extends Subsystem {
         goingStraightPrevious = true;
       }
       double currentGyroAngle = gyro.getAngle();
-      // TODO: Check polarity
       double deltaAngle = (currentGyroAngle - initialGyroAngle);
       r += GyroSensitivity.kDrive.val * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
       SmartDashboard.putNumber("deltaAngle", deltaAngle);
