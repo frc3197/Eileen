@@ -27,11 +27,10 @@ public class Robot extends TimedRobot {
   public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
   public static NetworkTable table;
 
+  private static boolean resetEncoders = true;
+
   @Override
   public void robotInit() {
-    // TODO test the reset on robotInit, ensure that the encoders stay at "home"
-    // position through enable and disable.
-
     // elevator.reset.start();
     // arm.reset.start();
 
@@ -54,6 +53,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    resetEncoders();
   }
 
   @Override
@@ -63,9 +63,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    arm.resetGyro.start();
-    elevator.reset.start();
-    arm.reset.start();
+    resetEncoders();
   }
 
   @Override
@@ -77,10 +75,19 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // driveTrainTest = new DriveTrainTest();
     // driveTrainTest.start();
+    resetEncoders();
   }
 
   @Override
   public void testPeriodic() {
 
+  }
+
+  private void resetEncoders() {
+    if (resetEncoders) {
+      elevator.reset.start();
+      arm.reset.start();
+      resetEncoders = false;
+    }
   }
 }
