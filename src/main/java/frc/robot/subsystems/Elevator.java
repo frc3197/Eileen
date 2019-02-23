@@ -56,9 +56,7 @@ public class Elevator extends Subsystem {
     // output = Math.max(output, 0);
     // }
 
-    // TODO uncomment and test thouroughly with this new equation
-    // if the elevator is less than -15, and going down, slow the elevator
-    // exponentionally
+    // TODO extract constants
     if (!bottomLimit.get() && getEncoderPosition() < -15 && speed < 0) {
       output = RobotMap.elevatorSpeedMultiplier * (4 / getEncoderPosition());
       SmartDashboard.putNumber("ElevatorSlowDown", output);
