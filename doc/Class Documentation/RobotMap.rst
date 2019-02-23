@@ -2,7 +2,11 @@
 frc.robot.RobotMap
 ==================
 RobotMap deefines multiple parts of the Robot. Essentially, it "maps" out the robot 
-by defining multiple different parts.
+by defining multiple different parts and constants.
+
+Example:: 
+    
+    public static final double visionTargetArea = 32000;
 
 ------------
 Dependencies
@@ -49,3 +53,27 @@ Sets PID values for CANSparkMax's. Used but all 0's so useless.
 public static enum ElevatorPID
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Sets PID values for the Elevator motors. Used but all 0's so useless.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+public static enum Channel
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Defines ports where Gyros are placed.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public static enum GyroSensitivity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Defines multiplier for Gyro stuff.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public static enum MaxSpeeds
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Defines multipliers that sets max speeds for certain motors.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+public static enum MaxSpeed
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SOON TO BE ERASED FROM EXISTENCE.
+
+~~~~
+
+~~~~
