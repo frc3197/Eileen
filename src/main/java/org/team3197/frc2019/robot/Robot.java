@@ -35,6 +35,8 @@ public class Robot extends TimedRobot {
 
   public static Preferences prefs = Preferences.getInstance();
 
+  private static boolean resetEncoders = true;
+
   @Override
   public void robotInit() {
     // TODO test the reset on robotInit(), ensure that the encoders stay at "home"
@@ -101,6 +103,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    resetEncoders();
   }
 
   @Override
@@ -110,6 +113,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    resetEncoders();
     // arm.reset.start();
   }
 
@@ -120,6 +124,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testInit() {
+    resetEncoders();
     // driveTrainTest = new DriveTrainTest();
     // driveTrainTest.start();
   }
@@ -127,5 +132,13 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
 
+  }
+
+  private void resetEncoders() {
+    if (resetEncoders) {
+      elevator.reset.start();
+      arm.reset.start();
+      resetEncoders = false;
+    }
   }
 }

@@ -77,37 +77,7 @@ public class OI {
                 secondaryDPadRight.whileHeld(new LevelTwo(Robot.elevator, Robot.arm, secondaryA));
                 secondaryDPadDown.whileHeld(new LevelOne(Robot.elevator, Robot.arm, secondaryA));
                 secondaryDPadLeft.whileHeld(new CargoShip(Robot.elevator, Robot.arm, secondaryA));
-
-                /**
-                 * Alternate for the secondary dPad, could use buttons ABXY.
-                 */
-                // driverA.whenPressed(new Flex(ElevatorPreset.kHatchLevelThree,
-                // ElevatorPreset.kCargoLevelThree,
-                // ArmPreset.kHatchThree, ArmPreset.kCargoRocketThree, driverRightBumper,
-                // Robot.elevator,
-                // Robot.arm));
-
-                // driverB.whenPressed(
-                // new Flex(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo,
-                // ArmPreset.kHatchTwo,
-                // ArmPreset.kCargoRocketTwo, driverRightBumper, Robot.elevator, Robot.arm));
-
-                // driverX.whenPressed(
-                // new Flex(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne,
-                // ArmPreset.kHatchOne,
-                // ArmPreset.kCargoRocketOne, driverRightBumper, Robot.elevator, Robot.arm));
-
-                // driverY.whenPressed(new Flex(ElevatorPreset.kCargoLoadingLevel,
-                // ElevatorPreset.kCargoShipCargo,
-                // ArmPreset.kCargoRocket, ArmPreset.kCargoShipDump, driverRightBumper,
-                // Robot.elevator,
-                // Robot.arm));
         }
-
-        // TODO add back after linking elbox and wrist
-        // public static double articulateSpeed() {
-        // return secondary.getY(Hand.kRight);
-        // }
 
         public static double arcadeDriveY() {
                 return driver.getY(Hand.kRight);

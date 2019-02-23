@@ -1,10 +1,12 @@
 package org.team3197.frc2019.robot.commands;
 
-import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.Command;
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.ElevatorPreset;
+import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
 import org.team3197.frc2019.robot.subsystems.Elevator;
+
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevateToPreset extends Command {
 
@@ -40,7 +42,7 @@ public class ElevateToPreset extends Command {
     double elevatorSpeed = getElevatorSpeed();
 
     // TODO adjust the speed here
-    elevator.drive(elevatorSpeed, true);
+    elevator.drive(elevatorSpeed * MaxSpeeds.kElevator.forwardSpeed, true);
   }
 
   @Override
