@@ -32,7 +32,7 @@ public class AlignTurn extends Command {
     @Override
     protected void execute() {
         getContourParameters();
-        vision.getEntry("contour_xs").addListener((a) -> {a.}, flags);
+        // vision.getEntry("contour_xs").addListener((a) -> {a.}, flags);
         driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
     }
 
