@@ -20,6 +20,7 @@ import frc.robot.RobotMap;
 import frc.robot.RobotMap.Channel;
 import frc.robot.RobotMap.DeadbandType;
 import frc.robot.RobotMap.GyroSensitivity;
+import frc.robot.RobotMap.RobotType;
 import frc.robot.commands.defaults.Articulate;
 
 public class Arm extends Subsystem {
@@ -39,8 +40,11 @@ public class Arm extends Subsystem {
 
   public Arm() {
     super();
-    wrist.setInverted(true); // TODO secondary bot
-    // wrist.follow(elbow, true);
+    if (RobotMap.current == RobotType.A) {
+      wrist.setInverted(false);
+    } else {
+      wrist.setInverted(true);
+    }
   }
 
   @Override
@@ -74,7 +78,7 @@ public class Arm extends Subsystem {
     // gyro mode centers around 0
     // if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
 
-    double deltaAngle = gyro.getAngle();
+    double deltaAngle = getAngle();
     double gyroSpeed = GyroSensitivity.kArm.val * deltaAngle;
     SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
     SmartDashboard.putNumber("deltaAngle", deltaAngle);
@@ -87,6 +91,14 @@ public class Arm extends Subsystem {
     }
     // System.out.println("output: " + output);
     wrist.set(output);
+  }
+
+  private double getAngle() {
+    if (RobotMap.current == RobotType.A) {
+      return gyro.getAngle();
+    } else {
+      return -gyro.getAngle();
+    }
   }
 
   public void resetGyro() {
