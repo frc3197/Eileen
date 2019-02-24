@@ -1,12 +1,14 @@
 package org.team3197.frc2019.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import org.team3197.frc2019.robot.RobotMap;
+import org.team3197.frc2019.robot.commands.defaults.Erect;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.team3197.frc2019.robot.RobotMap;
-import org.team3197.frc2019.robot.commands.defaults.Erect;
 
 public class Erector extends Subsystem implements Drivable {
 
@@ -17,6 +19,10 @@ public class Erector extends Subsystem implements Drivable {
 
   public Erector() {
     super();
+
+    left.setIdleMode(IdleMode.kBrake);
+    right.setIdleMode(IdleMode.kBrake);
+
     right.setInverted(true);
   }
 

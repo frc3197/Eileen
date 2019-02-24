@@ -14,6 +14,7 @@ public class CargoManipulator extends Subsystem implements Drivable {
 
   public CargoManipulator() {
     super();
+
     roller.setIdleMode(IdleMode.kBrake);
   }
 
