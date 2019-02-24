@@ -48,12 +48,13 @@ public class DriveTrain extends Subsystem {
 
   public DriveTrain() {
     super();
-    drive.setDeadband(DeadbandType.kDrive.speed);
 
     flSparkMax.setIdleMode(IdleMode.kBrake);
-    flSparkMax.setIdleMode(IdleMode.kBrake);
-    flSparkMax.setIdleMode(IdleMode.kBrake);
-    flSparkMax.setIdleMode(IdleMode.kBrake);
+    blSparkMax.setIdleMode(IdleMode.kBrake);
+    frSparkMax.setIdleMode(IdleMode.kBrake);
+    brSparkMax.setIdleMode(IdleMode.kBrake);
+
+    drive.setDeadband(DeadbandType.kDrive.speed);
 
     sparkMaxPrimaryLimitSwitches.put(flSparkMax, flSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));
     sparkMaxPrimaryLimitSwitches.put(blSparkMax, blSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen));

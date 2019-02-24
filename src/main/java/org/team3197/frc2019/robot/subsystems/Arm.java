@@ -2,6 +2,7 @@ package org.team3197.frc2019.robot.subsystems;
 
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -32,6 +33,10 @@ public class Arm extends Subsystem implements Drivable {
 
   public Arm() {
     super();
+
+    elbow.setIdleMode(IdleMode.kBrake);
+    wrist.setIdleMode(IdleMode.kBrake);
+
     if (RobotMap.current == RobotType.A) {
       wrist.setInverted(false);
     } else {
