@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.test.DriveTrainTest;
@@ -26,6 +27,8 @@ public class Robot extends TimedRobot {
 
   public static NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
   public static NetworkTable table;
+
+  public static PowerDistributionPanel pdp = new PowerDistributionPanel(0);
 
   private static boolean resetEncoders = true;
 
@@ -53,7 +56,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    resetEncoders();
+    reset();
   }
 
   @Override
@@ -63,7 +66,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    resetEncoders();
+    reset();
   }
 
   @Override
@@ -75,7 +78,7 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // driveTrainTest = new DriveTrainTest();
     // driveTrainTest.start();
-    resetEncoders();
+    reset();
   }
 
   @Override
@@ -83,10 +86,11 @@ public class Robot extends TimedRobot {
 
   }
 
-  private void resetEncoders() {
+  private void reset() {
     if (resetEncoders) {
       elevator.reset.start();
       arm.reset.start();
+      arm.resetGyro.start();
       resetEncoders = false;
     }
   }
