@@ -1,11 +1,5 @@
 package org.team3197.frc2019.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import org.team3197.frc2019.robot.RobotMap.ArmPreset;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.RobotMap.ElevatorPreset;
@@ -19,6 +13,14 @@ import org.team3197.frc2019.robot.subsystems.Elevator;
 import org.team3197.frc2019.robot.subsystems.Erector;
 import org.team3197.frc2019.robot.subsystems.Hatch;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
+
 public class Robot extends TimedRobot {
 
   public static DriveTrain driveTrain = new DriveTrain();
@@ -27,6 +29,8 @@ public class Robot extends TimedRobot {
   public static CargoManipulator manipulator = new CargoManipulator();
   public static Hatch hatch = new Hatch();
   public static Erector erector = new Erector();
+
+  public static PowerDistributionPanel pdp = new PowerDistributionPanel(0);
 
   public static DriveTrainTest driveTrainTest;
 
@@ -103,7 +107,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    resetEncoders();
+    reset();
   }
 
   @Override
@@ -113,7 +117,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    resetEncoders();
+    reset();
     // arm.reset.start();
   }
 
@@ -124,7 +128,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testInit() {
-    resetEncoders();
+    reset();
     // driveTrainTest = new DriveTrainTest();
     // driveTrainTest.start();
   }
@@ -134,10 +138,11 @@ public class Robot extends TimedRobot {
 
   }
 
-  private void resetEncoders() {
+  private void reset() {
     if (resetEncoders) {
       elevator.reset.start();
       arm.reset.start();
+      arm.resetGyro.start();
       resetEncoders = false;
     }
   }
