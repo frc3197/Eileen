@@ -1,6 +1,7 @@
 package org.team3197.frc2019.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,6 +14,7 @@ public class CargoManipulator extends Subsystem implements Drivable {
 
   public CargoManipulator() {
     super();
+    roller.setIdleMode(IdleMode.kBrake);
   }
 
   @Override
