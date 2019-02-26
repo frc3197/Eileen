@@ -1,7 +1,7 @@
 ===============
-frc.robot.Robot
+org.team3197.frc2019.robot.Robot
 ===============
-The class frc.robot.Robot 
+The class org.team3197.frc2019.robot.Robot 
 (inheriting methods from wdu.wpi.first.wpilibj.TimedRobot) 
 is the main class that contains the functions that initializes the robot.
 
