@@ -44,7 +44,7 @@ The following dependencies are needed::
     import java.nio.ByteOrder;
     
     import edu.wpi.first.wpilibj.I2C;
-    import frc.robot.Robot;
+    import org.team3197.frc2019.robot.Robot;
 
 
 To enable a device, the following code will work for the REV Color Sensor::
