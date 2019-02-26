@@ -72,12 +72,12 @@ public class Robot extends TimedRobot {
     ElevatorPreset.kHatchLevelThree.pos = prefs.getDouble("kHatchLevelThree", ElevatorPreset.kHatchLevelThree.pos);
     ElevatorPreset.kCargoLevelOne.pos = prefs.getDouble("kCargoLevelOne", ElevatorPreset.kCargoLevelOne.pos);
     ElevatorPreset.kCargoLevelTwo.pos = prefs.getDouble("kCargoLevelTwo", ElevatorPreset.kCargoLevelTwo.pos);
-    ElevatorPreset.kCargoLevelThree.pos = prefs.getDouble("kCargoLevellThree", ElevatorPreset.kCargoLevelThree.pos);
+    ElevatorPreset.kCargoLevelThree.pos = prefs.getDouble("kCargoLevelThree", ElevatorPreset.kCargoLevelThree.pos);
     ElevatorPreset.kCargoLoadingLevel.pos = prefs.getDouble("kCargoLoadingLevel",
         ElevatorPreset.kCargoLoadingLevel.pos);
     ElevatorPreset.kCargoShipCargo.pos = prefs.getDouble("kCargoShipCargo", ElevatorPreset.kCargoShipCargo.pos);
-    ElevatorPreset.kHatchLevelOneIntermediate.pos = prefs.getDouble("kHatchLevelOneIntermediate",
-        ElevatorPreset.kHatchLevelOneIntermediate.pos);
+    ElevatorPreset.kLevelOneIntermediate.pos = prefs.getDouble("kHatchLevelOneIntermediate",
+        ElevatorPreset.kLevelOneIntermediate.pos);
 
     DeadbandType.kElevator.speed = prefs.getDouble("kElevatorDeadband", DeadbandType.kElevator.speed);
     DeadbandType.kElbow.speed = prefs.getDouble("kElbowDeadband", DeadbandType.kElbow.speed);
