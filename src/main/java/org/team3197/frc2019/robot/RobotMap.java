@@ -91,7 +91,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.85, -.75), kArm(.75), kHatch(1), kCargo(1);
+    kElevator(.5, -.5), kArm(.75), kHatch(1), kCargo(1);
 
     public double forwardSpeed;
     public double reverseSpeed;
