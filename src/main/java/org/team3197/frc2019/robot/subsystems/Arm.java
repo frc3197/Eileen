@@ -41,7 +41,7 @@ public class Arm extends Subsystem implements Drivable {
     if (RobotMap.current == RobotType.A) {
       wrist.setInverted(false);
     } else {
-      wrist.setInverted(true);
+      wrist.setInverted(false);
     }
   }
 
@@ -92,6 +92,7 @@ public class Arm extends Subsystem implements Drivable {
     } else {
       resetGyroAngle();
     }
+
     // System.out.println("output: " + output);
     wrist.set(output);
   }
@@ -130,7 +131,7 @@ public class Arm extends Subsystem implements Drivable {
   }
 
   public double getWristEncoderPosition() {
-    return getWristEncoderPositionRaw() - resetWristEncoderPosition;
+    return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
   private double getWristEncoderPositionRaw() {
@@ -139,7 +140,7 @@ public class Arm extends Subsystem implements Drivable {
 
   private void resetEncoderPosition() {
     resetElbowEncoderPosition = elbow.getEncoder().getPosition();
-    resetWristEncoderPosition = getWristEncoderPositionRaw();
+    resetWristEncoderPosition = wrist.getEncoder().getPosition();
   }
 
   private void resetGyroAngle() {

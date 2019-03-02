@@ -13,9 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LevelOne extends CommandGroup {
 
   public LevelOne(Elevator elevator, Arm arm, Trigger toggle) {
-    addSequential(new ElevateToPreset(ElevatorPreset.kLevelOneIntermediate, ElevatorPreset.kLevelOneIntermediate,
-        toggle, elevator));
-    addParallel(new ArticulateToPreset(ArmPreset.kHatchOne, ArmPreset.kCargoOne, toggle, arm));
     addParallel(new ElevateToPreset(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne, toggle, elevator));
+    addParallel(new ArticulateToPreset(ArmPreset.kHatchOne, ArmPreset.kHatchOne, toggle, arm));
   }
 }

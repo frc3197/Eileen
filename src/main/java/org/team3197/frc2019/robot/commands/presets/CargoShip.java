@@ -13,8 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CargoShip extends CommandGroup {
 
   public CargoShip(Elevator elevator, Arm arm, Trigger toggle) {
-    addParallel(
-        new ElevateToPreset(ElevatorPreset.kCargoShipCargo, ElevatorPreset.kCargoLoadingLevel, toggle, elevator));
-    addSequential(new ArticulateToPreset(ArmPreset.kCargoShip, ArmPreset.kCargoShip, toggle, arm));
+    addParallel(new ElevateToPreset(ElevatorPreset.kCargoShipCargo, ElevatorPreset.kHome, toggle, elevator));
+    addParallel(new ArticulateToPreset(ArmPreset.kCargoShip, ArmPreset.kHome, toggle, arm));
   }
 }

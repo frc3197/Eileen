@@ -14,6 +14,6 @@ public class LevelTwo extends CommandGroup {
 
   public LevelTwo(Elevator elevator, Arm arm, Trigger toggle) {
     addParallel(new ElevateToPreset(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo, toggle, elevator));
-    addSequential(new ArticulateToPreset(ArmPreset.kHatchTwo, ArmPreset.kCargoTwo, toggle, arm));
+    addParallel(new ArticulateToPreset(ArmPreset.kHatchTwo, ArmPreset.kCargoTwo, toggle, arm));
   }
 }
