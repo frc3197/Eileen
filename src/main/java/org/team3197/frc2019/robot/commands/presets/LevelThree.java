@@ -15,6 +15,6 @@ public class LevelThree extends CommandGroup {
   public LevelThree(Elevator elevator, Arm arm, Trigger toggle) {
     addParallel(
         new ElevateToPreset(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree, toggle, elevator));
-    addSequential(new ArticulateToPreset(ArmPreset.kHatchThree, ArmPreset.kCargoThree, toggle, arm));
+    addParallel(new ArticulateToPreset(ArmPreset.kHatchThree, ArmPreset.kCargoThree, toggle, arm));
   }
 }

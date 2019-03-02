@@ -43,7 +43,7 @@ public class ArticulateToPreset extends Command {
 
     // TODO adjust the speeds here
     arm.elbow(elbowSpeed * MaxSpeeds.kArm.forwardSpeed);
-    arm.wrist(wristSpeed);
+    arm.wrist(wristSpeed * MaxSpeeds.kWrist.forwardSpeed);
   }
 
   @Override

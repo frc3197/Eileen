@@ -18,7 +18,7 @@ public class RobotMap {
   };
 
   public static enum ArmPreset {
-    kHatchOne(29, 44), kHatchTwo(56, 110), kHatchThree(56, 110), kCargoOne(42.2, 100), kCargoTwo(51.42, 110),
+    kHatchOne(38, 77), kHatchTwo(94, 180), kHatchThree(72, 137), kCargoOne(42.2, 100), kCargoTwo(51.42, 110),
     kCargoThree(44.35, 110), kCargoShip(38, 94), kHome(0, 0);
     public double wristPos;
     public double elbowPos;
@@ -30,8 +30,8 @@ public class RobotMap {
   }
 
   public static enum ElevatorPreset {
-    kHatchLevelOne(-25.6), kHatchLevelTwo(-6.95), kHatchLevelThree(34), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
-    kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(25), kLevelOneIntermediate(15), kHome(0);
+    kHatchLevelOne(-27), kHatchLevelTwo(-12), kHatchLevelThree(34), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
+    kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(25), kHome(0);
     public double pos;
 
     private ElevatorPreset(double pos) {
@@ -82,7 +82,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(0.025);
+    kDrive(0.01), kArm(0.01);
     public double val;
 
     private GyroSensitivity(double val) {
@@ -91,7 +91,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.5, -.5), kArm(.75), kHatch(1), kCargo(1);
+    kElevator(.7, -.5), kArm(.6), kWrist(.45), kHatch(1), kCargo(1);
 
     public double forwardSpeed;
     public double reverseSpeed;
