@@ -17,14 +17,12 @@ public class RobotMap {
     }
   };
 
-  public static enum ArmPreset {
-    kHatchOne(38, 77), kHatchTwo(94, 180), kHatchThree(72, 137), kCargoOne(42.2, 100), kCargoTwo(51.42, 110),
-    kCargoThree(44.35, 110), kCargoShip(38, 94), kHome(0, 0);
-    public double wristPos;
+  public static enum ElbowPreset {
+    kHatchOne(77), kHatchTwo(180), kHatchThree(137), kCargoOne(100), kCargoTwo(110), kCargoThree(110), kCargoShip(94),
+    kHome(0);
     public double elbowPos;
 
-    private ArmPreset(double wristPos, double elbowPos) {
-      this.wristPos = wristPos;
+    private ElbowPreset(double elbowPos) {
       this.elbowPos = elbowPos;
     }
   }
@@ -40,7 +38,7 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.03), kElbow(0.06), kWrist(0.02), kDrive(0.08);
+    kElevator(0.03), kElbow(0.06), kWrist(0.06), kDrive(0.08);
     public double speed;
 
     private DeadbandType(double speed) {
@@ -82,7 +80,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(0.01);
+    kDrive(0.01), kArm(0.025);
     public double val;
 
     private GyroSensitivity(double val) {
