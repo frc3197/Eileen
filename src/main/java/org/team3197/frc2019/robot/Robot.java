@@ -47,14 +47,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
-    ElbowPreset.kHatchOne.wristPos = prefs.getDouble("kHatchLevelOne", ElbowPreset.kHatchOne.wristPos);
-    ElbowPreset.kHatchTwo.wristPos = prefs.getDouble("kHatchLevelTwo", ElbowPreset.kHatchTwo.wristPos);
-    ElbowPreset.kHatchThree.wristPos = prefs.getDouble("kHatchLevelThree", ElbowPreset.kHatchThree.wristPos);
-    ElbowPreset.kCargoOne.wristPos = prefs.getDouble("kCargoOne", ElbowPreset.kCargoOne.wristPos);
-    ElbowPreset.kCargoTwo.wristPos = prefs.getDouble("kCargoTwo", ElbowPreset.kCargoTwo.wristPos);
-    ElbowPreset.kCargoThree.wristPos = prefs.getDouble("kCargoThree", ElbowPreset.kCargoThree.wristPos);
-    ElbowPreset.kCargoShip.wristPos = prefs.getDouble("kCargoShip", ElbowPreset.kCargoShip.wristPos);
-
     ElbowPreset.kHatchOne.elbowPos = prefs.getDouble("kHatchLevelOne", ElbowPreset.kHatchOne.elbowPos);
     ElbowPreset.kHatchTwo.elbowPos = prefs.getDouble("kHatchLevelTwo", ElbowPreset.kHatchTwo.elbowPos);
     ElbowPreset.kHatchThree.elbowPos = prefs.getDouble("kHatchLevelThree", ElbowPreset.kHatchThree.elbowPos);
@@ -70,6 +62,8 @@ public class Robot extends TimedRobot {
     ElevatorPreset.kCargoLoadingLevel.pos = prefs.getDouble("kCargoLoadingLevel",
         ElevatorPreset.kCargoLoadingLevel.pos);
     ElevatorPreset.kCargoShipCargo.pos = prefs.getDouble("kCargoShipCargo", ElevatorPreset.kCargoShipCargo.pos);
+    ElevatorPreset.kElevatorIntermidate.pos = prefs.getDouble("kElevatorIntermediate",
+        ElevatorPreset.kElevatorIntermidate.pos);
 
     DeadbandType.kElevator.speed = prefs.getDouble("kElevatorDeadband", DeadbandType.kElevator.speed);
     DeadbandType.kElbow.speed = prefs.getDouble("kElbowDeadband", DeadbandType.kElbow.speed);
