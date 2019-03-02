@@ -1,6 +1,6 @@
 package org.team3197.frc2019.robot;
 
-import org.team3197.frc2019.robot.RobotMap.ArmPreset;
+import org.team3197.frc2019.robot.RobotMap.ElbowPreset;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.RobotMap.ElevatorPreset;
 import org.team3197.frc2019.robot.RobotMap.GyroSensitivity;
@@ -43,31 +43,25 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    // TODO test the reset on robotInit(), ensure that the encoders stay at "home"
-    // position through enable and disable
-
-    // elevator.reset.start();
-    // arm.reset.start();
-    CameraServer.getInstance().startAutomaticCapture();
   }
 
   @Override
   public void robotPeriodic() {
-    ArmPreset.kHatchOne.wristPos = prefs.getDouble("kHatchLevelOne", ArmPreset.kHatchOne.wristPos);
-    ArmPreset.kHatchTwo.wristPos = prefs.getDouble("kHatchLevelTwo", ArmPreset.kHatchTwo.wristPos);
-    ArmPreset.kHatchThree.wristPos = prefs.getDouble("kHatchLevelThree", ArmPreset.kHatchThree.wristPos);
-    ArmPreset.kCargoOne.wristPos = prefs.getDouble("kCargoOne", ArmPreset.kCargoOne.wristPos);
-    ArmPreset.kCargoTwo.wristPos = prefs.getDouble("kCargoTwo", ArmPreset.kCargoTwo.wristPos);
-    ArmPreset.kCargoThree.wristPos = prefs.getDouble("kCargoThree", ArmPreset.kCargoThree.wristPos);
-    ArmPreset.kCargoShip.wristPos = prefs.getDouble("kCargoShip", ArmPreset.kCargoShip.wristPos);
+    ElbowPreset.kHatchOne.wristPos = prefs.getDouble("kHatchLevelOne", ElbowPreset.kHatchOne.wristPos);
+    ElbowPreset.kHatchTwo.wristPos = prefs.getDouble("kHatchLevelTwo", ElbowPreset.kHatchTwo.wristPos);
+    ElbowPreset.kHatchThree.wristPos = prefs.getDouble("kHatchLevelThree", ElbowPreset.kHatchThree.wristPos);
+    ElbowPreset.kCargoOne.wristPos = prefs.getDouble("kCargoOne", ElbowPreset.kCargoOne.wristPos);
+    ElbowPreset.kCargoTwo.wristPos = prefs.getDouble("kCargoTwo", ElbowPreset.kCargoTwo.wristPos);
+    ElbowPreset.kCargoThree.wristPos = prefs.getDouble("kCargoThree", ElbowPreset.kCargoThree.wristPos);
+    ElbowPreset.kCargoShip.wristPos = prefs.getDouble("kCargoShip", ElbowPreset.kCargoShip.wristPos);
 
-    ArmPreset.kHatchOne.elbowPos = prefs.getDouble("kHatchLevelOne", ArmPreset.kHatchOne.elbowPos);
-    ArmPreset.kHatchTwo.elbowPos = prefs.getDouble("kHatchLevelTwo", ArmPreset.kHatchTwo.elbowPos);
-    ArmPreset.kHatchThree.elbowPos = prefs.getDouble("kHatchLevelThree", ArmPreset.kHatchThree.elbowPos);
-    ArmPreset.kCargoOne.elbowPos = prefs.getDouble("kCargoOne", ArmPreset.kCargoOne.elbowPos);
-    ArmPreset.kCargoTwo.elbowPos = prefs.getDouble("kCargoTwo", ArmPreset.kCargoTwo.elbowPos);
-    ArmPreset.kCargoThree.elbowPos = prefs.getDouble("kCargoThree", ArmPreset.kCargoThree.elbowPos);
-    ArmPreset.kCargoShip.elbowPos = prefs.getDouble("kCargoShip", ArmPreset.kCargoShip.elbowPos);
+    ElbowPreset.kHatchOne.elbowPos = prefs.getDouble("kHatchLevelOne", ElbowPreset.kHatchOne.elbowPos);
+    ElbowPreset.kHatchTwo.elbowPos = prefs.getDouble("kHatchLevelTwo", ElbowPreset.kHatchTwo.elbowPos);
+    ElbowPreset.kHatchThree.elbowPos = prefs.getDouble("kHatchLevelThree", ElbowPreset.kHatchThree.elbowPos);
+    ElbowPreset.kCargoOne.elbowPos = prefs.getDouble("kCargoOne", ElbowPreset.kCargoOne.elbowPos);
+    ElbowPreset.kCargoTwo.elbowPos = prefs.getDouble("kCargoTwo", ElbowPreset.kCargoTwo.elbowPos);
+    ElbowPreset.kCargoThree.elbowPos = prefs.getDouble("kCargoThree", ElbowPreset.kCargoThree.elbowPos);
+    ElbowPreset.kCargoShip.elbowPos = prefs.getDouble("kCargoShip", ElbowPreset.kCargoShip.elbowPos);
 
     ElevatorPreset.kHatchLevelThree.pos = prefs.getDouble("kHatchLevelThree", ElevatorPreset.kHatchLevelThree.pos);
     ElevatorPreset.kCargoLevelOne.pos = prefs.getDouble("kCargoLevelOne", ElevatorPreset.kCargoLevelOne.pos);

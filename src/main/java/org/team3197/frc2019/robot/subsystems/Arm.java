@@ -88,12 +88,16 @@ public class Arm extends Subsystem implements Drivable {
     SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
     if (Math.abs(output) < DeadbandType.kWrist.speed) {
+      // if (Math.abs(gyroSpeed) < DeadbandType.kWrist.speed) {
+      // gyroSpeed = 0;
+      // }
       output = gyroSpeed;
+      // output = 0;
     } else {
       resetGyroAngle();
     }
 
-    // System.out.println("output: " + output);
+    SmartDashboard.putNumber("output", output);
     wrist.set(output);
   }
 

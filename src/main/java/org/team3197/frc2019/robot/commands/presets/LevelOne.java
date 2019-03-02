@@ -1,6 +1,6 @@
 package org.team3197.frc2019.robot.commands.presets;
 
-import org.team3197.frc2019.robot.RobotMap.ArmPreset;
+import org.team3197.frc2019.robot.RobotMap.ElbowPreset;
 import org.team3197.frc2019.robot.RobotMap.ElevatorPreset;
 import org.team3197.frc2019.robot.commands.ArticulateToPreset;
 import org.team3197.frc2019.robot.commands.ElevateToPreset;
@@ -14,6 +14,6 @@ public class LevelOne extends CommandGroup {
 
   public LevelOne(Elevator elevator, Arm arm, Trigger toggle) {
     addParallel(new ElevateToPreset(ElevatorPreset.kHatchLevelOne, ElevatorPreset.kCargoLevelOne, toggle, elevator));
-    addParallel(new ArticulateToPreset(ArmPreset.kHatchOne, ArmPreset.kHatchOne, toggle, arm));
+    addParallel(new ArticulateToPreset(ElbowPreset.kHatchOne, ElbowPreset.kHatchOne, toggle, arm));
   }
 }
