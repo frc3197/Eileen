@@ -48,8 +48,8 @@ public class AlignTurn extends Command {
         Number[] defaultValues = new Number[] {};
         Number[] contourXs = contourXsEntry.getNumberArray(defaultValues);
         Number[] contourAreas = contourAreasEntry.getNumberArray(defaultValues);
-        boolean direction = Math.abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) > RobotMap.cameraPixelWidth;
-        left =  direction ? 
+        boolean direction = Math
+                .abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) > RobotMap.cameraPixelWidth;
 
         if (contourXs.length == contourAreas.length) {
             switch (contourXs.length) {
