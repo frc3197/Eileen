@@ -50,6 +50,11 @@ public class ElevateToPreset extends Command {
     return finished;
   }
 
+  @Override
+  protected void end() {
+    elevator.drive(0, true);
+  }
+
   /**
    * Returns the speed the elevator should move at to get to the preset requested.
    * 
