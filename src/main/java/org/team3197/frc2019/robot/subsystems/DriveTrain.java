@@ -27,7 +27,7 @@ public class DriveTrain extends Subsystem {
   public boolean arcadeDrive = true;
   public boolean useGyro = false;
 
-  public AnalogGyro gyro = new AnalogGyro(Channel.kDriveGyro.channel);
+  // public AnalogGyro gyro = new AnalogGyro(Channel.kDriveGyro.channel);
 
   // Motor Controllers
   private CANSparkMax flSparkMax = new CANSparkMax(CANSparkMaxID.kFrontLeft.id, MotorType.kBrushless);
@@ -113,19 +113,20 @@ public class DriveTrain extends Subsystem {
   }
 
   private void gyroDrive(double y, double r) {
-    if (goingStraight(y, r)) {
-      if (!goingStraightPrevious) { // rising edge
-        initialGyroAngle = gyro.getAngle();
-        goingStraightPrevious = true;
-      }
-      double currentGyroAngle = gyro.getAngle();
-      double deltaAngle = (currentGyroAngle - initialGyroAngle);
-      r += GyroSensitivity.kDrive.val * Math.copySign(Math.pow(deltaAngle, 2), deltaAngle);
-      SmartDashboard.putNumber("deltaAngle", deltaAngle);
-      SmartDashboard.putNumber("r", r);
-    } else {
-      goingStraightPrevious = false;
-    }
+    // if (goingStraight(y, r)) {
+    // if (!goingStraightPrevious) { // rising edge
+    // initialGyroAngle = gyro.getAngle();
+    // goingStraightPrevious = true;
+    // }
+    // double currentGyroAngle = gyro.getAngle();
+    // double deltaAngle = (currentGyroAngle - initialGyroAngle);
+    // r += GyroSensitivity.kDrive.val * Math.copySign(Math.pow(deltaAngle, 2),
+    // deltaAngle);
+    // SmartDashboard.putNumber("deltaAngle", deltaAngle);
+    // SmartDashboard.putNumber("r", r);
+    // } else {
+    // goingStraightPrevious = false;
+    // }
     drive.arcadeDrive(y, r, true);
   }
 

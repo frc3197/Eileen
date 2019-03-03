@@ -80,7 +80,7 @@ public class Elevator extends Subsystem implements Drivable {
     // } else {
     // controller.setReference(speed, ControlType.kDutyCycle);
     // }
-    elevatorGroup.set(speed);
+    elevatorGroup.set(output);
 
   }
 
