@@ -13,7 +13,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LevelTwo extends CommandGroup {
 
   public LevelTwo(Elevator elevator, Arm arm, Trigger toggle) {
-    addSequential(new ArticulateToPreset(ElbowPreset.kHatchTwo, ElbowPreset.kCargoTwo, toggle, arm));
+    // addSequential(new ElevateToPreset(ElevatorPreset.kIntermediate,
+    // ElevatorPreset.kIntermediate, toggle, elevator));
+    // addSequential(new ArticulateToPreset(ElbowPreset.kHatchTwo,
+    // ElbowPreset.kCargoTwo, toggle, arm));
+    // addSequential(new ElevateToPreset(ElevatorPreset.kHatchLevelTwo,
+    // ElevatorPreset.kCargoLevelTwo, toggle, elevator));
+    addParallel(new ArticulateToPreset(ElbowPreset.kHatchTwo, ElbowPreset.kCargoTwo, toggle, arm));
     addParallel(new ElevateToPreset(ElevatorPreset.kHatchLevelTwo, ElevatorPreset.kCargoLevelTwo, toggle, elevator));
   }
 }

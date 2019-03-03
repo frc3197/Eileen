@@ -62,8 +62,6 @@ public class Robot extends TimedRobot {
     ElevatorPreset.kCargoLoadingLevel.pos = prefs.getDouble("kCargoLoadingLevel",
         ElevatorPreset.kCargoLoadingLevel.pos);
     ElevatorPreset.kCargoShipCargo.pos = prefs.getDouble("kCargoShipCargo", ElevatorPreset.kCargoShipCargo.pos);
-    ElevatorPreset.kElevatorIntermidate.pos = prefs.getDouble("kElevatorIntermediate",
-        ElevatorPreset.kElevatorIntermidate.pos);
 
     DeadbandType.kElevator.speed = prefs.getDouble("kElevatorDeadband", DeadbandType.kElevator.speed);
     DeadbandType.kElbow.speed = prefs.getDouble("kElbowDeadband", DeadbandType.kElbow.speed);

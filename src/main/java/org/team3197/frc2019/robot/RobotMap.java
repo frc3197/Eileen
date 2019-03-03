@@ -18,8 +18,7 @@ public class RobotMap {
   };
 
   public static enum ElbowPreset {
-    kHatchOne(77), kHatchTwo(180), kHatchThree(140), kCargoOne(100), kCargoTwo(110), kCargoThree(110), kCargoShip(94),
-    kHome(0);
+    kHatchOne(77), kHatchTwo(196), kHatchThree(196), kCargoOne(196), kCargoTwo(196), kCargoThree(196), kCargoShip(196);
     public double elbowPos;
 
     private ElbowPreset(double elbowPos) {
@@ -28,8 +27,8 @@ public class RobotMap {
   }
 
   public static enum ElevatorPreset {
-    kHatchLevelOne(-27), kHatchLevelTwo(-17), kHatchLevelThree(34), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
-    kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(25), kHome(0), kElevatorIntermidate(20);
+    kHatchLevelOne(-27), kHatchLevelTwo(-12.5), kHatchLevelThree(28), kCargoLevelOne(20), kCargoLevelTwo(20),
+    kCargoLevelThree(53), kCargoLoadingLevel(7.85), kCargoShipCargo(25);
     public double pos;
 
     private ElevatorPreset(double pos) {
@@ -80,7 +79,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(0.025);
+    kDrive(0.01), kArm(0.0175);
     public double val;
 
     private GyroSensitivity(double val) {
@@ -112,11 +111,11 @@ public class RobotMap {
     A, B;
   }
 
-  public static final double elevatorPresetThreshold = .5;
+  public static final double elevatorPresetThreshold = 1.5;
 
   public static final double wristPresetThreshold = .5;
 
-  public static final double elbowPresetThreshold = .5;
+  public static final double elbowPresetThreshold = 1.5;
 
   public static final double elevatorDegreeSensitivity = 0.15;
 

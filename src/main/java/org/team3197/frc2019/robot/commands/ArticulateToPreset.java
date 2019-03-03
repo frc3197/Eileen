@@ -50,6 +50,12 @@ public class ArticulateToPreset extends Command {
     return finished;
   }
 
+  @Override
+  protected void end() {
+    arm.elbow(0);
+    arm.wrist(0);
+  }
+
   /**
    * Returns the speed the elbow should move at to get to the preset requested.
    * 
