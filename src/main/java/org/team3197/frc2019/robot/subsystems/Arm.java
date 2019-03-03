@@ -4,6 +4,7 @@ import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import org.team3197.frc2019.robot.RobotMap;
@@ -40,7 +41,7 @@ public class Arm extends Subsystem implements Drivable {
     if (RobotMap.current == RobotType.A) {
       wrist.setInverted(false);
     } else {
-      wrist.setInverted(true);
+      wrist.setInverted(false);
     }
   }
 
@@ -87,11 +88,16 @@ public class Arm extends Subsystem implements Drivable {
     SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
     if (Math.abs(output) < DeadbandType.kWrist.speed) {
+      // if (Math.abs(gyroSpeed) < DeadbandType.kWrist.speed) {
+      // gyroSpeed = 0;
+      // }
       output = gyroSpeed;
+      // output = 0;
     } else {
       resetGyroAngle();
     }
-    // System.out.println("output: " + output);
+
+    SmartDashboard.putNumber("output", output);
     wrist.set(output);
   }
 
@@ -130,6 +136,10 @@ public class Arm extends Subsystem implements Drivable {
 
   public double getWristEncoderPosition() {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
+  }
+
+  private double getWristEncoderPositionRaw() {
+    return wrist.getEncoder().getPosition() * ((RobotMap.current == RobotType.A) ? 1 : -1);
   }
 
   private void resetEncoderPosition() {

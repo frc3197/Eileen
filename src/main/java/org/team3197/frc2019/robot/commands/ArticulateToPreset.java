@@ -1,7 +1,7 @@
 package org.team3197.frc2019.robot.commands;
 
 import org.team3197.frc2019.robot.RobotMap;
-import org.team3197.frc2019.robot.RobotMap.ArmPreset;
+import org.team3197.frc2019.robot.RobotMap.ElbowPreset;
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
 import org.team3197.frc2019.robot.subsystems.Arm;
 
@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ArticulateToPreset extends Command {
 
-  private final ArmPreset target;
-  private final ArmPreset targetWithTrigger;
+  private final ElbowPreset target;
+  private final ElbowPreset targetWithTrigger;
 
   private final Trigger toggle;
 
@@ -22,7 +22,7 @@ public class ArticulateToPreset extends Command {
   /**
    * Sets the value of the preset to the one that is intended to be moved to
    */
-  public ArticulateToPreset(ArmPreset target, ArmPreset targetWithTrigger, Trigger toggle, Arm arm) {
+  public ArticulateToPreset(ElbowPreset target, ElbowPreset targetWithTrigger, Trigger toggle, Arm arm) {
     super();
     requires(arm);
     this.target = target;
@@ -38,12 +38,11 @@ public class ArticulateToPreset extends Command {
    */
   @Override
   protected void execute() {
-    double wristSpeed = getWristSpeed();
     double elbowSpeed = getElbowSpeed();
 
     // TODO adjust the speeds here
     arm.elbow(elbowSpeed * MaxSpeeds.kArm.forwardSpeed);
-    arm.wrist(wristSpeed);
+    arm.wrist(0);
   }
 
   @Override
@@ -51,20 +50,10 @@ public class ArticulateToPreset extends Command {
     return finished;
   }
 
-  /**
-   * Returns the speed the wrist should move at to get to the preset requested.
-   * 
-   * @return
-   */
-  private double getWristSpeed() {
-    ArmPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
-
-    double error = arm.getWristEncoderPosition() - currentTarget.wristPos;
-    finished = Math.abs(error) < RobotMap.wristPresetThreshold;
-
-    double speed = -RobotMap.wristDegreeSensitivity
-        * Math.copySign(Math.pow(Math.abs(error), RobotMap.wristExponent), error);
-    return speed;
+  @Override
+  protected void end() {
+    arm.elbow(0);
+    arm.wrist(0);
   }
 
   /**
@@ -73,7 +62,7 @@ public class ArticulateToPreset extends Command {
    * @return
    */
   private double getElbowSpeed() {
-    ArmPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
+    ElbowPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
 
     double error = arm.getElbowEncoderPosition() - currentTarget.elbowPos;
     finished = Math.abs(error) < RobotMap.elbowPresetThreshold;
