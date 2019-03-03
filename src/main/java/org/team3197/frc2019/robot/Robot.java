@@ -80,8 +80,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
-    // elevator.reset.start();
-    // arm.reset.start();
   }
 
   @Override
@@ -102,7 +100,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     reset();
-    // arm.reset.start();
   }
 
   @Override
@@ -113,13 +110,12 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     reset();
-    // driveTrainTest = new DriveTrainTest();
-    // driveTrainTest.start();
+    Scheduler.getInstance().add(new DriveTrainTest(driveTrain));
   }
 
   @Override
   public void testPeriodic() {
-
+    Scheduler.getInstance().run();
   }
 
   private void reset() {
