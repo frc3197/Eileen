@@ -10,10 +10,11 @@ import org.team3197.frc2019.robot.subsystems.Elevator;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class CargoShip extends CommandGroup {
+public class Cargo extends CommandGroup {
 
-  public CargoShip(Elevator elevator, Arm arm, Trigger toggle) {
-    addSequential(new ArticulateToPreset(ElbowPreset.kCargoShip, ElbowPreset.kHome, toggle, arm));
-    addSequential(new ElevateToPreset(ElevatorPreset.kCargoShipCargo, ElevatorPreset.kHome, toggle, elevator));
+  public Cargo(Elevator elevator, Arm arm, Trigger toggle) {
+    addParallel(new ArticulateToPreset(ElbowPreset.kCargoShip, ElbowPreset.kCargoShip, toggle, arm));
+    addParallel(
+        new ElevateToPreset(ElevatorPreset.kCargoShipCargo, ElevatorPreset.kCargoLoadingLevel, toggle, elevator));
   }
 }

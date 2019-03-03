@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LevelThree extends CommandGroup {
 
   public LevelThree(Elevator elevator, Arm arm, Trigger toggle) {
-    addSequential(
+    addParallel(
         new ElevateToPreset(ElevatorPreset.kHatchLevelThree, ElevatorPreset.kCargoLevelThree, toggle, elevator));
     addParallel(new ArticulateToPreset(ElbowPreset.kHatchThree, ElbowPreset.kCargoThree, toggle, arm));
   }

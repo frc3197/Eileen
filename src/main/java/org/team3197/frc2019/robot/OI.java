@@ -1,7 +1,7 @@
 package org.team3197.frc2019.robot;
 
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
-import org.team3197.frc2019.robot.commands.presets.CargoShip;
+import org.team3197.frc2019.robot.commands.presets.Cargo;
 import org.team3197.frc2019.robot.commands.presets.LevelOne;
 import org.team3197.frc2019.robot.commands.presets.LevelThree;
 import org.team3197.frc2019.robot.commands.presets.LevelTwo;
@@ -69,7 +69,7 @@ public class OI {
                 secondaryDPadUp.whileHeld(new LevelThree(Robot.elevator, Robot.arm, secondaryA));
                 secondaryDPadRight.whileHeld(new LevelTwo(Robot.elevator, Robot.arm, secondaryA));
                 secondaryDPadDown.whileHeld(new LevelOne(Robot.elevator, Robot.arm, secondaryA));
-                secondaryDPadLeft.whileHeld(new CargoShip(Robot.elevator, Robot.arm, secondaryA));
+                secondaryDPadLeft.whileHeld(new Cargo(Robot.elevator, Robot.arm, secondaryA));
         }
 
         public static double arcadeDriveY() {
