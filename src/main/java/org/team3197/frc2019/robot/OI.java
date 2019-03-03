@@ -51,12 +51,6 @@ public class OI {
 
                 // driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                // /**
-                // * If the right bumper is pushed, then the cargo intake will move. If the
-                // right
-                // * bumper is not held, then the hatch mech will be in position.
-                // */
-
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
                 // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
@@ -72,7 +66,6 @@ public class OI {
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
-
                 secondaryDPadUp.whileHeld(new LevelThree(Robot.elevator, Robot.arm, secondaryA));
                 secondaryDPadRight.whileHeld(new LevelTwo(Robot.elevator, Robot.arm, secondaryA));
                 secondaryDPadDown.whileHeld(new LevelOne(Robot.elevator, Robot.arm, secondaryA));

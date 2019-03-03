@@ -31,7 +31,7 @@ public class RobotMap {
 
   public static enum ElevatorPreset {
     kHatchLevelOne(-25.6), kHatchLevelTwo(-6.95), kHatchLevelThree(34), kCargoLevelOne(-19), kCargoLevelTwo(25.33),
-    kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(25), kHatchLevelOneIntermediate(20), kHome(0);
+    kCargoLevelThree(60), kCargoLoadingLevel(7.85), kCargoShipCargo(25), kLevelOneIntermediate(15), kHome(0);
     public double pos;
 
     private ElevatorPreset(double pos) {
@@ -91,7 +91,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.5, -.5), kArm(.5), kHatch(1), kCargo(1, -1);
+    kElevator(.85, -.75), kArm(.75), kHatch(1), kCargo(1);
 
     public double forwardSpeed;
     public double reverseSpeed;
@@ -105,6 +105,13 @@ public class RobotMap {
       this.forwardSpeed = speed;
       this.reverseSpeed = -speed;
     }
+  }
+
+  // TODO this is bad
+  public static final RobotType current = RobotType.B;
+
+  public static enum RobotType {
+    A, B;
   }
 
   public static final double elevatorPresetThreshold = .5;

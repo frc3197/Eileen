@@ -4,22 +4,23 @@ import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.ControlType;
+
+import org.team3197.frc2019.robot.RobotMap;
+import org.team3197.frc2019.robot.RobotMap.DeadbandType;
+import org.team3197.frc2019.robot.commands.defaults.Elevate;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.team3197.frc2019.robot.RobotMap;
-import org.team3197.frc2019.robot.RobotMap.DeadbandType;
-import org.team3197.frc2019.robot.commands.defaults.Elevate;
 
 public class Elevator extends Subsystem implements Drivable {
-  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorRight.id, MotorType.kBrushless);
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorLeft.id, MotorType.kBrushless);
+  private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorRight.id, MotorType.kBrushless);
 
-  private SpeedControllerGroup elevatorGroup = new SpeedControllerGroup(right, left);
+  private SpeedControllerGroup elevatorGroup = new SpeedControllerGroup(left, right);
 
   private CANPIDController controller = right.getPIDController();
 
@@ -31,7 +32,10 @@ public class Elevator extends Subsystem implements Drivable {
 
   public Elevator() {
     super();
-    // left.setInverted(true);
+
+    left.setIdleMode(IdleMode.kBrake);
+    right.setIdleMode(IdleMode.kBrake);
+
     left.follow(right, true);
     limitReset.whenActive(reset);
   }

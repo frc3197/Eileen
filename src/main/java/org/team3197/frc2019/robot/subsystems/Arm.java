@@ -2,17 +2,21 @@ package org.team3197.frc2019.robot.subsystems;
 
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.Channel;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.RobotMap.GyroSensitivity;
+import org.team3197.frc2019.robot.RobotMap.RobotType;
 import org.team3197.frc2019.robot.commands.defaults.Articulate;
+
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Arm extends Subsystem implements Drivable {
 
@@ -29,6 +33,15 @@ public class Arm extends Subsystem implements Drivable {
 
   public Arm() {
     super();
+
+    elbow.setIdleMode(IdleMode.kBrake);
+    wrist.setIdleMode(IdleMode.kBrake);
+
+    if (RobotMap.current == RobotType.A) {
+      wrist.setInverted(false);
+    } else {
+      wrist.setInverted(true);
+    }
   }
 
   @Override
@@ -67,7 +80,7 @@ public class Arm extends Subsystem implements Drivable {
     // gyro mode centers around 0
     // if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
 
-    double deltaAngle = gyro.getAngle();
+    double deltaAngle = getAngle();
     double gyroSpeed = GyroSensitivity.kArm.val * deltaAngle;
     SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
     SmartDashboard.putNumber("deltaAngle", deltaAngle);
@@ -78,9 +91,35 @@ public class Arm extends Subsystem implements Drivable {
     } else {
       resetGyroAngle();
     }
-
+    // System.out.println("output: " + output);
     wrist.set(output);
   }
+
+  private double getAngle() {
+    if (RobotMap.current == RobotType.A) {
+      return gyro.getAngle();
+    } else {
+      return -gyro.getAngle();
+    }
+  }
+
+  public void resetGyro() {
+    gyro.reset();
+  }
+
+  public class ResetGyro extends InstantCommand {
+
+    ResetGyro() {
+      super();
+    }
+
+    @Override
+    public void initialize() {
+      resetGyro();
+    }
+  }
+
+  // TODO change when spark max releases encoder reset
 
   double resetWristEncoderPosition = 0;
   double resetElbowEncoderPosition = 0;
