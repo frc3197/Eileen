@@ -18,6 +18,7 @@ public class AlignTurn extends Command {
     private NetworkTable vision;
     private NetworkTableEntry contourXsEntry;
     private NetworkTableEntry contourAreasEntry;
+    private int turnDirection = -1;
 
     public AlignTurn(DriveTrain driveTrain) {
         super();
@@ -44,26 +45,26 @@ public class AlignTurn extends Command {
         Number[] defaultValues = new Number[] {};
         Number[] contourXs = contourXsEntry.getNumberArray(defaultValues);
         Number[] contourAreas = contourAreasEntry.getNumberArray(defaultValues);
+        boolean direction = Math
+                .abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) > RobotMap.cameraPixelWidth;
 
-        if (contourXs.length == 2) {
-            double x0 = contourXs[0].doubleValue();
-            double x1 = contourXs[1].doubleValue();
-            double midpoint = (x0 + x1) / (2 * RobotMap.xMax) - 0.5;
-            turnSpeed = -3 * Math.copySign(Math.pow(Math.abs(midpoint), 1), midpoint);
-            // If the midX is greater than the target, turn left (-)
-            System.out.println(contourXs[0] + " " + contourXs[1] + " " + midpoint + " " + turnSpeed);
-        } else {
-            turnSpeed = 0;
-        }
-        if (contourAreas.length == 2 && Math.abs(turnSpeed) < DeadbandType.kDrive.speed) {
-            double area0 = contourAreas[0].doubleValue();
-            double area1 = contourAreas[1].doubleValue();
-            double areaError = ((area0 + area1) / RobotMap.visionTargetArea) - 1;
-            verticalSpeed = .6 * areaError;
-            System.out.println((area0 + area1) + " " + areaError + " " + verticalSpeed);
-            // If totalArea is greater than the target, go backward (-)
-        } else {
-            verticalSpeed = 0;
+        if (contourXs.length == contourAreas.length) {
+            switch (contourXs.length) {
+            case (0):
+                // TODO Add rumble
+                break;
+            case (1):
+                driveTrain.tankDrive(.5 * turnDirection, -.5 * turnDirection);
+                break;
+            case (2):
+                double totalArea = contourAreas[0].doubleValue() + contourAreas[1].doubleValue();
+                driveTrain.tankDrive(contourAreas[1].doubleValue() / totalArea,
+                        contourAreas[0].doubleValue() / totalArea);
+                turnDirection = (int) (Math.abs(contourAreas[0].doubleValue() - contourAreas[1].doubleValue())
+                        / contourAreas[0].doubleValue() - contourAreas[1].doubleValue());
+                break;
+
+            }
         }
     }
 
