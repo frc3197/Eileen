@@ -4,6 +4,8 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.subsystems.DriveTrain;
@@ -45,8 +47,12 @@ public class AlignTurn extends Command {
         Number[] defaultValues = new Number[] {};
         Number[] contourXs = contourXsEntry.getNumberArray(defaultValues);
         Number[] contourAreas = contourAreasEntry.getNumberArray(defaultValues);
-        boolean direction = Math
-                .abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) > RobotMap.cameraPixelWidth;
+        System.out.println(contourXs[0]);
+        // double[] contourXsDoubles = new double[] {};
+
+        // boolean direction = Math
+        // .abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) >
+        // RobotMap.cameraPixelWidth;
 
         if (contourXs.length == contourAreas.length) {
             switch (contourXs.length) {
