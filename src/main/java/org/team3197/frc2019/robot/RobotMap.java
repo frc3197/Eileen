@@ -142,4 +142,6 @@ public class RobotMap {
   public static final double visionTargetX = .5;
 
   public static final double visionTargetArea = 32000;
+
+  public static final int cameraPixelWidth = 640;
 }
