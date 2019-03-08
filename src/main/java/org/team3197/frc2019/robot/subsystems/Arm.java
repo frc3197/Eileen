@@ -91,7 +91,7 @@ public class Arm extends Subsystem implements Drivable {
       // if (Math.abs(gyroSpeed) < DeadbandType.kWrist.speed) {
       // gyroSpeed = 0;
       // }
-      output = gyroSpeed;
+      // output = gyroSpeed;
       // output = 0;
     } else {
       resetGyroAngle();
