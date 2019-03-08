@@ -54,6 +54,7 @@ public class AlignTurn extends Command {
                 .abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) > RobotMap.cameraPixelWidth;
 
         if (contourXs.length == contourAreas.length) {
+            SmartDashboard.putNumber("length", contourXs.length);
             switch (contourXs.length) {
             case (0):
                 System.out.println("This feature has not been simulated.");
