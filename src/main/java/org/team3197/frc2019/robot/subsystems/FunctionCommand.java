@@ -13,6 +13,6 @@ public class FunctionCommand extends InstantCommand {
 
     @Override
     protected void initialize() {
-        reset.reset();
+        reset.call();
     }
 }
