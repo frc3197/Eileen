@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class FunctionCommand extends InstantCommand {
 
-    private FunctionWrapper reset;
+    private FunctionWrapper function;
 
-    public FunctionCommand(FunctionWrapper reset) {
-        this.reset = reset;
+    public FunctionCommand(FunctionWrapper function) {
+        this.function = function;
     }
 
     @Override
     protected void initialize() {
-        reset.call();
+        function.call();
     }
 }
