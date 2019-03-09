@@ -11,16 +11,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.CANSparkMaxID;
-import org.team3197.frc2019.robot.RobotMap.Channel;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
-import org.team3197.frc2019.robot.RobotMap.GyroSensitivity;
 import org.team3197.frc2019.robot.commands.defaults.Drive;
+import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem {
 
@@ -43,8 +40,8 @@ public class DriveTrain extends Subsystem {
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
 
-  public ResetCommand changeDriveGryo = new ResetCommand(this::toggleGyro);
-  public ResetCommand changeDriveMode = new ResetCommand(this::toggleMode);
+  public FunctionCommand changeDriveGryo = new FunctionCommand(this::toggleGyro);
+  public FunctionCommand changeDriveMode = new FunctionCommand(this::toggleMode);
 
   public DriveTrain() {
     super();
