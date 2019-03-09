@@ -1,6 +1,7 @@
 package org.team3197.frc2019.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import org.team3197.frc2019.robot.RobotMap.CANSparkMaxID;
@@ -14,6 +15,8 @@ public class Climber extends Subsystem {
 
   public Climber() {
     super();
+    vertical.setIdleMode(IdleMode.kBrake);
+    horizontal.setIdleMode(IdleMode.kBrake);
   }
 
   @Override
