@@ -118,6 +118,16 @@ public class OI {
                 // MaxSpeeds.kHatch.reverseSpeed);
         }
 
+        public static double climberVerticalSpeed() {
+                return (driverDPadUp.get() ? MaxSpeeds.kClimberVertical.forwardSpeed : 0)
+                                + (driverDPadDown.get() ? MaxSpeeds.kClimberVertical.reverseSpeed : 0);
+        }
+
+        public static double climberHorizontalSpeed() {
+                return (driverDPadRight.get() ? MaxSpeeds.kClimberHorizontal.forwardSpeed : 0)
+                                + (driverDPadLeft.get() ? MaxSpeeds.kClimberHorizontal.reverseSpeed : 0);
+        }
+
         public static void rumble(double speed) {
                 driver.setRumble(RumbleType.kRightRumble, speed);
                 driver.setRumble(RumbleType.kLeftRumble, speed);
