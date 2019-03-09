@@ -54,11 +54,11 @@ public class OI {
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
                 // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
-                // secondaryX.whenPressed(Robot.elevator.reset);
+                secondaryX.whenPressed(Robot.arm.toggleGyro);
 
                 // driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                secondaryY.whenPressed(Robot.arm.reset);
+                secondaryY.whenPressed(Robot.arm.resetEncoder);
                 secondaryY.whenPressed(Robot.elevator.reset);
                 secondaryB.whenPressed(Robot.arm.resetGyro);
 

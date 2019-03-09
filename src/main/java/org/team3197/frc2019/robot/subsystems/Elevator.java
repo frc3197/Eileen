@@ -28,7 +28,7 @@ public class Elevator extends Subsystem implements Drivable {
   private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
   private LimitReset limitReset = new LimitReset();
-  public ResetCommand reset = new ResetCommand(this::resetEncoderPosition);
+  public FunctionCommand reset = new FunctionCommand(this::resetEncoderPosition);
 
   public Elevator() {
     super();
