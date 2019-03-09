@@ -3,9 +3,11 @@ package org.team3197.frc2019.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.commands.defaults.Speak;
+import org.team3197.frc2019.robot.utilities.Drivable;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Hatch extends Subsystem implements Drivable {
 
