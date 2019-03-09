@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class FunctionCommand extends InstantCommand {
 
-    private Reset reset;
+    private FunctionWrapper reset;
 
-    public FunctionCommand(Reset reset) {
+    public FunctionCommand(FunctionWrapper reset) {
         this.reset = reset;
     }
 
