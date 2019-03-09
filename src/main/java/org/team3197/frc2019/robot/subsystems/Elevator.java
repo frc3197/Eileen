@@ -10,6 +10,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.commands.defaults.Elevate;
+import org.team3197.frc2019.robot.utilities.Drivable;
+import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.buttons.Trigger;
@@ -28,7 +30,7 @@ public class Elevator extends Subsystem implements Drivable {
   private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
   private LimitReset limitReset = new LimitReset();
-  public ResetCommand reset = new ResetCommand(this::resetEncoderPosition);
+  public FunctionCommand reset = new FunctionCommand(this::resetEncoderPosition);
 
   public Elevator() {
     super();

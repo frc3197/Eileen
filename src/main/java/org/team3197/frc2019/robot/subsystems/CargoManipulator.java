@@ -4,9 +4,11 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.commands.defaults.Manipulate;
+import org.team3197.frc2019.robot.utilities.Drivable;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class CargoManipulator extends Subsystem implements Drivable {
 
