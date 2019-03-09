@@ -1,4 +1,4 @@
-package org.team3197.frc2019.robot.subsystems;
+package org.team3197.frc2019.robot.utilities;
 
 @FunctionalInterface
 public interface FunctionWrapper {
