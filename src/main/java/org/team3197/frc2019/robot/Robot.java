@@ -1,19 +1,19 @@
 package org.team3197.frc2019.robot;
 
-import org.team3197.frc2019.robot.RobotMap.ElbowPreset;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
+import org.team3197.frc2019.robot.RobotMap.ElbowPreset;
 import org.team3197.frc2019.robot.RobotMap.ElevatorPreset;
 import org.team3197.frc2019.robot.RobotMap.GyroSensitivity;
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
 import org.team3197.frc2019.robot.commands.test.DriveTrainTest;
 import org.team3197.frc2019.robot.subsystems.Arm;
 import org.team3197.frc2019.robot.subsystems.CargoManipulator;
+import org.team3197.frc2019.robot.subsystems.Climber;
 import org.team3197.frc2019.robot.subsystems.DriveTrain;
 import org.team3197.frc2019.robot.subsystems.Elevator;
 import org.team3197.frc2019.robot.subsystems.Erector;
 import org.team3197.frc2019.robot.subsystems.Hatch;
 
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   public static CargoManipulator manipulator = new CargoManipulator();
   public static Hatch hatch = new Hatch();
   public static Erector erector = new Erector();
+  public static Climber climber = new Climber();
 
   public static PowerDistributionPanel pdp = new PowerDistributionPanel(0);
 
