@@ -6,7 +6,7 @@ public class RobotMap {
     kFrontLeft(14, "FrontLeft"), kBackLeft(15, "BackLeft"), kFrontRight(1, "FrontRight"), kBackRight(16, "BackRight"),
     kElevatorLeft(2, "ElevatorLeft"), kElevatorRight(13, "ElevatorRight"), kWrist(12, "Wrist"), kElbow(3, "Elbow"),
     kCargoManipulator(11, "CargoManipulator"), kHatch(10, "Hatch"), kErectorLeft(5, "ErectorLeft"),
-    kErectorRight(4, "ErectorRight");
+    kErectorRight(4, "ErectorRight"), kLiftVertical(8, "LiftVertical"), kLiftHorizontal(9, "LiftHorizontal");
 
     public final int id;
     public final String name;
@@ -88,7 +88,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.7, -.5), kArm(.6), kWrist(.45), kHatch(1), kCargo(1);
+    kElevator(.7, -.5), kArm(.6), kWrist(.45), kHatch(1), kCargo(1), kClimberVertical(.25), kClimberHorizontal(.25);
 
     public double forwardSpeed;
     public double reverseSpeed;

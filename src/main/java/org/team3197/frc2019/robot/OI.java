@@ -54,11 +54,11 @@ public class OI {
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
                 // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
-                // secondaryX.whenPressed(Robot.elevator.reset);
+                secondaryX.whenPressed(Robot.arm.toggleGyro);
 
                 // driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
 
-                secondaryY.whenPressed(Robot.arm.reset);
+                secondaryY.whenPressed(Robot.arm.resetEncoder);
                 secondaryY.whenPressed(Robot.elevator.reset);
                 secondaryB.whenPressed(Robot.arm.resetGyro);
 
@@ -116,6 +116,16 @@ public class OI {
                                 + (driverRightBumper.get() ? MaxSpeeds.kHatch.reverseSpeed : 0);
                 // return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed :
                 // MaxSpeeds.kHatch.reverseSpeed);
+        }
+
+        public static double climberVerticalSpeed() {
+                return (driverDPadUp.get() ? MaxSpeeds.kClimberVertical.forwardSpeed : 0)
+                                + (driverDPadDown.get() ? MaxSpeeds.kClimberVertical.reverseSpeed : 0);
+        }
+
+        public static double climberHorizontalSpeed() {
+                return (driverDPadRight.get() ? MaxSpeeds.kClimberHorizontal.forwardSpeed : 0)
+                                + (driverDPadLeft.get() ? MaxSpeeds.kClimberHorizontal.reverseSpeed : 0);
         }
 
         public static void rumble(double speed) {
