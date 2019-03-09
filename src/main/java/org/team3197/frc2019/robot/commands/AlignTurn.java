@@ -34,8 +34,9 @@ public class AlignTurn extends Command {
 
     @Override
     protected void execute() {
+        System.out.println("Inside execute");
         getContourParameters();
-        driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
+        System.out.println("After Get Contour");
     }
 
     @Override
@@ -44,14 +45,15 @@ public class AlignTurn extends Command {
     }
 
     private void getContourParameters() {
+        System.out.println("Inside the function!");
         Number[] defaultValues = new Number[] {};
         Number[] contourXs = contourXsEntry.getNumberArray(defaultValues);
         Number[] contourAreas = contourAreasEntry.getNumberArray(defaultValues);
         System.out.println(contourXs[0]);
-        double[] contourXsDoubles = new double[] {};
 
-        boolean direction = Math
-                .abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) > RobotMap.cameraPixelWidth;
+        // boolean direction = Math
+        // .abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) >
+        // RobotMap.cameraPixelWidth;
 
         if (contourXs.length == contourAreas.length) {
             SmartDashboard.putNumber("length", contourXs.length);
