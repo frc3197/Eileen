@@ -12,6 +12,8 @@ import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.RobotMap.GyroSensitivity;
 import org.team3197.frc2019.robot.RobotMap.RobotType;
 import org.team3197.frc2019.robot.commands.defaults.Articulate;
+import org.team3197.frc2019.robot.utilities.Drivable;
+import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.InstantCommand;
