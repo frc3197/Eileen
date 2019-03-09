@@ -39,8 +39,8 @@ public class DriveTrain extends Subsystem {
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxPrimaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
   HashMap<CANSparkMax, CANDigitalInput> sparkMaxSecondaryLimitSwitches = new HashMap<CANSparkMax, CANDigitalInput>();
 
-  public ResetCommand changeDriveGryo = new ResetCommand(this::toggleGyro);
-  public ResetCommand changeDriveMode = new ResetCommand(this::toggleMode);
+  public FunctionCommand changeDriveGryo = new FunctionCommand(this::toggleGyro);
+  public FunctionCommand changeDriveMode = new FunctionCommand(this::toggleMode);
 
   public DriveTrain() {
     super();
