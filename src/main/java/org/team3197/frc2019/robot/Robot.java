@@ -123,7 +123,7 @@ public class Robot extends TimedRobot {
     arm.resetGyro.start();
     if (resetEncoders) {
       elevator.reset.start();
-      arm.reset.start();
+      arm.resetEncoder.start();
       resetEncoders = false;
     }
   }
