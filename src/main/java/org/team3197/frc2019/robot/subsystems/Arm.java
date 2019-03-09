@@ -2,7 +2,6 @@ package org.team3197.frc2019.robot.subsystems;
 
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
-import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -29,8 +28,12 @@ public class Arm extends Subsystem implements Drivable {
 
   public AnalogGyro gyro = new AnalogGyro(Channel.kWristGyro.channel);
 
-  public ResetCommand reset = new ResetCommand(this::resetEncoderPosition);
-  public ResetCommand resetGyro = new ResetCommand(this::resetGyroAngle);
+  public FunctionCommand resetEncoder = new FunctionCommand(this::resetEncoderPosition);
+  public FunctionCommand resetGyro = new FunctionCommand(this::resetGyroAngle);
+
+  public FunctionCommand toggleGyro = new FunctionCommand(this::toggleGyro);
+
+  private boolean useGyro = true;
 
   public Arm() {
     super();
@@ -71,28 +74,14 @@ public class Arm extends Subsystem implements Drivable {
   public void wrist(double speed) {
     double output = speed;
 
-    // Stops the wrist from constaltly moving upwards when not being moved by the
-    // joystick
-    // if (Math.abs(output) < DeadbandType.kWrist.speed) {
-    // output = 0;// -DeadbandType.kWrist.speed;
-    // }
-    // SmartDashboard.putNumber("wristOutput", output);
-
-    // gyro mode centers around 0
-    // if (!wristLimit.get() && Math.abs(output) < DeadbandType.kWrist.speed) {
-
     double deltaAngle = getAngle();
     double gyroSpeed = GyroSensitivity.kArm.val * deltaAngle;
     SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
     SmartDashboard.putNumber("deltaAngle", deltaAngle);
     SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
-    if (Math.abs(output) < DeadbandType.kWrist.speed) {
-      // if (Math.abs(gyroSpeed) < DeadbandType.kWrist.speed) {
-      // gyroSpeed = 0;
-      // }
+    if (Math.abs(output) < DeadbandType.kWrist.speed && useGyro) {
       output = gyroSpeed;
-      // output = 0;
     } else {
       resetGyroAngle();
     }
@@ -149,5 +138,9 @@ public class Arm extends Subsystem implements Drivable {
 
   private void resetGyroAngle() {
     gyro.reset();
+  }
+
+  private void toggleGyro() {
+    useGyro = !useGyro;
   }
 }
