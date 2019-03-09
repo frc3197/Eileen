@@ -12,6 +12,10 @@ public class Climber extends Subsystem {
   private CANSparkMax vertical = new CANSparkMax(CANSparkMaxID.kLiftVertical.id, MotorType.kBrushless);
   private CANSparkMax horizontal = new CANSparkMax(CANSparkMaxID.kLiftHorizontal.id, MotorType.kBrushless);
 
+  public Climber() {
+    super();
+  }
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Climb(this));
