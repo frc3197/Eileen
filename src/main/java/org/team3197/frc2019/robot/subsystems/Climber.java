@@ -16,7 +16,7 @@ public class Climber extends Subsystem {
   public Climber() {
     super();
     vertical.setIdleMode(IdleMode.kBrake);
-    horizontal.setIdleMode(IdleMode.kBrake);
+    horizontal.setIdleMode(IdleMode.kCoast);
   }
 
   @Override
