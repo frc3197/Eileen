@@ -79,7 +79,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(0.0175);
+    kDrive(0.01), kArm(0.01);
     public double val;
 
     private GyroSensitivity(double val) {
@@ -88,7 +88,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.7, -.5), kArm(.6), kWrist(.45), kHatch(1), kCargo(1), kClimberVertical(.25), kClimberHorizontal(.25);
+    kElevator(.7, -.5), kArm(.6), kWrist(.45), kHatch(1), kCargo(1), kClimberVertical(.5), kClimberHorizontal(.75);
 
     public double forwardSpeed;
     public double reverseSpeed;
