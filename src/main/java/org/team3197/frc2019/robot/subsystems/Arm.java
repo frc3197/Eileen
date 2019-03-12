@@ -91,6 +91,9 @@ public class Arm extends Subsystem implements Drivable {
     wrist(0);
   }
 
+  boolean pidLast = false;
+  double referenceEncVal = 0;
+
   public void elbow(double speed) {
     double output = speed;
 
@@ -98,9 +101,15 @@ public class Arm extends Subsystem implements Drivable {
     // joystick
     if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
       // output = 0;
-      elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
+      if (!pidLast) {
+        pidLast = true;
+        referenceEncVal = elbow.getEncoder().getPosition();
+      }
+      elbow.getPIDController().setReference(referenceEncVal, ControlType.kSmartMotion);
+      // elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
     } else {
       // elbow.set(output);
+      pidLast = false;
       elbow.getPIDController().setReference(output, ControlType.kDutyCycle);
     }
     SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
