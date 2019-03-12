@@ -49,6 +49,36 @@ public class Arm extends Subsystem implements Drivable {
     } else {
       wrist.setInverted(false);
     }
+
+    final double kP = 5e-5;
+    final double kI = 1e-6;
+    final double kD = 0;
+    final double kIz = 0;
+    final double kFF = 0.000156;
+    final double kMaxOutput = 1;
+    final double kMinOutput = -1;
+    final double maxRPM = 5700;
+
+    // Smart Motion Coefficients
+    final double maxVel = 2000; // rpm
+    final double maxAcc = 1500;
+
+    // set PID coefficients
+    elbow.getPIDController().setP(kP);
+    elbow.getPIDController().setI(kI);
+    elbow.getPIDController().setD(kD);
+    elbow.getPIDController().setIZone(kIz);
+    elbow.getPIDController().setFF(kFF);
+    elbow.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
+
+    final int smartMotionSlot = 0;
+    elbow.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
+    // elbow.getPIDController().setSmartMotionMinOutputVelocity(minVel,
+    // smartMotionSlot);
+    elbow.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
+    // elbow.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr,
+    // smartMotionSlot);
+
   }
 
   @Override
