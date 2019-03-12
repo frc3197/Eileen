@@ -37,7 +37,7 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.03), kElbow(0.06), kWrist(0.06), kDrive(0.08);
+    kElevator(0.03), kElbow(0.06), kWrist(0.06), kDrive(0.08), kClimberVertical(0.05), kErector(0.05);
     public double speed;
 
     private DeadbandType(double speed) {
@@ -79,7 +79,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(0.0175);
+    kDrive(0.01), kArm(-0.01);
     public double val;
 
     private GyroSensitivity(double val) {
@@ -88,7 +88,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.7, -.5), kArm(.6), kWrist(.45), kHatch(1), kCargo(1), kClimberVertical(.25), kClimberHorizontal(.25);
+    kElevator(.7, -.5), kArm(.6), kWrist(.45), kHatch(1), kCargo(1), kClimberVertical(.5), kClimberHorizontal(.75);
 
     public double forwardSpeed;
     public double reverseSpeed;
@@ -142,4 +142,6 @@ public class RobotMap {
   public static final double visionTargetX = .5;
 
   public static final double visionTargetArea = 32000;
+
+  public static final int cameraPixelWidth = 640;
 }

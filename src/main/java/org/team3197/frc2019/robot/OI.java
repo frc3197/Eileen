@@ -1,6 +1,7 @@
 package org.team3197.frc2019.robot;
 
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
+import org.team3197.frc2019.robot.commands.AlignTurn;
 import org.team3197.frc2019.robot.commands.presets.Cargo;
 import org.team3197.frc2019.robot.commands.presets.LevelOne;
 import org.team3197.frc2019.robot.commands.presets.LevelThree;
@@ -53,6 +54,8 @@ public class OI {
 
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
+                driverB.whileHeld(new AlignTurn(Robot.driveTrain));
+                // secondaryX.whenPressed(Robot.elevator.reset);
                 // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
                 secondaryX.whenPressed(Robot.arm.toggleGyro);
 
@@ -94,11 +97,11 @@ public class OI {
         }
 
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kRight) * RobotMap.elbowSpeedMultiplier;
+                return secondary.getY(Hand.kRight) * RobotMap.elbowSpeedMultiplier;
         }
 
         public static double wristSpeed() {
-                return secondary.getY(Hand.kLeft) * RobotMap.wristSpeedMultiplier;
+                return -secondary.getY(Hand.kLeft) * RobotMap.wristSpeedMultiplier;
 
         }
 

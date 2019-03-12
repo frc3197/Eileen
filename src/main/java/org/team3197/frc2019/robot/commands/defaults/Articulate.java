@@ -20,7 +20,7 @@ public class Articulate extends Command {
   @Override
   protected void execute() {
     double elbowSpeed = OI.elbowSpeed();
-    double wristSpeed = OI.wristSpeed();
+    double wristSpeed = Math.abs(OI.wristSpeed()) > .05 ? OI.wristSpeed() : 0;
     arm.wrist(wristSpeed);
     arm.elbow(elbowSpeed);
   }

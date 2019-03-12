@@ -4,6 +4,8 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.subsystems.DriveTrain;
@@ -18,6 +20,7 @@ public class AlignTurn extends Command {
     private NetworkTable vision;
     private NetworkTableEntry contourXsEntry;
     private NetworkTableEntry contourAreasEntry;
+    private int turnDirection = -1;
 
     public AlignTurn(DriveTrain driveTrain) {
         super();
@@ -31,8 +34,9 @@ public class AlignTurn extends Command {
 
     @Override
     protected void execute() {
+        System.out.println("Inside execute");
         getContourParameters();
-        driveTrain.arcadeDrive(verticalSpeed, turnSpeed);
+        System.out.println("After Get Contour");
     }
 
     @Override
@@ -41,30 +45,38 @@ public class AlignTurn extends Command {
     }
 
     private void getContourParameters() {
+        System.out.println("Inside the function!");
         Number[] defaultValues = new Number[] {};
         Number[] contourXs = contourXsEntry.getNumberArray(defaultValues);
         Number[] contourAreas = contourAreasEntry.getNumberArray(defaultValues);
+        System.out.println(contourXs[0]);
 
-        if (contourXs.length == 2) {
-            double x0 = contourXs[0].doubleValue();
-            double x1 = contourXs[1].doubleValue();
-            double midpoint = (x0 + x1) / (2 * RobotMap.xMax) - 0.5;
-            turnSpeed = -3 * Math.copySign(Math.pow(Math.abs(midpoint), 1), midpoint);
-            // If the midX is greater than the target, turn left (-)
-            System.out.println(contourXs[0] + " " + contourXs[1] + " " + midpoint + " " + turnSpeed);
+        // boolean direction = Math
+        // .abs(contourXs[0].doubleValue() + contourXs[1].doubleValue()) >
+        // RobotMap.cameraPixelWidth;
+
+        if (contourXs.length == contourAreas.length) {
+            SmartDashboard.putNumber("length", contourXs.length);
+            switch (contourXs.length) {
+            case (0):
+                System.out.println("This feature has not been simulated.");
+                // TODO Add rumble
+                break;
+            case (1):
+                System.out.println("This feature is simulated, but probably broken.");
+                driveTrain.tankDrive(.5 * turnDirection, -.5 * turnDirection);
+                break;
+            case (2):
+                System.out.println("You have done exactly what our instructions neglected to tell you.");
+                double totalArea = contourAreas[0].doubleValue() + contourAreas[1].doubleValue();
+                driveTrain.tankDrive(contourAreas[1].doubleValue() / totalArea,
+                        contourAreas[0].doubleValue() / totalArea);
+                turnDirection = (int) (Math.abs(contourAreas[0].doubleValue() - contourAreas[1].doubleValue())
+                        / contourAreas[0].doubleValue() - contourAreas[1].doubleValue());
+                break;
+            }
         } else {
-            turnSpeed = 0;
-        }
-        if (contourAreas.length == 2 && Math.abs(turnSpeed) < DeadbandType.kDrive.speed) {
-            double area0 = contourAreas[0].doubleValue();
-            double area1 = contourAreas[1].doubleValue();
-            double areaError = ((area0 + area1) / RobotMap.visionTargetArea) - 1;
-            verticalSpeed = .6 * areaError;
-            System.out.println((area0 + area1) + " " + areaError + " " + verticalSpeed);
-            // If totalArea is greater than the target, go backward (-)
-        } else {
-            verticalSpeed = 0;
+            driveTrain.tankDrive(.5 * turnDirection, -.5 * turnDirection);
         }
     }
-
 }

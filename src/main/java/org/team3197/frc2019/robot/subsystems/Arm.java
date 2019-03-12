@@ -3,6 +3,7 @@ package org.team3197.frc2019.robot.subsystems;
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -48,6 +49,36 @@ public class Arm extends Subsystem implements Drivable {
     } else {
       wrist.setInverted(false);
     }
+
+    final double kP = 5e-5;
+    final double kI = 1e-6;
+    final double kD = 0;
+    final double kIz = 0;
+    final double kFF = 0.000156;
+    final double kMaxOutput = 1;
+    final double kMinOutput = -1;
+    final double maxRPM = 5700;
+
+    // Smart Motion Coefficients
+    final double maxVel = 2000; // rpm
+    final double maxAcc = 1500;
+
+    // set PID coefficients
+    elbow.getPIDController().setP(kP);
+    elbow.getPIDController().setI(kI);
+    elbow.getPIDController().setD(kD);
+    elbow.getPIDController().setIZone(kIz);
+    elbow.getPIDController().setFF(kFF);
+    elbow.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
+
+    final int smartMotionSlot = 0;
+    elbow.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
+    // elbow.getPIDController().setSmartMotionMinOutputVelocity(minVel,
+    // smartMotionSlot);
+    elbow.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
+    // elbow.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr,
+    // smartMotionSlot);
+
   }
 
   @Override
@@ -60,17 +91,30 @@ public class Arm extends Subsystem implements Drivable {
     wrist(0);
   }
 
+  boolean pidLast = false;
+  double referenceEncVal = 0;
+
   public void elbow(double speed) {
     double output = speed;
 
-    // Stops the elbow from constaltly moving upwards when not being moved by the
+    // Stops the elbow from constantly moving upwards when not being moved by the
     // joystick
     if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
-      output = 0;
+      // output = 0;
+      if (!pidLast) {
+        pidLast = true;
+        referenceEncVal = elbow.getEncoder().getPosition();
+      }
+      // elbow.getPIDController().setReference(referenceEncVal,
+      // ControlType.kSmartMotion);
+      elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
+    } else {
+      // elbow.set(output);
+      pidLast = false;
+      elbow.getPIDController().setReference(output, ControlType.kDutyCycle);
     }
     SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
 
-    elbow.set(output);
   }
 
   public void wrist(double speed) {
@@ -82,7 +126,7 @@ public class Arm extends Subsystem implements Drivable {
     SmartDashboard.putNumber("deltaAngle", deltaAngle);
     SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
-    if (Math.abs(output) < DeadbandType.kWrist.speed && useGyro) {
+    if (Math.abs(output) < DeadbandType.kWrist.speed) {// && useGyro) {
       output = gyroSpeed;
     } else {
       resetGyroAngle();
