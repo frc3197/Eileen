@@ -97,11 +97,11 @@ public class OI {
         }
 
         public static double elbowSpeed() {
-                return -secondary.getY(Hand.kRight) * RobotMap.elbowSpeedMultiplier;
+                return secondary.getY(Hand.kRight) * RobotMap.elbowSpeedMultiplier;
         }
 
         public static double wristSpeed() {
-                return secondary.getY(Hand.kLeft) * RobotMap.wristSpeedMultiplier;
+                return -secondary.getY(Hand.kLeft) * RobotMap.wristSpeedMultiplier;
 
         }
 
