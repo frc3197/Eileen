@@ -3,6 +3,7 @@ package org.team3197.frc2019.robot.subsystems;
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -66,11 +67,14 @@ public class Arm extends Subsystem implements Drivable {
     // Stops the elbow from constaltly moving upwards when not being moved by the
     // joystick
     if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
-      output = 0;
+      // output = 0;
+      elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
+    } else {
+      // elbow.set(output);
+      elbow.getPIDController().setReference(output, ControlType.kDutyCycle);
     }
     SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
 
-    elbow.set(output);
   }
 
   public void wrist(double speed) {
