@@ -97,7 +97,7 @@ public class Arm extends Subsystem implements Drivable {
   public void elbow(double speed) {
     double output = speed;
 
-    // Stops the elbow from constaltly moving upwards when not being moved by the
+    // Stops the elbow from constantly moving upwards when not being moved by the
     // joystick
     if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
       // output = 0;
@@ -105,8 +105,9 @@ public class Arm extends Subsystem implements Drivable {
         pidLast = true;
         referenceEncVal = elbow.getEncoder().getPosition();
       }
-      elbow.getPIDController().setReference(referenceEncVal, ControlType.kSmartMotion);
-      // elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
+      // elbow.getPIDController().setReference(referenceEncVal,
+      // ControlType.kSmartMotion);
+      elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
     } else {
       // elbow.set(output);
       pidLast = false;
