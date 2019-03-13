@@ -18,7 +18,7 @@ public class RobotMap {
   };
 
   public static enum ElbowPreset {
-    kHatchOne(77), kHatchTwo(196), kHatchThree(196), kCargoOne(196), kCargoTwo(196), kCargoThree(196), kCargoShip(196);
+    kHatchOne(-17), kHatchTwo(-38), kHatchThree(-38), kCargoOne(-38), kCargoTwo(-38), kCargoThree(-38), kCargoShip(-38);
     public double elbowPos;
 
     private ElbowPreset(double elbowPos) {
@@ -27,7 +27,7 @@ public class RobotMap {
   }
 
   public static enum ElevatorPreset {
-    kHatchLevelOne(-27), kHatchLevelTwo(-12.5), kHatchLevelThree(28), kCargoLevelOne(20), kCargoLevelTwo(20),
+    kHatchLevelOne(-27), kHatchLevelTwo(-12.5), kHatchLevelThree(30), kCargoLevelOne(20), kCargoLevelTwo(20),
     kCargoLevelThree(53), kCargoLoadingLevel(7.85), kCargoShipCargo(25);
     public double pos;
 
