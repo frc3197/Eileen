@@ -121,6 +121,7 @@ public class Robot extends TimedRobot {
 
   private void reset() {
     arm.resetGyro.start();
+    erector.resetPID.start();
     if (resetEncoders) {
       elevator.reset.start();
       arm.resetEncoder.start();

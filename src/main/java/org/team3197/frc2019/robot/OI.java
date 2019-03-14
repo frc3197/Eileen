@@ -106,7 +106,7 @@ public class OI {
         }
 
         public static double erectorSpeed() {
-                return driver.getTriggerAxis(Hand.kRight) - driver.getTriggerAxis(Hand.kLeft);
+                return driver.getTriggerAxis(Hand.kLeft) - driver.getTriggerAxis(Hand.kRight);
         }
 
         public static double manipulatorSpeed() {
