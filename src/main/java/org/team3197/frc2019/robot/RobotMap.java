@@ -105,7 +105,7 @@ public class RobotMap {
   }
 
   // TODO this is bad
-  public static final RobotType current = RobotType.B;
+  public static final RobotType current = RobotType.A;
 
   public static enum RobotType {
     A, B;
