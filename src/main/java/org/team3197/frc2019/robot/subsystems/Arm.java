@@ -37,6 +37,27 @@ public class Arm extends Subsystem implements Drivable {
   public FunctionCommand toggleGyro = new FunctionCommand(this::toggleGyro);
 
   private boolean useGyro = true;
+  final double kP = 5e-5;
+
+  final double kI = 1e-6;
+
+  final double kD = 0;
+
+  final double kIz = 0;
+
+  final double kFF = 0.000156;
+
+  final double kMaxOutput = 1;
+
+  final double kMinOutput = -1;
+
+  final double maxRPM = 3360;
+
+  // Smart Motion Coefficients
+
+  final double maxVel = 2000; // rpm
+
+  final double maxAcc = 1500;
 
   public Arm() {
     super();
@@ -49,28 +70,6 @@ public class Arm extends Subsystem implements Drivable {
     } else {
       wrist.setInverted(false);
     }
-
-    final double kP = 5e-5;
-
-    final double kI = 1e-6;
-
-    final double kD = 0;
-
-    final double kIz = 0;
-
-    final double kFF = 0.000156;
-
-    final double kMaxOutput = 1;
-
-    final double kMinOutput = -1;
-
-    final double maxRPM = 5700;
-
-    // Smart Motion Coefficients
-
-    final double maxVel = 2000; // rpm
-
-    final double maxAcc = 1500;
 
     // set PID coefficients
 
@@ -131,7 +130,9 @@ public class Arm extends Subsystem implements Drivable {
     } else {
       // elbow.set(output);
       pidLast = false;
-      elbow.getPIDController().setReference(output, ControlType.kDutyCycle);
+      // elbow.getPIDController().setReference(output, ControlType.kDutyCycle);
+      double rpm = output * maxRPM;
+      elbow.getPIDController().setReference(rpm, ControlType.kSmartVelocity);
     }
     SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
 
