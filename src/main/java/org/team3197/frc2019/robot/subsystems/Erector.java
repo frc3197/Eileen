@@ -77,6 +77,7 @@ public class Erector extends Subsystem implements Drivable {
   private void resetPID() {
     encoderLastLeft = left.getEncoder().getPosition();
     encoderLastRight = right.getEncoder().getPosition();
+    stoppedLast = true;
   }
 
   public void drive(double speed, boolean hold) {
@@ -84,9 +85,7 @@ public class Erector extends Subsystem implements Drivable {
     SmartDashboard.putNumber("speed1", speed);
     if (hold && Math.abs(speed) < DeadbandType.kErector.speed) {
       if (!stoppedLast) {
-        stoppedLast = true;
-        encoderLastLeft = left.getEncoder().getPosition();
-        encoderLastRight = right.getEncoder().getPosition();
+        resetPID();
       }
       right.getPIDController().setReference(encoderLastRight, ControlType.kPosition);
       left.getPIDController().setReference(encoderLastLeft, ControlType.kPosition);
