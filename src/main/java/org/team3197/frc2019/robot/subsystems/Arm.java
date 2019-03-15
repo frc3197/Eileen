@@ -154,7 +154,7 @@ public class Arm extends Subsystem implements Drivable {
     }
 
     SmartDashboard.putNumber("output", output);
-    wrist.set(output);
+    wrist.set(-output);
   }
 
   private double getAngle() {
