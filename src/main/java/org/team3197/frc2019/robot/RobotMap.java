@@ -79,7 +79,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(-0.01);
+    kDrive(0.01), kArm(-0.005);
     public double val;
 
     private GyroSensitivity(double val) {
@@ -88,7 +88,7 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.7, -.5), kArm(.6), kWrist(.45), kHatch(1), kCargo(1), kClimberVertical(.5), kClimberHorizontal(.75);
+    kElevator(.7, -.5), kArm(.55), kWrist(.30), kHatch(1), kCargo(1), kClimberVertical(.7), kClimberHorizontal(.9);
 
     public double forwardSpeed;
     public double reverseSpeed;
@@ -105,7 +105,7 @@ public class RobotMap {
   }
 
   // TODO this is bad
-  public static final RobotType current = RobotType.B;
+  public static final RobotType current = RobotType.A;
 
   public static enum RobotType {
     A, B;
