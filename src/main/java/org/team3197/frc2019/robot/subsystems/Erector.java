@@ -9,6 +9,7 @@ import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.commands.defaults.Erect;
 import org.team3197.frc2019.robot.utilities.Drivable;
+import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -68,17 +69,23 @@ public class Erector extends Subsystem implements Drivable {
   }
 
   boolean stoppedLast = false;
-  double encoderLastLeft = 0;
-  double encoderLastRight = 0;
+  private double encoderLastLeft = 0;
+  private double encoderLastRight = 0;
+
+  public FunctionCommand resetPID = new FunctionCommand(this::resetPID);
+
+  private void resetPID() {
+    encoderLastLeft = left.getEncoder().getPosition();
+    encoderLastRight = right.getEncoder().getPosition();
+    stoppedLast = true;
+  }
 
   public void drive(double speed, boolean hold) {
     // erectorGroup.set(speed);
     SmartDashboard.putNumber("speed1", speed);
     if (hold && Math.abs(speed) < DeadbandType.kErector.speed) {
       if (!stoppedLast) {
-        stoppedLast = true;
-        encoderLastLeft = left.getEncoder().getPosition();
-        encoderLastRight = right.getEncoder().getPosition();
+        resetPID();
       }
       right.getPIDController().setReference(encoderLastRight, ControlType.kPosition);
       left.getPIDController().setReference(encoderLastLeft, ControlType.kPosition);

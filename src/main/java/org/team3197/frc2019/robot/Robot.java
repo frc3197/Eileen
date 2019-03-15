@@ -16,10 +16,12 @@ import org.team3197.frc2019.robot.subsystems.Hatch;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
 
@@ -48,6 +50,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("Time", DriverStation.getInstance().getMatchTime());
+
     ElbowPreset.kHatchOne.elbowPos = prefs.getDouble("kHatchLevelOne", ElbowPreset.kHatchOne.elbowPos);
     ElbowPreset.kHatchTwo.elbowPos = prefs.getDouble("kHatchLevelTwo", ElbowPreset.kHatchTwo.elbowPos);
     ElbowPreset.kHatchThree.elbowPos = prefs.getDouble("kHatchLevelThree", ElbowPreset.kHatchThree.elbowPos);
@@ -121,6 +125,7 @@ public class Robot extends TimedRobot {
 
   private void reset() {
     arm.resetGyro.start();
+    erector.resetPID.start();
     if (resetEncoders) {
       elevator.reset.start();
       arm.resetEncoder.start();
