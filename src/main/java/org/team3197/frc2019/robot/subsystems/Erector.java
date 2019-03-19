@@ -20,8 +20,6 @@ public class Erector extends Subsystem implements Drivable {
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorLeft.id, MotorType.kBrushless);
   private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorRight.id, MotorType.kBrushless);
 
-  private SpeedControllerGroup erectorGroup = new SpeedControllerGroup(left, right);
-
   public Erector() {
     super();
 
