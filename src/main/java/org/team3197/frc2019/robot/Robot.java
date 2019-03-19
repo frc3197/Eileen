@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
   public static Erector erector = new Erector();
   public static Climber climber = new Climber();
 
-  public static PowerDistributionPanel pdp = new PowerDistributionPanel(0);
+  // public static PowerDistributionPanel pdp = new PowerDistributionPanel(0);
 
   public static DriveTrainTest driveTrainTest;
 
