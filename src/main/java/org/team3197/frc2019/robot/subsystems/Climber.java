@@ -43,11 +43,9 @@ public class Climber extends Subsystem {
 
     final int smartMotionSlot = 0;
     vertical.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-    // elbow.getPIDController().setSmartMotionMinOutputVelocity(minVel,
-    // smartMotionSlot);
+
     vertical.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
-    // elbow.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr,
-    // smartMotionSlot);
+
   }
 
   @Override
@@ -60,16 +58,13 @@ public class Climber extends Subsystem {
 
   public void driveVertical(double speed) {
     if (Math.abs(speed) < DeadbandType.kClimberVertical.speed) {
-      // output = 0;
       if (!pidLast) {
         pidLast = true;
         referenceEncVal = vertical.getEncoder().getPosition();
       }
-      // vertical.getPIDController().setReference(referenceEncVal,
-      // ControlType.kSmartMotion);
+
       vertical.getPIDController().setReference(0, ControlType.kSmartVelocity);
     } else {
-      // vertical.set(output);
       pidLast = false;
       vertical.getPIDController().setReference(speed, ControlType.kDutyCycle);
     }
