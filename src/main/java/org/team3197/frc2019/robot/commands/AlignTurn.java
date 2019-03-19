@@ -1,14 +1,12 @@
 package org.team3197.frc2019.robot.commands;
 
+import org.team3197.frc2019.robot.subsystems.DriveTrain;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.team3197.frc2019.robot.RobotMap;
-import org.team3197.frc2019.robot.RobotMap.DeadbandType;
-import org.team3197.frc2019.robot.subsystems.DriveTrain;
 
 public class AlignTurn extends Command {
 

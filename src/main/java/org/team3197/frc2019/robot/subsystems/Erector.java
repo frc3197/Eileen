@@ -1,9 +1,9 @@
 package org.team3197.frc2019.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.ControlType;
 
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
@@ -11,7 +11,6 @@ import org.team3197.frc2019.robot.commands.defaults.Erect;
 import org.team3197.frc2019.robot.utilities.Drivable;
 import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
