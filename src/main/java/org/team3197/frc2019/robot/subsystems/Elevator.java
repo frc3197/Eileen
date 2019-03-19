@@ -59,29 +59,12 @@ public class Elevator extends Subsystem implements Drivable {
     if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
       output = DeadbandType.kElevator.speed;
     }
-    // if (topLimit.get()) {
-    // output = Math.min(output, 0);
-    // } // If top pressed(returning a zero value), only drive negative
-    // if (bottomLimit.get()) {
-    // output = Math.max(output, 0);
-    // } // If bottom pressed, only drive positive
-    // if (getEncoderPosition() < -15) {
-    // output = DeadbandType.kElevator.speed * (-15 / getEncoderPosition());
-    // }
 
-    // TODO Change me
-    // if ((!bottomLimit.get() && (Math.abs(speed) < DeadbandType.kElevator.speed)))
-    // {
-    // if (lastDriving) {
-    // lastDriving = false;
-    // encoderTarget = getRawEncoderPosition();
-    // }
-
-    // if (hold) {
-    // controller.setReference(encoderTarget, ControlType.kSmartMotion);
-    // } else {
-    // controller.setReference(speed, ControlType.kDutyCycle);
-    // }
+    // TODO: add elevator PID
+    /*
+     * if (hold) { controller.setReference(encoderTarget, ControlType.kSmartMotion);
+     * } else { controller.setReference(speed, ControlType.kDutyCycle); }
+     */
     elevatorGroup.set(output);
 
   }
