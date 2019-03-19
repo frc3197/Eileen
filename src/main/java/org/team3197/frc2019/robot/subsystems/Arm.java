@@ -53,9 +53,9 @@ public class Arm extends Subsystem implements Drivable {
 
   final double maxRPM = 3360;
 
-  final double maxVel = 2000;
+  // final double maxVel = 2000;
 
-  final double maxAcc = 1500;
+  // final double maxAcc = 1500;
 
   public Arm() {
     super();
@@ -85,9 +85,9 @@ public class Arm extends Subsystem implements Drivable {
 
     final int smartMotionSlot = 0;
 
-    elbow.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
+    // elbow.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
 
-    elbow.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
+    // elbow.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
   }
 
   @Override
@@ -184,6 +184,7 @@ public class Arm extends Subsystem implements Drivable {
     return wrist.getEncoder().getPosition() - resetWristEncoderPosition;
   }
 
+  // TODO this is ugly please fix
   private double getWristEncoderPositionRaw() {
     return wrist.getEncoder().getPosition() * ((RobotMap.current == RobotType.A) ? 1 : -1);
   }

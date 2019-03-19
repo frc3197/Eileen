@@ -36,9 +36,8 @@ public class Erector extends Subsystem implements Drivable {
     final double kMaxOutput = 1;
     final double kMinOutput = -1;
 
-    // Smart Motion Coefficients
-    final double maxVel = 2000; // rpm
-    final double maxAcc = 1500;
+    // final double maxVel = 2000;
+    // final double maxAcc = 1500;
 
     // set PID coefficients
     left.getPIDController().setP(kP);
@@ -54,11 +53,11 @@ public class Erector extends Subsystem implements Drivable {
     right.getPIDController().setFF(kFF);
     right.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
 
-    final int smartMotionSlot = 0;
-    left.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-    left.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
-    right.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-    right.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
+    // final int smartMotionSlot = 0;
+    // left.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
+    // left.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
+    // right.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
+    // right.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
   }
 
   @Override
