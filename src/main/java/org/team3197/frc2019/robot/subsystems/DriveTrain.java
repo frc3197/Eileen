@@ -1,15 +1,9 @@
 package org.team3197.frc2019.robot.subsystems;
 
-import java.util.HashMap;
-
-import com.revrobotics.CANDigitalInput;
-import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
-import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.CANSparkMaxID;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.commands.defaults.Drive;
@@ -68,7 +62,7 @@ public class DriveTrain extends Subsystem {
     }
   }
 
-  //TODO: convert to PID?
+  // TODO: convert to PID?
   private boolean goingStraightPrevious = false;
   private double initialGyroAngle;
 
