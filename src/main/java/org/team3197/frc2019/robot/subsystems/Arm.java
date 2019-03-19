@@ -53,9 +53,7 @@ public class Arm extends Subsystem implements Drivable {
 
   final double maxRPM = 3360;
 
-  // Smart Motion Coefficients
-
-  final double maxVel = 2000; // rpm
+  final double maxVel = 2000;
 
   final double maxAcc = 1500;
 
@@ -89,15 +87,7 @@ public class Arm extends Subsystem implements Drivable {
 
     elbow.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
 
-    // elbow.getPIDController().setSmartMotionMinOutputVelocity(minVel,
-
-    // smartMotionSlot);
-
     elbow.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
-
-    // elbow.getPIDController().setSmartMotionAllowedClosedLoopError(allowedErr,
-    // smartMotionSlot);
-
   }
 
   @Override
