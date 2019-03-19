@@ -46,20 +46,12 @@ public class OI {
         private static JoystickButton secondaryLeftBumper = new JoystickButton(secondary, 5);
 
         static {
-                // driverDPadUp.whenPressed(Robot.driveTrain.changeDriveMode);
-
-                // driverDPadRight.whileHeld(new AlignTurn(Robot.driveTrain));
-
-                // driverDPadLeft.whenPressed(Robot.driveTrain.changeDriveGryo);
 
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
                 driverB.whileHeld(new AlignTurn(Robot.driveTrain));
-                // secondaryX.whenPressed(Robot.elevator.reset);
-                // driverB.whileHeld(new AlignTurn(Robot.driveTrain));
-                secondaryX.whenPressed(Robot.arm.toggleGyro);
 
-                // driverY.whenPressed(Robot.driveTrain.changeDriveGryo);
+                secondaryX.whenPressed(Robot.arm.toggleGyro);
 
                 secondaryY.whenPressed(Robot.arm.resetEncoder);
                 secondaryY.whenPressed(Robot.elevator.reset);
@@ -117,8 +109,6 @@ public class OI {
         public static double hatchSpeed() {
                 return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed : 0)
                                 + (driverRightBumper.get() ? MaxSpeeds.kHatch.reverseSpeed : 0);
-                // return (driverLeftBumper.get() ? MaxSpeeds.kHatch.forwardSpeed :
-                // MaxSpeeds.kHatch.reverseSpeed);
         }
 
         public static double climberVerticalSpeed() {
