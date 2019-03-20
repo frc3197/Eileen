@@ -49,15 +49,15 @@ public class RobotMap {
     LEFT, RIGHT, BOTH;
   }
 
-  public static enum CANSparkPID {
-    P(0), I(0), D(0), F(0);
+  // public static enum CANSparkPID {
+  // P(0), I(0), D(0), F(0);
 
-    public final double val;
+  // public final double val;
 
-    private CANSparkPID(double val) {
-      this.val = val;
-    }
-  };
+  // private CANSparkPID(double val) {
+  // this.val = val;
+  // }
+  // };
 
   public static enum ElevatorPID {
     P(0), I(0), D(0), F(0);

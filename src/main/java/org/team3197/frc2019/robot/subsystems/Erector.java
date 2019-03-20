@@ -51,12 +51,6 @@ public class Erector extends Subsystem implements Drivable {
     right.getPIDController().setIZone(kIz);
     right.getPIDController().setFF(kFF);
     right.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
-
-    // final int smartMotionSlot = 0;
-    // left.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-    // left.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
-    // right.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-    // right.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
   }
 
   @Override
@@ -77,7 +71,6 @@ public class Erector extends Subsystem implements Drivable {
   }
 
   public void drive(double speed, boolean hold) {
-    // erectorGroup.set(speed);
     SmartDashboard.putNumber("speed1", speed);
     if (hold && Math.abs(speed) < DeadbandType.kErector.speed) {
       if (!stoppedLast) {
