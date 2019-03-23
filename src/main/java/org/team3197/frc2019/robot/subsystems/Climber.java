@@ -63,7 +63,7 @@ public class Climber extends Subsystem {
         referenceEncVal = vertical.getEncoder().getPosition();
       }
 
-      vertical.getPIDController().setReference(0, ControlType.kSmartVelocity);
+      vertical.getPIDController().setReference(0, ControlType.kSmartVelocity); // Try replacing 0 with referenceEval
     } else {
       pidLast = false;
       vertical.getPIDController().setReference(speed, ControlType.kDutyCycle);

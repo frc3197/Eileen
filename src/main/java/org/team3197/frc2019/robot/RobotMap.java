@@ -71,7 +71,7 @@ public class RobotMap {
   };
 
   public static enum Channel {
-    kDriveGyro(0), kWristGyro(1), kClimberGyro(2);
+    kWristGyro(0), kClimberGyro(1);
     public final int channel;
 
     private Channel(int channel) {
@@ -89,7 +89,8 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.7, -.5), kArm(.38), kWrist(.10), kHatch(1), kCargo(1), kClimberVertical(.7), kClimberHorizontal(.9);
+    kElevator(.7, -.5), kArm(.38), kWrist(.10), kHatch(1), kCargo(1), kClimberVertical(.7), kClimberHorizontal(.9),
+    kErector(.3);
 
     public double forwardSpeed;
     public double reverseSpeed;
@@ -135,6 +136,8 @@ public class RobotMap {
   public static final double elbowSpeedMultiplier = 0.5;
 
   public static final double wristSpeedMultiplier = 0.5;
+
+  public static final double erectorSpeedMultiplier = 0.5;
 
   public static final int gyroChannel = 0;
 

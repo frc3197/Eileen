@@ -1,5 +1,6 @@
 package org.team3197.frc2019.robot;
 
+import org.team3197.frc2019.robot.RobotMap.Channel;
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
 import org.team3197.frc2019.robot.commands.AlignTurn;
 import org.team3197.frc2019.robot.commands.AutoClimb;
@@ -50,9 +51,9 @@ public class OI {
 
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                driverB.whileHeld(new AlignTurn(Robot.driveTrain));
+                driverB.whileHeld(Robot.alignTurn);
 
-                driverY.whileHeld(new AutoClimb(Robot.climber, Robot.erector));
+                driverY.whileHeld(Robot.autoClimb);
 
                 secondaryX.whenPressed(Robot.arm.toggleGyro);
 
@@ -101,7 +102,8 @@ public class OI {
         }
 
         public static double erectorSpeed() {
-                return driver.getTriggerAxis(Hand.kLeft) - driver.getTriggerAxis(Hand.kRight);
+                return driver.getTriggerAxis(Hand.kLeft)
+                                - driver.getTriggerAxis(Hand.kRight) * RobotMap.erectorSpeedMultiplier;
         }
 
         public static double manipulatorSpeed() {

@@ -1,5 +1,7 @@
 package org.team3197.frc2019.robot;
 
+import org.team3197.frc2019.robot.commands.AlignTurn;
+import org.team3197.frc2019.robot.commands.AutoClimb;
 import org.team3197.frc2019.robot.commands.test.DriveTrainTest;
 import org.team3197.frc2019.robot.subsystems.Arm;
 import org.team3197.frc2019.robot.subsystems.CargoManipulator;
@@ -27,6 +29,9 @@ public class Robot extends TimedRobot {
   public static final Erector erector = new Erector();
   public static final Climber climber = new Climber();
 
+  public static final AlignTurn alignTurn = new AlignTurn(driveTrain);
+  public static final AutoClimb autoClimb = new AutoClimb(climber, erector);
+
   public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
 
   public static final NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
@@ -42,6 +47,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     SmartDashboard.putNumber("Time", DriverStation.getInstance().getMatchTime());
+    SmartDashboard.putNumber("verticalGyroSpeedReal", autoClimb.getAngle());
   }
 
   @Override
@@ -86,6 +92,7 @@ public class Robot extends TimedRobot {
 
   private void reset() {
     arm.resetGyro.start();
+    autoClimb.resetGyro.start();
     erector.resetPID.start();
     if (resetEncoders) {
       elevator.reset.start();
