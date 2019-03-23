@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     SmartDashboard.putNumber("Time", DriverStation.getInstance().getMatchTime());
-    SmartDashboard.putNumber("verticalGyroSpeedReal", autoClimb.getAngle());
+    SmartDashboard.putNumber("verticalGyroSpeedReal", climber.getAngle());
   }
 
   @Override
@@ -92,7 +92,7 @@ public class Robot extends TimedRobot {
 
   private void reset() {
     arm.resetGyro.start();
-    autoClimb.resetGyro.start();
+    climber.resetGyro.start();
     erector.resetPID.start();
     if (resetEncoders) {
       elevator.reset.start();
