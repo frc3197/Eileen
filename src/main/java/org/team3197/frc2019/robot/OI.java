@@ -2,6 +2,7 @@ package org.team3197.frc2019.robot;
 
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
 import org.team3197.frc2019.robot.commands.AlignTurn;
+import org.team3197.frc2019.robot.commands.AutoClimb;
 import org.team3197.frc2019.robot.commands.presets.Cargo;
 import org.team3197.frc2019.robot.commands.presets.LevelOne;
 import org.team3197.frc2019.robot.commands.presets.LevelThree;
@@ -50,6 +51,8 @@ public class OI {
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
                 driverB.whileHeld(new AlignTurn(Robot.driveTrain));
+
+                driverY.whileHeld(new AutoClimb(Robot.climber, Robot.erector));
 
                 secondaryX.whenPressed(Robot.arm.toggleGyro);
 

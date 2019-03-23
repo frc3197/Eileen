@@ -37,7 +37,8 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.03), kElbow(0.06), kWrist(0.06), kDrive(0.08), kClimberVertical(0.05), kErector(0.05);
+    kElevator(0.03), kElbow(0.06), kWrist(0.06), kDrive(0.08), kClimberVertical(0.05), kErector(0.05),
+    kClimberGyroVal(5);
     public double speed;
 
     private DeadbandType(double speed) {
@@ -70,7 +71,7 @@ public class RobotMap {
   };
 
   public static enum Channel {
-    kDriveGyro(0), kWristGyro(1);
+    kDriveGyro(0), kWristGyro(1), kClimberGyro(2);
     public final int channel;
 
     private Channel(int channel) {
@@ -79,7 +80,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(-0.005);
+    kDrive(0.01), kArm(-0.005), kClimber(0.005);
     public double val;
 
     private GyroSensitivity(double val) {
