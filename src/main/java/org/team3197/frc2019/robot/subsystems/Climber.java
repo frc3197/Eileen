@@ -6,14 +6,21 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ControlType;
 
 import org.team3197.frc2019.robot.RobotMap.CANSparkMaxID;
+import org.team3197.frc2019.robot.RobotMap.Channel;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.commands.defaults.Climb;
+import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem {
   private CANSparkMax vertical = new CANSparkMax(CANSparkMaxID.kLiftVertical.id, MotorType.kBrushless);
   private CANSparkMax horizontal = new CANSparkMax(CANSparkMaxID.kLiftHorizontal.id, MotorType.kBrushless);
+
+  private AnalogGyro gyro = new AnalogGyro(Channel.kClimberGyro.channel);
+
+  public FunctionCommand resetGyro = new FunctionCommand(this::resetGyroAngle);
 
   public Climber() {
     super();
@@ -72,5 +79,13 @@ public class Climber extends Subsystem {
 
   public void driveHorizontal(double speed) {
     horizontal.set(speed);
+  }
+
+  public double getAngle() {
+    return gyro.getAngle();
+  }
+
+  private void resetGyroAngle() {
+    gyro.reset();
   }
 }

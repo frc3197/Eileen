@@ -18,10 +18,6 @@ public class AutoClimb extends Command {
 
   private boolean finished;
 
-  public AnalogGyro gyro = new AnalogGyro(Channel.kClimberGyro.channel);
-
-  public FunctionCommand resetGyro = new FunctionCommand(this::resetGyroAngle);
-
   public AutoClimb(Climber climber, Erector erector) {
     requires(climber);
     requires(erector);
@@ -32,12 +28,12 @@ public class AutoClimb extends Command {
 
   @Override
   protected void initialize() {
-    resetGyro.start();
+    climber.resetGyro.start();
   }
 
   @Override
   protected void execute() {
-    double deltaAngle = getAngle();
+    double deltaAngle = climber.getAngle();
     double gyroSpeedVert = GyroSensitivity.kArm.val * deltaAngle;
     double gyroErectorSpeed = GyroSensitivity.kArm.val * deltaAngle;
 
@@ -59,16 +55,16 @@ public class AutoClimb extends Command {
      * If the angle is negative, run the knives to correct. If the angle is
      * positive, run the vertical climber to correct.
      */
-    if (getAngle() < -DeadbandType.kClimberGyroVal.speed) {
+    double currentAngle = climber.getAngle();
+    if (currentAngle < -DeadbandType.kClimberGyroVal.speed) {
       climber.driveVertical(gyroSpeedVert);
-    } else if (getAngle() > DeadbandType.kClimberGyroVal.speed) {
+    } else if (currentAngle > DeadbandType.kClimberGyroVal.speed) {
       erector.drive(gyroErectorSpeed, true);
     } else {
       climber.driveVertical(MaxSpeeds.kClimberVertical.forwardSpeed * .4);
       erector.drive(MaxSpeeds.kErector.forwardSpeed * .25, true);
     }
 
-    finished = true;
   }
 
   @Override
@@ -82,11 +78,4 @@ public class AutoClimb extends Command {
     climber.driveVertical(0);
   }
 
-  public double getAngle() {
-    return gyro.getAngle();
-  }
-
-  private void resetGyroAngle() {
-    gyro.reset();
-  }
 }
