@@ -50,16 +50,6 @@ public class RobotMap {
     LEFT, RIGHT, BOTH;
   }
 
-  public static enum ElevatorPID {
-    P(0), I(0), D(0), F(0);
-
-    public final double val;
-
-    private ElevatorPID(double val) {
-      this.val = val;
-    }
-  };
-
   public static enum Channel {
     kWristGyro(0), kClimberGyro(1);
     public final int channel;
@@ -115,4 +105,5 @@ public class RobotMap {
   public static final double wristSpeedMultiplier = 0.5;
 
   public static final double erectorSpeedMultiplier = 0.5;
+
 }
