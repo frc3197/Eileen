@@ -25,9 +25,6 @@ public class Arm extends Subsystem implements Drivable {
   private CANSparkMax elbow = new CANSparkMax(RobotMap.CANSparkMaxID.kElbow.id, MotorType.kBrushless);
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
 
-  private CANDigitalInput elbowLimit = elbow.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
-  private CANDigitalInput wristLimit = wrist.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
-
   public AnalogGyro gyro = new AnalogGyro(Channel.kWristGyro.channel);
 
   public FunctionCommand resetEncoder = new FunctionCommand(this::resetEncoderPosition);
@@ -36,19 +33,6 @@ public class Arm extends Subsystem implements Drivable {
   public FunctionCommand toggleGyro = new FunctionCommand(this::toggleGyro);
 
   private boolean useGyro = true;
-  final double kP = 5e-5;
-
-  final double kI = 1e-6;
-
-  final double kD = 0;
-
-  final double kIz = 0;
-
-  final double kFF = 0.000156;
-
-  final double kMaxOutput = 1;
-
-  final double kMinOutput = -1;
 
   final double maxRPM = 3360;
 
@@ -60,18 +44,20 @@ public class Arm extends Subsystem implements Drivable {
 
     wrist.setInverted(false);
 
+    final double kP = 5e-5;
+    final double kI = 1e-6;
+    final double kD = 0;
+    final double kIz = 0;
+    final double kFF = 0.000156;
+    final double kMaxOutput = 1;
+    final double kMinOutput = -1;
+
     elbow.getPIDController().setP(kP);
-
     elbow.getPIDController().setI(kI);
-
     elbow.getPIDController().setD(kD);
-
     elbow.getPIDController().setIZone(kIz);
-
     elbow.getPIDController().setFF(kFF);
-
     elbow.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
-
   }
 
   @Override
@@ -92,19 +78,15 @@ public class Arm extends Subsystem implements Drivable {
 
     // Stops the elbow from constantly moving upwards when not being moved by the
     // joystick
-    if (!elbowLimit.get() && Math.abs(output) < DeadbandType.kElbow.speed) {
-      // output = 0;
+    if (Math.abs(output) < DeadbandType.kElbow.speed) {
       if (!pidLast) {
         pidLast = true;
         referenceEncVal = elbow.getEncoder().getPosition();
       }
-      // elbow.getPIDController().setReference(referenceEncVal,
-      // ControlType.kSmartMotion);
+
       elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
     } else {
-      // elbow.set(output);
       pidLast = false;
-      // elbow.getPIDController().setReference(output, ControlType.kDutyCycle);
       double rpm = output * maxRPM;
       elbow.getPIDController().setReference(rpm, ControlType.kSmartVelocity);
     }
@@ -121,7 +103,7 @@ public class Arm extends Subsystem implements Drivable {
     SmartDashboard.putNumber("deltaAngle", deltaAngle);
     SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
-    if (Math.abs(output) < DeadbandType.kWrist.speed) {// && useGyro) {
+    if (useGyro && Math.abs(output) < DeadbandType.kWrist.speed) {
       output = gyroSpeed;
     } else {
       resetGyroAngle();
