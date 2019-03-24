@@ -3,12 +3,12 @@ package org.team3197.frc2019.robot.commands.defaults;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.team3197.frc2019.robot.OI;
-import org.team3197.frc2019.robot.subsystems.CargoManipulator;
+import org.team3197.frc2019.robot.subsystems.Intake;
 
 public class Manipulate extends Command {
-  private CargoManipulator manipulator;
+  private Intake manipulator;
 
-  public Manipulate(CargoManipulator manipulator) {
+  public Manipulate(Intake manipulator) {
     requires(manipulator);
     this.manipulator = manipulator;
 
