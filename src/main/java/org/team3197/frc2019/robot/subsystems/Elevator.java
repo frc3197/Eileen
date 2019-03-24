@@ -12,9 +12,9 @@ import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.commands.defaults.Elevate;
 import org.team3197.frc2019.robot.utilities.Drivable;
 import org.team3197.frc2019.robot.utilities.FunctionCommand;
+import org.team3197.frc2019.robot.utilities.TriggerWrapper;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem implements Drivable {
@@ -26,7 +26,7 @@ public class Elevator extends Subsystem implements Drivable {
   private CANDigitalInput bottomLimit = left.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
   private CANDigitalInput topLimit = right.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen);
 
-  private LimitReset limitReset = new LimitReset();
+  private TriggerWrapper limitReset = new TriggerWrapper(bottomLimit::get);
   public FunctionCommand reset = new FunctionCommand(this::resetEncoderPosition);
 
   public Elevator() {
@@ -68,10 +68,4 @@ public class Elevator extends Subsystem implements Drivable {
     return right.getEncoder().getPosition();
   }
 
-  private class LimitReset extends Trigger {
-
-    public boolean get() {
-      return bottomLimit.get();
-    }
-  }
 }
