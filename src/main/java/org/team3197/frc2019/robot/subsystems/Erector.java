@@ -67,7 +67,7 @@ public class Erector extends Subsystem implements Drivable {
   }
 
   public void drive(double speed, boolean hold) {
-    SmartDashboard.putNumber("speed1", speed);
+    // SmartDashboard.putNumber("speed1", speed);
     if (hold && Math.abs(speed) < DeadbandType.kErector.speed) {
       if (!stoppedLast) {
         resetPID();
