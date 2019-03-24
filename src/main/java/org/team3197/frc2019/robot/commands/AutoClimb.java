@@ -1,16 +1,12 @@
 package org.team3197.frc2019.robot.commands;
 
-import org.team3197.frc2019.robot.RobotMap.Channel;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.RobotMap.GyroSensitivity;
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
 import org.team3197.frc2019.robot.subsystems.Climber;
 import org.team3197.frc2019.robot.subsystems.Erector;
-import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoClimb extends Command {
   private Climber climber;
