@@ -34,11 +34,6 @@ public class Climber extends Subsystem {
     final double kFF = 0.000156;
     final double kMaxOutput = 1;
     final double kMinOutput = -1;
-    final double maxRPM = 5700;
-
-    // Smart Motion Coefficients
-    final double maxVel = 2000; // rpm
-    final double maxAcc = 1500;
 
     // set PID coefficients
     vertical.getPIDController().setP(kP);
@@ -47,11 +42,6 @@ public class Climber extends Subsystem {
     vertical.getPIDController().setIZone(kIz);
     vertical.getPIDController().setFF(kFF);
     vertical.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
-
-    final int smartMotionSlot = 0;
-    vertical.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-
-    vertical.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
 
   }
 
