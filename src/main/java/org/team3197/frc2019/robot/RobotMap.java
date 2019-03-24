@@ -104,13 +104,6 @@ public class RobotMap {
     }
   }
 
-  // TODO this is bad
-  public static final RobotType current = RobotType.A;
-
-  public static enum RobotType {
-    A, B;
-  }
-
   public static final double elevatorPresetThreshold = 1.5;
 
   public static final double wristPresetThreshold = .5;
