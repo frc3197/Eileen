@@ -11,7 +11,6 @@ import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.Channel;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.RobotMap.GyroSensitivity;
-import org.team3197.frc2019.robot.RobotMap.RobotType;
 import org.team3197.frc2019.robot.commands.defaults.Articulate;
 import org.team3197.frc2019.robot.utilities.Drivable;
 import org.team3197.frc2019.robot.utilities.FunctionCommand;
@@ -63,11 +62,7 @@ public class Arm extends Subsystem implements Drivable {
     elbow.setIdleMode(IdleMode.kBrake);
     wrist.setIdleMode(IdleMode.kBrake);
 
-    if (RobotMap.current == RobotType.A) {
-      wrist.setInverted(false);
-    } else {
-      wrist.setInverted(false);
-    }
+    wrist.setInverted(false);
 
     // set PID coefficients
 
@@ -148,11 +143,8 @@ public class Arm extends Subsystem implements Drivable {
   }
 
   private double getAngle() {
-    if (RobotMap.current == RobotType.A) {
-      return gyro.getAngle();
-    } else {
-      return -gyro.getAngle();
-    }
+    return gyro.getAngle();
+
   }
 
   public void resetGyro() {
@@ -186,7 +178,7 @@ public class Arm extends Subsystem implements Drivable {
 
   // TODO this is ugly please fix
   private double getWristEncoderPositionRaw() {
-    return wrist.getEncoder().getPosition() * ((RobotMap.current == RobotType.A) ? 1 : -1);
+    return wrist.getEncoder().getPosition();
   }
 
   private void resetEncoderPosition() {
