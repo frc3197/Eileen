@@ -1,8 +1,6 @@
 package org.team3197.frc2019.robot;
 
-import org.team3197.frc2019.robot.RobotMap.Channel;
 import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
-import org.team3197.frc2019.robot.commands.AutoClimb;
 import org.team3197.frc2019.robot.commands.presets.Cargo;
 import org.team3197.frc2019.robot.commands.presets.LevelOne;
 import org.team3197.frc2019.robot.commands.presets.LevelThree;

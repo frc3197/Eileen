@@ -31,7 +31,6 @@ public class DriveTrain extends Subsystem {
 
   private DifferentialDrive drive = new DifferentialDrive(leftMaxes, rightMaxes);
 
-  public FunctionCommand changeDriveGryo = new FunctionCommand(this::toggleGyro);
   public FunctionCommand changeDriveMode = new FunctionCommand(this::toggleMode);
 
   public DriveTrain() {
@@ -55,41 +54,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public void arcadeDrive(double y, double r) {
-    if (useGyro) {
-      gyroDrive(y, r);
-    } else {
-      drive.arcadeDrive(y, r, true);
-    }
-  }
-
-  // TODO: convert to PID?
-  private boolean goingStraightPrevious = false;
-  private double initialGyroAngle;
-
-  private void gyroDrive(double y, double r) {
-    // if (goingStraight(y, r)) {
-    // if (!goingStraightPrevious) { // rising edge
-    // initialGyroAngle = gyro.getAngle();
-    // goingStraightPrevious = true;
-    // }
-    // double currentGyroAngle = gyro.getAngle();
-    // double deltaAngle = (currentGyroAngle - initialGyroAngle);
-    // r += GyroSensitivity.kDrive.val * Math.copySign(Math.pow(deltaAngle, 2),
-    // deltaAngle);
-    // SmartDashboard.putNumber("deltaAngle", deltaAngle);
-    // SmartDashboard.putNumber("r", r);
-    // } else {
-    // goingStraightPrevious = false;
-    // }
     drive.arcadeDrive(y, r, true);
-  }
-
-  private boolean goingStraight(double y, double r) {
-    return (Math.abs(r) < DeadbandType.kDrive.speed);
-  }
-
-  private void toggleGyro() {
-    useGyro = !useGyro;
   }
 
   private void toggleMode() {
