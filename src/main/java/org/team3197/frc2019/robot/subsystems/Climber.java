@@ -57,15 +57,14 @@ public class Climber extends Subsystem {
     // SmartDashboard.putNumber("encoderValueOfTheVerticalClimber",
     // vertical.getEncoder().getPosition());
     if (Math.abs(speed) < DeadbandType.kClimberVertical.speed) {
-      // if (!pidLast) {
-      // pidLast = true;
-      // referenceEncVal = vertical.getEncoder().getPosition();
-      // }
+      if (!pidLast) {
+        pidLast = true;
+        referenceEncVal = vertical.getEncoder().getPosition();
+      }
 
-      // vertical.getPIDController().setReference(referenceEncVal,
-      // ControlType.kPosition); // Try replacing 0 with
-      // referenceEval
-      vertical.getPIDController().setReference(0, ControlType.kPosition);
+      vertical.getPIDController().setReference(referenceEncVal, ControlType.kPosition);
+      // Try replacing 0 with referenceEval
+      // vertical.getPIDController().setReference(0, ControlType.kPosition);
     } else {
       pidLast = false;
       vertical.getEncoder().setPosition(0);
