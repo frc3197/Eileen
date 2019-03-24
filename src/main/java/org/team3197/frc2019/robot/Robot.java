@@ -1,7 +1,7 @@
 package org.team3197.frc2019.robot;
 
 import org.team3197.frc2019.robot.commands.AlignTurn;
-import org.team3197.frc2019.robot.commands.AutoClimb;
+import org.team3197.frc2019.robot.commands.GyroClimb;
 import org.team3197.frc2019.robot.commands.test.DriveTrainTest;
 import org.team3197.frc2019.robot.subsystems.Arm;
 import org.team3197.frc2019.robot.subsystems.CargoManipulator;
@@ -30,7 +30,8 @@ public class Robot extends TimedRobot {
   public static final Climber climber = new Climber();
 
   public static final AlignTurn alignTurn = new AlignTurn(driveTrain);
-  public static final AutoClimb autoClimb = new AutoClimb(climber, erector);
+  // public static final AutoClimb autoClimb = new AutoClimb(climber, erector);
+  public static final GyroClimb autoClimb = new GyroClimb(climber);
 
   public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
 

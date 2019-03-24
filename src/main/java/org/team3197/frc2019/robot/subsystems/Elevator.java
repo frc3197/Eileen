@@ -6,6 +6,7 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.ControlType;
 
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
@@ -56,15 +57,17 @@ public class Elevator extends Subsystem implements Drivable {
     SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
 
     double output = speed;
-    if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
-      output = DeadbandType.kElevator.speed;
+    // if (!bottomLimit.get() && Math.abs(output) < DeadbandType.kElevator.speed) {
+    // output = DeadbandType.kElevator.speed;
+    // }
+
+    if (Math.abs(speed) < DeadbandType.kElevator.speed) {
+      controller.setReference(0, ControlType.kSmartMotion);
+    } else {
+      right.getEncoder().setPosition(0);
+      controller.setReference(speed, ControlType.kDutyCycle);
     }
 
-    // TODO: add elevator PID
-    /*
-     * if (hold) { controller.setReference(encoderTarget, ControlType.kSmartMotion);
-     * } else { controller.setReference(speed, ControlType.kDutyCycle); }
-     */
     elevatorGroup.set(output);
 
   }
