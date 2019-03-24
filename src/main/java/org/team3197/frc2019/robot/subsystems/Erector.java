@@ -35,10 +35,6 @@ public class Erector extends Subsystem implements Drivable {
     final double kMaxOutput = 1;
     final double kMinOutput = -1;
 
-    // final double maxVel = 2000;
-    // final double maxAcc = 1500;
-
-    // set PID coefficients
     left.getPIDController().setP(kP);
     left.getPIDController().setI(kI);
     left.getPIDController().setD(kD);
