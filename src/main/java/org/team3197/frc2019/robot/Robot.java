@@ -2,7 +2,7 @@ package org.team3197.frc2019.robot;
 
 import org.team3197.frc2019.robot.commands.test.DriveTrainTest;
 import org.team3197.frc2019.robot.subsystems.Arm;
-import org.team3197.frc2019.robot.subsystems.CargoManipulator;
+import org.team3197.frc2019.robot.subsystems.Intake;
 import org.team3197.frc2019.robot.subsystems.Climber;
 import org.team3197.frc2019.robot.subsystems.DriveTrain;
 import org.team3197.frc2019.robot.subsystems.Elevator;
@@ -22,7 +22,7 @@ public class Robot extends TimedRobot {
   public static final DriveTrain driveTrain = new DriveTrain();
   public static final Elevator elevator = new Elevator();
   public static final Arm arm = new Arm();
-  public static final CargoManipulator manipulator = new CargoManipulator();
+  public static final Intake manipulator = new Intake();
   public static final Hatch hatch = new Hatch();
   public static final Erector erector = new Erector();
   public static final Climber climber = new Climber();
