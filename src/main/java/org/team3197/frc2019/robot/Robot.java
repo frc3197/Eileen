@@ -45,6 +45,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     SmartDashboard.putNumber("Time", DriverStation.getInstance().getMatchTime());
+    SmartDashboard.putNumber("verticalGyroSpeedReal", climber.getAngle());
   }
 
   @Override
