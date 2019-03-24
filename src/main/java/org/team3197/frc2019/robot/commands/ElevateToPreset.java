@@ -41,7 +41,6 @@ public class ElevateToPreset extends Command {
   protected void execute() {
     double elevatorSpeed = getElevatorSpeed();
 
-    // TODO adjust the speed here
     elevator.drive(elevatorSpeed * MaxSpeeds.kElevator.forwardSpeed, true);
   }
 

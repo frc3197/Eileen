@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class FunctionCommand extends InstantCommand {
 
-    private FunctionWrapper function;
+    private VoidFunctionWrapper function;
 
-    public FunctionCommand(FunctionWrapper function) {
+    public FunctionCommand(VoidFunctionWrapper function) {
         this.function = function;
     }
 

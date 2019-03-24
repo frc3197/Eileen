@@ -33,5 +33,6 @@ public class Climb extends Command {
   @Override
   protected void end() {
     climber.driveVertical(0);
+    climber.driveHorizontal(0);
   }
 }

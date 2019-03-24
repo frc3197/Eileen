@@ -10,11 +10,11 @@ import org.team3197.frc2019.robot.utilities.Drivable;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class CargoManipulator extends Subsystem implements Drivable {
+public class Intake extends Subsystem implements Drivable {
 
-  private CANSparkMax roller = new CANSparkMax(RobotMap.CANSparkMaxID.kCargoManipulator.id, MotorType.kBrushless);
+  private CANSparkMax roller = new CANSparkMax(RobotMap.CANSparkMaxID.kIntake.id, MotorType.kBrushless);
 
-  public CargoManipulator() {
+  public Intake() {
     super();
 
     roller.setIdleMode(IdleMode.kBrake);

@@ -5,8 +5,8 @@ public class RobotMap {
   public static enum CANSparkMaxID {
     kFrontLeft(14, "FrontLeft"), kBackLeft(15, "BackLeft"), kFrontRight(1, "FrontRight"), kBackRight(16, "BackRight"),
     kElevatorLeft(2, "ElevatorLeft"), kElevatorRight(13, "ElevatorRight"), kWrist(12, "Wrist"), kElbow(3, "Elbow"),
-    kCargoManipulator(11, "CargoManipulator"), kHatch(10, "Hatch"), kErectorLeft(5, "ErectorLeft"),
-    kErectorRight(4, "ErectorRight"), kLiftVertical(8, "LiftVertical"), kLiftHorizontal(9, "LiftHorizontal");
+    kIntake(11, "Intake"), kHatch(10, "Hatch"), kErectorLeft(5, "ErectorLeft"), kErectorRight(4, "ErectorRight"),
+    kLiftVertical(8, "LiftVertical"), kLiftHorizontal(9, "LiftHorizontal");
 
     public final int id;
     public final String name;
@@ -37,7 +37,8 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.03), kElbow(0.06), kWrist(0.06), kDrive(0.08), kClimberVertical(0.05), kErector(0.05);
+    kElevator(0.03), kElbow(0.06), kWrist(0.06), kDrive(0.08), kClimberVertical(0.05), kErector(0.05),
+    kClimberGyroVal(5);
     public double speed;
 
     private DeadbandType(double speed) {
@@ -49,28 +50,8 @@ public class RobotMap {
     LEFT, RIGHT, BOTH;
   }
 
-  public static enum CANSparkPID {
-    P(0), I(0), D(0), F(0);
-
-    public final double val;
-
-    private CANSparkPID(double val) {
-      this.val = val;
-    }
-  };
-
-  public static enum ElevatorPID {
-    P(0), I(0), D(0), F(0);
-
-    public final double val;
-
-    private ElevatorPID(double val) {
-      this.val = val;
-    }
-  };
-
   public static enum Channel {
-    kDriveGyro(0), kWristGyro(1);
+    kWristGyro(0), kClimberGyro(1);
     public final int channel;
 
     private Channel(int channel) {
@@ -79,7 +60,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(-0.005);
+    kDrive(0.01), kArm(-0.005), kClimber(0.005);
     public double val;
 
     private GyroSensitivity(double val) {
@@ -88,7 +69,8 @@ public class RobotMap {
   };
 
   public static enum MaxSpeeds {
-    kElevator(.7, -.5), kArm(.38), kWrist(.10), kHatch(1), kCargo(1), kClimberVertical(.7), kClimberHorizontal(.9);
+    kElevator(.7, -.5), kArm(.38), kWrist(.10), kHatch(1), kCargo(1), kClimberVertical(.7), kClimberHorizontal(.9),
+    kErector(.3);
 
     public double forwardSpeed;
     public double reverseSpeed;
@@ -104,28 +86,15 @@ public class RobotMap {
     }
   }
 
-  // TODO this is bad
-  public static final RobotType current = RobotType.A;
-
-  public static enum RobotType {
-    A, B;
-  }
-
   public static final double elevatorPresetThreshold = 1.5;
-
-  public static final double wristPresetThreshold = .5;
 
   public static final double elbowPresetThreshold = 1.5;
 
   public static final double elevatorDegreeSensitivity = 0.15;
 
-  public static final double wristDegreeSensitivity = 0.15;
-
   public static final double elbowDegreeSensitivity = 0.15;
 
   public static final double elevatorExponent = 0.5;
-
-  public static final double wristExponent = 0.5;
 
   public static final double elbowExponent = 0.5;
 
@@ -135,13 +104,6 @@ public class RobotMap {
 
   public static final double wristSpeedMultiplier = 0.5;
 
-  public static final int gyroChannel = 0;
+  public static final double erectorSpeedMultiplier = 0.5;
 
-  public static final double xMax = 640;
-
-  public static final double visionTargetX = .5;
-
-  public static final double visionTargetArea = 32000;
-
-  public static final int cameraPixelWidth = 640;
 }

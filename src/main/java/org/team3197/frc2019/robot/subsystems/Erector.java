@@ -1,9 +1,9 @@
 package org.team3197.frc2019.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.ControlType;
 
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
@@ -11,16 +11,12 @@ import org.team3197.frc2019.robot.commands.defaults.Erect;
 import org.team3197.frc2019.robot.utilities.Drivable;
 import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Erector extends Subsystem implements Drivable {
 
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorLeft.id, MotorType.kBrushless);
   private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorRight.id, MotorType.kBrushless);
-
-  private SpeedControllerGroup erectorGroup = new SpeedControllerGroup(left, right);
 
   public Erector() {
     super();
@@ -38,11 +34,6 @@ public class Erector extends Subsystem implements Drivable {
     final double kMaxOutput = 1;
     final double kMinOutput = -1;
 
-    // Smart Motion Coefficients
-    final double maxVel = 2000; // rpm
-    final double maxAcc = 1500;
-
-    // set PID coefficients
     left.getPIDController().setP(kP);
     left.getPIDController().setI(kI);
     left.getPIDController().setD(kD);
@@ -55,12 +46,6 @@ public class Erector extends Subsystem implements Drivable {
     right.getPIDController().setIZone(kIz);
     right.getPIDController().setFF(kFF);
     right.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
-
-    final int smartMotionSlot = 0;
-    left.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-    left.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
-    right.getPIDController().setSmartMotionMaxVelocity(maxVel, smartMotionSlot);
-    right.getPIDController().setSmartMotionMaxAccel(maxAcc, smartMotionSlot);
   }
 
   @Override
@@ -81,8 +66,7 @@ public class Erector extends Subsystem implements Drivable {
   }
 
   public void drive(double speed, boolean hold) {
-    // erectorGroup.set(speed);
-    SmartDashboard.putNumber("speed1", speed);
+    // SmartDashboard.putNumber("speed1", speed);
     if (hold && Math.abs(speed) < DeadbandType.kErector.speed) {
       if (!stoppedLast) {
         resetPID();
