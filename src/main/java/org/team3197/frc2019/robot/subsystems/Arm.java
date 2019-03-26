@@ -39,6 +39,7 @@ public class Arm extends Subsystem implements Drivable {
     elbow.setIdleMode(IdleMode.kBrake);
     wrist.setIdleMode(IdleMode.kBrake);
 
+    elbow.setInverted(true);
     wrist.setInverted(false);
 
     final double kP = 5e-5;
