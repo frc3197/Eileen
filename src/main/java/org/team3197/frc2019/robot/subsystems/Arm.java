@@ -16,6 +16,7 @@ import org.team3197.frc2019.robot.utilities.FunctionCommand;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Arm extends Subsystem implements Drivable {
 
@@ -31,7 +32,7 @@ public class Arm extends Subsystem implements Drivable {
 
   private boolean useGyro = true;
 
-  final double maxRPM = 3360;
+  final double maxRPM = 6000;
 
   public Arm() {
     super();
@@ -49,6 +50,13 @@ public class Arm extends Subsystem implements Drivable {
     final double kFF = 0.000156;
     final double kMaxOutput = 1;
     final double kMinOutput = -1;
+
+    elbow.getPIDController().setP(kP);
+    elbow.getPIDController().setI(kI);
+    elbow.getPIDController().setD(kD);
+    elbow.getPIDController().setIZone(kIz);
+    elbow.getPIDController().setFF(kFF);
+    elbow.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
 
     elbow.getPIDController().setP(kP);
     elbow.getPIDController().setI(kI);
@@ -86,7 +94,9 @@ public class Arm extends Subsystem implements Drivable {
     } else {
       pidLast = false;
       double rpm = output * maxRPM;
-      elbow.getPIDController().setReference(rpm, ControlType.kSmartVelocity);
+      System.out.println(rpm);
+      // elbow.set(output);
+      elbow.getPIDController().setReference(rpm, ControlType.kVelocity);
     }
     // SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
 
@@ -97,8 +107,8 @@ public class Arm extends Subsystem implements Drivable {
 
     double deltaAngle = getAngle();
     double gyroSpeed = GyroSensitivity.kArm.val * deltaAngle;
-    // SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
-    // SmartDashboard.putNumber("deltaAngle", deltaAngle);
+    SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
+    SmartDashboard.putNumber("deltaAngle", deltaAngle);
     // SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
     if (useGyro && Math.abs(output) < DeadbandType.kWrist.speed) {
@@ -108,7 +118,7 @@ public class Arm extends Subsystem implements Drivable {
     }
 
     // SmartDashboard.putNumber("output", output);
-    wrist.set(-output);
+    wrist.set(output);
   }
 
   private double getAngle() {
