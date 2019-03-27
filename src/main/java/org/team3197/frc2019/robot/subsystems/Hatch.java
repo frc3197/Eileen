@@ -23,6 +23,6 @@ public class Hatch extends Subsystem implements Drivable {
   }
 
   public void drive(double speed, boolean hold) {
-    hatch.set(speed);
+    hatch.set(-speed);
   }
 }
