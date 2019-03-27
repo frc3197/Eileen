@@ -111,7 +111,8 @@ public class Arm extends Subsystem implements Drivable {
     SmartDashboard.putNumber("deltaAngle", deltaAngle);
     // SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
-    if (useGyro && Math.abs(output) < DeadbandType.kWrist.speed) {
+    SmartDashboard.putNumber("wristOutput", output);
+    if (Math.abs(output) < DeadbandType.kWrist.speed && useGyro) {
       output = gyroSpeed;
     } else {
       resetGyroAngle();
