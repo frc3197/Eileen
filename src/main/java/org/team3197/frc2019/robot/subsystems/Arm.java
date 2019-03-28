@@ -31,7 +31,7 @@ public class Arm extends Subsystem implements Drivable {
 
   private boolean useGyro = true;
 
-  final double maxRPM = 3360;
+  final double maxRPM = 6000;
 
   public Arm() {
     super();
@@ -39,6 +39,7 @@ public class Arm extends Subsystem implements Drivable {
     elbow.setIdleMode(IdleMode.kBrake);
     wrist.setIdleMode(IdleMode.kBrake);
 
+    elbow.setInverted(true);
     wrist.setInverted(false);
 
     final double kP = 5e-5;
@@ -81,11 +82,11 @@ public class Arm extends Subsystem implements Drivable {
         referenceEncVal = elbow.getEncoder().getPosition();
       }
 
-      elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
+      elbow.getPIDController().setReference(0, ControlType.kVelocity);
     } else {
       pidLast = false;
       double rpm = output * maxRPM;
-      elbow.getPIDController().setReference(rpm, ControlType.kSmartVelocity);
+      elbow.getPIDController().setReference(rpm, ControlType.kVelocity);
     }
     // SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
 
@@ -106,8 +107,7 @@ public class Arm extends Subsystem implements Drivable {
       resetGyroAngle();
     }
 
-    // SmartDashboard.putNumber("output", output);
-    wrist.set(-output);
+    wrist.set(output);
   }
 
   private double getAngle() {
