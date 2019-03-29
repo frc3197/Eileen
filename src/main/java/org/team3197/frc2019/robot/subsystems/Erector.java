@@ -11,6 +11,7 @@ import org.team3197.frc2019.robot.commands.defaults.Erect;
 import org.team3197.frc2019.robot.utilities.Drivable;
 import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Erector extends Subsystem implements Drivable {
@@ -18,13 +19,17 @@ public class Erector extends Subsystem implements Drivable {
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorLeft.id, MotorType.kBrushless);
   private CANSparkMax right = new CANSparkMax(RobotMap.CANSparkMaxID.kErectorRight.id, MotorType.kBrushless);
 
+  private SpeedControllerGroup group = new SpeedControllerGroup(left, right);
+
   public Erector() {
     super();
 
     left.setIdleMode(IdleMode.kBrake);
     right.setIdleMode(IdleMode.kBrake);
 
-    right.follow(left, true);
+    // right.follow(left, true);
+
+    right.setInverted(true);
 
     final double kP = 5e-2;
     final double kI = 1e-4;
@@ -40,6 +45,7 @@ public class Erector extends Subsystem implements Drivable {
     left.getPIDController().setIZone(kIz);
     left.getPIDController().setFF(kFF);
     left.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
+
     right.getPIDController().setP(kP);
     right.getPIDController().setI(kI);
     right.getPIDController().setD(kD);
@@ -76,7 +82,7 @@ public class Erector extends Subsystem implements Drivable {
     } else {
       stoppedLast = false;
       // left.getPIDController().setReference(speed, ControlType.kDutyCycle);
-      left.set(speed);
+      group.set(speed);
     }
   }
 }

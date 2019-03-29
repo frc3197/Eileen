@@ -18,7 +18,7 @@ public class Climber extends Subsystem {
   private CANSparkMax vertical = new CANSparkMax(CANSparkMaxID.kLiftVertical.id, MotorType.kBrushless);
   private CANSparkMax horizontal = new CANSparkMax(CANSparkMaxID.kLiftHorizontal.id, MotorType.kBrushless);
 
-  private AnalogGyro gyro = new AnalogGyro(Channel.kClimberGyro.channel);
+  // private AnalogGyro gyro = new AnalogGyro(Channel.kClimberGyro.channel);
 
   public FunctionCommand resetGyro = new FunctionCommand(this::resetGyroAngle);
 
@@ -81,10 +81,12 @@ public class Climber extends Subsystem {
   }
 
   public double getAngle() {
-    return gyro.getAngle();
+    // return gyro.getAngle();
+    return 0;
   }
 
   private void resetGyroAngle() {
-    gyro.reset();
+    // gyro.reset();
+
   }
 }

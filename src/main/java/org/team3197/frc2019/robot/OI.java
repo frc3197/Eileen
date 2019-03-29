@@ -48,7 +48,7 @@ public class OI {
 
                 driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                driverY.whileHeld(Robot.autoClimb);
+                // driverY.whileHeld(Robot.autoClimb);
 
                 secondaryX.whenPressed(Robot.arm.toggleGyro);
 

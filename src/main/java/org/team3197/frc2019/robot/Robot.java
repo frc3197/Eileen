@@ -1,6 +1,5 @@
 package org.team3197.frc2019.robot;
 
-import org.team3197.frc2019.robot.commands.GyroClimb;
 import org.team3197.frc2019.robot.commands.test.DriveTrainTest;
 import org.team3197.frc2019.robot.subsystems.Arm;
 import org.team3197.frc2019.robot.subsystems.Climber;
@@ -10,9 +9,9 @@ import org.team3197.frc2019.robot.subsystems.Erector;
 import org.team3197.frc2019.robot.subsystems.Hatch;
 import org.team3197.frc2019.robot.subsystems.Intake;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -28,9 +27,10 @@ public class Robot extends TimedRobot {
   public static final Erector erector = new Erector();
   public static final Climber climber = new Climber();
 
-  public static final GyroClimb autoClimb = new GyroClimb(climber);
+  // public static final GyroClimb autoClimb = new GyroClimb(climber);
 
-  public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
+  // public static final PowerDistributionPanel pdp = new
+  // PowerDistributionPanel();
 
   public static final NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
 
@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    CameraServer.getInstance().addAxisCamera("driver-camera", "10.31.97.7");
   }
 
   @Override
