@@ -18,7 +18,7 @@ public class RobotMap {
   };
 
   public static enum ElbowPreset {
-    kHatchOne(-17), kHatchTwo(-126), kHatchThree(-126), kCargoOne(-126), kCargoTwo(-126), kCargoThree(-126),
+    kHatchOne(-17), kHatchTwo(-150), kHatchThree(-150), kCargoOne(-150), kCargoTwo(-150), kCargoThree(-150),
     kCargoShip(-38);
     public double elbowPos;
 
