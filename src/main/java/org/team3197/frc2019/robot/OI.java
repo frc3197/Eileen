@@ -46,15 +46,15 @@ public class OI {
 
         static {
 
-                driverA.whenPressed(Robot.driveTrain.changeDriveMode);
+                // driverA.whenPressed(Robot.driveTrain.changeDriveMode);
 
-                driverY.whileHeld(Robot.autoClimb);
+                // driverY.whileHeld(Robot.autoClimb);
 
                 secondaryX.whenPressed(Robot.arm.toggleGyro);
 
                 secondaryY.whenPressed(Robot.arm.resetEncoder);
                 secondaryY.whenPressed(Robot.elevator.reset);
-                secondaryB.whenPressed(Robot.arm.resetGyro);
+                secondaryY.whenPressed(Robot.arm.resetGyro);
 
                 /**
                  * If the right bumper is pushed, then the cargo intake will move. If the right

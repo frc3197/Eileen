@@ -16,6 +16,7 @@ import org.team3197.frc2019.robot.utilities.FunctionCommand;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Arm extends Subsystem implements Drivable {
 
@@ -31,7 +32,7 @@ public class Arm extends Subsystem implements Drivable {
 
   private boolean useGyro = true;
 
-  final double maxRPM = 3360;
+  final double maxRPM = 6000;
 
   public Arm() {
     super();
@@ -39,6 +40,7 @@ public class Arm extends Subsystem implements Drivable {
     elbow.setIdleMode(IdleMode.kBrake);
     wrist.setIdleMode(IdleMode.kBrake);
 
+    elbow.setInverted(true);
     wrist.setInverted(false);
 
     final double kP = 5e-5;
@@ -55,6 +57,13 @@ public class Arm extends Subsystem implements Drivable {
     elbow.getPIDController().setIZone(kIz);
     elbow.getPIDController().setFF(kFF);
     elbow.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
+
+    wrist.getPIDController().setP(kP);
+    wrist.getPIDController().setI(kI);
+    wrist.getPIDController().setD(kD);
+    wrist.getPIDController().setIZone(kIz);
+    wrist.getPIDController().setFF(kFF);
+    wrist.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
   }
 
   @Override
@@ -81,13 +90,14 @@ public class Arm extends Subsystem implements Drivable {
         referenceEncVal = elbow.getEncoder().getPosition();
       }
 
-      elbow.getPIDController().setReference(0, ControlType.kSmartVelocity);
+      elbow.getPIDController().setReference(0, ControlType.kVelocity);
     } else {
       pidLast = false;
       double rpm = output * maxRPM;
-      elbow.getPIDController().setReference(rpm, ControlType.kSmartVelocity);
+      // elbow.getPIDController().setReference(rpm, ControlType.kVelocity);
+      elbow.set(output);
     }
-    // SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
+    SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
 
   }
 
@@ -96,18 +106,21 @@ public class Arm extends Subsystem implements Drivable {
 
     double deltaAngle = getAngle();
     double gyroSpeed = GyroSensitivity.kArm.val * deltaAngle;
-    // SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
-    // SmartDashboard.putNumber("deltaAngle", deltaAngle);
-    // SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
+    SmartDashboard.putNumber("wristGyroSpeed", gyroSpeed);
+    SmartDashboard.putNumber("deltaAngle", deltaAngle);
+    SmartDashboard.putNumber("WristEncoder", getWristEncoderPosition());
 
-    if (useGyro && Math.abs(output) < DeadbandType.kWrist.speed) {
-      output = gyroSpeed;
+    if (Math.abs(output) < DeadbandType.kWrist.speed) {
+      if (useGyro) {
+        wrist.set(gyroSpeed);
+      } else {
+        wrist.getPIDController().setReference(0, ControlType.kVelocity);
+      }
     } else {
       resetGyroAngle();
+      wrist.set(output);
     }
 
-    // SmartDashboard.putNumber("output", output);
-    wrist.set(-output);
   }
 
   private double getAngle() {
@@ -155,5 +168,6 @@ public class Arm extends Subsystem implements Drivable {
 
   private void toggleGyro() {
     useGyro = !useGyro;
+
   }
 }
