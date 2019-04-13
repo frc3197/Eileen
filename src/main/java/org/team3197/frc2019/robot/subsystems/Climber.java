@@ -6,21 +6,14 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.ControlType;
 
 import org.team3197.frc2019.robot.RobotMap.CANSparkMaxID;
-import org.team3197.frc2019.robot.RobotMap.Channel;
 import org.team3197.frc2019.robot.RobotMap.DeadbandType;
 import org.team3197.frc2019.robot.commands.defaults.Climb;
-import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem {
   private CANSparkMax vertical = new CANSparkMax(CANSparkMaxID.kLiftVertical.id, MotorType.kBrushless);
   private CANSparkMax horizontal = new CANSparkMax(CANSparkMaxID.kLiftHorizontal.id, MotorType.kBrushless);
-
-  // private AnalogGyro gyro = new AnalogGyro(Channel.kClimberGyro.channel);
-
-  public FunctionCommand resetGyro = new FunctionCommand(this::resetGyroAngle);
 
   public Climber() {
     super();
@@ -35,7 +28,6 @@ public class Climber extends Subsystem {
     final double kMaxOutput = 1;
     final double kMinOutput = -1;
 
-    // set PID coefficients
     vertical.getPIDController().setP(kP);
     vertical.getPIDController().setI(kI);
     vertical.getPIDController().setD(kD);
@@ -54,17 +46,12 @@ public class Climber extends Subsystem {
   double referenceEncVal = 0;
 
   public void driveVertical(double speed) {
-    // SmartDashboard.putNumber("encoderValueOfTheVerticalClimber",
-    // vertical.getEncoder().getPosition());
     if (Math.abs(speed) < DeadbandType.kClimberVertical.speed) {
       if (!pidLast) {
         pidLast = true;
         referenceEncVal = vertical.getEncoder().getPosition();
       }
-
       vertical.getPIDController().setReference(referenceEncVal, ControlType.kPosition);
-      // Try replacing 0 with referenceEval
-      // vertical.getPIDController().setReference(0, ControlType.kPosition);
     } else {
       pidLast = false;
       vertical.getEncoder().setPosition(0);
@@ -78,15 +65,5 @@ public class Climber extends Subsystem {
 
   public void driveHorizontal(double speed) {
     horizontal.set(speed);
-  }
-
-  public double getAngle() {
-    // return gyro.getAngle();
-    return 0;
-  }
-
-  private void resetGyroAngle() {
-    // gyro.reset();
-
   }
 }
