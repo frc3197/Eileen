@@ -12,7 +12,6 @@ import org.team3197.frc2019.robot.utilities.Drivable;
 import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Elbow extends Subsystem implements Drivable {
 
@@ -67,7 +66,6 @@ public class Elbow extends Subsystem implements Drivable {
       double rpm = output * maxRPM;
       elbow.getPIDController().setReference(rpm, ControlType.kVelocity);
     }
-    SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
 
   }
 

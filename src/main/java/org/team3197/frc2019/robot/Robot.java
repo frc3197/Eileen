@@ -12,6 +12,7 @@ import org.team3197.frc2019.robot.subsystems.Wrist;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -28,10 +29,7 @@ public class Robot extends TimedRobot {
   public static final Erector erector = new Erector();
   public static final Climber climber = new Climber();
 
-  // public static final GyroClimb autoClimb = new GyroClimb(climber);
-
-  // public static final PowerDistributionPanel pdp = new
-  // PowerDistributionPanel();
+  public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
 
   public static final NetworkTableInstance ntInst = NetworkTableInstance.getDefault();
 
