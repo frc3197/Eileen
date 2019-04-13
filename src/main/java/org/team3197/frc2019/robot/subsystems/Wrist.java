@@ -16,6 +16,7 @@ import org.team3197.frc2019.robot.utilities.FunctionCommand;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Wrist extends Subsystem implements Drivable {
   private CANSparkMax wrist = new CANSparkMax(RobotMap.CANSparkMaxID.kWrist.id, MotorType.kBrushless);
@@ -34,18 +35,15 @@ public class Wrist extends Subsystem implements Drivable {
     final double kD = 0;
     final double kIz = 0;
     final double kFF = 0.000156;
-    final double kMaxOutput = 1;
-    final double kMinOutput = -1;
 
     wrist.setIdleMode(IdleMode.kBrake);
 
-    wrist.setInverted(false);
+    wrist.setInverted(true);
     wrist.getPIDController().setP(kP);
     wrist.getPIDController().setI(kI);
     wrist.getPIDController().setD(kD);
     wrist.getPIDController().setIZone(kIz);
     wrist.getPIDController().setFF(kFF);
-    wrist.getPIDController().setOutputRange(kMinOutput, kMaxOutput);
   }
 
   @Override
@@ -57,6 +55,7 @@ public class Wrist extends Subsystem implements Drivable {
     double output = speed;
 
     double deltaAngle = getAngle();
+    SmartDashboard.putNumber("getAngle()", getAngle());
     double gyroSpeed = GyroSensitivity.kArm.val * deltaAngle;
 
     if (Math.abs(output) < DeadbandType.kWrist.speed) {
