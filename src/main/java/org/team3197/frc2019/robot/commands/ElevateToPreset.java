@@ -65,8 +65,7 @@ public class ElevateToPreset extends Command {
     double error = elevator.getEncoderPosition() - currentTarget.pos;
     finished = Math.abs(error) < RobotMap.elevatorPresetThreshold;
 
-    double speed = -RobotMap.elevatorDegreeSensitivity
-        * Math.copySign(Math.pow(Math.abs(error), RobotMap.elevatorExponent), error);
+    double speed = -RobotMap.elevatorDegreeSensitivity * error;
     return speed;
   }
 }

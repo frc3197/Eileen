@@ -29,13 +29,14 @@ public class OI {
         private static POVButton secondaryDPadDown = new POVButton(secondary, 180);
         private static POVButton secondaryDPadLeft = new POVButton(secondary, 270);
 
-        private static JoystickButton driverA = new JoystickButton(driver, 1);
-        private static JoystickButton driverB = new JoystickButton(driver, 2);
-        private static JoystickButton driverX = new JoystickButton(driver, 3);
-        private static JoystickButton driverY = new JoystickButton(driver, 4);
+        // private static JoystickButton driverA = new JoystickButton(driver, 1);
+        // private static JoystickButton driverB = new JoystickButton(driver, 2);
+        // private static JoystickButton driverX = new JoystickButton(driver, 3);
+        // private static JoystickButton driverY = new JoystickButton(driver, 4);
 
         private static JoystickButton secondaryA = new JoystickButton(secondary, 1);
-        private static JoystickButton secondaryB = new JoystickButton(secondary, 2);
+        // // private static JoystickButton secondaryB = new JoystickButton(secondary,
+        // 2);
         private static JoystickButton secondaryX = new JoystickButton(secondary, 3);
         private static JoystickButton secondaryY = new JoystickButton(secondary, 4);
 
@@ -50,20 +51,20 @@ public class OI {
 
                 // driverY.whileHeld(Robot.autoClimb);
 
-                secondaryX.whenPressed(Robot.arm.toggleGyro);
+                secondaryX.whenPressed(Robot.wrist.toggleGyro);
 
-                secondaryY.whenPressed(Robot.arm.resetEncoder);
+                secondaryY.whenPressed(Robot.wrist.resetGyro);
+                secondaryY.whenPressed(Robot.elbow.resetEncoder);
                 secondaryY.whenPressed(Robot.elevator.reset);
-                secondaryY.whenPressed(Robot.arm.resetGyro);
 
                 /**
                  * If the right bumper is pushed, then the cargo intake will move. If the right
                  * bumper is not held, then the hatch mech will be in position.
                  */
-                secondaryDPadUp.whileHeld(new LevelThree(Robot.elevator, Robot.arm, secondaryA));
-                secondaryDPadRight.whileHeld(new LevelTwo(Robot.elevator, Robot.arm, secondaryA));
-                secondaryDPadDown.whileHeld(new LevelOne(Robot.elevator, Robot.arm, secondaryA));
-                secondaryDPadLeft.whileHeld(new Cargo(Robot.elevator, Robot.arm, secondaryA));
+                secondaryDPadUp.whileHeld(new LevelThree(Robot.elevator, Robot.elbow, secondaryA));
+                secondaryDPadRight.whileHeld(new LevelTwo(Robot.elevator, Robot.elbow, secondaryA));
+                secondaryDPadDown.whileHeld(new LevelOne(Robot.elevator, Robot.elbow, secondaryA));
+                secondaryDPadLeft.whileHeld(new Cargo(Robot.elevator, Robot.elbow, secondaryA));
         }
 
         public static double arcadeDriveY() {
