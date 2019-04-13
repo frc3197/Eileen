@@ -28,8 +28,8 @@ public class Elbow extends Subsystem implements Drivable {
 
     elbow.setInverted(false);
 
-    final double kP = 5e-5;
-    final double kI = 1e-6;
+    final double kP = 1e-4;
+    final double kI = 1e-7;
     final double kD = 0;
     final double kIz = 0;
     final double kFF = 0.000156;
