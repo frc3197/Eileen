@@ -19,14 +19,14 @@ public class Elbow extends Subsystem implements Drivable {
 
   public FunctionCommand resetEncoder = new FunctionCommand(this::resetEncoderPosition);
 
-  final double maxRPM = 6000;
+  final double maxRPM = 3000;
 
   public Elbow() {
     super();
 
     elbow.setIdleMode(IdleMode.kBrake);
 
-    elbow.setInverted(true);
+    elbow.setInverted(false);
 
     final double kP = 5e-5;
     final double kI = 1e-6;
@@ -61,7 +61,9 @@ public class Elbow extends Subsystem implements Drivable {
     }
 
     if (pidLast = Math.abs(output) < DeadbandType.kElbow.speed) {
-      elbow.getPIDController().setReference(referenceEncVal, ControlType.kPosition);
+      // elbow.getPIDController().setReference(referenceEncVal,
+      // ControlType.kPosition);
+      elbow.getPIDController().setReference(0, ControlType.kVelocity);
     } else {
       double rpm = output * maxRPM;
       elbow.getPIDController().setReference(rpm, ControlType.kVelocity);
