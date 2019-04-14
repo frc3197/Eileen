@@ -95,10 +95,6 @@ public class RobotMap {
 
   public static final double elbowDegreeSensitivity = 0.15;
 
-  public static final double elevatorExponent = 0.5;
-
-  public static final double elbowExponent = 0.5;
-
   public static final double elevatorSpeedMultiplier = 0.5;
 
   public static final double elbowSpeedMultiplier = 0.5;
