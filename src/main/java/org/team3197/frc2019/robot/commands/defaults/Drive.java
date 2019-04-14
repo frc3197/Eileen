@@ -19,15 +19,9 @@ public class Drive extends Command {
    */
   @Override
   protected void execute() {
-    if (driveTrain.arcadeDrive) {
-      double y = OI.arcadeDriveY();
-      double r = OI.arcadeDriveR();
-      driveTrain.arcadeDrive(y, r);
-    } else {
-      double l = OI.tankDriveLeft();
-      double r = OI.tankDriveRight();
-      driveTrain.tankDrive(l, r);
-    }
+    double y = OI.arcadeDriveY();
+    double r = OI.arcadeDriveR();
+    driveTrain.drive(y, r);
   }
 
   @Override
@@ -37,6 +31,6 @@ public class Drive extends Command {
 
   @Override
   protected void end() {
-    driveTrain.tankDrive(0, 0);
+    driveTrain.drive(0, 0);
   }
 }

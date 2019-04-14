@@ -2,33 +2,32 @@ package org.team3197.frc2019.robot.commands;
 
 import org.team3197.frc2019.robot.RobotMap;
 import org.team3197.frc2019.robot.RobotMap.ElbowPreset;
-import org.team3197.frc2019.robot.RobotMap.MaxSpeeds;
-import org.team3197.frc2019.robot.subsystems.Arm;
+import org.team3197.frc2019.robot.subsystems.Elbow;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ArticulateToPreset extends Command {
+public class ExtendToPreset extends Command {
 
   private final ElbowPreset target;
   private final ElbowPreset targetWithTrigger;
 
   private final Trigger toggle;
 
-  private Arm arm;
+  private Elbow elbow;
 
   private boolean finished;
 
   /**
    * Sets the value of the preset to the one that is intended to be moved to
    */
-  public ArticulateToPreset(ElbowPreset target, ElbowPreset targetWithTrigger, Trigger toggle, Arm arm) {
+  public ExtendToPreset(ElbowPreset target, ElbowPreset targetWithTrigger, Trigger toggle, Elbow elbow) {
     super();
-    requires(arm);
+    requires(elbow);
     this.target = target;
     this.targetWithTrigger = targetWithTrigger;
     this.toggle = toggle;
-    this.arm = arm;
+    this.elbow = elbow;
     finished = false;
   }
 
@@ -39,10 +38,7 @@ public class ArticulateToPreset extends Command {
   @Override
   protected void execute() {
     double elbowSpeed = getElbowSpeed();
-
-    // TODO adjust the speeds here
-    arm.elbow(elbowSpeed * MaxSpeeds.kArm.forwardSpeed);
-    arm.wrist(0);
+    elbow.drive(elbowSpeed, true);
   }
 
   @Override
@@ -52,8 +48,7 @@ public class ArticulateToPreset extends Command {
 
   @Override
   protected void end() {
-    arm.elbow(0);
-    arm.wrist(0);
+    elbow.drive(0, true);
   }
 
   /**
@@ -64,11 +59,10 @@ public class ArticulateToPreset extends Command {
   private double getElbowSpeed() {
     ElbowPreset currentTarget = (toggle.get()) ? targetWithTrigger : target;
 
-    double error = arm.getElbowEncoderPosition() - currentTarget.elbowPos;
+    double error = elbow.getElbowEncoderPosition() - currentTarget.elbowPos;
     finished = Math.abs(error) < RobotMap.elbowPresetThreshold;
 
-    double speed = -RobotMap.elbowDegreeSensitivity
-        * Math.copySign(Math.pow(Math.abs(error), RobotMap.elbowExponent), error);
+    double speed = -RobotMap.elbowDegreeSensitivity * error;
     return speed;
   }
 }
