@@ -27,6 +27,8 @@ public class Erector extends Subsystem implements Drivable {
     left.setIdleMode(IdleMode.kBrake);
     right.setIdleMode(IdleMode.kBrake);
 
+    // right.follow(left, true);
+
     right.setInverted(true);
 
     final double kP = 5e-2;
@@ -70,6 +72,7 @@ public class Erector extends Subsystem implements Drivable {
   }
 
   public void drive(double speed, boolean hold) {
+    // SmartDashboard.putNumber("speed1", speed);
     if (hold && Math.abs(speed) < DeadbandType.kErector.speed) {
       if (!stoppedLast) {
         resetPID();
@@ -78,6 +81,7 @@ public class Erector extends Subsystem implements Drivable {
       left.getPIDController().setReference(encoderLastLeft, ControlType.kPosition);
     } else {
       stoppedLast = false;
+      // left.getPIDController().setReference(speed, ControlType.kDutyCycle);
       group.set(speed);
     }
   }

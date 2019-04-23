@@ -19,6 +19,7 @@ public class Climber extends Subsystem {
     super();
     vertical.setIdleMode(IdleMode.kBrake);
     horizontal.setIdleMode(IdleMode.kCoast);
+    vertical.setInverted(true);
 
     final double kP = 5e-5;
     final double kI = 1e-6;

@@ -15,9 +15,8 @@ public class Intake extends Subsystem implements Drivable {
   private CANSparkMax roller = new CANSparkMax(RobotMap.CANSparkMaxID.kIntake.id, MotorType.kBrushless);
 
   public Intake() {
-    super();
-
     roller.setIdleMode(IdleMode.kBrake);
+    roller.setInverted(true);
   }
 
   @Override
