@@ -18,8 +18,7 @@ public class RobotMap {
   };
 
   public static enum ElbowPreset {
-    kHatchOne(-17), kHatchTwo(-150), kHatchThree(-150), kCargoOne(-150), kCargoTwo(-150), kCargoThree(-150),
-    kCargoShip(-38);
+    kHatchOne(-17), kHatchTwo(-35), kHatchThree(-35), kCargoOne(-35), kCargoTwo(-35), kCargoThree(-35), kCargoShip(-35);
     public double elbowPos;
 
     private ElbowPreset(double elbowPos) {
@@ -28,7 +27,7 @@ public class RobotMap {
   }
 
   public static enum ElevatorPreset {
-    kHatchLevelOne(-26), kHatchLevelTwo(-18), kHatchLevelThree(27), kCargoLevelOne(-26), kCargoLevelTwo(19),
+    kHatchLevelOne(-26), kHatchLevelTwo(-10), kHatchLevelThree(33), kCargoLevelOne(-26), kCargoLevelTwo(19),
     kCargoLevelThree(53), kCargoLoadingLevel(7.85), kCargoShipCargo(25);
     public double pos;
 
@@ -38,7 +37,7 @@ public class RobotMap {
   }
 
   public static enum DeadbandType {
-    kElevator(0.05), kElbow(0.06), kWrist(0.06), kDrive(0.08), kClimberVertical(0.05), kErector(0.05),
+    kElevator(0.05), kElbow(0.06), kWrist(0.05), kDrive(0.08), kClimberVertical(0.05), kErector(0.05),
     kClimberGyroVal(5);
     public double speed;
 
@@ -61,7 +60,7 @@ public class RobotMap {
   };
 
   public static enum GyroSensitivity {
-    kDrive(0.01), kArm(-0.0075), kClimber(0.005);
+    kDrive(0.01), kArm(-0.011), kClimber(0.005);
     public double val;
 
     private GyroSensitivity(double val) {
@@ -91,9 +90,9 @@ public class RobotMap {
 
   public static final double elbowPresetThreshold = 1.5;
 
-  public static final double elevatorDegreeSensitivity = 0.15;
+  public static final double elevatorDegreeSensitivity = 0.05;
 
-  public static final double elbowDegreeSensitivity = 0.15;
+  public static final double elbowDegreeSensitivity = 0.05;
 
   public static final double elevatorSpeedMultiplier = 0.5;
 
