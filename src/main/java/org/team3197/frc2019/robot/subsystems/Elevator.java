@@ -12,6 +12,7 @@ import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Elevator extends Subsystem implements Drivable {
   private CANSparkMax left = new CANSparkMax(RobotMap.CANSparkMaxID.kElevatorLeft.id, MotorType.kBrushless);
@@ -65,6 +66,7 @@ public class Elevator extends Subsystem implements Drivable {
     } else {
       elevatorGroup.set(speed);
     }
+    SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
   }
 
   public void resetEncoderPosition() {

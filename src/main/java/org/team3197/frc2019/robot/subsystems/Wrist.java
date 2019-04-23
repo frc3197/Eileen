@@ -66,6 +66,7 @@ public class Wrist extends Subsystem implements Drivable {
       }
     } else {
       resetGyroAngle();
+      SmartDashboard.putNumber("WristSpeed", output);
       wrist.set(output);
     }
 
