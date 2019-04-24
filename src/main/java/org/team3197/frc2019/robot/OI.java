@@ -94,8 +94,8 @@ public class OI {
         }
 
         public static double erectorSpeed() {
-                return driver.getTriggerAxis(Hand.kLeft)
-                                - driver.getTriggerAxis(Hand.kRight) * RobotMap.erectorSpeedMultiplier;
+                return (driver.getTriggerAxis(Hand.kLeft) - driver.getTriggerAxis(Hand.kRight))
+                                * RobotMap.MaxSpeeds.kErector.forwardSpeed;
         }
 
         public static double manipulatorSpeed() {

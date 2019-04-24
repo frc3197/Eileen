@@ -12,6 +12,7 @@ import org.team3197.frc2019.robot.utilities.Drivable;
 import org.team3197.frc2019.robot.utilities.FunctionCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Elbow extends Subsystem implements Drivable {
 
@@ -19,18 +20,18 @@ public class Elbow extends Subsystem implements Drivable {
 
   public FunctionCommand resetEncoder = new FunctionCommand(this::resetEncoderPosition);
 
-  final double maxRPM = 6000;
+  final double maxRPM = 3000;
 
   public Elbow() {
     super();
 
     elbow.setIdleMode(IdleMode.kBrake);
 
-    elbow.setInverted(true);
+    elbow.setInverted(false);
 
-    final double kP = 5e-5;
-    final double kI = 1e-6;
-    final double kD = 0;
+    final double kP = 2e-4;
+    final double kI = 1e-7;
+    final double kD = 0.00015;
     final double kIz = 0;
     final double kFF = 0.000156;
     final double kMaxOutput = 1;
@@ -61,12 +62,15 @@ public class Elbow extends Subsystem implements Drivable {
     }
 
     if (pidLast = Math.abs(output) < DeadbandType.kElbow.speed) {
-      elbow.getPIDController().setReference(referenceEncVal, ControlType.kPosition);
+      // elbow.getPIDController().setReference(referenceEncVal,
+      // ControlType.kPosition);
+      elbow.getPIDController().setReference(0, ControlType.kVelocity);
     } else {
       double rpm = output * maxRPM;
       elbow.getPIDController().setReference(rpm, ControlType.kVelocity);
     }
 
+    SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
   }
 
   double resetElbowEncoderPosition = 0;
