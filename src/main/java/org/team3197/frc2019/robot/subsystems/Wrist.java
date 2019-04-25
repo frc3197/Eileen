@@ -60,14 +60,14 @@ public class Wrist extends Subsystem implements Drivable {
 
     if (Math.abs(output) < DeadbandType.kWrist.speed) {
       if (useGyro) {
-        wrist.set(gyroSpeed);
+        wrist.set(-gyroSpeed);
       } else {
         wrist.getPIDController().setReference(0, ControlType.kVelocity);
       }
     } else {
       resetGyroAngle();
       SmartDashboard.putNumber("WristSpeed", output);
-      wrist.set(output);
+      wrist.set(-output);
     }
 
   }
