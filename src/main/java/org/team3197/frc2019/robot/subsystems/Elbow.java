@@ -20,7 +20,7 @@ public class Elbow extends Subsystem implements Drivable {
 
   public FunctionCommand resetEncoder = new FunctionCommand(this::resetEncoderPosition);
 
-  final double maxRPM = 3000;
+  final double maxRPM = 5000;
 
   public Elbow() {
     super();
@@ -55,7 +55,7 @@ public class Elbow extends Subsystem implements Drivable {
   double referenceEncVal = 0;
 
   public void drive(double speed, boolean hold) {
-    double output = speed;
+    double output = -speed;
 
     if (!pidLast) {
       referenceEncVal = elbow.getEncoder().getPosition();
@@ -67,16 +67,30 @@ public class Elbow extends Subsystem implements Drivable {
       elbow.getPIDController().setReference(0, ControlType.kVelocity);
     } else {
       double rpm = output * maxRPM;
-      elbow.getPIDController().setReference(rpm, ControlType.kVelocity);
+      SmartDashboard.putNumber("rpm", rpm);
+      // if (hold) {
+      // elbow.getPIDController().setReference(rpm, ControlType.kSmartVelocity);
+      // } else {
+      // elbow.set(output);
+      // }
+      elbow.set(output);
     }
+    // elbow.set(output);
+    // elbow.getPIDController().setReference(maxRPM * output,
+    // ControlType.kVelocity);
 
     SmartDashboard.putNumber("ElbowEncoder", getElbowEncoderPosition());
+    SmartDashboard.putNumber("ElbowVelocity", getVelocity());
   }
 
   double resetElbowEncoderPosition = 0;
 
   public double getElbowEncoderPosition() {
     return elbow.getEncoder().getPosition() - resetElbowEncoderPosition;
+  }
+
+  public double getVelocity() {
+    return elbow.getEncoder().getVelocity();
   }
 
   private void resetEncoderPosition() {
