@@ -16,7 +16,7 @@ public class Intake extends Subsystem implements Drivable {
 
   public Intake() {
     roller.setIdleMode(IdleMode.kBrake);
-    roller.setInverted(true);
+    roller.setInverted(false);
   }
 
   @Override

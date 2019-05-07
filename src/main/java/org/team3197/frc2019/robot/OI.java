@@ -64,7 +64,7 @@ public class OI {
         }
 
         public static double arcadeDriveY() {
-                return driver.getY(Hand.kRight);
+                return driver.getY(Hand.kRight) * MaxSpeeds.kDrive.forwardSpeed;
         }
 
         public static double arcadeDriveR() {
