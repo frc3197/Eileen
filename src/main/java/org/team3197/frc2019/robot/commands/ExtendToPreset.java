@@ -38,7 +38,7 @@ public class ExtendToPreset extends Command {
   @Override
   protected void execute() {
     double elbowSpeed = getElbowSpeed();
-    elbow.drive(elbowSpeed, true);
+    elbow.drive(elbowSpeed, false);
   }
 
   @Override
@@ -61,6 +61,8 @@ public class ExtendToPreset extends Command {
 
     double error = elbow.getElbowEncoderPosition() - currentTarget.elbowPos;
     finished = Math.abs(error) < RobotMap.elbowPresetThreshold;
+    // finished = Math.abs(elbow.getVelocity()) <
+    // RobotMap.elbowVelocityPresetThreshold;
 
     double speed = -RobotMap.elbowDegreeSensitivity * error;
     return speed;
